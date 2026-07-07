@@ -718,7 +718,11 @@ function apply(f) {
   if (f === 'all') filtered = [...ALL];
   else if (f === 'wrong') filtered = ALL.filter((_, i) => wrongs.has(i));
   else filtered = ALL.filter(q => q.type === f);
-  idx = 0;
+  
+  // 自动定位到当前分类下第一道【未作答】的题目
+  const firstUnanswered = filtered.findIndex(q => !record[ALL.indexOf(q)]);
+  idx = firstUnanswered !== -1 ? firstUnanswered : 0;
+  
   render();
 }
 
