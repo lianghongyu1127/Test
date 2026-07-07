@@ -624,6 +624,7 @@
       <button class="pill" data-f="judge">判断题</button>
       <button class="pill" data-f="wrong">✖ 错题</button>
       <button class="pill" data-f="shuffle">🔀 随机</button>
+      <button class="pill" style="color:var(--wrong)" onclick="confirmResetAll()">🔄 重置</button>
     </div>
   </div>
 
@@ -684,7 +685,7 @@ function loadProgress() {
     idx = data.idx || 0;
     curFilter = data.curFilter || 'all';
     // restore filter pill active state
-    document.querySelectorAll('.pill').forEach(b => {
+    document.querySelectorAll('.pill:not([onclick])').forEach(b => {
       b.classList.toggle('active', b.dataset.f === curFilter);
     });
     stats();
@@ -704,8 +705,8 @@ fetch('questions.json').then(r => r.json()).then(d => {
 // ===== 筛选逻辑 =====
 document.getElementById('filterRow').addEventListener('click', e => {
   const btn = e.target.closest('.pill');
-  if (!btn) return;
-  document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+  if (!btn || btn.hasAttribute('onclick')) return; // ignore reset button
+  document.querySelectorAll('.pill:not([onclick])').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   const f = btn.dataset.f;
   curFilter = f;
@@ -854,9 +855,6 @@ function confirmClear() {
       </div>
     </div>`;
 }
-function closeDialog() {
-  document.getElementById('dialogRoot').innerHTML = '';
-}
 function doClear() {
   for (const gi of wrongs) {
     delete record[gi];
@@ -867,6 +865,36 @@ function doClear() {
   saveProgress();
   closeDialog();
   apply(curFilter);
+}
+
+// ===== 重置全部进度 =====
+function confirmResetAll() {
+  document.getElementById('dialogRoot').innerHTML = `
+    <div class="dialog-overlay" onclick="if(event.target===this)closeDialog()">
+      <div class="dialog-box">
+        <div class="dialog-title">重置全部进度</div>
+        <div class="dialog-desc">确定要清空所有刷题记录吗？此操作不可恢复。</div>
+        <div class="dialog-actions">
+          <button class="btn-cancel" onclick="closeDialog()">取消</button>
+          <button class="btn-danger" onclick="doResetAll()">确认重置</button>
+        </div>
+      </div>
+    </div>`;
+}
+function doResetAll() {
+  record = {};
+  wrongs.clear();
+  nCorrect = 0;
+  nWrong = 0;
+  idx = 0;
+  stats();
+  saveProgress();
+  closeDialog();
+  apply(curFilter);
+}
+
+function closeDialog() {
+  document.getElementById('dialogRoot').innerHTML = '';
 }
 
 // ===== 导航 =====
