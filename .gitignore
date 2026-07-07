@@ -1,0 +1,7 @@
+# Ignore everything
+*
+
+# Except quiz app files
+!index.html
+!questions.json
+!.gitignore
