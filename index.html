@@ -834,6 +834,14 @@ function save(gi, chosen, correct) {
   stats();
   saveProgress();
   render();
+  
+  // 答题后，如果反馈信息把“下一题”按钮挤出了屏幕，自动往下滚动显示它
+  setTimeout(() => {
+    const nav = document.querySelector('.nav');
+    if (nav && nav.getBoundingClientRect().bottom > window.innerHeight) {
+      nav.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  }, 50);
 }
 
 // ===== 清除错题 =====
