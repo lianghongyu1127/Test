@@ -835,13 +835,14 @@ function save(gi, chosen, correct) {
   saveProgress();
   render();
   
-  // 答题后，如果反馈信息把“下一题”按钮挤出了屏幕，自动往下滚动显示它
+  // 答题后，强制页面向底部滚动一点，确保下一题按钮完全露出（适配苹果手机底栏）
   setTimeout(() => {
     const nav = document.querySelector('.nav');
-    if (nav && nav.getBoundingClientRect().bottom > window.innerHeight) {
-      nav.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    if (nav) {
+      // 在 iOS Safari 上 innerHeight 有时包含底部被折叠的工具栏，所以直接用 scrollBy 或者滚动到底部最稳妥
+      window.scrollBy({ top: 150, left: 0, behavior: 'smooth' });
     }
-  }, 50);
+  }, 100);
 }
 
 // ===== 清除错题 =====
