@@ -898,7 +898,11 @@ function go(d) {
   idx = Math.max(0, Math.min(idx, filtered.length - 1));
   saveProgress();
   render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const cardArea = document.getElementById('cardArea');
+  if (cardArea) {
+    const topPos = cardArea.getBoundingClientRect().top + window.scrollY - 20;
+    window.scrollTo({ top: topPos, behavior: 'smooth' });
+  }
 }
 function updateNav() {
   const n = filtered.length;
