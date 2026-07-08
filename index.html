@@ -592,7 +592,7 @@
 
   <div class="header">
     <div class="header-icon">📖</div>
-    <h1>软件工程题库</h1>
+    <h1>智能刷题</h1>
     <div class="subtitle">共 <span id="total">0</span> 题 · 专注刷题</div>
   </div>
 
@@ -617,6 +617,7 @@
       <button class="pill" data-f="choice">选择题</button>
       <button class="pill" data-f="fill">填空题</button>
       <button class="pill" data-f="judge">判断题</button>
+      <button class="pill" data-f="done">✔ 已答</button>
       <button class="pill" data-f="wrong">✖ 错题</button>
       <button class="pill" data-f="shuffle">🔀 随机</button>
       <button class="pill" style="color:var(--wrong)" onclick="confirmResetAll()">🔄 重置</button>
@@ -717,6 +718,7 @@ document.getElementById('filterRow').addEventListener('click', e => {
 function apply(f) {
   if (f === 'all') filtered = [...ALL];
   else if (f === 'wrong') filtered = ALL.filter((_, i) => wrongs.has(i));
+  else if (f === 'done') filtered = ALL.filter((_, i) => record[i]);
   else filtered = ALL.filter(q => q.type === f);
   
   // 自动定位到当前分类下第一道【未作答】的题目
@@ -731,12 +733,19 @@ function render() {
   const area = document.getElementById('cardArea');
   const clearBar = document.getElementById('clearBar');
 
-  // 错题清理按钮（仅在错题视图且有错题时显示）
+  // 清理按钮（错题视图或已答视图时显示）
   if (curFilter === 'wrong' && wrongs.size > 0) {
     clearBar.innerHTML = `<div class="clear-wrong-bar">
       <button class="clear-wrong-btn" onclick="confirmClear()">
         <svg style="width:14px;height:14px;margin-bottom:1px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
         清空错题记录
+      </button>
+    </div>`;
+  } else if (curFilter === 'done' && Object.keys(record).length > 0) {
+    clearBar.innerHTML = `<div class="clear-wrong-bar">
+      <button class="clear-wrong-btn" onclick="confirmClearDone()">
+        <svg style="width:14px;height:14px;margin-bottom:1px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        清空已答记录
       </button>
     </div>`;
   } else {
@@ -869,6 +878,33 @@ function doClear() {
     nWrong--;
   }
   wrongs.clear();
+  stats();
+  saveProgress();
+  closeDialog();
+  apply(curFilter);
+}
+
+// ===== 清除已答记录 =====
+function confirmClearDone() {
+  const doneCount = Object.keys(record).length;
+  document.getElementById('dialogRoot').innerHTML = `
+    <div class="dialog-overlay" onclick="if(event.target===this)closeDialog()">
+      <div class="dialog-box">
+        <div class="dialog-title">清空已答记录</div>
+        <div class="dialog-desc">确定要清除全部 ${doneCount} 道已答记录吗？清除后所有题目将恢复为未作答状态。</div>
+        <div class="dialog-actions">
+          <button class="btn-cancel" onclick="closeDialog()">取消</button>
+          <button class="btn-danger" onclick="doClearDone()">确认清除</button>
+        </div>
+      </div>
+    </div>`;
+}
+function doClearDone() {
+  record = {};
+  wrongs.clear();
+  nCorrect = 0;
+  nWrong = 0;
+  idx = 0;
   stats();
   saveProgress();
   closeDialog();
