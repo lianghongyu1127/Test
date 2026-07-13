@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>智能刷题</title>
+  <title>软件系统分析与设计</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
@@ -805,128 +805,17 @@
       }
     }
 
-    /* ===== 题库选择页 ===== */
-    .course-select {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-    }
-    .course-select h2 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-    .course-select .sub {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-    .course-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      width: 100%;
-      max-width: 400px;
-    }
-    .course-card {
-      background: var(--bg-card);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      cursor: pointer;
-      transition: all var(--transition);
-      text-align: left;
-      font-family: inherit;
-      color: var(--text-primary);
-      position: relative;
-      overflow: hidden;
-    }
-    .course-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      opacity: 0.8;
-    }
-    .course-card:first-child::before {
-      background: linear-gradient(90deg, #0ea5e9, var(--accent));
-    }
-    .course-card:last-child::before {
-      background: linear-gradient(90deg, #f59e0b, #ef4444);
-    }
-    .course-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
-    }
-    .course-card .cc-icon {
-      font-size: 2rem;
-      margin-bottom: 12px;
-    }
-    .course-card .cc-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .course-card .cc-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .back-btn {
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all var(--transition);
-      font-family: inherit;
-      margin-bottom: 8px;
-    }
-    .back-btn:hover {
-      color: var(--text-primary);
-      border-color: var(--border-hover);
     }
   </style>
 </head>
 
 <body>
   <div class="ambient"></div>
-
-  <!-- 题库选择页 -->
-  <div class="app" id="courseSelectPage">
-    <div class="course-select">
-      <div class="header-icon" style="margin-bottom:8px">📖</div>
-      <h2>智能刷题</h2>
-      <div class="sub">选择你要刷的题库</div>
-      <div class="course-cards">
-        <button class="course-card" onclick="enterCourse('questions.json','深度学习','quiz_dl_v1')">
-          <div class="cc-icon">🧠</div>
-          <div class="cc-title">深度学习</div>
-          <div class="cc-desc">CNN、RNN、激活函数、反向传播等 · 146 题</div>
-        </button>
-        <button class="course-card" onclick="enterCourse('questions_software.json','软件系统分析与设计','quiz_sw_v1')">
-          <div class="cc-icon">🛠️</div>
-          <div class="cc-title">软件系统分析与设计</div>
-          <div class="cc-desc">架构设计、设计模式、需求分析等 · 100 题</div>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 刷题页 -->
-  <div class="app" id="quizPage" style="display:none">
+  <div class="app">
 
     <div class="header">
-      <button class="back-btn" onclick="backToCourseSelect()">← 切换题库</button>
       <div class="header-icon">📖</div>
-      <h1 id="courseTitle">智能刷题</h1>
+      <h1>软件系统分析与设计</h1>
       <div class="subtitle">共 <span id="total">0</span> 题 · 专注刷题</div>
     </div>
 
@@ -980,7 +869,7 @@
       <div class="progress-bar" id="pBar"></div>
     </div>
 
-  </div> <!-- end quizPage -->
+  </div>
 
   <div id="dialogRoot"></div>
 
@@ -992,39 +881,17 @@
     let nCorrect = 0, nWrong = 0;
     let curFilter = 'all';
 
-    let STORAGE_KEY = 'quiz_progress_v1';
-    let currentJsonFile = '';
+    const STORAGE_KEY = 'quiz_sw_v1';
 
-    // ===== 题库选择 =====
-    function enterCourse(jsonFile, title, storageKey) {
-      currentJsonFile = jsonFile;
-      STORAGE_KEY = storageKey;
-      document.getElementById('courseTitle').textContent = title;
-      document.getElementById('courseSelectPage').style.display = 'none';
-      document.getElementById('quizPage').style.display = 'block';
-      // 重置状态
-      ALL = []; filtered = []; idx = 0;
-      record = {}; wrongs = new Set();
-      nCorrect = 0; nWrong = 0; curFilter = 'all';
-      // 恢复筛选按钮
-      document.querySelectorAll('.pill:not([onclick])').forEach(b => {
-        b.classList.toggle('active', b.dataset.f === 'all');
-      });
-      // 加载题库
-      fetch(jsonFile).then(r => r.json()).then(d => {
-        ALL = d;
-        document.getElementById('total').textContent = d.length;
-        loadProgress();
-        apply(curFilter);
-      }).catch(e => {
-        document.getElementById('cardArea').innerHTML = '<div class="empty"><div class="empty-text">题库加载失败</div></div>';
-      });
-    }
-
-    function backToCourseSelect() {
-      document.getElementById('quizPage').style.display = 'none';
-      document.getElementById('courseSelectPage').style.display = 'block';
-    }
+    // ===== 初始化 =====
+    fetch('questions_software.json').then(r => r.json()).then(d => {
+      ALL = d;
+      document.getElementById('total').textContent = d.length;
+      loadProgress();
+      apply(curFilter);
+    }).catch(e => {
+      document.getElementById('cardArea').innerHTML = '<div class="empty"><div class="empty-text">题库加载失败</div></div>';
+    });
 
     // ===== localStorage 持久化 =====
     function saveProgress() {
