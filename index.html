@@ -1014,9 +1014,12 @@
       } else if (q.type === 'judge') {
         let c1 = done ? 'locked' : '', c2 = done ? 'locked' : '';
         if (done) {
-          if (q.answer === '正确') c1 += ' is-correct'; else c2 += ' is-correct';
-          if (done.chosen === '正确' && !done.correct) c1 += ' is-wrong';
-          if (done.chosen === '错误' && !done.correct) c2 += ' is-wrong';
+          // JSON里答案是"对"/"错"，按钮发送"正确"/"错误"
+          const isCorrectAns = (q.answer === '对' || q.answer === '正确');
+          if (isCorrectAns) c1 += ' is-correct'; else c2 += ' is-correct';
+          const choseCorrect = (done.chosen === '正确' || done.chosen === '对');
+          if (choseCorrect && !done.correct) c1 += ' is-wrong';
+          if (!choseCorrect && !done.correct) c2 += ' is-wrong';
         }
         h += `<div class="judge-row">
       <button class="judge-btn ${c1}" onclick="pickJudge('正确',${gi})">✅ 正确</button>
@@ -1055,7 +1058,14 @@
 
     // ===== 答题处理 =====
     function pickChoice(k, gi) { if (record[gi]) return; save(gi, k, k === ALL[gi].answer); }
-    function pickJudge(k, gi) { if (record[gi]) return; save(gi, k, k === ALL[gi].answer); }
+    function pickJudge(k, gi) {
+      if (record[gi]) return;
+      // 按钮发送"正确"/"错误"，JSON答案是"对"/"错"，需要匹配两种表达
+      const ans = ALL[gi].answer;
+      const correct = (k === '正确' && (ans === '对' || ans === '正确')) ||
+                      (k === '错误' && (ans === '错' || ans === '错误'));
+      save(gi, k, correct);
+    }
     function pickFill(gi) {
       const inp = document.getElementById('fInp');
       if (!inp) return;
