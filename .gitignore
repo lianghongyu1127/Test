@@ -3,6 +3,5 @@
 
 # Except quiz app files
 !index.html
-!questions.json
-!questions_software.json
+!questions_english.json
 !.gitignore

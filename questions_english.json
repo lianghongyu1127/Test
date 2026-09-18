@@ -1,0 +1,242 @@
+[
+  {
+    "type": "choice",
+    "question": "The committee remained ____ about the proposed budget cuts, refusing to comment until all members had reviewed the document.\n💡 委员会对提议的预算削减保持沉默，拒绝在所有成员审阅文件之前发表评论。",
+    "options": {"A": "indifferent", "B": "reticent", "C": "decisive", "D": "receptive"},
+    "answer": "B",
+    "word": "reticent",
+    "meaning": "沉默寡言的；不愿透露信息的"
+  },
+  {
+    "type": "choice",
+    "question": "Her tone was deliberately ____: she neither confirmed nor denied the allegations, leaving reporters guessing.\n💡 她的措辞刻意含糊其辞：她既不确认也不否认这些指控，让记者们猜测不已。",
+    "options": {"A": "candid", "B": "explicit", "C": "ambiguous", "D": "assertive"},
+    "answer": "C",
+    "word": "ambiguous",
+    "meaning": "模棱两可的；含糊的"
+  },
+  {
+    "type": "choice",
+    "question": "Regular exercise has been shown to ____ the risk of developing heart disease by improving circulation and reducing inflammation.\n💡 研究表明，定期锻炼可以通过改善循环、减少炎症来降低患心脏病的风险。",
+    "options": {"A": "aggravate", "B": "mitigate", "C": "accelerate", "D": "overlook"},
+    "answer": "B",
+    "word": "mitigate",
+    "meaning": "减轻；缓和"
+  },
+  {
+    "type": "choice",
+    "question": "The professor was known for her ability to ____ complex ideas clearly, making difficult concepts accessible to all students.\n💡 这位教授以她清晰阐述复杂思想的能力而闻名，让所有学生都能理解困难的概念。",
+    "options": {"A": "articulate", "B": "distort", "C": "confuse", "D": "undermine"},
+    "answer": "A",
+    "word": "articulate",
+    "meaning": "清晰表达；口齿清楚的"
+  },
+  {
+    "type": "choice",
+    "question": "The new policy was designed to ____ innovation in small businesses by offering tax breaks and simplified regulations.\n💡 新政策旨在通过提供税收减免和简化法规来促进小企业的创新。",
+    "options": {"A": "suppress", "B": "facilitate", "C": "restrict", "D": "neglect"},
+    "answer": "B",
+    "word": "facilitate",
+    "meaning": "促进；使便利"
+  },
+  {
+    "type": "choice",
+    "question": "Many economists are ____ about the long-term benefits of the trade deal, warning that early optimism may be premature.\n💡 许多经济学家对这项贸易协议的长期效益持怀疑态度，警告说早期的乐观情绪可能为时尚早。",
+    "options": {"A": "enthusiastic", "B": "optimistic", "C": "skeptical", "D": "indifferent"},
+    "answer": "C",
+    "word": "skeptical",
+    "meaning": "怀疑的；持怀疑态度的"
+  },
+  {
+    "type": "choice",
+    "question": "The charity's annual report sought to ____ the impact of its programs by comparing outcomes before and after the intervention.\n💡 该慈善机构的年度报告试图通过比较干预前后的结果来量化其项目的影响。",
+    "options": {"A": "exaggerate", "B": "ignore", "C": "quantify", "D": "dispute"},
+    "answer": "C",
+    "word": "quantify",
+    "meaning": "量化；用数量表示"
+  },
+  {
+    "type": "choice",
+    "question": "Critics argued that the government's response to the crisis was entirely ____, driven by opinion polls rather than sound policy.\n💡 批评人士认为，政府对危机的回应完全是机会主义的，是民调驱动的而非合理政策。",
+    "options": {"A": "pragmatic", "B": "opportunistic", "C": "systematic", "D": "principled"},
+    "answer": "B",
+    "word": "opportunistic",
+    "meaning": "机会主义的；投机的"
+  },
+  {
+    "type": "choice",
+    "question": "The author's argument was built on a flawed ____, assuming that correlation between two variables always implies causation.\n💡 这位作者的论点建立在一个有缺陷的前提上，假定两个变量之间的相关性总是意味着因果关系。",
+    "options": {"A": "premise", "B": "outcome", "C": "evidence", "D": "contrast"},
+    "answer": "A",
+    "word": "premise",
+    "meaning": "前提；假设"
+  },
+  {
+    "type": "choice",
+    "question": "Social media platforms have been criticized for creating a ____ environment where extreme opinions are amplified and rewarded.\n💡 社交媒体平台因创造了一种两极化的环境而受到批评，在这种环境中，极端观点被放大和奖励。",
+    "options": {"A": "harmonious", "B": "polarized", "C": "neutral", "D": "constructive"},
+    "answer": "B",
+    "word": "polarized",
+    "meaning": "两极化的；对立的"
+  },
+  {
+    "type": "choice",
+    "question": "The documentary ____ the harsh conditions faced by migrant workers, sparking a national debate about labor rights.\n💡 这部纪录片揭示了移民工人所面临的恶劣条件，引发了一场关于劳工权利的全国性辩论。",
+    "options": {"A": "concealed", "B": "glorified", "C": "exposed", "D": "exaggerated"},
+    "answer": "C",
+    "word": "expose",
+    "meaning": "揭露；暴露"
+  },
+  {
+    "type": "choice",
+    "question": "The researcher's findings were ____ by three independent laboratories, giving them far greater scientific credibility.\n💡 该研究人员的发现得到了三个独立实验室的证实，这给它们带来了更大的科学可信度。",
+    "options": {"A": "contested", "B": "corroborated", "C": "dismissed", "D": "speculated"},
+    "answer": "B",
+    "word": "corroborate",
+    "meaning": "证实；支持（某种说法）"
+  },
+  {
+    "type": "choice",
+    "question": "The city's rapid economic growth has been accompanied by a growing ____ between wealthy neighborhoods and impoverished ones.\n💡 这座城市的快速经济增长伴随着富裕社区和贫困社区之间日益扩大的差距。",
+    "options": {"A": "similarity", "B": "disparity", "C": "harmony", "D": "connection"},
+    "answer": "B",
+    "word": "disparity",
+    "meaning": "差距；不平等"
+  },
+  {
+    "type": "choice",
+    "question": "The old town's narrow streets and historic buildings create an ____ atmosphere that attracts tourists from around the world.\n💡 老城区狭窄的街道和历史建筑营造出一种迷人的氛围，吸引着来自世界各地的游客。",
+    "options": {"A": "industrial", "B": "evocative", "C": "monotonous", "D": "sterile"},
+    "answer": "B",
+    "word": "evocative",
+    "meaning": "唤起记忆（或情感）的；令人联想的"
+  },
+  {
+    "type": "choice",
+    "question": "Rather than punish every minor offense, the school adopted a more ____ approach, focusing on counseling and rehabilitation.\n💡 学校没有惩罚每一个小过失，而是采取了一种更宽容的方式，专注于辅导和康复。",
+    "options": {"A": "lenient", "B": "rigid", "C": "punitive", "D": "arbitrary"},
+    "answer": "A",
+    "word": "lenient",
+    "meaning": "宽大的；仁慈的"
+  },
+  {
+    "type": "choice",
+    "question": "The lawyer argued that the evidence was entirely ____ and should not be admitted in court since it was obtained illegally.\n💡 律师辩称，该证据是完全无关紧要的，不应在法庭上采纳，因为它是非法获取的。",
+    "options": {"A": "relevant", "B": "decisive", "C": "inadmissible", "D": "compelling"},
+    "answer": "C",
+    "word": "inadmissible",
+    "meaning": "不可采用的；不被接受的"
+  },
+  {
+    "type": "choice",
+    "question": "Scientists are studying whether the virus can ____ to resist the new class of antiviral drugs developed last year.\n💡 科学家们正在研究病毒是否能够变异以抵抗去年研发的新型抗病毒药物。",
+    "options": {"A": "adapt", "B": "diminish", "C": "retreat", "D": "stabilize"},
+    "answer": "A",
+    "word": "adapt",
+    "meaning": "适应；改编"
+  },
+  {
+    "type": "choice",
+    "question": "The report ____ several key issues that policymakers had long been aware of but failed to address adequately.\n💡 报告强调了政策制定者长期以来已经意识到但未能充分解决的几个关键问题。",
+    "options": {"A": "overlooked", "B": "eliminated", "C": "highlighted", "D": "complicated"},
+    "answer": "C",
+    "word": "highlight",
+    "meaning": "突出；强调"
+  },
+  {
+    "type": "choice",
+    "question": "The company's decision to outsource production was seen as a ____ move, cutting short-term costs but weakening long-term competitiveness.\n💡 该公司将生产外包的决定被视为一种短视行为，虽然降低了短期成本，但削弱了长期竞争力。",
+    "options": {"A": "far-sighted", "B": "myopic", "C": "innovative", "D": "responsible"},
+    "answer": "B",
+    "word": "myopic",
+    "meaning": "目光短浅的；近视的"
+  },
+  {
+    "type": "choice",
+    "question": "The diplomat's careful choice of words was intended to ____ tensions between the two countries without assigning blame to either side.\n💡 外交官谨慎的措辞旨在缓和两国之间的紧张关系，同时不将责任归咎于任何一方。",
+    "options": {"A": "inflame", "B": "defuse", "C": "escalate", "D": "distort"},
+    "answer": "B",
+    "word": "defuse",
+    "meaning": "缓和（紧张局势）；化解"
+  },
+  {
+    "type": "choice",
+    "question": "The politician's speech was so full of ____ that even his supporters found it difficult to understand his actual position.\n💡 这位政客的演讲充满了模糊语言，甚至连他的支持者都很难理解他的实际立场。",
+    "options": {"A": "clarity", "B": "jargon", "C": "rhetoric", "D": "substance"},
+    "answer": "C",
+    "word": "rhetoric",
+    "meaning": "华而不实的言辞；修辞"
+  },
+  {
+    "type": "choice",
+    "question": "She managed to ____ her anxiety before the presentation by deep breathing and visualizing a successful outcome.\n💡 她通过深呼吸和想象成功的结果来克服了演讲前的焦虑。",
+    "options": {"A": "intensify", "B": "overcome", "C": "suppress", "D": "deny"},
+    "answer": "B",
+    "word": "overcome",
+    "meaning": "克服；战胜"
+  },
+  {
+    "type": "choice",
+    "question": "The journalist's article was praised for being both ____ and accessible, presenting complex economic data in a way that ordinary readers could understand.\n💡 这位记者的文章因既严谨又通俗易懂而受到赞扬，以普通读者能够理解的方式呈现了复杂的经济数据。",
+    "options": {"A": "rigorous", "B": "superficial", "C": "biased", "D": "redundant"},
+    "answer": "A",
+    "word": "rigorous",
+    "meaning": "严格的；严谨的"
+  },
+  {
+    "type": "choice",
+    "question": "The government's new initiative aims to ____ young people from disadvantaged backgrounds into higher education.\n💡 政府的新举措旨在将来自弱势背景的年轻人纳入高等教育。",
+    "options": {"A": "exclude", "B": "integrate", "C": "discourage", "D": "separate"},
+    "answer": "B",
+    "word": "integrate",
+    "meaning": "整合；使融入"
+  },
+  {
+    "type": "choice",
+    "question": "After years of negotiation, the two rival companies finally reached a ____ that satisfied both parties' core interests.\n💡 经过多年谈判，两家竞争公司终于达成了一项双方核心利益都得到满足的妥协方案。",
+    "options": {"A": "consensus", "B": "conflict", "C": "deadlock", "D": "compromise"},
+    "answer": "D",
+    "word": "compromise",
+    "meaning": "妥协；折衷方案"
+  },
+  {
+    "type": "choice",
+    "question": "The evidence strongly ____ the theory that sleep deprivation significantly impairs cognitive performance.\n💡 有证据强烈支持这样一个理论：睡眠剥夺会显著损害认知能力。",
+    "options": {"A": "contradicts", "B": "undermines", "C": "supports", "D": "complicates"},
+    "answer": "C",
+    "word": "support",
+    "meaning": "支持；证实（理论）"
+  },
+  {
+    "type": "choice",
+    "question": "The once-thriving fishing village has now ____ into a popular tourist resort, losing much of its original character.\n💡 这个曾经繁荣的渔村现在已经演变成一个受欢迎的旅游胜地，失去了其大部分原有特色。",
+    "options": {"A": "contracted", "B": "transformed", "C": "isolated", "D": "declined"},
+    "answer": "B",
+    "word": "transform",
+    "meaning": "转变；改变"
+  },
+  {
+    "type": "choice",
+    "question": "Her argument was compelling, but her opponent quickly pointed out a major ____ in her reasoning that she could not explain away.\n💡 她的论点很有说服力，但对手很快指出了她推理中的一个重大漏洞，她无法解释清楚。",
+    "options": {"A": "strength", "B": "flaw", "C": "assumption", "D": "consequence"},
+    "answer": "B",
+    "word": "flaw",
+    "meaning": "缺陷；漏洞"
+  },
+  {
+    "type": "choice",
+    "question": "Researchers have found that social isolation can ____ the immune system, making people more susceptible to illness.\n💡 研究人员发现，社会孤立会削弱免疫系统，使人更容易生病。",
+    "options": {"A": "strengthen", "B": "stabilize", "C": "weaken", "D": "stimulate"},
+    "answer": "C",
+    "word": "weaken",
+    "meaning": "削弱；变弱"
+  },
+  {
+    "type": "choice",
+    "question": "The board voted to ____ the CEO after evidence emerged that he had misled investors about the company's financial performance.\n💡 董事会在出现证据表明首席执行官就公司财务业绩误导投资者之后，投票将其解雇。",
+    "options": {"A": "promote", "B": "dismiss", "C": "recruit", "D": "consult"},
+    "answer": "B",
+    "word": "dismiss",
+    "meaning": "解雇；驳回；不予考虑"
+  }
+]

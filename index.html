@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>软件系统分析与设计</title>
+  <title>考研英语词汇</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
@@ -521,7 +521,20 @@
     }
 
     .result-body {
+      font-size: 0.9rem;
       flex: 1;
+    }
+    .answer-word {
+      margin-top: 6px;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      padding-top: 6px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .answer-word b {
+      color: var(--accent-light);
+      font-style: italic;
+      margin-right: 4px;
     }
 
     .result.r-correct {
@@ -815,7 +828,7 @@
 
     <div class="header">
       <div class="header-icon">📖</div>
-      <h1>软件系统分析与设计</h1>
+      <h1>考研英语词汇</h1>
       <div class="subtitle">共 <span id="total">0</span> 题 · 专注刷题</div>
     </div>
 
@@ -881,10 +894,10 @@
     let nCorrect = 0, nWrong = 0;
     let curFilter = 'all';
 
-    const STORAGE_KEY = 'quiz_sw_v1';
+    const STORAGE_KEY = 'quiz_en_v1';
 
     // ===== 初始化 =====
-    fetch('questions_software.json').then(r => r.json()).then(d => {
+    fetch('questions_english.json').then(r => r.json()).then(d => {
       ALL = d;
       document.getElementById('total').textContent = d.length;
       loadProgress();
@@ -1039,11 +1052,15 @@
       // 答案反馈
       if (done) {
         if (done.correct) {
-          h += `<div class="result r-correct"><span class="result-icon">✓</span><div class="result-body">回答正确</div></div>`;
+          let wordInfo = '';
+          if (q.word && q.meaning) wordInfo = `<div class="answer-word">📖 <b>${esc(q.word)}</b> ${esc(q.meaning)}</div>`;
+          h += `<div class="result r-correct"><span class="result-icon">✓</span><div class="result-body">回答正确${wordInfo}</div></div>`;
         } else {
           let at = q.answer;
           if (q.type === 'choice') at = q.answer + '. ' + q.options[q.answer];
-          h += `<div class="result r-wrong"><span class="result-icon">✗</span><div class="result-body">回答错误<span class="answer-text">${esc(at)}</span></div></div>`;
+          let wordInfo = '';
+          if (q.word && q.meaning) wordInfo = `<div class="answer-word">📖 <b>${esc(q.word)}</b> ${esc(q.meaning)}</div>`;
+          h += `<div class="result r-wrong"><span class="result-icon">✗</span><div class="result-body">回答错误<span class="answer-text">${esc(at)}</span>${wordInfo}</div></div>`;
         }
       }
 
