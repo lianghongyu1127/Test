@@ -292,6 +292,18 @@
       letter-spacing: 0.5px;
     }
 
+    .tag-cloze50 {
+      background: rgba(244, 63, 94, 0.15);
+      color: #fb7185;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+
+    .tag-attitude {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
     .tag-basic {
       background: rgba(14, 165, 233, 0.15);
       color: #38bdf8;
@@ -503,6 +515,19 @@
     .answer-family {
       color: #a7f3d0;
       border-left: 2px solid #059669;
+    }
+    .answer-tip {
+      color: #f472b6;
+      border-left: 2px solid #e11d48;
+    }
+    .answer-mnemonic {
+      color: #fde047;
+      border-left: 2px solid #ca8a04;
+    }
+    .answer-cite {
+      color: #94a3b8;
+      border-left: 2px solid #64748b;
+      font-style: italic;
     }
 
     .result.r-correct {
@@ -818,9 +843,11 @@
     <div class="filter-scroll">
       <div class="filter-row" id="filterRow">
         <button class="pill active" data-f="all">全部</button>
+        <button class="pill" data-f="cloze50">完形50词</button>
+        <button class="pill" data-f="attitude">态度词</button>
+        <button class="pill" data-f="family">家族题</button>
         <button class="pill" data-f="basic">基础题</button>
         <button class="pill" data-f="advanced">进阶题</button>
-        <button class="pill" data-f="family">家族题</button>
         <button class="pill" data-f="done">✔ 已答</button>
         <button class="pill" data-f="wrong">✖ 错题</button>
         <button class="pill" data-f="shuffle">🔀 随机</button>
@@ -860,12 +887,14 @@
 
   <script>
     // ===== 状态管理 =====
+    // ===== 状态管理 =====
     let ALL = [], filtered = [], idx = 0;
     let record = {};  // globalIdx -> { chosen, correct }
     let wrongs = new Set();
     let nCorrect = 0, nWrong = 0;
     let curFilter = 'all';
     let curFamily = 'all';
+    let curSubFilter = 'all';
 
     const STORAGE_KEY = 'quiz_en_v1';
 
@@ -889,7 +918,8 @@
           nWrong,
           idx,
           curFilter,
-          curFamily
+          curFamily,
+          curSubFilter
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       } catch (e) { /* quota exceeded or private mode, silently ignore */ }
@@ -907,6 +937,7 @@
         idx = data.idx || 0;
         curFilter = data.curFilter || 'all';
         curFamily = data.curFamily || 'all';
+        curSubFilter = data.curSubFilter || 'all';
 
         // 兼容迁移旧分类
         if (['choice', 'judge', 'fill'].includes(curFilter)) {
@@ -921,40 +952,79 @@
       } catch (e) { /* corrupt data, start fresh */ }
     }
 
-    // ===== 词族二级筛选条渲染 =====
-    function renderFamilyBar() {
+    // ===== 二级子筛选条动态渲染 =====
+    function renderSubFilterBar() {
       const subRow = document.getElementById('subFamilyRow');
       const bar = document.getElementById('familyBar');
-      if (curFilter !== 'family') {
+
+      if (curFilter === 'family') {
+        subRow.style.display = 'block';
+        const famOrder = ['act', 'tract', 'spect', 'form', 'port', 'dict', 'press', 'ex', 're', 'in', 'con', 'pos', 'auto', 'ten/tain', 'vis/vid', 'cept/ceive', 'grad/gress', 'duc/duct'];
+        const famSet = [];
+        famOrder.forEach(f => {
+          if (ALL.some(q => q.type === 'family' && q.family === f)) famSet.push(f);
+        });
+        ALL.forEach(q => {
+          if (q.type === 'family' && q.family && !famSet.includes(q.family)) {
+            famSet.push(q.family);
+          }
+        });
+
+        const totalFamilyCount = ALL.filter(q => q.type === 'family').length;
+        let h = `<button class="sub-pill ${curFamily === 'all' ? 'active' : ''}" onclick="pickFamily('all')">全部家族 (${totalFamilyCount})</button>`;
+        famSet.forEach(f => {
+          const cnt = ALL.filter(q => q.type === 'family' && q.family === f).length;
+          h += `<button class="sub-pill ${curFamily === f ? 'active' : ''}" onclick="pickFamily('${f}')">${f} 家族 (${cnt})</button>`;
+        });
+        bar.innerHTML = h;
+      } else if (curFilter === 'cloze50') {
+        subRow.style.display = 'block';
+        const cats = [
+          { key: 'all', label: '全部完形' },
+          { key: '一级红花', label: '一级红花 (100%)' },
+          { key: '二级红花', label: '二级红花 (>70%)' },
+          { key: '绿叶词', label: '绿叶词 (干扰项)' }
+        ];
+        let h = '';
+        cats.forEach(c => {
+          const cnt = c.key === 'all'
+            ? ALL.filter(q => q.type === 'cloze50').length
+            : ALL.filter(q => q.type === 'cloze50' && (q.category || '').includes(c.key)).length;
+          h += `<button class="sub-pill ${curSubFilter === c.key ? 'active' : ''}" onclick="pickSubFilter('${c.key}')">${c.label} (${cnt})</button>`;
+        });
+        bar.innerHTML = h;
+      } else if (curFilter === 'attitude') {
+        subRow.style.display = 'block';
+        const cats = [
+          { key: 'all', label: '全部态度' },
+          { key: '正态度', label: '正态度 (赞同)' },
+          { key: '负态度', label: '负态度 (批判/怀疑)' },
+          { key: '中立态度', label: '中立态度 (客观)' },
+          { key: '不可选', label: '不可选干扰项' }
+        ];
+        let h = '';
+        cats.forEach(c => {
+          const cnt = c.key === 'all'
+            ? ALL.filter(q => q.type === 'attitude').length
+            : ALL.filter(q => q.type === 'attitude' && (q.category || '').includes(c.key)).length;
+          h += `<button class="sub-pill ${curSubFilter === c.key ? 'active' : ''}" onclick="pickSubFilter('${c.key}')">${c.label} (${cnt})</button>`;
+        });
+        bar.innerHTML = h;
+      } else {
         subRow.style.display = 'none';
-        return;
       }
-      subRow.style.display = 'block';
-
-      const famOrder = ['act', 'tract', 'spect', 'form', 'port', 'dict', 'press'];
-      const famSet = [];
-      famOrder.forEach(f => {
-        if (ALL.some(q => q.type === 'family' && q.family === f)) famSet.push(f);
-      });
-      ALL.forEach(q => {
-        if (q.type === 'family' && q.family && !famSet.includes(q.family)) {
-          famSet.push(q.family);
-        }
-      });
-
-      const totalFamilyCount = ALL.filter(q => q.type === 'family').length;
-      let h = `<button class="sub-pill ${curFamily === 'all' ? 'active' : ''}" onclick="pickFamily('all')">全部家族 (${totalFamilyCount})</button>`;
-      famSet.forEach(f => {
-        const cnt = ALL.filter(q => q.type === 'family' && q.family === f).length;
-        h += `<button class="sub-pill ${curFamily === f ? 'active' : ''}" onclick="pickFamily('${f}')">${f} 家族 (${cnt})</button>`;
-      });
-      bar.innerHTML = h;
     }
 
     function pickFamily(fam) {
       curFamily = fam;
-      renderFamilyBar();
+      renderSubFilterBar();
       apply('family');
+    }
+
+    function pickSubFilter(sub) {
+      curSubFilter = sub;
+      renderSubFilterBar();
+      apply(curFilter);
     }
 
     // ===== 主筛选逻辑 =====
@@ -965,8 +1035,9 @@
       btn.classList.add('active');
       const f = btn.dataset.f;
       curFilter = f;
+      curSubFilter = 'all';
       if (f === 'shuffle') {
-        renderFamilyBar();
+        renderSubFilterBar();
         filtered = [...ALL].sort(() => Math.random() - 0.5);
         idx = 0;
         render();
@@ -977,17 +1048,20 @@
 
     function apply(f) {
       curFilter = f;
-      renderFamilyBar();
+      renderSubFilterBar();
 
       if (f === 'all') filtered = [...ALL];
       else if (f === 'wrong') filtered = ALL.filter((_, i) => wrongs.has(i));
       else if (f === 'done') filtered = ALL.filter((_, i) => record[i]);
       else if (f === 'family') {
-        if (curFamily === 'all') {
-          filtered = ALL.filter(q => q.type === 'family');
-        } else {
-          filtered = ALL.filter(q => q.type === 'family' && q.family === curFamily);
-        }
+        if (curFamily === 'all') filtered = ALL.filter(q => q.type === 'family');
+        else filtered = ALL.filter(q => q.type === 'family' && q.family === curFamily);
+      } else if (f === 'cloze50') {
+        if (curSubFilter === 'all') filtered = ALL.filter(q => q.type === 'cloze50');
+        else filtered = ALL.filter(q => q.type === 'cloze50' && (q.category || '').includes(curSubFilter));
+      } else if (f === 'attitude') {
+        if (curSubFilter === 'all') filtered = ALL.filter(q => q.type === 'attitude');
+        else filtered = ALL.filter(q => q.type === 'attitude' && (q.category || '').includes(curSubFilter));
       } else {
         filtered = ALL.filter(q => q.type === f);
       }
@@ -1005,12 +1079,24 @@
       const clearBar = document.getElementById('clearBar');
 
       // 清理按钮
-      const typeLabels = { basic: '基础题', advanced: '进阶题', family: '家族题', done: '已答', wrong: '错题' };
+      const typeLabels = {
+        cloze50: '完形50词',
+        attitude: '态度词',
+        family: '家族题',
+        basic: '基础题',
+        advanced: '进阶题',
+        done: '已答',
+        wrong: '错题'
+      };
       const hasAnsweredInFilter = filtered.some(q => record[ALL.indexOf(q)]);
-      if ((curFilter === 'wrong' || curFilter === 'basic' || curFilter === 'advanced' || curFilter === 'family' || curFilter === 'done') && hasAnsweredInFilter) {
+      if (['wrong', 'cloze50', 'attitude', 'family', 'basic', 'advanced', 'done'].includes(curFilter) && hasAnsweredInFilter) {
         let label = typeLabels[curFilter] || '';
         if (curFilter === 'family' && curFamily !== 'all') {
           label = `${curFamily} 家族`;
+        } else if (curFilter === 'cloze50' && curSubFilter !== 'all') {
+          label = curSubFilter;
+        } else if (curFilter === 'attitude' && curSubFilter !== 'all') {
+          label = curSubFilter;
         }
         clearBar.innerHTML = `<div class="clear-wrong-bar">
       <button class="clear-wrong-btn" onclick="confirmClearType('${curFilter}','${label}')">
@@ -1041,6 +1127,12 @@
       } else if (q.type === 'family') {
         tagCls = 'tag-family';
         tagText = `词族 · ${q.family || '核心'} 家族`;
+      } else if (q.type === 'cloze50') {
+        tagCls = 'tag-cloze50';
+        tagText = `完形 · ${q.category || '红花绿叶'}`;
+      } else if (q.type === 'attitude') {
+        tagCls = 'tag-attitude';
+        tagText = `态度 · ${q.category || '阅读态度'}`;
       }
 
       const done = record[gi];
@@ -1071,11 +1163,20 @@
         if (q.word && q.meaning) {
           extraInfo += `<div class="answer-word">📖 <b>${esc(q.word)}</b> ${esc(q.meaning)}</div>`;
         }
+        if (q.technique_tip) {
+          extraInfo += `<div class="answer-detail-row answer-tip">${esc(q.technique_tip)}</div>`;
+        }
         if (q.phrase) {
           extraInfo += `<div class="answer-detail-row answer-phrase">📌 <b>考点搭配:</b> ${esc(q.phrase)}</div>`;
         }
+        if (q.mnemonic) {
+          extraInfo += `<div class="answer-detail-row answer-mnemonic">${esc(q.mnemonic)}</div>`;
+        }
         if (q.family_note) {
           extraInfo += `<div class="answer-detail-row answer-family">🌱 <b>家族串记:</b> ${esc(q.family_note)}</div>`;
+        }
+        if (q.exam_cite) {
+          extraInfo += `<div class="answer-detail-row answer-cite">📖 <b>真题出处:</b> ${esc(q.exam_cite)}</div>`;
         }
 
         if (done.correct) {
@@ -1123,7 +1224,17 @@
         targetList = curFamily === 'all'
           ? ALL.filter(q => q.type === 'family')
           : ALL.filter(q => q.type === 'family' && q.family === curFamily);
-      } else targetList = ALL.filter(q => q.type === f);
+      } else if (f === 'cloze50') {
+        targetList = curSubFilter === 'all'
+          ? ALL.filter(q => q.type === 'cloze50')
+          : ALL.filter(q => q.type === 'cloze50' && (q.category || '').includes(curSubFilter));
+      } else if (f === 'attitude') {
+        targetList = curSubFilter === 'all'
+          ? ALL.filter(q => q.type === 'attitude')
+          : ALL.filter(q => q.type === 'attitude' && (q.category || '').includes(curSubFilter));
+      } else {
+        targetList = ALL.filter(q => q.type === f);
+      }
 
       const answeredInType = targetList.filter(q => record[ALL.indexOf(q)]);
       document.getElementById('dialogRoot').innerHTML = `
@@ -1147,7 +1258,17 @@
         targetList = curFamily === 'all'
           ? ALL.filter(q => q.type === 'family')
           : ALL.filter(q => q.type === 'family' && q.family === curFamily);
-      } else targetList = ALL.filter(q => q.type === f);
+      } else if (f === 'cloze50') {
+        targetList = curSubFilter === 'all'
+          ? ALL.filter(q => q.type === 'cloze50')
+          : ALL.filter(q => q.type === 'cloze50' && (q.category || '').includes(curSubFilter));
+      } else if (f === 'attitude') {
+        targetList = curSubFilter === 'all'
+          ? ALL.filter(q => q.type === 'attitude')
+          : ALL.filter(q => q.type === 'attitude' && (q.category || '').includes(curSubFilter));
+      } else {
+        targetList = ALL.filter(q => q.type === f);
+      }
 
       for (const q of targetList) {
         const gi = ALL.indexOf(q);
