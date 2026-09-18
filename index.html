@@ -292,19 +292,22 @@
       letter-spacing: 0.5px;
     }
 
-    .tag-choice {
-      background: rgba(20, 184, 166, 0.1);
+    .tag-basic {
+      background: rgba(14, 165, 233, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(14, 165, 233, 0.3);
+    }
+
+    .tag-advanced {
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .tag-family {
+      background: rgba(20, 184, 166, 0.15);
       color: var(--accent-light);
-    }
-
-    .tag-fill {
-      background: rgba(14, 165, 233, 0.1);
-      color: #7dd3fc;
-    }
-
-    .tag-judge {
-      background: rgba(245, 158, 11, 0.1);
-      color: #fcd34d;
+      border: 1px solid rgba(20, 184, 166, 0.3);
     }
 
     .q-counter {
@@ -405,100 +408,47 @@
       opacity: 0.5;
     }
 
-    /* ===== 判断题按钮 ===== */
-    .judge-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+    /* ===== 词族二级筛选条 ===== */
+    .sub-filter-scroll {
+      margin-bottom: 20px;
+      animation: fadeIn 0.25s ease;
     }
 
-    .judge-btn {
-      padding: 20px 16px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--bg-option);
-      color: var(--text-primary);
-      font-size: 1.05rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all var(--transition);
-      font-family: inherit;
-    }
-
-    .judge-btn:hover:not(.locked) {
-      border-color: var(--accent-dark);
-      background: var(--bg-option-hover);
-    }
-
-    .judge-btn.is-correct {
-      border-color: var(--correct-border);
-      background: var(--correct-bg);
-    }
-
-    .judge-btn.is-wrong {
-      border-color: var(--wrong-border);
-      background: var(--wrong-bg);
-    }
-
-    .judge-btn.locked {
-      cursor: default;
-      pointer-events: none;
-    }
-
-    .judge-btn.locked:not(.is-correct):not(.is-wrong) {
-      opacity: 0.5;
-    }
-
-    /* ===== 填空题 ===== */
-    .fill-group {
+    .sub-filter-row {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 2px;
     }
 
-    .fill-input {
-      width: 100%;
-      background: var(--bg-option);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 16px 20px;
-      color: var(--text-primary);
-      font-size: 1rem;
-      font-family: inherit;
-      outline: none;
-      transition: all var(--transition);
-    }
-
-    .fill-input:focus {
-      border-color: var(--accent);
-      background: rgba(30, 41, 59, 0.8);
-    }
-
-    .fill-input::placeholder {
-      color: var(--text-muted);
-    }
-
-    .fill-submit {
-      align-self: flex-end;
-      background: var(--accent);
-      border: none;
-      color: #fff;
-      padding: 12px 32px;
+    .sub-pill {
+      padding: 5px 14px;
       border-radius: 999px;
-      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      background: rgba(30, 41, 59, 0.5);
+      color: var(--text-muted);
+      font-size: 0.8rem;
       font-weight: 500;
       cursor: pointer;
       transition: all var(--transition);
+      white-space: nowrap;
       font-family: inherit;
     }
 
-    .fill-submit:hover {
-      background: var(--accent-dark);
-      box-shadow: 0 4px 12px var(--accent-glow);
+    .sub-pill:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+      background: var(--bg-elevated);
     }
 
-    .fill-submit:active {
-      transform: scale(0.98);
+    .sub-pill.active {
+      background: rgba(20, 184, 166, 0.18);
+      color: var(--accent-light);
+      border-color: var(--accent);
+      font-weight: 600;
+      box-shadow: 0 2px 8px var(--accent-glow);
     }
 
     /* ===== 反馈结果区 ===== */
@@ -525,16 +475,34 @@
       flex: 1;
     }
     .answer-word {
-      margin-top: 6px;
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      padding-top: 6px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 8px;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      line-height: 1.6;
     }
     .answer-word b {
       color: var(--accent-light);
       font-style: italic;
-      margin-right: 4px;
+      font-size: 0.95rem;
+      margin-right: 6px;
+    }
+    .answer-detail-row {
+      margin-top: 6px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.22);
+    }
+    .answer-phrase {
+      color: #7dd3fc;
+      border-left: 2px solid #0284c7;
+    }
+    .answer-family {
+      color: #a7f3d0;
+      border-left: 2px solid #059669;
     }
 
     .result.r-correct {
@@ -850,14 +818,18 @@
     <div class="filter-scroll">
       <div class="filter-row" id="filterRow">
         <button class="pill active" data-f="all">全部</button>
-        <button class="pill" data-f="choice">选择题</button>
-        <button class="pill" data-f="fill">填空题</button>
-        <button class="pill" data-f="judge">判断题</button>
+        <button class="pill" data-f="basic">基础题</button>
+        <button class="pill" data-f="advanced">进阶题</button>
+        <button class="pill" data-f="family">家族题</button>
         <button class="pill" data-f="done">✔ 已答</button>
         <button class="pill" data-f="wrong">✖ 错题</button>
         <button class="pill" data-f="shuffle">🔀 随机</button>
         <button class="pill" style="color:var(--wrong)" onclick="confirmResetAll()">🔄 重置</button>
       </div>
+    </div>
+
+    <div class="sub-filter-scroll" id="subFamilyRow" style="display:none;">
+      <div class="sub-filter-row" id="familyBar"></div>
     </div>
 
     <div id="clearBar"></div>
@@ -893,6 +865,7 @@
     let wrongs = new Set();
     let nCorrect = 0, nWrong = 0;
     let curFilter = 'all';
+    let curFamily = 'all';
 
     const STORAGE_KEY = 'quiz_en_v1';
 
@@ -915,7 +888,8 @@
           nCorrect,
           nWrong,
           idx,
-          curFilter
+          curFilter,
+          curFamily
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       } catch (e) { /* quota exceeded or private mode, silently ignore */ }
@@ -932,6 +906,13 @@
         nWrong = data.nWrong || 0;
         idx = data.idx || 0;
         curFilter = data.curFilter || 'all';
+        curFamily = data.curFamily || 'all';
+
+        // 兼容迁移旧分类
+        if (['choice', 'judge', 'fill'].includes(curFilter)) {
+          curFilter = 'all';
+        }
+
         // restore filter pill active state
         document.querySelectorAll('.pill:not([onclick])').forEach(b => {
           b.classList.toggle('active', b.dataset.f === curFilter);
@@ -940,7 +921,43 @@
       } catch (e) { /* corrupt data, start fresh */ }
     }
 
-    // ===== 筛选逻辑 =====
+    // ===== 词族二级筛选条渲染 =====
+    function renderFamilyBar() {
+      const subRow = document.getElementById('subFamilyRow');
+      const bar = document.getElementById('familyBar');
+      if (curFilter !== 'family') {
+        subRow.style.display = 'none';
+        return;
+      }
+      subRow.style.display = 'block';
+
+      const famOrder = ['act', 'tract', 'spect', 'form', 'port', 'dict', 'press'];
+      const famSet = [];
+      famOrder.forEach(f => {
+        if (ALL.some(q => q.type === 'family' && q.family === f)) famSet.push(f);
+      });
+      ALL.forEach(q => {
+        if (q.type === 'family' && q.family && !famSet.includes(q.family)) {
+          famSet.push(q.family);
+        }
+      });
+
+      const totalFamilyCount = ALL.filter(q => q.type === 'family').length;
+      let h = `<button class="sub-pill ${curFamily === 'all' ? 'active' : ''}" onclick="pickFamily('all')">全部家族 (${totalFamilyCount})</button>`;
+      famSet.forEach(f => {
+        const cnt = ALL.filter(q => q.type === 'family' && q.family === f).length;
+        h += `<button class="sub-pill ${curFamily === f ? 'active' : ''}" onclick="pickFamily('${f}')">${f} 家族 (${cnt})</button>`;
+      });
+      bar.innerHTML = h;
+    }
+
+    function pickFamily(fam) {
+      curFamily = fam;
+      renderFamilyBar();
+      apply('family');
+    }
+
+    // ===== 主筛选逻辑 =====
     document.getElementById('filterRow').addEventListener('click', e => {
       const btn = e.target.closest('.pill');
       if (!btn || btn.hasAttribute('onclick')) return; // ignore reset button
@@ -949,6 +966,7 @@
       const f = btn.dataset.f;
       curFilter = f;
       if (f === 'shuffle') {
+        renderFamilyBar();
         filtered = [...ALL].sort(() => Math.random() - 0.5);
         idx = 0;
         render();
@@ -958,10 +976,21 @@
     });
 
     function apply(f) {
+      curFilter = f;
+      renderFamilyBar();
+
       if (f === 'all') filtered = [...ALL];
       else if (f === 'wrong') filtered = ALL.filter((_, i) => wrongs.has(i));
       else if (f === 'done') filtered = ALL.filter((_, i) => record[i]);
-      else filtered = ALL.filter(q => q.type === f);
+      else if (f === 'family') {
+        if (curFamily === 'all') {
+          filtered = ALL.filter(q => q.type === 'family');
+        } else {
+          filtered = ALL.filter(q => q.type === 'family' && q.family === curFamily);
+        }
+      } else {
+        filtered = ALL.filter(q => q.type === f);
+      }
 
       // 自动定位到当前分类下第一道【未作答】的题目
       const firstUnanswered = filtered.findIndex(q => !record[ALL.indexOf(q)]);
@@ -976,10 +1005,13 @@
       const clearBar = document.getElementById('clearBar');
 
       // 清理按钮
-      const typeLabels = { choice: '选择题', judge: '判断题', fill: '填空题', done: '已答', wrong: '错题' };
+      const typeLabels = { basic: '基础题', advanced: '进阶题', family: '家族题', done: '已答', wrong: '错题' };
       const hasAnsweredInFilter = filtered.some(q => record[ALL.indexOf(q)]);
-      if ((curFilter === 'wrong' || curFilter === 'choice' || curFilter === 'judge' || curFilter === 'fill' || curFilter === 'done') && hasAnsweredInFilter) {
-        const label = typeLabels[curFilter] || '';
+      if ((curFilter === 'wrong' || curFilter === 'basic' || curFilter === 'advanced' || curFilter === 'family' || curFilter === 'done') && hasAnsweredInFilter) {
+        let label = typeLabels[curFilter] || '';
+        if (curFilter === 'family' && curFamily !== 'all') {
+          label = `${curFamily} 家族`;
+        }
         clearBar.innerHTML = `<div class="clear-wrong-bar">
       <button class="clear-wrong-btn" onclick="confirmClearType('${curFilter}','${label}')">
         <svg style="width:14px;height:14px;margin-bottom:1px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
@@ -1001,8 +1033,15 @@
 
       const q = filtered[idx];
       const gi = ALL.indexOf(q);
-      const [tagCls, tagText] = q.type === 'choice' ? ['tag-choice', '选择题']
-        : q.type === 'fill' ? ['tag-fill', '填空题'] : ['tag-judge', '判断题'];
+
+      let tagCls = 'tag-basic', tagText = '基础题';
+      if (q.type === 'advanced') {
+        tagCls = 'tag-advanced';
+        tagText = '进阶题';
+      } else if (q.type === 'family') {
+        tagCls = 'tag-family';
+        tagText = `词族 · ${q.family || '核心'} 家族`;
+      }
 
       const done = record[gi];
 
@@ -1013,7 +1052,7 @@
     </div>
     <div class="q-text">${esc(q.question)}</div>`;
 
-      if (q.type === 'choice') {
+      if (q.options) {
         h += `<div class="options-list">`;
         for (const [k, v] of Object.entries(q.options)) {
           let c = done ? 'locked' : '';
@@ -1024,74 +1063,40 @@
       </button>`;
         }
         h += `</div>`;
-      } else if (q.type === 'judge') {
-        let c1 = done ? 'locked' : '', c2 = done ? 'locked' : '';
-        if (done) {
-          // JSON里答案是"对"/"错"，按钮发送"正确"/"错误"
-          const isCorrectAns = (q.answer === '对' || q.answer === '正确');
-          if (isCorrectAns) c1 += ' is-correct'; else c2 += ' is-correct';
-          const choseCorrect = (done.chosen === '正确' || done.chosen === '对');
-          if (choseCorrect && !done.correct) c1 += ' is-wrong';
-          if (!choseCorrect && !done.correct) c2 += ' is-wrong';
-        }
-        h += `<div class="judge-row">
-      <button class="judge-btn ${c1}" onclick="pickJudge('正确',${gi})">✅ 正确</button>
-      <button class="judge-btn ${c2}" onclick="pickJudge('错误',${gi})">❌ 错误</button>
-    </div>`;
-      } else {
-        if (done) {
-          h += `<div class="fill-group"><input class="fill-input" value="${esc(done.chosen)}" disabled></div>`;
-        } else {
-          h += `<div class="fill-group">
-        <input class="fill-input" id="fInp" placeholder="输入答案..." autocomplete="off" onkeydown="if(event.key==='Enter')pickFill(${gi})">
-        <button class="fill-submit" onclick="pickFill(${gi})">提交</button>
-      </div>`;
-        }
       }
 
-      // 答案反馈
+      // 答案反馈与考点知识卡片
       if (done) {
+        let extraInfo = '';
+        if (q.word && q.meaning) {
+          extraInfo += `<div class="answer-word">📖 <b>${esc(q.word)}</b> ${esc(q.meaning)}</div>`;
+        }
+        if (q.phrase) {
+          extraInfo += `<div class="answer-detail-row answer-phrase">📌 <b>考点搭配:</b> ${esc(q.phrase)}</div>`;
+        }
+        if (q.family_note) {
+          extraInfo += `<div class="answer-detail-row answer-family">🌱 <b>家族串记:</b> ${esc(q.family_note)}</div>`;
+        }
+
         if (done.correct) {
-          let wordInfo = '';
-          if (q.word && q.meaning) wordInfo = `<div class="answer-word">📖 <b>${esc(q.word)}</b> ${esc(q.meaning)}</div>`;
-          h += `<div class="result r-correct"><span class="result-icon">✓</span><div class="result-body">回答正确${wordInfo}</div></div>`;
+          h += `<div class="result r-correct"><span class="result-icon">✓</span><div class="result-body">回答正确${extraInfo}</div></div>`;
         } else {
-          let at = q.answer;
-          if (q.type === 'choice') at = q.answer + '. ' + q.options[q.answer];
-          let wordInfo = '';
-          if (q.word && q.meaning) wordInfo = `<div class="answer-word">📖 <b>${esc(q.word)}</b> ${esc(q.meaning)}</div>`;
-          h += `<div class="result r-wrong"><span class="result-icon">✗</span><div class="result-body">回答错误<span class="answer-text">${esc(at)}</span>${wordInfo}</div></div>`;
+          const at = q.answer + '. ' + (q.options ? q.options[q.answer] : '');
+          h += `<div class="result r-wrong"><span class="result-icon">✗</span><div class="result-body">回答错误<span class="answer-text">${esc(at)}</span>${extraInfo}</div></div>`;
         }
       }
 
       h += `</div>`;
       area.innerHTML = h;
       updateNav();
-
-      if (q.type === 'fill' && !done) {
-        setTimeout(() => { const el = document.getElementById('fInp'); if (el) el.focus(); }, 100);
-      }
     }
 
     // ===== 答题处理 =====
-    function pickChoice(k, gi) { if (record[gi]) return; save(gi, k, k === ALL[gi].answer); }
-    function pickJudge(k, gi) {
+    function pickChoice(k, gi) {
       if (record[gi]) return;
-      // 按钮发送"正确"/"错误"，JSON答案是"对"/"错"，需要匹配两种表达
-      const ans = ALL[gi].answer;
-      const correct = (k === '正确' && (ans === '对' || ans === '正确')) ||
-                      (k === '错误' && (ans === '错' || ans === '错误'));
-      save(gi, k, correct);
+      save(gi, k, k === ALL[gi].answer);
     }
-    function pickFill(gi) {
-      const inp = document.getElementById('fInp');
-      if (!inp) return;
-      const v = inp.value.trim();
-      if (!v) return;
-      const ans = ALL[gi].answer.split(/[/／、]/).map(a => a.trim().replace(/[（()）]/g, ''));
-      const ok = ans.some(a => v.includes(a) || a.includes(v));
-      save(gi, v, ok);
-    }
+
     function save(gi, chosen, correct) {
       if (record[gi]) return;
       record[gi] = { chosen, correct };
@@ -1100,11 +1105,10 @@
       saveProgress();
       render();
 
-      // 答题后，强制页面向底部滚动一点，确保下一题按钮完全露出（适配苹果手机底栏）
+      // 答题后，顺滑微调滚动位置确保下一题露出
       setTimeout(() => {
         const nav = document.querySelector('.nav');
         if (nav) {
-          // 在 iOS Safari 上 innerHeight 有时包含底部被折叠的工具栏，所以直接用 scrollBy 或者滚动到底部最稳妥
           window.scrollBy({ top: 150, left: 0, behavior: 'smooth' });
         }
       }, 100);
@@ -1115,7 +1119,12 @@
       let targetList;
       if (f === 'wrong') targetList = ALL.filter((_, i) => wrongs.has(i));
       else if (f === 'done') targetList = ALL.filter((_, i) => record[i]);
-      else targetList = ALL.filter(q => q.type === f);
+      else if (f === 'family') {
+        targetList = curFamily === 'all'
+          ? ALL.filter(q => q.type === 'family')
+          : ALL.filter(q => q.type === 'family' && q.family === curFamily);
+      } else targetList = ALL.filter(q => q.type === f);
+
       const answeredInType = targetList.filter(q => record[ALL.indexOf(q)]);
       document.getElementById('dialogRoot').innerHTML = `
     <div class="dialog-overlay" onclick="if(event.target===this)closeDialog()">
@@ -1129,11 +1138,17 @@
       </div>
     </div>`;
     }
+
     function doClearType(f) {
       let targetList;
       if (f === 'wrong') targetList = ALL.filter((_, i) => wrongs.has(i));
       else if (f === 'done') targetList = ALL.filter((_, i) => record[i]);
-      else targetList = ALL.filter(q => q.type === f);
+      else if (f === 'family') {
+        targetList = curFamily === 'all'
+          ? ALL.filter(q => q.type === 'family')
+          : ALL.filter(q => q.type === 'family' && q.family === curFamily);
+      } else targetList = ALL.filter(q => q.type === f);
+
       for (const q of targetList) {
         const gi = ALL.indexOf(q);
         if (record[gi]) {
@@ -1161,6 +1176,7 @@
       </div>
     </div>`;
     }
+
     function doResetAll() {
       record = {};
       wrongs.clear();
@@ -1189,6 +1205,7 @@
         window.scrollTo({ top: topPos, behavior: 'smooth' });
       }
     }
+
     function updateNav() {
       const n = filtered.length;
       document.getElementById('btnPrev').disabled = idx <= 0;
@@ -1196,6 +1213,7 @@
       document.getElementById('navPos').textContent = n ? `${idx + 1} / ${n}` : '0 / 0';
       document.getElementById('pBar').style.width = n ? `${(idx + 1) / n * 100}%` : '0%';
     }
+
     function stats() {
       document.getElementById('sAnswered').textContent = nCorrect + nWrong;
       document.getElementById('sCorrect').textContent = nCorrect;
@@ -1213,7 +1231,7 @@
       if (e.target.tagName === 'INPUT') return;
       if (e.key === 'ArrowLeft') go(-1);
       else if (e.key === 'ArrowRight') go(1);
-      else if ('abcdABCD'.includes(e.key) && filtered[idx]?.type === 'choice') {
+      else if ('abcdABCD'.includes(e.key) && filtered[idx]?.options) {
         const gi = ALL.indexOf(filtered[idx]);
         if (!record[gi]) pickChoice(e.key.toUpperCase(), gi);
       }

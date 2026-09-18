@@ -1,242 +1,1660 @@
 [
   {
-    "type": "choice",
+    "type": "family",
+    "family": "act",
+    "word": "enact",
+    "meaning": "v. 制定（法律）；颁布；通过",
+    "phrase": "enact legislation 制定法规",
+    "family_note": "act(行动) → enact(制定颁布) · react(起反应) · interact(互动) · transaction(交易)",
+    "question": "Congress is under mounting public pressure to ____ comprehensive data-privacy legislation before the end of the year.\n💡 国会面临着越来越大的公众压力，要求在今年年底前制定全面的数据隐私法规。",
+    "options": {
+      "A": "enact",
+      "B": "react",
+      "C": "interact",
+      "D": "transact"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "act",
+    "word": "react",
+    "meaning": "v. 作出反应；回应；（化学）起反应",
+    "phrase": "react to market changes 对市场变化作出反应",
+    "family_note": "re(回/反) + act(做) → 对外来刺激作出反应",
+    "question": "Global stock markets tend to ____ violently to sudden shifts in central bank interest rate policies.\n💡 全球股市往往对中央银行利率政策的突发变动做出剧烈反应。",
+    "options": {
+      "A": "interact",
+      "B": "react",
+      "C": "counteract",
+      "D": "activate"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "act",
+    "word": "interact",
+    "meaning": "v. 互相影响；互相交流；互动",
+    "phrase": "interact with peers 与同龄人互动",
+    "family_note": "inter(在...之间) + act(行动) → 两者之间相互作用",
+    "question": "Remote learning has forced educators to rethink how students and teachers ____ in virtual classrooms.\n💡 远程学习迫使教育工作者重新审视学生和教师在虚拟课堂中如何相互互动。",
+    "options": {
+      "A": "enact",
+      "B": "counteract",
+      "C": "interact",
+      "D": "transact"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "act",
+    "word": "transaction",
+    "meaning": "n. 交易；业务处理",
+    "phrase": "financial transactions 金融交易",
+    "family_note": "trans(跨越/通过) + act(做) + ion → 跨越双方的买卖行为",
+    "question": "The digital payment platform charges a nominal processing fee for every international currency ____.\n💡 该数字支付平台对每笔跨国货币交易收取微小的处理费。",
+    "options": {
+      "A": "transaction",
+      "B": "interaction",
+      "C": "reaction",
+      "D": "enactment"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "act",
+    "word": "activate",
+    "meaning": "v. 激活；使启动；促使发生",
+    "phrase": "activate the immune response 激活免疫反应",
+    "family_note": "active(活跃的) + ate(使动) → 使变活跃/激活",
+    "question": "Exposure to bright morning sunlight helps ____ neural pathways that regulate sleep cycles and alertness.\n💡 清晨接触明亮的阳光有助于激活调节睡眠周期和警觉度的神经通路。",
+    "options": {
+      "A": "overreact",
+      "B": "activate",
+      "C": "transact",
+      "D": "enact"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "act",
+    "word": "counteract",
+    "meaning": "v. 抵消；对抗；减弱...的影响",
+    "phrase": "counteract negative effects 抵消负面影响",
+    "family_note": "counter(相对/反抗) + act(做) → 对着干→抵消",
+    "question": "The central bank introduced fiscal stimulus measures to ____ the dampening effects of rising inflation.\n💡 央行推出了财政刺激措施，以抵消通胀上升带来的抑制效应。",
+    "options": {
+      "A": "interact",
+      "B": "overreact",
+      "C": "counteract",
+      "D": "enact"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "act",
+    "word": "overreact",
+    "meaning": "v. 反应过度；小题大做",
+    "phrase": "overreact to minor setbacks 对细小挫折反应过度",
+    "family_note": "over(过度) + react(反应) → 反应过度",
+    "question": "Experienced investors know that it is foolish to ____ to temporary quarterly dips in stock value.\n💡 有经验的投资者深知，对股票市值的短期季度下跌做出过度反应是愚蠢的。",
+    "options": {
+      "A": "counteract",
+      "B": "overreact",
+      "C": "interact",
+      "D": "activate"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "act",
+    "word": "activist",
+    "meaning": "n. 积极分子；激进主义者；社会活动家",
+    "phrase": "environmental activists 环保倡导者",
+    "family_note": "active(活跃) + ist(人) → 积极行动的人",
+    "question": "Environmental ____ gathered outside the convention center to demand immediate carbon reduction targets.\n💡 环保倡导人士聚集在会议中心外，要求立即制定碳减排目标。",
+    "options": {
+      "A": "actors",
+      "B": "reactors",
+      "C": "activists",
+      "D": "transactions"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "act",
+    "word": "inaction",
+    "meaning": "n. 无作为；迟钝；不行动",
+    "phrase": "government inaction 政府不作为",
+    "family_note": "in(不/无) + action(行动) → 考研阅读高频批判态度词！",
+    "question": "Climate scientists warned that continued governmental ____ would lock in catastrophic temperature increases.\n💡 气候科学家警告称，政府持续的不作为将导致灾难性的气温升高不可避免。",
+    "options": {
+      "A": "interaction",
+      "B": "inaction",
+      "C": "transaction",
+      "D": "reaction"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "act",
+    "word": "exact",
+    "meaning": "v. 强求；勒索；迫使付出代价 adj. 精确的",
+    "phrase": "exact a heavy toll 付出沉重代价",
+    "family_note": "考研熟词生义重难点！ex(出) + act(做) → 逼迫别人交出来/苛求",
+    "question": "The grueling training schedule and relentless travel began to ____ a heavy physical toll on the young gymnast.\n💡 艰苦的训练日程和不间断的奔波开始让这位年轻的体操运动员付出沉重的身体代价。",
+    "options": {
+      "A": "exact",
+      "B": "enact",
+      "C": "react",
+      "D": "transact"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "tract",
+    "word": "attract",
+    "meaning": "v. 吸引；引起...的兴趣",
+    "phrase": "attract foreign investment 吸引外资",
+    "family_note": "at(向) + tract(拉) → 拉过来→吸引",
+    "question": "The city's vibrant tech ecosystem continues to ____ top engineering talent from across the globe.\n💡 这座城市充满活力的科技生态系统不断吸引着来自全球的顶尖工程人才。",
+    "options": {
+      "A": "distract",
+      "B": "attract",
+      "C": "contract",
+      "D": "retract"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "tract",
+    "word": "distract",
+    "meaning": "v. 分散（注意力）；使分心",
+    "phrase": "distract sb. from doing sth. 分散某人注意力",
+    "family_note": "dis(分开) + tract(拉) → 把心思拉开→分心",
+    "question": "Constant smartphone notifications can easily ____ workers from demanding intellectual tasks.\n💡 手机上不间断的通知很容易让员工在高强度的脑力任务中分心。",
+    "options": {
+      "A": "attract",
+      "B": "extract",
+      "C": "distract",
+      "D": "subtract"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "tract",
+    "word": "contract",
+    "meaning": "v. 收缩；感染（疾病）；订立合同 n. 合同",
+    "phrase": "economic activity contracted 经济活动收缩",
+    "family_note": "con(共同) + tract(拉) → 拉到一起→紧缩/契约",
+    "question": "During the deep recession, consumer spending began to ____ sharply across almost all retail sectors.\n💡 在深度衰退期间，几乎所有零售行业的消费者支出都开始急剧收缩。",
+    "options": {
+      "A": "contract",
+      "B": "extract",
+      "C": "detract",
+      "D": "abstract"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "tract",
+    "word": "extract",
+    "meaning": "v. 提取；提炼；摘录",
+    "phrase": "extract insights from data 从数据中提炼洞察",
+    "family_note": "ex(出) + tract(拉) → 抽出来→提取",
+    "question": "Modern machine learning models can ____ valuable behavioral patterns from massive volumes of user data.\n💡 现代机器学习模型能够从海量用户数据中提炼出有价值的行为模式。",
+    "options": {
+      "A": "distract",
+      "B": "retract",
+      "C": "extract",
+      "D": "contract"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "tract",
+    "word": "abstract",
+    "meaning": "adj. 抽象的；理论上的 n. 摘要",
+    "phrase": "abstract concepts 抽象概念",
+    "family_note": "abs(离开) + tract(拉) → 离开具体实物抽出来的→抽象的",
+    "question": "Philosophy often deals with ____ questions about morality, justice, and the nature of human consciousness.\n💡 哲学通常涉及关于道德、正义和人类意识本质等抽象问题。",
+    "options": {
+      "A": "abstract",
+      "B": "attracted",
+      "C": "contracted",
+      "D": "retracted"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "tract",
+    "word": "detract",
+    "meaning": "v. 减损；贬低；降低...的价值",
+    "phrase": "detract from sth. 贬低/削弱某事物",
+    "family_note": "de(向下) + tract(拉) → 往下拉扯价值→减损",
+    "question": "A few minor grammatical errors should not ____ from the brilliance of the author's philosophical argument.\n💡 几处细微的语法错误不应贬低作者哲学论点的精妙之处。",
+    "options": {
+      "A": "extract",
+      "B": "detract",
+      "C": "attract",
+      "D": "contract"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "tract",
+    "word": "retract",
+    "meaning": "v. 撤回；收回（言论/承诺）；缩回",
+    "phrase": "retract the statement 撤回声明",
+    "family_note": "re(回) + tract(拉) → 把说过的话拉回来→撤回",
+    "question": "Under legal threat, the tabloid newspaper was compelled to ____ its sensational allegations against the senator.\n💡 在法律威胁下，这家小报被迫撤回了对参议员的耸人听闻的指控。",
+    "options": {
+      "A": "retract",
+      "B": "distract",
+      "C": "attract",
+      "D": "extract"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "tract",
+    "word": "intractable",
+    "meaning": "adj. 棘手的；难对付的；倔强的",
+    "phrase": "an intractable problem 棘手难解的问题",
+    "family_note": "in(不) + tract(拉) + able → 拉不动的→倔强的/难以驾驭的",
+    "question": "Poverty in inner cities has proven to be an ____ social issue that defied simple legislative fixes.\n💡 市中心的贫困问题已被证明是一个极为棘手的社会难题，绝非简单的立法所能根治。",
+    "options": {
+      "A": "abstract",
+      "B": "intractable",
+      "C": "attractive",
+      "D": "retractable"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "spect",
+    "word": "inspect",
+    "meaning": "v. 检查；审视；视察",
+    "phrase": "inspect quality standards 检查质量标准",
+    "family_note": "in(进入/向内) + spect(看) → 往里仔细看→检查",
+    "question": "Government health officials arrived unexpectedly to ____ the refrigeration units and hygiene conditions of the meat plant.\n💡 政府卫生官员意外到访，检查肉类加工厂的制冷设备和卫生状况。",
+    "options": {
+      "A": "prospect",
+      "B": "suspect",
+      "C": "inspect",
+      "D": "retrospect"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "spect",
+    "word": "prospect",
+    "meaning": "n. 前景；前途；期望；可能性",
+    "phrase": "economic prospects 经济前景",
+    "family_note": "pro(向前) + spect(看) → 向前看展露的画面→前景",
+    "question": "The sudden collapse of negotiations dealt a severe blow to the ____ of a peaceful diplomatic settlement.\n💡 谈判的突然破裂给和平外交解决的前景带来了沉重打击。",
+    "options": {
+      "A": "spectacle",
+      "B": "prospect",
+      "C": "retrospect",
+      "D": "perspective"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "spect",
+    "word": "perspective",
+    "meaning": "n. 视角；观点；远景；透视法",
+    "phrase": "from a global perspective 从全球视角看",
+    "family_note": "per(穿过) + spect(看) + ive → 透过现象看本质的视角",
+    "question": "Reading diverse literature helps students gain a broader ____ on intercultural communication and history.\n💡 阅读多样化的文学作品有助于学生获得关于跨文化交流和历史的更宽广视角。",
+    "options": {
+      "A": "perspective",
+      "B": "spectacle",
+      "C": "prospect",
+      "D": "inspection"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "spect",
+    "word": "retrospect",
+    "meaning": "n. 回顾；回想",
+    "phrase": "in retrospect 回想起来",
+    "family_note": "retro(向后) + spect(看) → 向后看过去的事→回顾",
+    "question": "In ____, the board recognized that entering the saturated smartphone market had been a miscalculated gamble.\n💡 回想起来，董事会意识到进入饱和的智能手机市场是一场失算的豪赌。",
+    "options": {
+      "A": "prospect",
+      "B": "retrospect",
+      "C": "circumspect",
+      "D": "spectator"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "spect",
+    "word": "suspect",
+    "meaning": "v. 怀疑；猜想 n. 嫌疑人",
+    "phrase": "suspect the validity of findings 怀疑研究结果的有效性",
+    "family_note": "sub/sus(在下面) + spect(看) → 在底下斜眼看→怀疑",
+    "question": "Epidemiologists ____ that environmental factors play a larger role in chronic illnesses than previously estimated.\n💡 流行病学家怀疑，环境因素在慢性疾病中起到的作用比先前估计的更大。",
+    "options": {
+      "A": "inspect",
+      "B": "respect",
+      "C": "suspect",
+      "D": "spectate"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "spect",
+    "word": "spectacle",
+    "meaning": "n. 壮观景象；奇观；精彩场面",
+    "phrase": "a grand spectacle 壮丽景观",
+    "family_note": "spect(看) + acle(物) → 值得一看的奇景",
+    "question": "The annual solar eclipse was an astonishing celestial ____ that drew thousands of astronomers to the desert.\n💡 一年一度的日食是一场令人惊叹的天文奇观，吸引了数千名天文学家来到沙漠观赏。",
+    "options": {
+      "A": "spectacle",
+      "B": "perspective",
+      "C": "prospect",
+      "D": "inspection"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "spect",
+    "word": "circumspect",
+    "meaning": "adj. 谨慎小心的；审慎的",
+    "phrase": "a circumspect policy 审慎的政策",
+    "family_note": "circum(周围环绕) + spect(看) → 四周到处看清楚再行动→谨慎的",
+    "question": "In volatile financial markets, fund managers must remain extremely ____ before making leveraged investments.\n💡 在动荡的金融市场中，基金经理在进行杠杆投资前必须保持极度的审慎。",
+    "options": {
+      "A": "retrospective",
+      "B": "circumspect",
+      "C": "prospective",
+      "D": "spectacular"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "form",
+    "word": "conform",
+    "meaning": "v. 遵守；顺从；符合",
+    "phrase": "conform to safety standards 符合安全规范",
+    "family_note": "con(共同) + form(形状) → 塑造成相同的形状→遵守/符合",
+    "question": "All imported medical equipment must strictly ____ to European Union health and safety directives.\n💡 所有进口医疗设备都必须严格符合欧盟的健康与安全指令。",
+    "options": {
+      "A": "transform",
+      "B": "conform",
+      "C": "deform",
+      "D": "reform"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "form",
+    "word": "reform",
+    "meaning": "v. 改革；革新；改善 n. 改革",
+    "phrase": "reform the taxation system 改革税收制度",
+    "family_note": "re(再) + form(形状) → 重新塑形→改革",
+    "question": "Economists urged the government to ____ its outdated pension system before demographic shifts worsen.\n💡 经济学家敦促政府在人口结构变化恶化之前，对其过时的养老金体系进行改革。",
+    "options": {
+      "A": "reform",
+      "B": "deform",
+      "C": "conform",
+      "D": "transform"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "form",
+    "word": "formulate",
+    "meaning": "v. 构想；制定（方案/策略）；系统阐述",
+    "phrase": "formulate a viable strategy 制定切实可行的战略",
+    "family_note": "formula(公式/规则) + ate → 按步骤形成系统方案",
+    "question": "Senior executives met in Geneva to ____ a response strategy for anticipated global supply chain disruptions.\n💡 高管们在日内瓦举行会议，针对预期的全球供应链中断制定应对战略。",
+    "options": {
+      "A": "formulate",
+      "B": "conform",
+      "C": "deform",
+      "D": "uniform"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "form",
+    "word": "uniform",
+    "meaning": "adj. 统一的；一致的；无变化的 n. 制服",
+    "phrase": "maintain uniform quality 保持统一的品质",
+    "family_note": "uni(单一) + form(形状) → 只有一种样子的→统一的",
+    "question": "Multinational franchises strive to deliver a ____ dining experience across restaurants worldwide.\n💡 跨国快餐连锁店力求在世界各地的餐厅中提供一致的用餐体验。",
+    "options": {
+      "A": "uniform",
+      "B": "transformed",
+      "C": "reformed",
+      "D": "deformed"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "form",
+    "word": "deform",
+    "meaning": "v. 使变形；损坏...的形状",
+    "phrase": "deform under extreme heat 在极热下变形",
+    "family_note": "de(坏/离开) + form(形状) → 破坏原样→使变形",
+    "question": "Engineers discovered that the metal alloy would ____ when subjected to sustained high pressure and temperature.\n💡 工程师们发现，该金属合金在承受持续的高温高压时会发生形变。",
+    "options": {
+      "A": "reform",
+      "B": "conform",
+      "C": "deform",
+      "D": "formulate"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "port",
+    "word": "portable",
+    "meaning": "adj. 便携的；手提式的；轻便的",
+    "phrase": "portable diagnostic devices 便携式诊断设备",
+    "family_note": "port(带/搬运) + able(能...的) → 容易携带的",
+    "question": "The development of lightweight lithium batteries made high-performance ____ laptops possible.\n💡 轻型锂电池的开发使得高性能轻便笔记本电脑成为可能。",
+    "options": {
+      "A": "portable",
+      "B": "imported",
+      "C": "exported",
+      "D": "supported"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "port",
+    "word": "transport",
+    "meaning": "v. 运输；传送 n. 交通运输系统",
+    "phrase": "transport bulk commodities 运输大宗商品",
+    "family_note": "trans(跨越) + port(运) → 从这运到那→运输",
+    "question": "Electric freight trains offer a much cleaner way to ____ heavy industrial freight across the continent.\n💡 电力货运列车提供了一种更清洁的方式，可在大陆间运输重工业货物。",
+    "options": {
+      "A": "export",
+      "B": "transport",
+      "C": "deport",
+      "D": "purport"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "port",
+    "word": "import",
+    "meaning": "n. 重要性；重大含义；进口 v. 进口",
+    "phrase": "matters of great import 意义重大的事情",
+    "family_note": "考研熟词生义考点！import作名词常考【重要性、意义】",
+    "question": "The judge emphasized that the constitutional issue under deliberation was a question of tremendous national ____.\n💡 法官强调，正在审议的宪法议题是一个具有极其重大国家意义的问题。",
+    "options": {
+      "A": "export",
+      "B": "transport",
+      "C": "import",
+      "D": "deport"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "port",
+    "word": "purport",
+    "meaning": "v. 自称；声称；意在表示 n. 主旨",
+    "phrase": "purport to show/be... 声称表明...",
+    "family_note": "pur/pro(向前) + port(携带/传达) → 表面带出来的意思→声称",
+    "question": "The leaked emails ____ to demonstrate collusion between oil lobbyists and government regulators.\n💡 泄露的电子邮件声称证实了石油说客与政府监管官员之间的串通。",
+    "options": {
+      "A": "support",
+      "B": "purport",
+      "C": "transport",
+      "D": "deport"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "port",
+    "word": "deport",
+    "meaning": "v. 驱逐出境；放逐",
+    "phrase": "deport illegal immigrants 驱逐非法移民",
+    "family_note": "de(离开) + port(运) → 运出边境→驱逐",
+    "question": "The immigration court ruled that the state had adequate grounds to ____ the foreign national convicted of fraud.\n💡 移民法庭裁定，该州有充分理由驱逐被判犯有欺诈罪的这名外籍人士。",
+    "options": {
+      "A": "deport",
+      "B": "export",
+      "C": "import",
+      "D": "support"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "dict",
+    "word": "predict",
+    "meaning": "v. 预言；预报；预测",
+    "phrase": "predict future outcomes 预测未来走向",
+    "family_note": "pre(在前) + dict(说) → 提前说出来→预测",
+    "question": "Meteorologists use supercomputers and satellite feeds to ____ hurricane paths with growing accuracy.\n💡 气象学家利用超级计算机和卫星数据，以越来越高的准确度预测飓风路径。",
+    "options": {
+      "A": "contradict",
+      "B": "dictate",
+      "C": "predict",
+      "D": "indicate"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "dict",
+    "word": "contradict",
+    "meaning": "v. 反驳；驳斥；与...相抵触/相矛盾",
+    "phrase": "contradict earlier findings 与早期结论矛盾",
+    "family_note": "contra(相反) + dict(说) → 对着说→反驳/矛盾",
+    "question": "The newly unearthed historical records directly ____ the narrative promoted by previous biographers.\n💡 最新出土的历史记录直接反驳了先前传记作者所宣传的说法。",
+    "options": {
+      "A": "predict",
+      "B": "contradict",
+      "C": "dedicate",
+      "D": "indicate"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "dict",
+    "word": "dictate",
+    "meaning": "v. 支配；决定；口授；指令",
+    "phrase": "market rules dictate the price 市场法则决定价格",
+    "family_note": "dict(说) + ate → 我说了算→命令/决定",
+    "question": "Basic principles of microeconomics ____ that higher production costs will ultimately be passed to consumers.\n💡 微观经济学的基本原理决定了更高的生产成本最终将转嫁给消费者。",
+    "options": {
+      "A": "contradict",
+      "B": "dictate",
+      "C": "predict",
+      "D": "addict"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "dict",
+    "word": "verdict",
+    "meaning": "n. （陪审团的）裁决；结论；定论",
+    "phrase": "deliver a guilty verdict 做出有罪裁决",
+    "family_note": "ver(真实) + dict(说) → 说出最终真实定论→裁决",
+    "question": "After three days of intensive deliberation, the jury finally delivered a unanimous ____ of acquittal.\n💡 经过三天的密集审议，陪审团最终达成一致意见，做出了无罪裁决。",
+    "options": {
+      "A": "verdict",
+      "B": "prediction",
+      "C": "contradiction",
+      "D": "dictation"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "dict",
+    "word": "indicate",
+    "meaning": "v. 表明；暗示；指示；象征",
+    "phrase": "preliminary indicators indicate... 初步指标表明...",
+    "family_note": "in(向内) + dic(说) + ate → 指点道出→表明",
+    "question": "Consumer confidence surveys ____ that households are becoming increasingly cautious about discretionary spending.\n💡 消费者信心调查表明，各家庭对非必要开支正变得日益谨慎。",
+    "options": {
+      "A": "contradict",
+      "B": "dedicate",
+      "C": "indicate",
+      "D": "predict"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "dict",
+    "word": "dedicate",
+    "meaning": "v. 致力于；把...献给；题献",
+    "phrase": "dedicate oneself to research 献身于科研",
+    "family_note": "de(加强) + dic(宣称/说) + ate → 公开宣称奉献给",
+    "question": "The young biologist chose to ____ her entire career to studying endangered coral reef ecosystems.\n💡 这位年轻的生物学家选择将自己的整个职业生涯奉献给濒危珊瑚礁生态系统的研究。",
+    "options": {
+      "A": "dedicate",
+      "B": "dictate",
+      "C": "contradict",
+      "D": "predict"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "press",
+    "word": "suppress",
+    "meaning": "v. 镇压；压制；抑制（情绪/发作）",
+    "phrase": "suppress natural curiosity 压制自然的好奇心",
+    "family_note": "sub/sup(向下) + press(压) → 压制下去",
+    "question": "Authoritarian regimes frequently attempt to ____ independent journalism by blocking critical websites.\n💡 专制政权经常企图通过屏蔽批评性网站来压制独立新闻报道。",
+    "options": {
+      "A": "express",
+      "B": "impress",
+      "C": "suppress",
+      "D": "compress"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "press",
+    "word": "oppress",
+    "meaning": "v. 压迫；压制；使沉重痛苦",
+    "phrase": "oppressed social groups 受压迫群体",
+    "family_note": "ob/op(针对/对着) + press(压) → 严厉压迫",
+    "question": "History teaches that laws designed to ____ minorities inevitably destabilize society as a whole.\n💡 历史告诉我们，旨在压迫少数群体的法律不可避免地会破坏整个社会的稳定。",
+    "options": {
+      "A": "impress",
+      "B": "oppress",
+      "C": "express",
+      "D": "compress"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "family",
+    "family": "press",
+    "word": "depress",
+    "meaning": "v. 使萧条；使消沉；按压",
+    "phrase": "depress market demand 抑制市场需求",
+    "family_note": "de(向下) + press(压) → 往下拉低→使消沉/萧条",
+    "question": "High borrowing rates and geopolitical friction threaten to ____ global economic expansion this coming decade.\n💡 高借贷利率和地缘政治摩擦有可能在未来十年抑制全球经济扩张。",
+    "options": {
+      "A": "depress",
+      "B": "express",
+      "C": "impress",
+      "D": "compress"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "family",
+    "family": "press",
+    "word": "compress",
+    "meaning": "v. 压缩；精简；浓缩",
+    "phrase": "compress raw audio files 压缩无损音频",
+    "family_note": "com(一起) + press(压) → 挤在一起→压缩",
+    "question": "Modern streaming platforms use sophisticated codecs to ____ high-definition video files into manageable bandwidth sizes.\n💡 现代流媒体平台使用先进的编解码器将高清视频文件压缩到可管理的带宽大小。",
+    "options": {
+      "A": "suppress",
+      "B": "repress",
+      "C": "compress",
+      "D": "oppress"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "family",
+    "family": "press",
+    "word": "repress",
+    "meaning": "v. 压抑（情感）；忍住；制止",
+    "phrase": "repress negative emotions 压抑消极情绪",
+    "family_note": "re(向回) + press(压) → 把快要冒出的念头往回压→压抑",
+    "question": "Psychologists warn that attempting to ____ grief rather than processing it can cause long-term emotional distress.\n💡 心理学家警告说，试图压抑悲痛而不是正视处理它，会导致长期的心理创伤。",
+    "options": {
+      "A": "repress",
+      "B": "impress",
+      "C": "compress",
+      "D": "express"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "basic",
+    "word": "sustain",
+    "meaning": "v. 维持；支撑；遭受（损失）",
+    "phrase": "sustain economic growth 保持经济增长",
+    "question": "Without additional venture capital, the early-stage biotech firm cannot ____ its current level of laboratory research.\n💡 如果没有额外的风险投资，这家初创生物技术公司将无法维持其目前的实验室研发水平。",
+    "options": {
+      "A": "sustain",
+      "B": "abandon",
+      "C": "disrupt",
+      "D": "diminish"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "basic",
+    "word": "decline",
+    "meaning": "v. 下降；衰退；婉拒",
+    "phrase": "decline an invitation / sharp decline 婉拒/急剧下滑",
+    "question": "The company's profit margins experienced a continuous ____ over the past four consecutive financial quarters.\n💡 在过去的连续四个财务季度中，该公司的利润率出现了持续下滑。",
+    "options": {
+      "A": "growth",
+      "B": "decline",
+      "C": "stability",
+      "D": "expansion"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "maintain",
+    "meaning": "v. 维持；保持；坚持主张",
+    "phrase": "maintain competitive edge 保持竞争优势",
+    "question": "Proponents of the treaty ____ that open international dialogue is the only reliable path to lasting peace.\n💡 该条约的支持者坚持认为，开放的国际对话是通向持久和平的唯一可靠途径。",
+    "options": {
+      "A": "overlook",
+      "B": "abandon",
+      "C": "maintain",
+      "D": "diminish"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "basic",
+    "word": "abandon",
+    "meaning": "v. 放弃；抛弃；遗弃",
+    "phrase": "abandon traditional habits 摒弃传统习俗",
+    "question": "Facing insurmountable debt and falling ticket sales, the theatrical troupe was forced to ____ its upcoming tour.\n💡 面对无法偿还的债务和不断下滑的门票销量，该剧团被迫取消了即将展开的巡演。",
+    "options": {
+      "A": "pursue",
+      "B": "abandon",
+      "C": "enhance",
+      "D": "promote"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "potential",
+    "meaning": "adj. 潜在的；可能的 n. 潜能",
+    "phrase": "unlock full potential 释放全部潜能",
+    "question": "Environmental scientists are studying the ____ risks that microplastics pose to marine biodiversity.\n💡 环境科学家正在研究微塑料对海洋生物多样性构成的潜在风险。",
+    "options": {
+      "A": "potential",
+      "B": "negligible",
+      "C": "backward",
+      "D": "artificial"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "basic",
+    "word": "yield",
+    "meaning": "v. 产生；出产；屈服 n. 产量；收益",
+    "phrase": "yield surprising insights 产生惊人的见解",
+    "question": "Years of painstaking historical investigation finally began to ____ convincing evidence about ancient trade routes.\n💡 多年艰苦的历史考察终于开始产出有关古代贸易路线的令人信服的证据。",
+    "options": {
+      "A": "suppress",
+      "B": "yield",
+      "C": "restrict",
+      "D": "deteriorate"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "crucial",
+    "meaning": "adj. 至关重要的；决定性的",
+    "phrase": "play a crucial role 起关键作用",
+    "question": "Maintaining an adequate sleep schedule plays a ____ role in memory consolidation and cognitive health.\n💡 保持充足的睡眠习惯在记忆巩固和认知健康方面发挥着至关重要的作用。",
+    "options": {
+      "A": "trivial",
+      "B": "crucial",
+      "C": "redundant",
+      "D": "marginal"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "objective",
+    "meaning": "adj. 客观的；公正的 n. 目标",
+    "phrase": "objective criteria 客观标准",
+    "question": "Good investigative journalism demands that reporters separate personal bias from ____ reporting of verified facts.\n💡 优秀的调查性报道要求记者将个人偏见与对核实事实的客观报道分开。",
+    "options": {
+      "A": "subjective",
+      "B": "emotional",
+      "C": "objective",
+      "D": "speculative"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "basic",
+    "word": "consume",
+    "meaning": "v. 消耗；消费；吃喝",
+    "phrase": "consume massive amounts of energy 消耗大量能源",
+    "question": "Generative AI data centers ____ vast amounts of electricity and water to cool running servers.\n💡 生成式AI数据中心消耗大量电力和水来为运转中的服务器散热。",
+    "options": {
+      "A": "generate",
+      "B": "consume",
+      "C": "conserve",
+      "D": "eliminate"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "revenue",
+    "meaning": "n. 财政收入；税收；营业额",
+    "phrase": "annual tax revenue 年税收总额",
+    "question": "Municipal governments depend heavily on local property taxes to generate sufficient fiscal ____ for public schools.\n💡 市政当局在很大程度上依赖地方房产税，为公立学校筹集充足的财政收入。",
+    "options": {
+      "A": "deficit",
+      "B": "revenue",
+      "C": "debt",
+      "D": "liability"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "innovate",
+    "meaning": "v. 创新；革新",
+    "phrase": "innovate in technology 在技术上创新",
+    "question": "In a fiercely competitive global marketplace, manufacturers must continuously ____ to maintain their edge.\n💡 在竞争激烈的全球市场中，制造商必须持续创新以保持自身优势。",
+    "options": {
+      "A": "stagnate",
+      "B": "innovate",
+      "C": "imitate",
+      "D": "hesitate"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "assess",
+    "meaning": "v. 评估；评价；估价",
+    "phrase": "assess the impact 评估影响",
+    "question": "The university committee was assembled to ____ the feasibility and environmental footprint of the new campus project.\n💡 大学委员会受命评估新校区项目的可行性及其对环境的影响。",
+    "options": {
+      "A": "assess",
+      "B": "overlook",
+      "C": "dismiss",
+      "D": "complicate"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "basic",
+    "word": "dominate",
+    "meaning": "v. 支配；主导；在...中占首要地位",
+    "phrase": "dominate the market 独占鳌头/主导市场",
+    "question": "A handful of multinational tech conglomerates continue to ____ global search engine traffic.\n💡 少数几家跨国科技巨头继续主导着全球搜索引擎的流量。",
+    "options": {
+      "A": "abandon",
+      "B": "dominate",
+      "C": "surrender",
+      "D": "deteriorate"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "acquire",
+    "meaning": "v. 获得；学到；收购（公司）",
+    "phrase": "acquire proficiency in English 掌握熟练的英语技能",
+    "question": "Young children can ____ a second language effortlessly through immersive play and social interaction.\n💡 幼儿可以通过沉浸式的游戏和社交互动轻松掌握第二语言。",
+    "options": {
+      "A": "discard",
+      "B": "acquire",
+      "C": "postpone",
+      "D": "suppress"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "restrict",
+    "meaning": "v. 限制；约束；束缚",
+    "phrase": "restrict the usage 限制使用",
+    "question": "New municipal regulations strictly ____ the use of single-use plastics in grocery stores and restaurants.\n💡 新的市政法规严格限制杂货店和餐馆使用一次性塑料制品。",
+    "options": {
+      "A": "encourage",
+      "B": "facilitate",
+      "C": "restrict",
+      "D": "tolerate"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "basic",
+    "word": "emerge",
+    "meaning": "v. 浮现；出现；显露",
+    "phrase": "emerge as a market leader 作为市场领头羊崭露头角",
+    "question": "Following years of heavy investment, the island nation began to ____ as a leading regional financial hub.\n💡 经过多年的大力投资，这个岛国开始作为区域主要金融中心崭露头角。",
+    "options": {
+      "A": "vanish",
+      "B": "emerge",
+      "C": "shrink",
+      "D": "decline"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "resolve",
+    "meaning": "v. 解决（问题）；决定 n. 决心",
+    "phrase": "resolve disputes 调解争端",
+    "question": "Diplomats worked around the clock to ____ border tensions through peaceful bilateral dialogue.\n💡 外交官们夜以继日地工作，试图通过和平的双边对话化解边境紧张局势。",
+    "options": {
+      "A": "escalate",
+      "B": "resolve",
+      "C": "worsen",
+      "D": "ignore"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "eliminate",
+    "meaning": "v. 消除；排除；淘汰",
+    "phrase": "eliminate extreme poverty 消除绝对贫困",
+    "question": "The newly upgraded screening algorithm was able to ____ false positive test results almost completely.\n💡 新升级的筛查算法几乎能够彻底消除假阳性的检测结果。",
+    "options": {
+      "A": "amplify",
+      "B": "multiply",
+      "C": "eliminate",
+      "D": "preserve"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "basic",
+    "word": "grant",
+    "meaning": "v. 授予；准许；承认 n. 拨款；补助金",
+    "phrase": "grant permission 给予许可",
+    "question": "The scientific panel decided to ____ research funding to the promising renewable battery venture.\n💡 科学评审小组决定向这家前景广阔的可再生电池初创企业发放科研资助资金。",
+    "options": {
+      "A": "grant",
+      "B": "refuse",
+      "C": "withhold",
+      "D": "demand"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "basic",
+    "word": "pursue",
+    "meaning": "v. 追求；致力于；追捕",
+    "phrase": "pursue higher education 攻读更高学位",
+    "question": "Many working professionals choose evening university courses to ____ advanced credentials in business analytics.\n💡 许多在职专业人士选择夜校课程，以攻读商业分析领域的进阶学位证书。",
+    "options": {
+      "A": "abandon",
+      "B": "halt",
+      "C": "pursue",
+      "D": "oppose"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "basic",
+    "word": "justify",
+    "meaning": "v. 证明...是正当的/合理的",
+    "phrase": "justify the expense 证明支出是合理的",
+    "question": "The school board struggled to ____ spending millions on a football stadium while cutting arts education.\n💡 学校董事会难以证明在削减艺术教育经费的同时花费数百万美元建造橄榄球场是合理的。",
+    "options": {
+      "A": "condemn",
+      "B": "justify",
+      "C": "criticize",
+      "D": "prohibit"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "convey",
+    "meaning": "v. 表达；传达；传送",
+    "phrase": "convey the true meaning 传达真实含义",
+    "question": "Words alone cannot adequately ____ the immense gratitude the rescued villagers felt toward the firefighters.\n💡 仅用言语无法充分表达获救村民对消防员们的无比感激之情。",
+    "options": {
+      "A": "convey",
+      "B": "distort",
+      "C": "conceal",
+      "D": "neglect"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "basic",
+    "word": "advocate",
+    "meaning": "v. 提倡；主张 n. 拥护者",
+    "phrase": "advocate for clean energy 提倡清洁能源",
+    "question": "Nutrition experts vigorously ____ replacing heavily processed foods with whole grains and fresh vegetables.\n💡 营养学专家极力主张用全谷物和新鲜蔬菜取代过度加工的食品。",
+    "options": {
+      "A": "oppose",
+      "B": "discourage",
+      "C": "advocate",
+      "D": "forbid"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "basic",
+    "word": "diminish",
+    "meaning": "v. 减少；降低；贬低",
+    "phrase": "diminish the importance 削弱重要性",
+    "question": "Advances in medical science have served to drastically ____ infant mortality rates across developing nations.\n💡 医学科学的进步显著降低了发展中国家的婴儿死亡率。",
+    "options": {
+      "A": "heighten",
+      "B": "diminish",
+      "C": "multiply",
+      "D": "prolong"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "persist",
+    "meaning": "v. 坚持；执意；持续存在",
+    "phrase": "problems persist 问题依然存在",
+    "question": "Despite rigorous antibiotic treatment, the bacterial infection continued to ____ for several weeks.\n💡 尽管进行了严格的抗生素治疗，细菌感染仍持续存在了数周之久。",
+    "options": {
+      "A": "disappear",
+      "B": "fade",
+      "C": "persist",
+      "D": "perish"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "basic",
+    "word": "comprehensive",
+    "meaning": "adj. 全面的；综合的；广泛的",
+    "phrase": "a comprehensive review 全面审查",
+    "question": "The university conducted a ____ audit of all its scholarship programs to ensure equitable distribution.\n💡 该大学对其所有的奖学金项目进行了全面审计，以确保公平分配。",
+    "options": {
+      "A": "superficial",
+      "B": "partial",
+      "C": "comprehensive",
+      "D": "narrow"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "basic",
+    "word": "coherent",
+    "meaning": "adj. 条理连贯的；清晰明了的",
+    "phrase": "a coherent explanation 条理清晰的解释",
+    "question": "The debate candidate failed to present a ____ foreign policy strategy, confusing voters and analysts alike.\n💡 这位辩论候选人未能提出连贯的外交政策战略，令选民和分析人士都感到困惑。",
+    "options": {
+      "A": "chaotic",
+      "B": "coherent",
+      "C": "fragmented",
+      "D": "illogical"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "basic",
+    "word": "preliminary",
+    "meaning": "adj. 初步的；预备的 n. 预赛",
+    "phrase": "preliminary findings 初步发现",
+    "question": "Although these are only ____ lab findings, researchers believe the compound holds tremendous clinical promise.\n💡 尽管这些还只是初步的实验室发现，研究人员相信该化合物具有巨大的临床前景。",
+    "options": {
+      "A": "definitive",
+      "B": "conclusive",
+      "C": "preliminary",
+      "D": "final"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "advanced",
     "question": "The committee remained ____ about the proposed budget cuts, refusing to comment until all members had reviewed the document.\n💡 委员会对提议的预算削减保持沉默，拒绝在所有成员审阅文件之前发表评论。",
-    "options": {"A": "indifferent", "B": "reticent", "C": "decisive", "D": "receptive"},
+    "options": {
+      "A": "indifferent",
+      "B": "reticent",
+      "C": "decisive",
+      "D": "receptive"
+    },
     "answer": "B",
     "word": "reticent",
     "meaning": "沉默寡言的；不愿透露信息的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "Her tone was deliberately ____: she neither confirmed nor denied the allegations, leaving reporters guessing.\n💡 她的措辞刻意含糊其辞：她既不确认也不否认这些指控，让记者们猜测不已。",
-    "options": {"A": "candid", "B": "explicit", "C": "ambiguous", "D": "assertive"},
+    "options": {
+      "A": "candid",
+      "B": "explicit",
+      "C": "ambiguous",
+      "D": "assertive"
+    },
     "answer": "C",
     "word": "ambiguous",
     "meaning": "模棱两可的；含糊的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "Regular exercise has been shown to ____ the risk of developing heart disease by improving circulation and reducing inflammation.\n💡 研究表明，定期锻炼可以通过改善循环、减少炎症来降低患心脏病的风险。",
-    "options": {"A": "aggravate", "B": "mitigate", "C": "accelerate", "D": "overlook"},
+    "options": {
+      "A": "aggravate",
+      "B": "mitigate",
+      "C": "accelerate",
+      "D": "overlook"
+    },
     "answer": "B",
     "word": "mitigate",
     "meaning": "减轻；缓和"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The professor was known for her ability to ____ complex ideas clearly, making difficult concepts accessible to all students.\n💡 这位教授以她清晰阐述复杂思想的能力而闻名，让所有学生都能理解困难的概念。",
-    "options": {"A": "articulate", "B": "distort", "C": "confuse", "D": "undermine"},
+    "options": {
+      "A": "articulate",
+      "B": "distort",
+      "C": "confuse",
+      "D": "undermine"
+    },
     "answer": "A",
     "word": "articulate",
     "meaning": "清晰表达；口齿清楚的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The new policy was designed to ____ innovation in small businesses by offering tax breaks and simplified regulations.\n💡 新政策旨在通过提供税收减免和简化法规来促进小企业的创新。",
-    "options": {"A": "suppress", "B": "facilitate", "C": "restrict", "D": "neglect"},
+    "options": {
+      "A": "suppress",
+      "B": "facilitate",
+      "C": "restrict",
+      "D": "neglect"
+    },
     "answer": "B",
     "word": "facilitate",
     "meaning": "促进；使便利"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "Many economists are ____ about the long-term benefits of the trade deal, warning that early optimism may be premature.\n💡 许多经济学家对这项贸易协议的长期效益持怀疑态度，警告说早期的乐观情绪可能为时尚早。",
-    "options": {"A": "enthusiastic", "B": "optimistic", "C": "skeptical", "D": "indifferent"},
+    "options": {
+      "A": "enthusiastic",
+      "B": "optimistic",
+      "C": "skeptical",
+      "D": "indifferent"
+    },
     "answer": "C",
     "word": "skeptical",
     "meaning": "怀疑的；持怀疑态度的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The charity's annual report sought to ____ the impact of its programs by comparing outcomes before and after the intervention.\n💡 该慈善机构的年度报告试图通过比较干预前后的结果来量化其项目的影响。",
-    "options": {"A": "exaggerate", "B": "ignore", "C": "quantify", "D": "dispute"},
+    "options": {
+      "A": "exaggerate",
+      "B": "ignore",
+      "C": "quantify",
+      "D": "dispute"
+    },
     "answer": "C",
     "word": "quantify",
     "meaning": "量化；用数量表示"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "Critics argued that the government's response to the crisis was entirely ____, driven by opinion polls rather than sound policy.\n💡 批评人士认为，政府对危机的回应完全是机会主义的，是民调驱动的而非合理政策。",
-    "options": {"A": "pragmatic", "B": "opportunistic", "C": "systematic", "D": "principled"},
+    "options": {
+      "A": "pragmatic",
+      "B": "opportunistic",
+      "C": "systematic",
+      "D": "principled"
+    },
     "answer": "B",
     "word": "opportunistic",
     "meaning": "机会主义的；投机的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The author's argument was built on a flawed ____, assuming that correlation between two variables always implies causation.\n💡 这位作者的论点建立在一个有缺陷的前提上，假定两个变量之间的相关性总是意味着因果关系。",
-    "options": {"A": "premise", "B": "outcome", "C": "evidence", "D": "contrast"},
+    "options": {
+      "A": "premise",
+      "B": "outcome",
+      "C": "evidence",
+      "D": "contrast"
+    },
     "answer": "A",
     "word": "premise",
     "meaning": "前提；假设"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "Social media platforms have been criticized for creating a ____ environment where extreme opinions are amplified and rewarded.\n💡 社交媒体平台因创造了一种两极化的环境而受到批评，在这种环境中，极端观点被放大和奖励。",
-    "options": {"A": "harmonious", "B": "polarized", "C": "neutral", "D": "constructive"},
+    "options": {
+      "A": "harmonious",
+      "B": "polarized",
+      "C": "neutral",
+      "D": "constructive"
+    },
     "answer": "B",
     "word": "polarized",
     "meaning": "两极化的；对立的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The documentary ____ the harsh conditions faced by migrant workers, sparking a national debate about labor rights.\n💡 这部纪录片揭示了移民工人所面临的恶劣条件，引发了一场关于劳工权利的全国性辩论。",
-    "options": {"A": "concealed", "B": "glorified", "C": "exposed", "D": "exaggerated"},
+    "options": {
+      "A": "concealed",
+      "B": "glorified",
+      "C": "exposed",
+      "D": "exaggerated"
+    },
     "answer": "C",
     "word": "expose",
     "meaning": "揭露；暴露"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The researcher's findings were ____ by three independent laboratories, giving them far greater scientific credibility.\n💡 该研究人员的发现得到了三个独立实验室的证实，这给它们带来了更大的科学可信度。",
-    "options": {"A": "contested", "B": "corroborated", "C": "dismissed", "D": "speculated"},
+    "options": {
+      "A": "contested",
+      "B": "corroborated",
+      "C": "dismissed",
+      "D": "speculated"
+    },
     "answer": "B",
     "word": "corroborate",
     "meaning": "证实；支持（某种说法）"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The city's rapid economic growth has been accompanied by a growing ____ between wealthy neighborhoods and impoverished ones.\n💡 这座城市的快速经济增长伴随着富裕社区和贫困社区之间日益扩大的差距。",
-    "options": {"A": "similarity", "B": "disparity", "C": "harmony", "D": "connection"},
+    "options": {
+      "A": "similarity",
+      "B": "disparity",
+      "C": "harmony",
+      "D": "connection"
+    },
     "answer": "B",
     "word": "disparity",
     "meaning": "差距；不平等"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The old town's narrow streets and historic buildings create an ____ atmosphere that attracts tourists from around the world.\n💡 老城区狭窄的街道和历史建筑营造出一种迷人的氛围，吸引着来自世界各地的游客。",
-    "options": {"A": "industrial", "B": "evocative", "C": "monotonous", "D": "sterile"},
+    "options": {
+      "A": "industrial",
+      "B": "evocative",
+      "C": "monotonous",
+      "D": "sterile"
+    },
     "answer": "B",
     "word": "evocative",
     "meaning": "唤起记忆（或情感）的；令人联想的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "Rather than punish every minor offense, the school adopted a more ____ approach, focusing on counseling and rehabilitation.\n💡 学校没有惩罚每一个小过失，而是采取了一种更宽容的方式，专注于辅导和康复。",
-    "options": {"A": "lenient", "B": "rigid", "C": "punitive", "D": "arbitrary"},
+    "options": {
+      "A": "lenient",
+      "B": "rigid",
+      "C": "punitive",
+      "D": "arbitrary"
+    },
     "answer": "A",
     "word": "lenient",
     "meaning": "宽大的；仁慈的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The lawyer argued that the evidence was entirely ____ and should not be admitted in court since it was obtained illegally.\n💡 律师辩称，该证据是完全无关紧要的，不应在法庭上采纳，因为它是非法获取的。",
-    "options": {"A": "relevant", "B": "decisive", "C": "inadmissible", "D": "compelling"},
+    "options": {
+      "A": "relevant",
+      "B": "decisive",
+      "C": "inadmissible",
+      "D": "compelling"
+    },
     "answer": "C",
     "word": "inadmissible",
     "meaning": "不可采用的；不被接受的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "Scientists are studying whether the virus can ____ to resist the new class of antiviral drugs developed last year.\n💡 科学家们正在研究病毒是否能够变异以抵抗去年研发的新型抗病毒药物。",
-    "options": {"A": "adapt", "B": "diminish", "C": "retreat", "D": "stabilize"},
+    "options": {
+      "A": "adapt",
+      "B": "diminish",
+      "C": "retreat",
+      "D": "stabilize"
+    },
     "answer": "A",
     "word": "adapt",
     "meaning": "适应；改编"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The report ____ several key issues that policymakers had long been aware of but failed to address adequately.\n💡 报告强调了政策制定者长期以来已经意识到但未能充分解决的几个关键问题。",
-    "options": {"A": "overlooked", "B": "eliminated", "C": "highlighted", "D": "complicated"},
+    "options": {
+      "A": "overlooked",
+      "B": "eliminated",
+      "C": "highlighted",
+      "D": "complicated"
+    },
     "answer": "C",
     "word": "highlight",
     "meaning": "突出；强调"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The company's decision to outsource production was seen as a ____ move, cutting short-term costs but weakening long-term competitiveness.\n💡 该公司将生产外包的决定被视为一种短视行为，虽然降低了短期成本，但削弱了长期竞争力。",
-    "options": {"A": "far-sighted", "B": "myopic", "C": "innovative", "D": "responsible"},
+    "options": {
+      "A": "far-sighted",
+      "B": "myopic",
+      "C": "innovative",
+      "D": "responsible"
+    },
     "answer": "B",
     "word": "myopic",
     "meaning": "目光短浅的；近视的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The diplomat's careful choice of words was intended to ____ tensions between the two countries without assigning blame to either side.\n💡 外交官谨慎的措辞旨在缓和两国之间的紧张关系，同时不将责任归咎于任何一方。",
-    "options": {"A": "inflame", "B": "defuse", "C": "escalate", "D": "distort"},
+    "options": {
+      "A": "inflame",
+      "B": "defuse",
+      "C": "escalate",
+      "D": "distort"
+    },
     "answer": "B",
     "word": "defuse",
     "meaning": "缓和（紧张局势）；化解"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The politician's speech was so full of ____ that even his supporters found it difficult to understand his actual position.\n💡 这位政客的演讲充满了模糊语言，甚至连他的支持者都很难理解他的实际立场。",
-    "options": {"A": "clarity", "B": "jargon", "C": "rhetoric", "D": "substance"},
+    "options": {
+      "A": "clarity",
+      "B": "jargon",
+      "C": "rhetoric",
+      "D": "substance"
+    },
     "answer": "C",
     "word": "rhetoric",
     "meaning": "华而不实的言辞；修辞"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "She managed to ____ her anxiety before the presentation by deep breathing and visualizing a successful outcome.\n💡 她通过深呼吸和想象成功的结果来克服了演讲前的焦虑。",
-    "options": {"A": "intensify", "B": "overcome", "C": "suppress", "D": "deny"},
+    "options": {
+      "A": "intensify",
+      "B": "overcome",
+      "C": "suppress",
+      "D": "deny"
+    },
     "answer": "B",
     "word": "overcome",
     "meaning": "克服；战胜"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The journalist's article was praised for being both ____ and accessible, presenting complex economic data in a way that ordinary readers could understand.\n💡 这位记者的文章因既严谨又通俗易懂而受到赞扬，以普通读者能够理解的方式呈现了复杂的经济数据。",
-    "options": {"A": "rigorous", "B": "superficial", "C": "biased", "D": "redundant"},
+    "options": {
+      "A": "rigorous",
+      "B": "superficial",
+      "C": "biased",
+      "D": "redundant"
+    },
     "answer": "A",
     "word": "rigorous",
     "meaning": "严格的；严谨的"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The government's new initiative aims to ____ young people from disadvantaged backgrounds into higher education.\n💡 政府的新举措旨在将来自弱势背景的年轻人纳入高等教育。",
-    "options": {"A": "exclude", "B": "integrate", "C": "discourage", "D": "separate"},
+    "options": {
+      "A": "exclude",
+      "B": "integrate",
+      "C": "discourage",
+      "D": "separate"
+    },
     "answer": "B",
     "word": "integrate",
     "meaning": "整合；使融入"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "After years of negotiation, the two rival companies finally reached a ____ that satisfied both parties' core interests.\n💡 经过多年谈判，两家竞争公司终于达成了一项双方核心利益都得到满足的妥协方案。",
-    "options": {"A": "consensus", "B": "conflict", "C": "deadlock", "D": "compromise"},
+    "options": {
+      "A": "consensus",
+      "B": "conflict",
+      "C": "deadlock",
+      "D": "compromise"
+    },
     "answer": "D",
     "word": "compromise",
     "meaning": "妥协；折衷方案"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The evidence strongly ____ the theory that sleep deprivation significantly impairs cognitive performance.\n💡 有证据强烈支持这样一个理论：睡眠剥夺会显著损害认知能力。",
-    "options": {"A": "contradicts", "B": "undermines", "C": "supports", "D": "complicates"},
+    "options": {
+      "A": "contradicts",
+      "B": "undermines",
+      "C": "supports",
+      "D": "complicates"
+    },
     "answer": "C",
     "word": "support",
     "meaning": "支持；证实（理论）"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The once-thriving fishing village has now ____ into a popular tourist resort, losing much of its original character.\n💡 这个曾经繁荣的渔村现在已经演变成一个受欢迎的旅游胜地，失去了其大部分原有特色。",
-    "options": {"A": "contracted", "B": "transformed", "C": "isolated", "D": "declined"},
+    "options": {
+      "A": "contracted",
+      "B": "transformed",
+      "C": "isolated",
+      "D": "declined"
+    },
     "answer": "B",
     "word": "transform",
     "meaning": "转变；改变"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "Her argument was compelling, but her opponent quickly pointed out a major ____ in her reasoning that she could not explain away.\n💡 她的论点很有说服力，但对手很快指出了她推理中的一个重大漏洞，她无法解释清楚。",
-    "options": {"A": "strength", "B": "flaw", "C": "assumption", "D": "consequence"},
+    "options": {
+      "A": "strength",
+      "B": "flaw",
+      "C": "assumption",
+      "D": "consequence"
+    },
     "answer": "B",
     "word": "flaw",
     "meaning": "缺陷；漏洞"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "Researchers have found that social isolation can ____ the immune system, making people more susceptible to illness.\n💡 研究人员发现，社会孤立会削弱免疫系统，使人更容易生病。",
-    "options": {"A": "strengthen", "B": "stabilize", "C": "weaken", "D": "stimulate"},
+    "options": {
+      "A": "strengthen",
+      "B": "stabilize",
+      "C": "weaken",
+      "D": "stimulate"
+    },
     "answer": "C",
     "word": "weaken",
     "meaning": "削弱；变弱"
   },
   {
-    "type": "choice",
+    "type": "advanced",
     "question": "The board voted to ____ the CEO after evidence emerged that he had misled investors about the company's financial performance.\n💡 董事会在出现证据表明首席执行官就公司财务业绩误导投资者之后，投票将其解雇。",
-    "options": {"A": "promote", "B": "dismiss", "C": "recruit", "D": "consult"},
+    "options": {
+      "A": "promote",
+      "B": "dismiss",
+      "C": "recruit",
+      "D": "consult"
+    },
     "answer": "B",
     "word": "dismiss",
     "meaning": "解雇；驳回；不予考虑"
+  },
+  {
+    "type": "advanced",
+    "word": "plausible",
+    "meaning": "adj. 合理的；看似可信的",
+    "phrase": "a plausible explanation 合理的解释",
+    "question": "Given the conflicting seismic sensor readings, geologists could offer no ____ explanation for the tremors.\n💡 鉴于地震传感器读数相互矛盾，地质学家无法对这些震动给出看似合情理的解释。",
+    "options": {
+      "A": "implausible",
+      "B": "plausible",
+      "C": "irrational",
+      "D": "absurd"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "advanced",
+    "word": "conspicuous",
+    "meaning": "adj. 显眼的；引人注目的；显赫的",
+    "phrase": "conspicuous consumption 炫耀性消费",
+    "question": "The sudden absence of the company's chief executive was ____ during the major annual shareholder meeting.\n💡 在重要的年度股东大会上，公司首席执行官的突然缺席显得格外引人注目。",
+    "options": {
+      "A": "obscure",
+      "B": "hidden",
+      "C": "conspicuous",
+      "D": "subtle"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "advanced",
+    "word": "tentative",
+    "meaning": "adj. 试探性的；暂定的；踌躇的",
+    "phrase": "a tentative agreement 暂定协议",
+    "question": "Union representatives and management reached a ____ wage agreement, subject to final ratification by workers.\n💡 工会代表与资方达成了一项暂定的薪资协议，该协议尚需工人们的最终批准生效。",
+    "options": {
+      "A": "permanent",
+      "B": "binding",
+      "C": "tentative",
+      "D": "absolute"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "advanced",
+    "word": "lucrative",
+    "meaning": "adj. 利润丰厚的；有利可图的",
+    "phrase": "a lucrative market 利润丰厚的市场",
+    "question": "Pharmaceutical patents grant drug makers exclusive marketing rights, ensuring a highly ____ income stream.\n💡 医药专利赋予制药公司独家销售权，从而确保了利润极丰厚的收入流。",
+    "options": {
+      "A": "unprofitable",
+      "B": "lucrative",
+      "C": "marginal",
+      "D": "worthless"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "advanced",
+    "word": "spontaneous",
+    "meaning": "adj. 自发的；本能的；非勉强的",
+    "phrase": "spontaneous applause 自发的掌声",
+    "question": "When the young pianist finished the demanding concerto, the hall erupted into ____ standing ovations.\n💡 当年轻的钢琴家弹完高难度的协奏曲时，整个音乐厅爆发出了自发的起立鼓掌。",
+    "options": {
+      "A": "spontaneous",
+      "B": "coerced",
+      "C": "hesitant",
+      "D": "reluctant"
+    },
+    "answer": "A"
+  },
+  {
+    "type": "advanced",
+    "word": "ubiquitous",
+    "meaning": "adj. 无所不在的；普遍存在的",
+    "phrase": "ubiquitous smartphones 无处不在的智能手机",
+    "question": "Touchscreens and automated checkout kiosks have become ____ features of modern retail convenience stores.\n💡 触摸屏和自动结账亭已经成为现代便利零售店中无处不在的标配设施。",
+    "options": {
+      "A": "scarce",
+      "B": "ubiquitous",
+      "C": "exotic",
+      "D": "isolated"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "advanced",
+    "word": "reluctant",
+    "meaning": "adj. 不情愿的；勉强的",
+    "phrase": "be reluctant to do sth. 不情愿做某事",
+    "question": "Traditional print publishers were initially ____ to embrace digital e-books for fear of widespread piracy.\n💡 传统纸质出版商起初极不情愿接纳电子书，生怕导致大规模的盗版泛滥。",
+    "options": {
+      "A": "eager",
+      "B": "enthusiastic",
+      "C": "reluctant",
+      "D": "keen"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "advanced",
+    "word": "pragmatic",
+    "meaning": "adj. 务实的；讲究实效的；重实利的",
+    "phrase": "a pragmatic approach 务实的做法",
+    "question": "Faced with shrinking municipal budgets, city planners adopted a ____ approach focused on urgent infrastructure repairs.\n💡 面对缩水的市政预算，城市规划者采取了一种聚焦于紧急基础设施抢修的务实做法。",
+    "options": {
+      "A": "idealistic",
+      "B": "pragmatic",
+      "C": "impractical",
+      "D": "reckless"
+    },
+    "answer": "B"
+  },
+  {
+    "type": "advanced",
+    "word": "vulnerable",
+    "meaning": "adj. 脆弱的；易受伤害/攻击的",
+    "phrase": "vulnerable to cyberattacks 易受网络攻击",
+    "question": "Outdated operating systems leave hospitals dangerously ____ to ransomware infections and extortion schemes.\n💡 过时的操作系统使医院极易受到勒索软件感染和敲诈勒索阴谋的攻击。",
+    "options": {
+      "A": "resilient",
+      "B": "invulnerable",
+      "C": "vulnerable",
+      "D": "immune"
+    },
+    "answer": "C"
+  },
+  {
+    "type": "advanced",
+    "word": "prevalent",
+    "meaning": "adj. 流行的；普遍的；盛行的",
+    "phrase": "a prevalent belief 普遍的信念",
+    "question": "Burnout has become increasingly ____ among healthcare workers following prolonged public health emergencies.\n💡 在长期公共卫生突发事件之后，职业倦怠在医护人员群体中变得越来越普遍。",
+    "options": {
+      "A": "rare",
+      "B": "exceptional",
+      "C": "prevalent",
+      "D": "sporadic"
+    },
+    "answer": "C"
   }
 ]
