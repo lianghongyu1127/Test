@@ -812,6 +812,607 @@
     }
 
     }
+
+    /* ===== 闯关模式按钮 ===== */
+    .challenge-entry-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding: 12px 28px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 6px 20px rgba(239,68,68,0.35);
+      transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+    .challenge-entry-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      border-radius: inherit;
+    }
+    .challenge-entry-btn:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 10px 28px rgba(239,68,68,0.5);
+    }
+    .challenge-entry-btn:active {
+      transform: scale(0.97);
+    }
+    .challenge-entry-btn .btn-flame {
+      font-size: 1.1rem;
+      animation: flamePulse 1.2s ease-in-out infinite;
+    }
+    @keyframes flamePulse {
+      0%,100% { transform: scale(1) rotate(-5deg); }
+      50% { transform: scale(1.2) rotate(5deg); }
+    }
+
+    /* ===== 闯关模式覆盖层 ===== */
+    .challenge-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: #080f1e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+    .challenge-overlay.hidden { display: none; }
+
+    /* 顶部HUD */
+    .ch-hud {
+      width: 100%;
+      max-width: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px 0;
+      flex-shrink: 0;
+    }
+    .ch-exit-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #94a3b8;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .ch-exit-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+    .ch-level-badge {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fbbf24;
+      background: rgba(251,191,36,0.12);
+      border: 1px solid rgba(251,191,36,0.3);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 1px;
+    }
+    .ch-lives {
+      display: flex;
+      gap: 5px;
+      font-size: 1.3rem;
+    }
+    .ch-heart {
+      transition: all 0.3s;
+      filter: drop-shadow(0 0 4px rgba(244,63,94,0.6));
+    }
+    .ch-heart.lost {
+      filter: grayscale(1);
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+
+    /* 连击条 */
+    .ch-combo-bar {
+      width: 100%;
+      max-width: 640px;
+      padding: 14px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .ch-combo-label {
+      font-size: 0.78rem;
+      color: #64748b;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-family: 'Inter', sans-serif;
+      min-width: 60px;
+    }
+    .ch-combo-label.on-fire {
+      color: #f59e0b;
+      animation: comboGlow 0.8s ease infinite alternate;
+    }
+    @keyframes comboGlow {
+      from { text-shadow: 0 0 6px rgba(245,158,11,0.5); }
+      to { text-shadow: 0 0 16px rgba(239,68,68,0.9); }
+    }
+    .ch-combo-dots {
+      display: flex;
+      gap: 5px;
+      flex: 1;
+    }
+    .ch-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.25s;
+      position: relative;
+    }
+    .ch-dot.filled {
+      background: linear-gradient(135deg, #10b981, #14b8a6);
+      border-color: transparent;
+      box-shadow: 0 0 8px rgba(16,185,129,0.5);
+    }
+    .ch-dot.filled.fire {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      box-shadow: 0 0 10px rgba(239,68,68,0.6);
+      animation: dotPop 0.3s ease;
+    }
+    .ch-dot.wrong-dot {
+      background: rgba(244,63,94,0.3);
+      border-color: rgba(244,63,94,0.5);
+      animation: dotShake 0.3s ease;
+    }
+    @keyframes dotPop {
+      0% { transform: scale(0.7); } 60% { transform: scale(1.2); } 100% { transform: scale(1); }
+    }
+    @keyframes dotShake {
+      0%,100% { transform: translateX(0); } 33% { transform: translateX(-4px); } 66% { transform: translateX(4px); }
+    }
+
+    /* 倒计时环 */
+    .ch-timer-wrap {
+      width: 100%;
+      max-width: 640px;
+      padding: 10px 20px 0;
+      flex-shrink: 0;
+    }
+    .ch-timer-track {
+      height: 5px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    .ch-timer-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 1s linear, background 0.5s;
+      background: linear-gradient(90deg, #14b8a6, #0ea5e9);
+    }
+    .ch-timer-fill.urgent {
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      animation: urgentPulse 0.5s ease infinite alternate;
+    }
+    @keyframes urgentPulse {
+      from { opacity: 1; } to { opacity: 0.6; }
+    }
+    .ch-timer-label {
+      text-align: right;
+      font-size: 0.75rem;
+      color: #475569;
+      margin-top: 4px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+    }
+    .ch-timer-label.urgent { color: #ef4444; }
+
+    /* 题目区 */
+    .ch-card-wrap {
+      width: 100%;
+      max-width: 640px;
+      padding: 20px 20px 0;
+      flex: 1;
+    }
+    .ch-q-card {
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(71,85,105,0.4);
+      border-radius: 20px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      animation: cardSlideIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes cardSlideIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .ch-q-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #f59e0b, #ef4444, #8b5cf6);
+    }
+    .ch-progress-text {
+      font-size: 0.78rem;
+      color: #64748b;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    .ch-q-text {
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: #f1f5f9;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .ch-q-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .ch-opts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ch-opt {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 18px;
+      background: rgba(51,65,85,0.4);
+      border: 1px solid rgba(71,85,105,0.35);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      font-size: 0.93rem;
+      color: #e2e8f0;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .ch-opt::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.04), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .ch-opt:hover:not(.locked) {
+      border-color: rgba(20,184,166,0.5);
+      background: rgba(20,184,166,0.08);
+      transform: translateX(4px);
+    }
+    .ch-opt:hover:not(.locked)::before { opacity: 1; }
+    .ch-opt:active:not(.locked) { transform: scale(0.98); }
+    .ch-opt-key {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.82rem;
+      font-family: 'Inter', sans-serif;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .ch-opt.correct {
+      border-color: rgba(16,185,129,0.5);
+      background: rgba(16,185,129,0.12);
+      animation: correctFlash 0.4s ease;
+    }
+    .ch-opt.correct .ch-opt-key {
+      background: #10b981;
+      color: #fff;
+    }
+    .ch-opt.wrong-ans {
+      border-color: rgba(244,63,94,0.5);
+      background: rgba(244,63,94,0.1);
+      animation: wrongShake 0.4s ease;
+    }
+    .ch-opt.wrong-ans .ch-opt-key {
+      background: #f43f5e;
+      color: #fff;
+    }
+    .ch-opt.locked { cursor: default; pointer-events: none; }
+    .ch-opt.locked:not(.correct):not(.wrong-ans) { opacity: 0.38; }
+    @keyframes correctFlash {
+      0% { background: rgba(16,185,129,0.35); } 100% { background: rgba(16,185,129,0.12); }
+    }
+    @keyframes wrongShake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+
+    /* 答题反馈条 */
+    .ch-feedback {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      animation: slideUp 0.3s ease;
+    }
+    .ch-feedback.fb-correct {
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.3);
+      color: #6ee7b7;
+    }
+    .ch-feedback.fb-wrong {
+      background: rgba(244,63,94,0.1);
+      border: 1px solid rgba(244,63,94,0.3);
+      color: #fda4af;
+    }
+    .ch-next-btn {
+      width: 100%;
+      margin-top: 14px;
+      padding: 15px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+      animation: slideUp 0.35s ease;
+    }
+    .ch-next-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,184,166,0.4); }
+    .ch-next-btn:active { transform: scale(0.98); }
+
+    /* ===== Combo 爆字特效 ===== */
+    .combo-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      z-index: 9000;
+      pointer-events: none;
+      font-size: 3.5rem;
+      font-weight: 900;
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      animation: comboBurst 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      line-height: 1;
+    }
+    @keyframes comboBurst {
+      0% { opacity: 0; transform: translate(-50%,-50%) scale(0.3); }
+      35% { opacity: 1; transform: translate(-50%,-55%) scale(1.1); }
+      70% { opacity: 1; transform: translate(-50%,-60%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%,-80%) scale(0.9); }
+    }
+
+    /* ===== 粒子画布 ===== */
+    #particleCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 8000;
+    }
+
+    /* ===== 关卡结算屏 ===== */
+    .ch-result-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 600;
+      background: rgba(8,15,30,0.97);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      animation: fadeIn 0.4s ease;
+      text-align: center;
+    }
+    .ch-result-screen.hidden { display: none; }
+    .ch-grade {
+      font-size: 7rem;
+      font-weight: 900;
+      font-family: 'Inter', sans-serif;
+      line-height: 1;
+      animation: gradePop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+    }
+    @keyframes gradePop {
+      from { opacity: 0; transform: scale(0.2) rotate(-15deg); }
+      to { opacity: 1; transform: scale(1) rotate(0); }
+    }
+    .ch-grade.grade-s { background: linear-gradient(135deg,#f59e0b,#ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .ch-grade.grade-a { background: linear-gradient(135deg,#10b981,#14b8a6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .ch-grade.grade-b { background: linear-gradient(135deg,#0ea5e9,#6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .ch-grade.grade-c { color: #94a3b8; }
+    .ch-result-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 16px;
+      color: #f1f5f9;
+    }
+    .ch-result-sub {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-top: 8px;
+    }
+    .ch-result-stats {
+      display: flex;
+      gap: 24px;
+      margin: 32px 0;
+      animation: slideUp 0.5s ease 0.5s both;
+    }
+    .ch-rstat {
+      text-align: center;
+    }
+    .ch-rstat-val {
+      font-size: 2.2rem;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+    }
+    .ch-rstat-val.green { color: #10b981; }
+    .ch-rstat-val.red { color: #f43f5e; }
+    .ch-rstat-val.amber { color: #f59e0b; }
+    .ch-rstat-label {
+      font-size: 0.78rem;
+      color: #64748b;
+      margin-top: 4px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .ch-result-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 320px;
+      animation: slideUp 0.5s ease 0.7s both;
+    }
+    .ch-btn-next-level {
+      padding: 16px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      box-shadow: 0 8px 24px rgba(239,68,68,0.35);
+    }
+    .ch-btn-next-level:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(239,68,68,0.5); }
+    .ch-btn-retry {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(71,85,105,0.5);
+      background: rgba(30,41,59,0.8);
+      color: #94a3b8;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .ch-btn-retry:hover { border-color: rgba(100,116,139,0.7); color: #f1f5f9; }
+
+    /* ===== 游戏结束屏 ===== */
+    .ch-gameover {
+      position: fixed;
+      inset: 0;
+      z-index: 700;
+      background: rgba(8,15,30,0.97);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      animation: fadeIn 0.4s ease;
+      text-align: center;
+    }
+    .ch-gameover.hidden { display: none; }
+    .ch-gameover-icon {
+      font-size: 5rem;
+      animation: heartBeat 0.6s ease;
+    }
+    @keyframes heartBeat {
+      0% { transform: scale(1); } 30% { transform: scale(1.3); } 60% { transform: scale(0.9); } 100% { transform: scale(1); }
+    }
+    .ch-gameover-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #f43f5e;
+      margin-top: 16px;
+    }
+    .ch-gameover-sub {
+      color: #64748b;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .ch-revive-btn {
+      margin-top: 28px;
+      padding: 16px 40px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #f43f5e, #8b5cf6);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      box-shadow: 0 8px 24px rgba(244,63,94,0.4);
+    }
+    .ch-revive-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(244,63,94,0.55); }
+    .ch-quit-link {
+      margin-top: 16px;
+      color: #475569;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+    .ch-quit-link:hover { color: #94a3b8; }
+
+    /* ===== SRS styles ===== */
+    .mastery-chip {
+      font-size: 0.68rem;
+      padding: 3px 9px;
+      border-radius: 6px;
+      border: 1px solid;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      flex-shrink: 0;
+    }
+    .mastery-new  { background: rgba(148,163,184,0.1); color: #94a3b8; border-color: rgba(148,163,184,0.25); }
+    .mastery-learn { background: rgba(14,165,233,0.12); color: #38bdf8; border-color: rgba(14,165,233,0.3); }
+    .mastery-review { background: rgba(16,185,129,0.12); color: #34d399; border-color: rgba(16,185,129,0.3); }
+    .mastery-owned { background: rgba(251,191,36,0.12); color: #fbbf24; border-color: rgba(251,191,36,0.3); }
+    .srs-hint {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.8rem;
+      color: #64748b;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .srs-hint.hint-correct { color: #34d399; }
+    .srs-hint.hint-mastered { color: #fbbf24; }
+    .srs-hint.hint-wrong { color: #94a3b8; }
   </style>
 </head>
 
@@ -823,6 +1424,9 @@
       <div class="header-icon">📖</div>
       <h1>考研英语词汇</h1>
       <div class="subtitle">共 <span id="total">0</span> 题 · 专注刷题</div>
+      <button class="challenge-entry-btn" onclick="startChallenge()">
+        <span class="btn-flame">🔥</span> 闯关模式
+      </button>
     </div>
 
     <div class="stats-row">
@@ -850,6 +1454,7 @@
         <button class="pill" data-f="advanced">进阶题</button>
         <button class="pill" data-f="done">✔ 已答</button>
         <button class="pill" data-f="wrong">✖ 错题</button>
+
         <button class="pill" data-f="shuffle">🔀 随机</button>
         <button class="pill" style="color:var(--wrong)" onclick="confirmResetAll()">🔄 重置</button>
       </div>
@@ -885,6 +1490,40 @@
 
   <div id="dialogRoot"></div>
 
+  <!-- 粒子画布 -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- 闯关模式主界面 -->
+  <div class="challenge-overlay hidden" id="challengeOverlay">
+    <!-- HUD: 退出 | 关卡 | 生命值 -->
+    <div class="ch-hud">
+      <button class="ch-exit-btn" onclick="exitChallenge()">✕ 退出</button>
+      <div class="ch-level-badge" id="chLevelBadge">LEVEL 1</div>
+      <div class="ch-lives" id="chLives"></div>
+    </div>
+    <!-- 连击条 -->
+    <div class="ch-combo-bar">
+      <div class="ch-combo-label" id="chComboLabel">COMBO</div>
+      <div class="ch-combo-dots" id="chComboDots"></div>
+      <div style="font-size:0.78rem;color:#64748b;font-family:'Inter',sans-serif;font-weight:700;min-width:32px;text-align:right" id="chComboCount">×0</div>
+    </div>
+    <!-- 倒计时条 -->
+    <div class="ch-timer-wrap">
+      <div class="ch-timer-track"><div class="ch-timer-fill" id="chTimerFill"></div></div>
+      <div class="ch-timer-label" id="chTimerLabel">30s</div>
+    </div>
+    <!-- 题目卡片 -->
+    <div class="ch-card-wrap" id="chCardWrap"></div>
+    <!-- 底部留白 -->
+    <div style="height:40px;flex-shrink:0"></div>
+  </div>
+
+  <!-- 关卡结算屏 -->
+  <div class="ch-result-screen hidden" id="chResultScreen"></div>
+
+  <!-- 游戏结束屏 -->
+  <div class="ch-gameover hidden" id="chGameover"></div>
+
   <script>
     // ===== 状态管理 =====
     // ===== 状态管理 =====
@@ -895,6 +1534,10 @@
     let curFilter = 'all';
     let curFamily = 'all';
     let curSubFilter = 'all';
+
+    // ===== SRS state =====
+    let srsData = {};
+    const SRS_KEY = 'quiz_srs_v1';
 
     const STORAGE_KEY = 'quiz_en_v1';
 
@@ -907,6 +1550,63 @@
     }).catch(e => {
       document.getElementById('cardArea').innerHTML = '<div class="empty"><div class="empty-text">题库加载失败</div></div>';
     });
+
+    // ===== SRS Functions =====
+    function loadSRS() {
+      try {
+        const raw = localStorage.getItem(SRS_KEY);
+        if (raw) srsData = JSON.parse(raw);
+      } catch(e) { srsData = {}; }
+      updateSrsOwnedDisplay();
+    }
+
+    function saveSRS() {
+      try {
+        localStorage.setItem(SRS_KEY, JSON.stringify(srsData));
+      } catch(e) {}
+    }
+
+    function getSRSState(gi) {
+      return srsData[gi] || { stage: 0, interval: 0, dueDate: 0, reps: 0 };
+    }
+
+    function updateSRS(gi, isCorrect) {
+      let st = getSRSState(gi);
+      const now = Date.now();
+      const ONE_DAY = 86400000;
+      if (isCorrect) {
+        st.reps = (st.reps || 0) + 1;
+        if (st.stage === 0) { st.stage = 1; st.interval = 1; }
+        else if (st.stage === 1) { st.stage = 2; st.interval = 3; }
+        else if (st.stage === 2) { st.stage = 3; st.interval = 7; }
+        else if (st.stage === 3) { st.stage = 4; st.interval = 15; }
+        else { st.stage = 5; st.interval = 30; }
+        st.dueDate = now + st.interval * ONE_DAY;
+      } else {
+        st.stage = Math.max(0, st.stage - 1);
+        st.interval = 0;
+        st.dueDate = now;
+      }
+      srsData[gi] = st;
+      saveSRS();
+      updateSrsOwnedDisplay();
+    }
+
+    function isDueToday(gi) {
+      const st = srsData[gi];
+      if (!st) return false;
+      const now = Date.now();
+      return st.dueDate && st.dueDate <= now;
+    }
+
+    function updateSrsOwnedDisplay() {
+      let ownedCount = 0;
+      Object.values(srsData).forEach(st => {
+        if (st.stage >= 5 || (st.stage >= 3 && st.interval >= 7)) ownedCount++;
+      });
+      const el = document.getElementById('srsOwned');
+      if (el) el.textContent = ownedCount;
+    }
 
     // ===== localStorage 持久化 =====
     function saveProgress() {
@@ -922,6 +1622,7 @@
           curSubFilter
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        saveSRS();
       } catch (e) { /* quota exceeded or private mode, silently ignore */ }
     }
 
@@ -938,6 +1639,8 @@
         curFilter = data.curFilter || 'all';
         curFamily = data.curFamily || 'all';
         curSubFilter = data.curSubFilter || 'all';
+
+        loadSRS();
 
         // 兼容迁移旧分类
         if (['choice', 'judge', 'fill'].includes(curFilter)) {
@@ -1053,6 +1756,12 @@
       if (f === 'all') filtered = [...ALL];
       else if (f === 'wrong') filtered = ALL.filter((_, i) => wrongs.has(i));
       else if (f === 'done') filtered = ALL.filter((_, i) => record[i]);
+      else if (f === 'today') {
+        const now = Date.now();
+        const due = ALL.filter((_, gi) => { const s = srsData[gi]; return s && s.stage > 0 && s.dueDate && s.dueDate <= now; });
+        const fresh = ALL.filter((_, gi) => { const s = srsData[gi]; return !s || s.stage === 0; }).slice(0, 20);
+        filtered = [...due, ...fresh];
+      }
       else if (f === 'family') {
         if (curFamily === 'all') filtered = ALL.filter(q => q.type === 'family');
         else filtered = ALL.filter(q => q.type === 'family' && q.family === curFamily);
@@ -1178,7 +1887,6 @@
         if (q.exam_cite) {
           extraInfo += `<div class="answer-detail-row answer-cite">📖 <b>真题出处:</b> ${esc(q.exam_cite)}</div>`;
         }
-
         if (done.correct) {
           h += `<div class="result r-correct"><span class="result-icon">✓</span><div class="result-body">回答正确${extraInfo}</div></div>`;
         } else {
@@ -1213,6 +1921,38 @@
           window.scrollBy({ top: 150, left: 0, behavior: 'smooth' });
         }
       }, 100);
+    }
+
+    // ===== SRS 辅助函数（在 render 中调用）=====
+    function getMasteryMeta(gi) {
+      const s = srsData[gi];
+      if (!s || s.stage === 0) return { cls: 'mastery-new', label: '新词' };
+      if (s.stage <= 2) return { cls: 'mastery-learn', label: '学习中' };
+      if (s.stage <= 4) return { cls: 'mastery-review', label: '复习中' };
+      return { cls: 'mastery-owned', label: '⭐已掌握' };
+    }
+
+    function buildSRSHint(gi, correct) {
+      const s = srsData[gi];
+      if (!s) return '';
+      const ONE_DAY = 86400000;
+      const daysLeft = s.dueDate ? Math.ceil((s.dueDate - Date.now()) / ONE_DAY) : 0;
+      let cls, icon, msg;
+      if (!correct) {
+        cls = 'hint-wrong'; icon = '🔄';
+        msg = '重新学习 · 明天再见';
+      } else if (s.stage >= 5) {
+        cls = 'hint-mastered'; icon = '⭐';
+        msg = `这个词你已掌握！约${daysLeft}天后再见`;
+      } else if (s.stage === 1) {
+        cls = 'hint-correct'; icon = '🌱';
+        msg = `初次记录 · 明天复习`;
+      } else {
+        cls = 'hint-correct'; icon = '📈';
+        const d = daysLeft <= 1 ? '明天' : daysLeft < 7 ? `${daysLeft}天后` : daysLeft < 30 ? `${Math.round(daysLeft/7)}周后` : `${Math.round(daysLeft/30)}个月后`;
+        msg = `熟练度×${s.stage} · ${d}再见`;
+      }
+      return `<div class="srs-hint ${cls}">${icon} ${msg}</div>`;
     }
 
     // ===== 清除指定类型已答记录 =====
@@ -1350,13 +2090,446 @@
     // ===== 快捷键 =====
     document.addEventListener('keydown', e => {
       if (e.target.tagName === 'INPUT') return;
-      if (e.key === 'ArrowLeft') go(-1);
-      else if (e.key === 'ArrowRight') go(1);
-      else if ('abcdABCD'.includes(e.key) && filtered[idx]?.options) {
-        const gi = ALL.indexOf(filtered[idx]);
-        if (!record[gi]) pickChoice(e.key.toUpperCase(), gi);
+      if (!chActive) {
+        if (e.key === 'ArrowLeft') go(-1);
+        else if (e.key === 'ArrowRight') go(1);
+        else if ('abcdABCD'.includes(e.key) && filtered[idx]?.options) {
+          const gi = ALL.indexOf(filtered[idx]);
+          if (!record[gi]) pickChoice(e.key.toUpperCase(), gi);
+        }
+      } else {
+        if ('abcdABCD'.includes(e.key) && chActive && !chAnswered) {
+          chPick(e.key.toUpperCase());
+        }
       }
     });
+
+    // ============================================================
+    // ===== 闯关模式 CHALLENGE MODE =====
+    // ============================================================
+    const LEVEL_SIZE = 10;         // 每关题数
+    const MAX_LIVES = 3;           // 生命值上限
+    const COMBO_FIRE = 3;          // 连击达到几次触发火焰
+    const QUESTION_TIME = 30;      // 每题秒数
+    const TIMEOUT_PENALTY = true;  // 超时算错
+
+    let chActive = false;
+    let chPool = [];      // 本次闯关题池（打乱后的ALL）
+    let chLevel = 1;
+    let chLevelStart = 0; // 当前关卡在chPool中的起始索引
+    let chQIdx = 0;       // 当前关卡内题目索引(0~LEVEL_SIZE-1)
+    let chLives = MAX_LIVES;
+    let chCombo = 0;
+    let chMaxCombo = 0;
+    let chLevelCorrect = 0;
+    let chLevelWrong = 0;
+    let chAnswered = false;
+    let chTimerVal = QUESTION_TIME;
+    let chTimerInterval = null;
+    let chTotalCorrect = 0;
+    let chTotalWrong = 0;
+
+    function startChallenge() {
+      // 打乱ALL作为题池
+      chPool = [...ALL].sort(() => Math.random() - 0.5);
+      chLevel = 1;
+      chLevelStart = 0;
+      chLives = MAX_LIVES;
+      chCombo = 0;
+      chMaxCombo = 0;
+      chTotalCorrect = 0;
+      chTotalWrong = 0;
+      chActive = true;
+      document.getElementById('challengeOverlay').classList.remove('hidden');
+      document.getElementById('chResultScreen').classList.add('hidden');
+      document.getElementById('chGameover').classList.add('hidden');
+      chStartLevel();
+    }
+
+    function chStartLevel() {
+      chQIdx = 0;
+      chLevelCorrect = 0;
+      chLevelWrong = 0;
+      renderChHUD();
+      chShowQuestion();
+    }
+
+    function chShowQuestion() {
+      chAnswered = false;
+      const gIdx = chLevelStart + chQIdx;
+      if (gIdx >= chPool.length) {
+        // 题库耗尽，循环
+        chPool = [...chPool, ...ALL.sort(() => Math.random() - 0.5)];
+      }
+      const q = chPool[gIdx % chPool.length];
+      renderChCard(q);
+      chStartTimer();
+    }
+
+    function renderChHUD() {
+      // 关卡徽章
+      document.getElementById('chLevelBadge').textContent = `LEVEL ${chLevel}`;
+      // 生命值
+      let livesHTML = '';
+      for (let i = 0; i < MAX_LIVES; i++) {
+        livesHTML += `<span class="ch-heart${i >= chLives ? ' lost' : ''}">❤️</span>`;
+      }
+      document.getElementById('chLives').innerHTML = livesHTML;
+      // 连击
+      updateComboUI();
+    }
+
+    function updateComboUI() {
+      const dots = document.getElementById('chComboDots');
+      const label = document.getElementById('chComboLabel');
+      const count = document.getElementById('chComboCount');
+      const isFire = chCombo >= COMBO_FIRE;
+      label.textContent = isFire ? '🔥 COMBO' : 'COMBO';
+      label.className = 'ch-combo-label' + (isFire ? ' on-fire' : '');
+      count.textContent = `×${chCombo}`;
+      count.style.color = isFire ? '#f59e0b' : '#64748b';
+      let h = '';
+      for (let i = 0; i < LEVEL_SIZE; i++) {
+        const filled = i < chQIdx;
+        // determine if this dot was correct or wrong
+        const dotFire = filled && (chCombo >= COMBO_FIRE);
+        h += `<div class="ch-dot${filled ? ' filled' + (dotFire ? ' fire' : '') : ''}"></div>`;
+      }
+      dots.innerHTML = h;
+    }
+
+    function renderChCard(q) {
+      let tagCls = 'tag-basic', tagText = '基础题';
+      if (q.type === 'advanced') { tagCls = 'tag-advanced'; tagText = '进阶题'; }
+      else if (q.type === 'family') { tagCls = 'tag-family'; tagText = `${q.family || '核心'} 家族`; }
+      else if (q.type === 'cloze50') { tagCls = 'tag-cloze50'; tagText = '完形50词'; }
+      else if (q.type === 'attitude') { tagCls = 'tag-attitude'; tagText = '态度词'; }
+
+      // SRS掌握状态补丁
+      const gi = ALL.indexOf(q);
+      const mm = gi >= 0 ? getMasteryMeta(gi) : { cls: 'mastery-new', label: '新词' };
+
+      let optHTML = '';
+      if (q.options) {
+        for (const [k, v] of Object.entries(q.options)) {
+          optHTML += `<button class="ch-opt" id="chOpt_${k}" onclick="chPick('${k}')">
+            <span class="ch-opt-key">${k}</span><span>${esc(v)}</span>
+          </button>`;
+        }
+      }
+
+      const innerQ = chQIdx + 1;
+      document.getElementById('chCardWrap').innerHTML = `
+        <div class="ch-q-card" id="chQCard">
+          <div class="ch-progress-text" style="display:flex;align-items:center;justify-content:space-between">
+            <span>第 ${innerQ} / ${LEVEL_SIZE} 题 &nbsp;·&nbsp; 本关正确 ${chLevelCorrect} 题</span>
+            <span class="mastery-chip ${mm.cls}" style="font-size:0.65rem">${mm.label}</span>
+          </div>
+          <div class="ch-q-tag ${tagCls}">${tagText}</div>
+          <div class="ch-q-text">${esc(q.question)}</div>
+          <div class="ch-opts" id="chOpts">${optHTML}</div>
+          <div id="chFeedback"></div>
+        </div>`;
+    }
+
+    function chPick(k) {
+      if (chAnswered) return;
+      chAnswered = true;
+      clearInterval(chTimerInterval);
+
+      const gIdx = (chLevelStart + chQIdx) % chPool.length;
+      const q = chPool[gIdx];
+      const correct = k === q.answer;
+      const gi = ALL.indexOf(q); // global index for SRS
+
+      // 锁定所有选项
+      document.querySelectorAll('.ch-opt').forEach(btn => btn.classList.add('locked'));
+      const picked = document.getElementById('chOpt_' + k);
+      const rightBtn = document.getElementById('chOpt_' + q.answer);
+      if (picked) picked.classList.add(correct ? 'correct' : 'wrong-ans');
+      if (!correct && rightBtn) rightBtn.classList.add('correct');
+
+      // 更新SRS熱练度
+      if (gi >= 0) updateSRS(gi, correct);
+
+      // 更新闯关状态
+      if (correct) {
+        chCombo++;
+        chMaxCombo = Math.max(chMaxCombo, chCombo);
+        chLevelCorrect++;
+        chTotalCorrect++;
+        spawnParticles(true);
+        if (chCombo >= COMBO_FIRE) showComboPopup(chCombo);
+      } else {
+        chCombo = 0;
+        chLevelWrong++;
+        chTotalWrong++;
+        chLives--;
+        spawnParticles(false);
+        renderChHUD();
+        if (chLives <= 0) {
+          setTimeout(() => showGameover(), 1200);
+          showFeedback(q, gi, correct);
+          return;
+        }
+      }
+      updateComboUI();
+      showFeedback(q, gi, correct);
+    }
+
+    function showFeedback(q, gi, correct) {
+      let extra = '';
+      if (q.word && q.meaning) extra += `<div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.83rem">📖 <b style="color:#5eead4;font-style:italic">${esc(q.word)}</b> ${esc(q.meaning)}</div>`;
+      if (q.technique_tip) extra += `<div style="margin-top:6px;font-size:0.8rem;color:#f472b6">💡 ${esc(q.technique_tip)}</div>`;
+      if (q.phrase) extra += `<div style="margin-top:4px;font-size:0.8rem;color:#7dd3fc">📌 ${esc(q.phrase)}</div>`;
+      if (q.family_note) extra += `<div style="margin-top:4px;font-size:0.8rem;color:#a7f3d0">🌱 ${esc(q.family_note)}</div>`;
+      // SRS 熟练度提示 —— 闯关模式上瘾感核心
+      if (gi >= 0) extra += buildSRSHint(gi, correct);
+
+      const fb = document.getElementById('chFeedback');
+      if (correct) {
+        fb.innerHTML = `<div class="ch-feedback fb-correct">✓ 回答正确！${extra}</div><button class="ch-next-btn" onclick="chNext()">下一题 →</button>`;
+      } else {
+        const at = q.answer + '. ' + (q.options ? q.options[q.answer] : '');
+        fb.innerHTML = `<div class="ch-feedback fb-wrong">✗ 回答错误 &nbsp;<span style="background:rgba(0,0,0,0.2);padding:3px 10px;border-radius:6px;font-weight:600">${esc(at)}</span>${extra}</div><button class="ch-next-btn" style="background:linear-gradient(135deg,#f43f5e,#8b5cf6)" onclick="chNext()">继续 →</button>`;
+      }
+    }
+
+    function chNext() {
+      chQIdx++;
+      if (chQIdx >= LEVEL_SIZE) {
+        // 关卡结算
+        clearInterval(chTimerInterval);
+        showLevelResult();
+      } else {
+        chShowQuestion();
+      }
+    }
+
+    // ===== 倒计时 =====
+    function chStartTimer() {
+      chTimerVal = QUESTION_TIME;
+      clearInterval(chTimerInterval);
+      updateTimerUI();
+      chTimerInterval = setInterval(() => {
+        chTimerVal--;
+        updateTimerUI();
+        if (chTimerVal <= 0) {
+          clearInterval(chTimerInterval);
+          if (!chAnswered && TIMEOUT_PENALTY) {
+            // 超时自动答错
+            const gIdx = (chLevelStart + chQIdx) % chPool.length;
+            const q = chPool[gIdx];
+            const gi = ALL.indexOf(q);
+            chAnswered = true;
+            chCombo = 0;
+            chLevelWrong++;
+            chTotalWrong++;
+            chLives--;
+            if (gi >= 0) updateSRS(gi, false);
+            spawnParticles(false);
+            updateComboUI();
+            renderChHUD();
+            // 显示正确答案
+            document.querySelectorAll('.ch-opt').forEach(btn => btn.classList.add('locked'));
+            const rightBtn = document.getElementById('chOpt_' + q.answer);
+            if (rightBtn) rightBtn.classList.add('correct');
+            if (chLives <= 0) {
+              setTimeout(() => showGameover(), 1200);
+              showFeedback(q, gi, false);
+            } else {
+              showFeedback(q, gi, false);
+            }
+          }
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      const pct = chTimerVal / QUESTION_TIME * 100;
+      const fill = document.getElementById('chTimerFill');
+      const label = document.getElementById('chTimerLabel');
+      if (!fill) return;
+      fill.style.width = pct + '%';
+      const urgent = chTimerVal <= 8;
+      fill.className = 'ch-timer-fill' + (urgent ? ' urgent' : '');
+      label.className = 'ch-timer-label' + (urgent ? ' urgent' : '');
+      label.textContent = chTimerVal + 's';
+    }
+
+    // ===== 关卡结算 =====
+    function showLevelResult() {
+      clearInterval(chTimerInterval);
+      const accuracy = Math.round(chLevelCorrect / LEVEL_SIZE * 100);
+      let grade, gradeClass, title, sub;
+      if (accuracy === 100) { grade = 'S'; gradeClass = 'grade-s'; title = '完美闯关！'; sub = '无一失误，超越99%的对手 🏆'; }
+      else if (accuracy >= 80) { grade = 'A'; gradeClass = 'grade-a'; title = '表现优秀！'; sub = `正确率 ${accuracy}%，再接再厉 💪`; }
+      else if (accuracy >= 60) { grade = 'B'; gradeClass = 'grade-b'; title = '勉强过关'; sub = `正确率 ${accuracy}%，还需加油 📚`; }
+      else { grade = 'C'; gradeClass = 'grade-c'; title = '差点翻车...'; sub = `正确率 ${accuracy}%，错题需要复习！`; }
+
+      const screen = document.getElementById('chResultScreen');
+      screen.className = 'ch-result-screen';
+      screen.innerHTML = `
+        <div class="ch-grade ${gradeClass}">${grade}</div>
+        <div class="ch-result-title">${title}</div>
+        <div class="ch-result-sub">第 ${chLevel} 关 · ${sub}</div>
+        <div class="ch-result-stats">
+          <div class="ch-rstat"><div class="ch-rstat-val green">${chLevelCorrect}</div><div class="ch-rstat-label">正确</div></div>
+          <div class="ch-rstat"><div class="ch-rstat-val red">${chLevelWrong}</div><div class="ch-rstat-label">错误</div></div>
+          <div class="ch-rstat"><div class="ch-rstat-val amber">${chMaxCombo}</div><div class="ch-rstat-label">最高连击</div></div>
+        </div>
+        <div class="ch-result-btns">
+          <button class="ch-btn-next-level" onclick="chNextLevel()">🚀 继续第 ${chLevel + 1} 关</button>
+          <button class="ch-btn-retry" onclick="chRetryLevel()">↻ 重打本关</button>
+          <button class="ch-quit-link" onclick="exitChallenge()">退出闯关</button>
+        </div>`;
+      if (grade === 'S') setTimeout(() => fireConfetti(), 200);
+    }
+
+    function chNextLevel() {
+      chLevel++;
+      chLevelStart += LEVEL_SIZE;
+      chMaxCombo = 0;
+      document.getElementById('chResultScreen').classList.add('hidden');
+      chStartLevel();
+    }
+
+    function chRetryLevel() {
+      // 重新打乱本关题目
+      const levelSlice = chPool.splice(chLevelStart, LEVEL_SIZE).sort(() => Math.random() - 0.5);
+      chPool.splice(chLevelStart, 0, ...levelSlice);
+      chMaxCombo = 0;
+      document.getElementById('chResultScreen').classList.add('hidden');
+      chStartLevel();
+    }
+
+    // ===== 游戏结束 =====
+    function showGameover() {
+      clearInterval(chTimerInterval);
+      const screen = document.getElementById('chGameover');
+      screen.className = 'ch-gameover';
+      screen.innerHTML = `
+        <div class="ch-gameover-icon">💀</div>
+        <div class="ch-gameover-title">闯关失败</div>
+        <div class="ch-gameover-sub">生命值耗尽，倒在第 ${chLevel} 关第 ${chQIdx + 1} 题<br>总计答对 ${chTotalCorrect} 题 · 最高连击 ${chMaxCombo}</div>
+        <button class="ch-revive-btn" onclick="reviveFromWrong()">💖 复活 · 从错题重新出发</button>
+        <button class="ch-quit-link" onclick="exitChallenge()">放弃，退出闯关</button>`;
+    }
+
+    function reviveFromWrong() {
+      // 复活：重置生命，重新从当前关开始
+      chLives = MAX_LIVES;
+      chCombo = 0;
+      chMaxCombo = 0;
+      document.getElementById('chGameover').classList.add('hidden');
+      chStartLevel();
+    }
+
+    function exitChallenge() {
+      clearInterval(chTimerInterval);
+      chActive = false;
+      document.getElementById('challengeOverlay').classList.add('hidden');
+      document.getElementById('chResultScreen').classList.add('hidden');
+      document.getElementById('chGameover').classList.add('hidden');
+    }
+
+    // ===== 粒子特效 =====
+    const pCanvas = document.getElementById('particleCanvas');
+    const pCtx = pCanvas.getContext('2d');
+    let particles = [];
+    let pAnimId = null;
+
+    function resizeCanvas() {
+      pCanvas.width = window.innerWidth;
+      pCanvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function spawnParticles(correct) {
+      const colors = correct
+        ? ['#10b981','#14b8a6','#5eead4','#fbbf24','#a7f3d0']
+        : ['#f43f5e','#fb923c','#fbbf24'];
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight * 0.45;
+      const count = correct ? 40 : 15;
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = correct ? (3 + Math.random() * 5) : (1.5 + Math.random() * 3);
+        particles.push({
+          x: cx, y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - (correct ? 3 : 1),
+          r: 4 + Math.random() * 5,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          life: 1, decay: 0.018 + Math.random() * 0.015,
+          gravity: 0.15
+        });
+      }
+      if (!pAnimId) pAnimLoop();
+    }
+
+    function pAnimLoop() {
+      pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+      particles = particles.filter(p => p.life > 0);
+      for (const p of particles) {
+        p.x += p.vx; p.y += p.vy; p.vy += p.gravity;
+        p.life -= p.decay;
+        pCtx.save();
+        pCtx.globalAlpha = p.life;
+        pCtx.fillStyle = p.color;
+        pCtx.beginPath();
+        pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        pCtx.fill();
+        pCtx.restore();
+      }
+      if (particles.length > 0) {
+        pAnimId = requestAnimationFrame(pAnimLoop);
+      } else {
+        pAnimId = null;
+      }
+    }
+
+    function fireConfetti() {
+      const colors = ['#f59e0b','#ef4444','#10b981','#0ea5e9','#8b5cf6','#f472b6'];
+      for (let i = 0; i < 80; i++) {
+        setTimeout(() => {
+          particles.push({
+            x: Math.random() * window.innerWidth,
+            y: -10,
+            vx: (Math.random() - 0.5) * 4,
+            vy: 2 + Math.random() * 4,
+            r: 5 + Math.random() * 6,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            life: 1, decay: 0.008 + Math.random() * 0.01,
+            gravity: 0.08
+          });
+          if (!pAnimId) pAnimLoop();
+        }, i * 20);
+      }
+    }
+
+    // ===== Combo 爆字特效 =====
+    function showComboPopup(n) {
+      const el = document.createElement('div');
+      el.className = 'combo-popup';
+      const msgs = {
+        3: '🔥 x3 COMBO!', 4: '⚡ x4 HOT!', 5: '💥 x5 FIRE!!',
+        6: '🌟 x6 BLAZING!', 7: '🚀 x7 INSANE!', 8: '👑 x8 GODLIKE!',
+        9: '🎯 x9 PERFECT!', 10: '✨ x10 LEGENDARY!!'
+      };
+      const msg = msgs[n] || (n > 10 ? `🏆 x${n} UNSTOPPABLE!!` : null);
+      if (!msg) return;
+      const gradients = [
+        'linear-gradient(135deg,#f59e0b,#ef4444)',
+        'linear-gradient(135deg,#8b5cf6,#f472b6)',
+        'linear-gradient(135deg,#10b981,#0ea5e9)'
+      ];
+      el.style.cssText = `background:${gradients[n % 3]};-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(245,158,11,0.6))`;
+      el.textContent = msg;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 900);
+    }
   </script>
 </body>
 
