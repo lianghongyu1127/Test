@@ -1390,6 +1390,64 @@
     .srs-hint.hint-correct { color: #34d399; }
     .srs-hint.hint-mastered { color: #fbbf24; }
     .srs-hint.hint-wrong { color: #94a3b8; }
+
+    /* ===== 闯关进度方块 ===== */
+    .ch-pdots {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+    .ch-pdot {
+      flex: 1;
+      height: 5px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.08);
+      transition: all 0.3s ease;
+    }
+    .ch-pdot.pdot-current {
+      background: #fbbf24;
+      box-shadow: 0 0 8px rgba(251,191,36,0.6);
+    }
+    .ch-pdot.pdot-correct {
+      background: #10b981;
+    }
+    .ch-pdot.pdot-wrong {
+      background: #f43f5e;
+    }
+    /* 卡片闪光反馈 */
+    @keyframes flashGreen {
+      0%   { box-shadow: 0 0 0 0 transparent; }
+      25%  { box-shadow: 0 0 0 6px rgba(16,185,129,0.35), inset 0 0 30px rgba(16,185,129,0.15); }
+      100% { box-shadow: 0 0 0 0 transparent; }
+    }
+    @keyframes flashRed {
+      0%   { box-shadow: 0 0 0 0 transparent; }
+      25%  { box-shadow: 0 0 0 6px rgba(244,63,94,0.4), inset 0 0 30px rgba(244,63,94,0.12); }
+      60%  { transform: translateX(-3px); }
+      80%  { transform: translateX(3px); }
+      100% { box-shadow: 0 0 0 0 transparent; transform: translateX(0); }
+    }
+    .card-flash-correct { animation: flashGreen 0.5s ease forwards; }
+    .card-flash-wrong   { animation: flashRed 0.55s ease forwards; }
+    /* 点任意处继续提示 */
+    .ch-tap-hint {
+      text-align: center;
+      font-size: 0.72rem;
+      color: #334155;
+      margin-top: 12px;
+      letter-spacing: 0.8px;
+      font-weight: 600;
+    }
+    /* combo数字放大显示 */
+    .ch-combo-count-big {
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-family: 'Inter', sans-serif;
+      color: #f59e0b;
+      text-shadow: 0 0 12px rgba(245,158,11,0.6);
+      min-width: 52px;
+      text-align: right;
+    }
   </style>
 </head>
 
@@ -2077,6 +2135,9 @@
       } else {
         if ('abcdABCD'.includes(e.key) && chActive && !chAnswered) {
           chPick(e.key.toUpperCase());
+        } else if ((e.key === ' ' || e.key === 'Enter') && chActive && chAnswered) {
+          e.preventDefault();
+          chNext();
         }
       }
     });
@@ -2105,6 +2166,7 @@
     let chTimerInterval = null;
     let chTotalCorrect = 0;
     let chTotalWrong = 0;
+    let chLevelRecord = []; // 'c'=correct 'w'=wrong per question
 
     function startChallenge() {
       // 打乱ALL作为题池
@@ -2127,6 +2189,7 @@
       chQIdx = 0;
       chLevelCorrect = 0;
       chLevelWrong = 0;
+      chLevelRecord = [];
       renderChHUD();
       chShowQuestion();
     }
@@ -2163,28 +2226,47 @@
       const isFire = chCombo >= COMBO_FIRE;
       label.textContent = isFire ? '🔥 COMBO' : 'COMBO';
       label.className = 'ch-combo-label' + (isFire ? ' on-fire' : '');
-      count.textContent = `×${chCombo}`;
-      count.style.color = isFire ? '#f59e0b' : '#64748b';
-      let h = '';
-      for (let i = 0; i < LEVEL_SIZE; i++) {
-        const filled = i < chQIdx;
-        // determine if this dot was correct or wrong
-        const dotFire = filled && (chCombo >= COMBO_FIRE);
-        h += `<div class="ch-dot${filled ? ' filled' + (dotFire ? ' fire' : '') : ''}"></div>`;
+      // combo数字：激活时放大显示
+      if (isFire) {
+        count.className = 'ch-combo-count-big';
+        count.textContent = `🔥×${chCombo}`;
+      } else {
+        count.className = '';
+        count.style.cssText = 'font-size:0.78rem;color:#64748b;font-family:\'Inter\',sans-serif;font-weight:700;min-width:32px;text-align:right';
+        count.textContent = `×${chCombo}`;
       }
-      dots.innerHTML = h;
+      // 进度圆点（现在由renderChCard的pdots承担，这里清空不用）
+      if (dots) dots.innerHTML = '';
     }
 
     function renderChCard(q) {
       let tagCls = 'tag-basic', tagText = '基础题';
       if (q.type === 'advanced') { tagCls = 'tag-advanced'; tagText = '进阶题'; }
       else if (q.type === 'family') { tagCls = 'tag-family'; tagText = `${q.family || '核心'} 家族`; }
-      else if (q.type === 'cloze50') { tagCls = 'tag-cloze50'; tagText = '完形50词'; }
-      else if (q.type === 'attitude') { tagCls = 'tag-attitude'; tagText = '态度词'; }
+      else if (q.type === 'cloze50') { tagCls = 'tag-cloze50'; tagText = '🎯 完形核心'; }
+      else if (q.type === 'attitude') { tagCls = 'tag-attitude'; tagText = '📖 态度词'; }
 
-      // SRS掌握状态补丁
       const gi = ALL.indexOf(q);
       const mm = gi >= 0 ? getMasteryMeta(gi) : { cls: 'mastery-new', label: '新词' };
+
+      // 难度身份标签
+      const s = gi >= 0 ? srsData[gi] : null;
+      let diffBadge = '';
+      if (!s || s.stage === 0) diffBadge = '<span style="font-size:0.68rem;color:#64748b;margin-left:6px">初见 · 展示实力的时候</span>';
+      else if (s.stage <= 1) diffBadge = '<span style="font-size:0.68rem;color:#38bdf8;margin-left:6px">• 在学</span>';
+      else if (s.stage >= 4) diffBadge = '<span style="font-size:0.68rem;color:#fbbf24;margin-left:6px">⭐ 已掌握</span>';
+
+      // 进度小方块
+      let pdotsHTML = '';
+      for (let i = 0; i < LEVEL_SIZE; i++) {
+        let cls = 'ch-pdot';
+        if (i < chLevelRecord.length) {
+          cls += chLevelRecord[i] === 'c' ? ' pdot-correct' : ' pdot-wrong';
+        } else if (i === chQIdx) {
+          cls += ' pdot-current';
+        }
+        pdotsHTML += `<div class="${cls}"></div>`;
+      }
 
       let optHTML = '';
       if (q.options) {
@@ -2195,14 +2277,14 @@
         }
       }
 
-      const innerQ = chQIdx + 1;
       document.getElementById('chCardWrap').innerHTML = `
         <div class="ch-q-card" id="chQCard">
-          <div class="ch-progress-text" style="display:flex;align-items:center;justify-content:space-between">
-            <span>第 ${innerQ} / ${LEVEL_SIZE} 题 &nbsp;·&nbsp; 本关正确 ${chLevelCorrect} 题</span>
-            <span class="mastery-chip ${mm.cls}" style="font-size:0.65rem">${mm.label}</span>
+          <div class="ch-pdots">${pdotsHTML}</div>
+          <div style="display:flex;align-items:center;margin-bottom:10px">
+            <span class="ch-q-tag ${tagCls}">${tagText}</span>
+            ${diffBadge}
+            <span class="mastery-chip ${mm.cls}" style="font-size:0.62rem;margin-left:auto">${mm.label}</span>
           </div>
-          <div class="ch-q-tag ${tagCls}">${tagText}</div>
           <div class="ch-q-text">${esc(q.question)}</div>
           <div class="ch-opts" id="chOpts">${optHTML}</div>
           <div id="chFeedback"></div>
@@ -2231,6 +2313,7 @@
 
       // 更新闯关状态
       if (correct) {
+        chLevelRecord.push('c');
         chCombo++;
         chMaxCombo = Math.max(chMaxCombo, chCombo);
         chLevelCorrect++;
@@ -2238,6 +2321,7 @@
         spawnParticles(true);
         if (chCombo >= COMBO_FIRE) showComboPopup(chCombo);
       } else {
+        chLevelRecord.push('w');
         chCombo = 0;
         chLevelWrong++;
         chTotalWrong++;
@@ -2255,20 +2339,36 @@
     }
 
     function showFeedback(q, gi, correct) {
+      // 卡片闪光反馈
+      const card = document.getElementById('chQCard');
+      if (card) {
+        card.classList.add(correct ? 'card-flash-correct' : 'card-flash-wrong');
+        setTimeout(() => card.classList.remove('card-flash-correct', 'card-flash-wrong'), 600);
+      }
+
       let extra = '';
       if (q.word && q.meaning) extra += `<div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.83rem">📖 <b style="color:#5eead4;font-style:italic">${esc(q.word)}</b> ${esc(q.meaning)}</div>`;
       if (q.technique_tip) extra += `<div style="margin-top:6px;font-size:0.8rem;color:#f472b6">💡 ${esc(q.technique_tip)}</div>`;
       if (q.phrase) extra += `<div style="margin-top:4px;font-size:0.8rem;color:#7dd3fc">📌 ${esc(q.phrase)}</div>`;
       if (q.family_note) extra += `<div style="margin-top:4px;font-size:0.8rem;color:#a7f3d0">🌱 ${esc(q.family_note)}</div>`;
-      // SRS 熟练度提示 —— 闯关模式上瘾感核心
       if (gi >= 0) extra += buildSRSHint(gi, correct);
 
       const fb = document.getElementById('chFeedback');
+      const tapHint = `<div class="ch-tap-hint">点击任意处 · 或按 空格/Enter 继续</div>`;
       if (correct) {
-        fb.innerHTML = `<div class="ch-feedback fb-correct">✓ 回答正确！${extra}</div><button class="ch-next-btn" onclick="chNext()">下一题 →</button>`;
+        fb.innerHTML = `<div class="ch-feedback fb-correct">✓ 回答正确！${extra}</div>${tapHint}`;
       } else {
         const at = q.answer + '. ' + (q.options ? q.options[q.answer] : '');
-        fb.innerHTML = `<div class="ch-feedback fb-wrong">✗ 回答错误 &nbsp;<span style="background:rgba(0,0,0,0.2);padding:3px 10px;border-radius:6px;font-weight:600">${esc(at)}</span>${extra}</div><button class="ch-next-btn" style="background:linear-gradient(135deg,#f43f5e,#8b5cf6)" onclick="chNext()">继续 →</button>`;
+        fb.innerHTML = `<div class="ch-feedback fb-wrong">✗ 回答错误 &nbsp;<span style="background:rgba(0,0,0,0.2);padding:3px 10px;border-radius:6px;font-weight:600">${esc(at)}</span>${extra}</div>${tapHint}`;
+      }
+
+      // 点击卡片任意处继续（300ms延迟防误触）
+      const wrap = document.getElementById('chCardWrap');
+      if (wrap) {
+        setTimeout(() => {
+          wrap.style.cursor = 'pointer';
+          wrap.onclick = () => { wrap.onclick = null; wrap.style.cursor = ''; chNext(); };
+        }, 300);
       }
     }
 
