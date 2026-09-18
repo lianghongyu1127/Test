@@ -850,11 +850,6 @@
     }
     .challenge-entry-btn .btn-flame {
       font-size: 1.1rem;
-      animation: flamePulse 1.2s ease-in-out infinite;
-    }
-    @keyframes flamePulse {
-      0%,100% { transform: scale(1) rotate(-5deg); }
-      50% { transform: scale(1.2) rotate(5deg); }
     }
 
     /* ===== 闯关模式覆盖层 ===== */
@@ -1454,7 +1449,6 @@
         <button class="pill" data-f="advanced">进阶题</button>
         <button class="pill" data-f="done">✔ 已答</button>
         <button class="pill" data-f="wrong">✖ 错题</button>
-
         <button class="pill" data-f="shuffle">🔀 随机</button>
         <button class="pill" style="color:var(--wrong)" onclick="confirmResetAll()">🔄 重置</button>
       </div>
