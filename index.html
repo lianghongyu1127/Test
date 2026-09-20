@@ -1571,14 +1571,27 @@
     let curSubFilter = 'all';
 
     // ===== SRS state =====
-    let srsData = {};
+    let srsData = {}; // globalIdx -> {interval, easeFactor, repetitions, nextDue}
     const SRS_KEY = 'quiz_srs_v1';
+    let wordMeaningMap = {}; // option text (lowercase) -> Chinese meaning
 
     const STORAGE_KEY = 'quiz_en_v1';
 
     // ===== 初始化 =====
     fetch('questions_english.json').then(r => r.json()).then(d => {
       ALL = d;
+      // 建立选项文本 → 中文意思的映射表
+      wordMeaningMap = {};
+      ALL.forEach(q => {
+        if (q.word && q.meaning) {
+          wordMeaningMap[q.word.trim().toLowerCase()] = q.meaning;
+        }
+        // 将正确选项的文本也建立映射
+        if (q.options && q.answer && q.meaning) {
+          const correctText = q.options[q.answer];
+          if (correctText) wordMeaningMap[correctText.trim().toLowerCase()] = q.meaning;
+        }
+      });
       document.getElementById('total').textContent = d.length;
       loadProgress();
       apply(curFilter);
@@ -1894,8 +1907,24 @@
           let c = done ? 'locked' : '';
           if (done && k === q.answer) c += ' is-correct';
           if (done && done.chosen === k && !done.correct) c += ' is-wrong';
+
+          let optLabel;
+          if (done) {
+            const isCorr = k === q.answer;
+            const m = wordMeaningMap[(v || '').trim().toLowerCase()];
+            if (isCorr) {
+              // 正确答案：加粗 + 绿色中文意思
+              optLabel = `<b>${esc(v)}</b>${m ? `<span style="color:#10b981;font-weight:700;margin-left:10px;font-size:0.95em">${esc(m)}</span>` : ''}`;
+            } else {
+              // 其他选项：普通灰色翻译
+              optLabel = `${esc(v)}${m ? `<span style="color:#475569;font-size:0.83em;margin-left:8px">${esc(m)}</span>` : ''}`;
+            }
+          } else {
+            optLabel = esc(v);
+          }
+
           h += `<button class="opt ${c}" onclick="pickChoice('${k}',${gi})">
-        <span class="opt-key">${k}</span><span class="opt-label">${esc(v)}</span>
+        <span class="opt-key">${k}</span><span class="opt-label">${optLabel}</span>
       </button>`;
         }
         h += `</div>`;
@@ -2338,7 +2367,29 @@
       showFeedback(q, gi, correct);
     }
 
+    // 闯关模式：用答题后显示所有选项的中文意思
+    function revealOptionMeanings(q) {
+      if (!q.options) return;
+      for (const [k, v] of Object.entries(q.options)) {
+        const btn = document.getElementById('chOpt_' + k);
+        if (!btn) continue;
+        const isCorr = k === q.answer;
+        const m = wordMeaningMap[(v || '').trim().toLowerCase()];
+        const spans = btn.querySelectorAll('span');
+        const labelSpan = spans[spans.length - 1];
+        if (!labelSpan) continue;
+        if (isCorr) {
+          labelSpan.innerHTML = `<b>${esc(v)}</b>${m ? `<span style="color:#10b981;font-weight:700;margin-left:10px">${esc(m)}</span>` : ''}`;
+        } else {
+          labelSpan.innerHTML = `${esc(v)}${m ? `<span style="color:#475569;font-size:0.82em;margin-left:8px">${esc(m)}</span>` : ''}`;
+        }
+      }
+    }
+
     function showFeedback(q, gi, correct) {
+      // 显示所有选项的中文意思（正确答案加粗绿色，其他灰色）
+      revealOptionMeanings(q);
+
       // 卡片闪光反馈
       const card = document.getElementById('chQCard');
       if (card) {
