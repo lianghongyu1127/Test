@@ -1574,6 +1574,8 @@
     let srsData = {}; // globalIdx -> {interval, easeFactor, repetitions, nextDue}
     const SRS_KEY = 'quiz_srs_v1';
     let wordMeaningMap = {}; // option text (lowercase) -> Chinese meaning
+    let wrongCounts = {};   // gi -> 总错误次数（跨次式重置持久）
+    let correctCounts = {}; // gi -> 总正确次数
 
     const STORAGE_KEY = 'quiz_en_v1';
 
@@ -1662,12 +1664,9 @@
         const data = {
           record,
           wrongs: [...wrongs],
-          nCorrect,
-          nWrong,
-          idx,
-          curFilter,
-          curFamily,
-          curSubFilter
+          nCorrect, nWrong, idx,
+          curFilter, curFamily, curSubFilter,
+          wrongCounts, correctCounts
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         saveSRS();
@@ -1687,6 +1686,8 @@
         curFilter = data.curFilter || 'all';
         curFamily = data.curFamily || 'all';
         curSubFilter = data.curSubFilter || 'all';
+        wrongCounts = data.wrongCounts || {};
+        correctCounts = data.correctCounts || {};
 
         loadSRS();
 
@@ -1823,6 +1824,11 @@
         filtered = ALL.filter(q => q.type === f);
       }
 
+      // 错题优先排序（shuffle/done/wrong 除外）
+      if (!['shuffle', 'done', 'wrong'].includes(f)) {
+        filtered = getPrioritySortedFiltered(filtered);
+      }
+
       // 自动定位到当前分类下第一道【未作答】的题目
       const firstUnanswered = filtered.findIndex(q => !record[ALL.indexOf(q)]);
       idx = firstUnanswered !== -1 ? firstUnanswered : 0;
@@ -1913,11 +1919,11 @@
             const isCorr = k === q.answer;
             const m = wordMeaningMap[(v || '').trim().toLowerCase()];
             if (isCorr) {
-              // 正确答案：加粗 + 绿色中文意思
-              optLabel = `<b>${esc(v)}</b>${m ? `<span style="color:#10b981;font-weight:700;margin-left:10px;font-size:0.95em">${esc(m)}</span>` : ''}`;
+              // 正确选项：不在按鈕里重复显示（下方反馈卡已有）
+              optLabel = `${esc(v)}`;
             } else {
-              // 其他选项：普通灰色翻译
-              optLabel = `${esc(v)}${m ? `<span style="color:#475569;font-size:0.83em;margin-left:8px">${esc(m)}</span>` : ''}`;
+              // 其他选项：加粗 + 白色明显翻译
+              optLabel = `<b>${esc(v)}</b>${m ? `<span style="color:#e2e8f0;font-weight:600;margin-left:8px">${esc(m)}</span>` : ''}`;
             }
           } else {
             optLabel = esc(v);
@@ -1948,9 +1954,6 @@
         if (q.family_note) {
           extraInfo += `<div class="answer-detail-row answer-family">🌱 <b>家族串记:</b> ${esc(q.family_note)}</div>`;
         }
-        if (q.exam_cite) {
-          extraInfo += `<div class="answer-detail-row answer-cite">📖 <b>真题出处:</b> ${esc(q.exam_cite)}</div>`;
-        }
         if (done.correct) {
           h += `<div class="result r-correct"><span class="result-icon">✓</span><div class="result-body">回答正确${extraInfo}</div></div>`;
         } else {
@@ -1973,7 +1976,13 @@
     function save(gi, chosen, correct) {
       if (record[gi]) return;
       record[gi] = { chosen, correct };
-      if (correct) nCorrect++; else { nWrong++; wrongs.add(gi); }
+      if (correct) {
+        nCorrect++;
+        correctCounts[gi] = (correctCounts[gi] || 0) + 1;
+      } else {
+        nWrong++; wrongs.add(gi);
+        wrongCounts[gi] = (wrongCounts[gi] || 0) + 1;
+      }
       stats();
       saveProgress();
       render();
@@ -1985,6 +1994,30 @@
           window.scrollBy({ top: 150, left: 0, behavior: 'smooth' });
         }
       }, 100);
+    }
+
+    // ===== 错题优先算法 =====
+    // errorScore = max(0, wrongCount - correctCount)，错得多的题靠前显示
+    // 3:2 交错防死锁：每 3 题高错误题应跟 2 题正常题
+    function getPrioritySortedFiltered(arr) {
+      if (!arr.length) return arr;
+      const priority = [], normal = [];
+      arr.forEach(q => {
+        const gi = ALL.indexOf(q);
+        const score = Math.max(0, (wrongCounts[gi] || 0) - (correctCounts[gi] || 0));
+        if (score > 0) priority.push({ q, score });
+        else normal.push(q);
+      });
+      // 高错误题按分数降序排列
+      priority.sort((a, b) => b.score - a.score);
+      // 3:2 交错合并，确保后面的题能被刷到
+      const result = [];
+      let pi = 0, ni = 0;
+      while (pi < priority.length || ni < normal.length) {
+        for (let i = 0; i < 3 && pi < priority.length; i++) result.push(priority[pi++].q);
+        for (let i = 0; i < 2 && ni < normal.length; i++) result.push(normal[ni++]);
+      }
+      return result;
     }
 
     // ===== SRS 辅助函数（在 render 中调用）=====
@@ -2379,9 +2412,9 @@
         const labelSpan = spans[spans.length - 1];
         if (!labelSpan) continue;
         if (isCorr) {
-          labelSpan.innerHTML = `<b>${esc(v)}</b>${m ? `<span style="color:#10b981;font-weight:700;margin-left:10px">${esc(m)}</span>` : ''}`;
+          labelSpan.innerHTML = `${esc(v)}${m ? `<span style="color:#10b981;font-weight:700;margin-left:10px">${esc(m)}</span>` : ''}`;
         } else {
-          labelSpan.innerHTML = `${esc(v)}${m ? `<span style="color:#475569;font-size:0.82em;margin-left:8px">${esc(m)}</span>` : ''}`;
+          labelSpan.innerHTML = `<b>${esc(v)}</b>${m ? `<span style="color:#e2e8f0;font-weight:600;margin-left:8px">${esc(m)}</span>` : ''}`;
         }
       }
     }
