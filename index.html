@@ -1448,6 +1448,59 @@
       min-width: 52px;
       text-align: right;
     }
+    /* ===== 闯关模式：单词大字卡 ===== */
+    .ch-word-card {
+      text-align: center;
+      padding: 28px 16px 20px;
+      margin-bottom: 16px;
+    }
+    .ch-word-main {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #f1f5f9;
+      letter-spacing: 1px;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .ch-mode-hint {
+      font-size: 0.72rem;
+      color: #475569;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .ch-diff-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-top: 8px;
+      background: rgba(245,158,11,0.15);
+      color: #f59e0b;
+      letter-spacing: 0.5px;
+    }
+    /* ===== 击杀特效 ===== */
+    @keyframes skullPop {
+      0%   { opacity:0; transform:translate(-50%,-50%) scale(0.3) rotate(-15deg); }
+      35%  { opacity:1; transform:translate(-50%,-50%) scale(1.15) rotate(5deg); }
+      65%  { opacity:1; transform:translate(-50%,-50%) scale(1) rotate(0deg); }
+      100% { opacity:0; transform:translate(-50%,-50%) scale(0.9) rotate(0deg); }
+    }
+    @keyframes damageVignette {
+      0%   { opacity:0; }
+      15%  { opacity:1; }
+      100% { opacity:0; }
+    }
+    @keyframes killVideoIn {
+      0%   { opacity:0; transform:translateX(60px); }
+      100% { opacity:1; transform:translateX(0); }
+    }
+    @keyframes killVideoOut {
+      0%   { opacity:1; }
+      100% { opacity:0; }
+    }
   </style>
 </head>
 
@@ -2229,10 +2282,93 @@
     let chTotalCorrect = 0;
     let chTotalWrong = 0;
     let chLevelRecord = []; // 'c'=correct 'w'=wrong per question
+    let chGenOptions = {};   // gIdx -> {displayWord, options, answer, correctMeaning}
+
+    // ===== 音效 =====
+    const _sndCorrect = new Audio('assets/correct.mp3');
+    const _sndError   = new Audio('assets/error.mp3');
+    const _sndLevelup = new Audio('assets/levelup.mp3');
+    function _play(snd) { try { snd.currentTime = 0; snd.play(); } catch(e) {} }
+
+    // ===== 答对特效：骷髅头 + CS视频 + 音效 =====
+    function playCorrectEffect(combo) {
+      _play(_sndCorrect);
+      // 骷髅头弹出
+      const skull = document.getElementById('skullOverlay');
+      if (skull) {
+        skull.style.display = 'block';
+        skull.style.animation = 'none';
+        void skull.offsetWidth;
+        skull.style.animation = 'skullPop 1s ease forwards';
+        setTimeout(() => skull.style.display = 'none', 1000);
+      }
+      // CS击杀视频——按连击截段播放
+      const kv = document.getElementById('killVideo');
+      if (kv) {
+        // [startSec, durationSec] for combo 1-5+
+        const segs = [[0,3.2],[3.5,3],[7,3.5],[10.5,3.5],[0,17]];
+        const seg = segs[Math.min(combo - 1, 4)];
+        kv.style.display = 'block';
+        kv.style.animation = 'killVideoIn 0.25s ease forwards';
+        kv.currentTime = seg[0];
+        kv.play().catch(() => {});
+        const timer = setTimeout(() => {
+          kv.style.animation = 'killVideoOut 0.3s ease forwards';
+          setTimeout(() => { kv.pause(); kv.style.display = 'none'; }, 300);
+        }, seg[1] * 1000);
+        kv._clearTimer = timer;
+      }
+    }
+
+    // ===== 答错特效：红色受击 + 音效 =====
+    function playWrongEffect() {
+      _play(_sndError);
+      const ov = document.getElementById('damageOverlay');
+      if (ov) {
+        ov.style.display = 'block';
+        ov.style.animation = 'none';
+        void ov.offsetWidth;
+        ov.style.animation = 'damageVignette 0.9s ease-out forwards';
+        setTimeout(() => ov.style.display = 'none', 900);
+      }
+    }
+
+    // ===== 动态生成英→中 / 中→英 选项 =====
+    function _getDiffMode() { return chLevel <= 5 ? 'en2zh' : 'zh2en'; }
+
+    function _genOpts(q, gIdx) {
+      const mode = _getDiffMode();
+      const isEn2Zh = mode === 'en2zh';
+      const displayWord = isEn2Zh ? (q.word || q.phrase || '???') : (q.meaning || '???');
+      const correct    = isEn2Zh ? (q.meaning || '') : (q.word || '');
+      // 从 chPool 随机取3个干扰项
+      const wrongs = chPool
+        .filter(p => p !== q && (isEn2Zh ? (p.meaning && p.meaning !== correct) : (p.word && p.word !== correct)))
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3)
+        .map(p => isEn2Zh ? p.meaning : p.word);
+      const allOpts = [correct, ...wrongs].sort(() => Math.random() - 0.5);
+      const answerKey = 'ABCD'[allOpts.indexOf(correct)];
+      chGenOptions[gIdx] = {
+        displayWord,
+        options: { A: allOpts[0], B: allOpts[1], C: allOpts[2], D: allOpts[3] },
+        answer: answerKey,
+        correctMeaning: q.meaning || '',
+        correctWord: q.word || ''
+      };
+      return chGenOptions[gIdx];
+    }
+
+    function _getOpts(q, gIdx) {
+      return chGenOptions[gIdx] || _genOpts(q, gIdx);
+    }
+
 
     function startChallenge() {
-      // 打乱ALL作为题池
-      chPool = [...ALL].sort(() => Math.random() - 0.5);
+      // 只从有 word + meaning 的题中出题（英→中 / 中→英 双向）
+      const eligible = ALL.filter(q => q.word && q.meaning);
+      chPool = [...eligible].sort(() => Math.random() - 0.5);
+      chGenOptions = {};
       chLevel = 1;
       chLevelStart = 0;
       chLives = MAX_LIVES;
@@ -2302,6 +2438,10 @@
     }
 
     function renderChCard(q) {
+      const gIdx = (chLevelStart + chQIdx) % chPool.length;
+      const opts = _getOpts(q, gIdx);
+      const isEn2Zh = _getDiffMode() === 'en2zh';
+
       let tagCls = 'tag-basic', tagText = '基础题';
       if (q.type === 'advanced') { tagCls = 'tag-advanced'; tagText = '进阶题'; }
       else if (q.type === 'family') { tagCls = 'tag-family'; tagText = `${q.family || '核心'} 家族`; }
@@ -2314,9 +2454,14 @@
       // 难度身份标签
       const s = gi >= 0 ? srsData[gi] : null;
       let diffBadge = '';
-      if (!s || s.stage === 0) diffBadge = '<span style="font-size:0.68rem;color:#64748b;margin-left:6px">初见 · 展示实力的时候</span>';
+      if (!s || s.stage === 0) diffBadge = '<span style="font-size:0.68rem;color:#64748b;margin-left:6px">初见</span>';
       else if (s.stage <= 1) diffBadge = '<span style="font-size:0.68rem;color:#38bdf8;margin-left:6px">• 在学</span>';
-      else if (s.stage >= 4) diffBadge = '<span style="font-size:0.68rem;color:#fbbf24;margin-left:6px">⭐ 已掌握</span>';
+      else if (s.stage >= 4) diffBadge = '<span style="font-size:0.68rem;color:#fbbf24;margin-left:6px">⭐ 掌握</span>';
+
+      // 关卡难度标记
+      const lvlBadge = isEn2Zh
+        ? `<span class="ch-diff-badge">英 → 中</span>`
+        : `<span class="ch-diff-badge" style="background:rgba(139,92,246,0.2);color:#a78bfa">中 → 英  HARD</span>`;
 
       // 进度小方块
       let pdotsHTML = '';
@@ -2324,30 +2469,33 @@
         let cls = 'ch-pdot';
         if (i < chLevelRecord.length) {
           cls += chLevelRecord[i] === 'c' ? ' pdot-correct' : ' pdot-wrong';
-        } else if (i === chQIdx) {
-          cls += ' pdot-current';
-        }
+        } else if (i === chQIdx) { cls += ' pdot-current'; }
         pdotsHTML += `<div class="${cls}"></div>`;
       }
 
+      // 4个选项（来自动态生成的 opts）
       let optHTML = '';
-      if (q.options) {
-        for (const [k, v] of Object.entries(q.options)) {
-          optHTML += `<button class="ch-opt" id="chOpt_${k}" onclick="chPick('${k}')">
-            <span class="ch-opt-key">${k}</span><span>${esc(v)}</span>
-          </button>`;
-        }
+      for (const [k, v] of Object.entries(opts.options)) {
+        optHTML += `<button class="ch-opt" id="chOpt_${k}" onclick="chPick('${k}')">
+          <span class="ch-opt-key">${k}</span><span>${esc(v)}</span>
+        </button>`;
       }
+
+      const modeHint = isEn2Zh ? '选出正确的中文意思' : '选出正确的英文单词';
 
       document.getElementById('chCardWrap').innerHTML = `
         <div class="ch-q-card" id="chQCard">
           <div class="ch-pdots">${pdotsHTML}</div>
-          <div style="display:flex;align-items:center;margin-bottom:10px">
+          <div style="display:flex;align-items:center;margin-bottom:8px">
             <span class="ch-q-tag ${tagCls}">${tagText}</span>
             ${diffBadge}
             <span class="mastery-chip ${mm.cls}" style="font-size:0.62rem;margin-left:auto">${mm.label}</span>
           </div>
-          <div class="ch-q-text">${esc(q.question)}</div>
+          <div class="ch-word-card">
+            <div class="ch-word-main">${esc(opts.displayWord)}</div>
+            ${lvlBadge}
+            <div class="ch-mode-hint" style="margin-top:10px">${modeHint}</div>
+          </div>
           <div class="ch-opts" id="chOpts">${optHTML}</div>
           <div id="chFeedback"></div>
         </div>`;
@@ -2360,26 +2508,27 @@
 
       const gIdx = (chLevelStart + chQIdx) % chPool.length;
       const q = chPool[gIdx];
-      const correct = k === q.answer;
-      const gi = ALL.indexOf(q); // global index for SRS
+      const opts = _getOpts(q, gIdx);
+      const correct = k === opts.answer;
+      const gi = ALL.indexOf(q);
 
-      // 锁定所有选项
+      // 锁定所有选项，高亮正确/错误
       document.querySelectorAll('.ch-opt').forEach(btn => btn.classList.add('locked'));
       const picked = document.getElementById('chOpt_' + k);
-      const rightBtn = document.getElementById('chOpt_' + q.answer);
+      const rightBtn = document.getElementById('chOpt_' + opts.answer);
       if (picked) picked.classList.add(correct ? 'correct' : 'wrong-ans');
       if (!correct && rightBtn) rightBtn.classList.add('correct');
 
-      // 更新SRS熱练度
+      // SRS
       if (gi >= 0) updateSRS(gi, correct);
 
-      // 更新闯关状态
       if (correct) {
         chLevelRecord.push('c');
         chCombo++;
         chMaxCombo = Math.max(chMaxCombo, chCombo);
         chLevelCorrect++;
         chTotalCorrect++;
+        playCorrectEffect(chCombo);   // 🎯 击杀特效
         spawnParticles(true);
         if (chCombo >= COMBO_FIRE) showComboPopup(chCombo);
       } else {
@@ -2388,16 +2537,17 @@
         chLevelWrong++;
         chTotalWrong++;
         chLives--;
+        playWrongEffect();            // 💢 受击特效
         spawnParticles(false);
         renderChHUD();
         if (chLives <= 0) {
           setTimeout(() => showGameover(), 1200);
-          showFeedback(q, gi, correct);
+          showFeedback(q, gi, correct, opts);
           return;
         }
       }
       updateComboUI();
-      showFeedback(q, gi, correct);
+      showFeedback(q, gi, correct, opts);
     }
 
     // 闯关模式：用答题后显示所有选项的中文意思
@@ -2419,19 +2569,21 @@
       }
     }
 
-    function showFeedback(q, gi, correct) {
-      // 显示所有选项的中文意思（正确答案加粗绿色，其他灰色）
-      revealOptionMeanings(q);
+    function showFeedback(q, gi, correct, opts) {
+      opts = opts || chGenOptions[(chLevelStart + chQIdx) % chPool.length] || {};
 
-      // 卡片闪光反馈
+      // 卡片闪光
       const card = document.getElementById('chQCard');
       if (card) {
         card.classList.add(correct ? 'card-flash-correct' : 'card-flash-wrong');
         setTimeout(() => card.classList.remove('card-flash-correct', 'card-flash-wrong'), 600);
       }
 
+      // 反馈信息：正确单词 + 短语 + 记忆技巧
       let extra = '';
-      if (q.word && q.meaning) extra += `<div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.83rem">📖 <b style="color:#5eead4;font-style:italic">${esc(q.word)}</b> ${esc(q.meaning)}</div>`;
+      const w = opts.correctWord || q.word || '';
+      const m = opts.correctMeaning || q.meaning || '';
+      if (w && m) extra += `<div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.85rem">📖 <b style="color:#5eead4;font-style:italic">${esc(w)}</b>&nbsp;${esc(m)}</div>`;
       if (q.technique_tip) extra += `<div style="margin-top:6px;font-size:0.8rem;color:#f472b6">💡 ${esc(q.technique_tip)}</div>`;
       if (q.phrase) extra += `<div style="margin-top:4px;font-size:0.8rem;color:#7dd3fc">📌 ${esc(q.phrase)}</div>`;
       if (q.family_note) extra += `<div style="margin-top:4px;font-size:0.8rem;color:#a7f3d0">🌱 ${esc(q.family_note)}</div>`;
@@ -2442,11 +2594,11 @@
       if (correct) {
         fb.innerHTML = `<div class="ch-feedback fb-correct">✓ 回答正确！${extra}</div>${tapHint}`;
       } else {
-        const at = q.answer + '. ' + (q.options ? q.options[q.answer] : '');
-        fb.innerHTML = `<div class="ch-feedback fb-wrong">✗ 回答错误 &nbsp;<span style="background:rgba(0,0,0,0.2);padding:3px 10px;border-radius:6px;font-weight:600">${esc(at)}</span>${extra}</div>${tapHint}`;
+        const at = `${opts.answer}. ${(opts.options || {})[opts.answer] || ''}`;
+        fb.innerHTML = `<div class="ch-feedback fb-wrong">✗ 正确答案：<span style="background:rgba(0,0,0,0.25);padding:3px 10px;border-radius:6px;font-weight:600">${esc(at)}</span>${extra}</div>${tapHint}`;
       }
 
-      // 点击卡片任意处继续（300ms延迟防误触）
+      // 点任意处继续
       const wrap = document.getElementById('chCardWrap');
       if (wrap) {
         setTimeout(() => {
@@ -2520,6 +2672,7 @@
 
     // ===== 关卡结算 =====
     function showLevelResult() {
+      _play(_sndLevelup); // 🎵 通关音乐
       clearInterval(chTimerInterval);
       const accuracy = Math.round(chLevelCorrect / LEVEL_SIZE * 100);
       let grade, gradeClass, title, sub;
@@ -2692,6 +2845,18 @@
       setTimeout(() => el.remove(), 900);
     }
   </script>
+  <!-- ===== 游戏特效叠加层 ===== -->
+  <!-- 受击红色四周渐变 -->
+  <div id="damageOverlay" style="position:fixed;inset:0;pointer-events:none;z-index:9999;display:none;
+    background:radial-gradient(ellipse at center, transparent 35%, rgba(200,20,20,0.82) 100%);"></div>
+  <!-- 答对骷髅头爆出 -->
+  <img id="skullOverlay" src="assets/skull.png"
+    style="position:fixed;left:50%;top:42%;transform:translate(-50%,-50%);
+    width:200px;mix-blend-mode:multiply;pointer-events:none;z-index:9998;display:none;" />
+  <!-- CS击杀视频（右上角） -->
+  <video id="killVideo" src="assets/kill.mp4" muted playsinline preload="auto"
+    style="position:fixed;top:14px;right:14px;width:260px;border-radius:10px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.7);z-index:9997;display:none;"></video>
 </body>
 
 </html>
