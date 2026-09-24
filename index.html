@@ -851,40 +851,40 @@
     /* 顶部HUD */
     .ch-hud {
       width: 100%;
-      max-width: 640px;
+      max-width: 620px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 20px 0;
+      padding: 8px 18px 0;
       flex-shrink: 0;
     }
     .ch-exit-btn {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
       color: #94a3b8;
-      padding: 8px 16px;
+      padding: 5px 14px;
       border-radius: 8px;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       cursor: pointer;
       font-family: inherit;
       transition: all 0.2s;
     }
     .ch-exit-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
     .ch-level-badge {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: #fbbf24;
       background: rgba(251,191,36,0.12);
       border: 1px solid rgba(251,191,36,0.3);
-      padding: 6px 16px;
+      padding: 4px 14px;
       border-radius: 999px;
       font-family: 'Inter', sans-serif;
       letter-spacing: 1px;
     }
     .ch-lives {
       display: flex;
-      gap: 5px;
-      font-size: 1.3rem;
+      gap: 4px;
+      font-size: 1.15rem;
     }
     .ch-heart {
       transition: all 0.3s;
@@ -899,20 +899,20 @@
     /* 连击条 */
     .ch-combo-bar {
       width: 100%;
-      max-width: 640px;
-      padding: 14px 20px 0;
+      max-width: 620px;
+      padding: 4px 18px 0;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-shrink: 0;
     }
     .ch-combo-label {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       color: #64748b;
       font-weight: 600;
       letter-spacing: 1px;
       font-family: 'Inter', sans-serif;
-      min-width: 60px;
+      min-width: 56px;
     }
     .ch-combo-label.on-fire {
       color: #f59e0b;
@@ -998,22 +998,22 @@
     /* 题目区 */
     .ch-card-wrap {
       width: 100%;
-      max-width: 640px;
-      padding: 20px 20px 0;
+      max-width: 620px;
+      padding: 8px 16px 14px;
       flex: 1;
     }
     .ch-q-card {
-      background: rgba(30, 41, 59, 0.8);
+      background: rgba(30, 41, 59, 0.85);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(71,85,105,0.4);
-      border-radius: 20px;
-      padding: 28px 24px;
+      border-radius: 16px;
+      padding: 14px 18px;
       position: relative;
       overflow: hidden;
       animation: cardSlideIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
     }
     @keyframes cardSlideIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
     .ch-q-card::before {
@@ -1028,42 +1028,43 @@
       color: #64748b;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       letter-spacing: 0.5px;
     }
     .ch-q-text {
-      font-size: 1.08rem;
-      line-height: 1.85;
+      font-size: 1rem;
+      line-height: 1.6;
       color: #f1f5f9;
       font-weight: 500;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
     .ch-q-tag {
       display: inline-block;
-      font-size: 0.72rem;
-      padding: 4px 10px;
+      font-size: 0.7rem;
+      padding: 2px 8px;
       border-radius: 6px;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       font-weight: 600;
       letter-spacing: 0.5px;
     }
     .ch-opts {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 6px;
     }
     .ch-opt {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 15px 18px;
+      gap: 10px;
+      padding: 8px 12px;
       background: rgba(51,65,85,0.4);
       border: 1px solid rgba(71,85,105,0.35);
-      border-radius: 14px;
+      border-radius: 10px;
       cursor: pointer;
       transition: all 0.2s;
       font-family: inherit;
-      font-size: 0.93rem;
+      font-size: 0.88rem;
+      line-height: 1.3;
       color: #e2e8f0;
       text-align: left;
       position: relative;
@@ -1080,20 +1081,20 @@
     .ch-opt:hover:not(.locked) {
       border-color: rgba(20,184,166,0.5);
       background: rgba(20,184,166,0.08);
-      transform: translateX(4px);
+      transform: translateX(3px);
     }
     .ch-opt:hover:not(.locked)::before { opacity: 1; }
     .ch-opt:active:not(.locked) { transform: scale(0.98); }
     .ch-opt-key {
-      width: 30px;
-      height: 30px;
-      border-radius: 8px;
+      width: 25px;
+      height: 25px;
+      border-radius: 6px;
       background: rgba(255,255,255,0.07);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 0.82rem;
+      font-size: 0.75rem;
       font-family: 'Inter', sans-serif;
       flex-shrink: 0;
       transition: all 0.2s;
@@ -1131,11 +1132,11 @@
 
     /* 答题反馈条 */
     .ch-feedback {
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      font-size: 0.88rem;
-      line-height: 1.6;
+      margin-top: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      line-height: 1.5;
       animation: slideUp 0.3s ease;
     }
     .ch-feedback.fb-correct {
@@ -1394,13 +1395,13 @@
     /* ===== 闯关进度方块 ===== */
     .ch-pdots {
       display: flex;
-      gap: 5px;
-      margin-bottom: 14px;
+      gap: 4px;
+      margin-bottom: 8px;
     }
     .ch-pdot {
       flex: 1;
-      height: 5px;
-      border-radius: 3px;
+      height: 4px;
+      border-radius: 2px;
       background: rgba(255,255,255,0.08);
       transition: all 0.3s ease;
     }
@@ -1432,51 +1433,52 @@
     /* 点任意处继续提示 */
     .ch-tap-hint {
       text-align: center;
-      font-size: 0.72rem;
-      color: #334155;
-      margin-top: 12px;
+      font-size: 0.68rem;
+      color: #475569;
+      margin-top: 6px;
       letter-spacing: 0.8px;
       font-weight: 600;
     }
     /* combo数字放大显示 */
     .ch-combo-count-big {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 900;
       font-family: 'Inter', sans-serif;
       color: #f59e0b;
       text-shadow: 0 0 12px rgba(245,158,11,0.6);
-      min-width: 52px;
+      min-width: 44px;
       text-align: right;
     }
     /* ===== 闯关模式：单词大字卡 ===== */
     .ch-word-card {
       text-align: center;
-      padding: 28px 16px 20px;
-      margin-bottom: 16px;
+      padding: 6px 10px 4px;
+      margin-bottom: 6px;
     }
     .ch-word-main {
-      font-size: 2.2rem;
+      font-size: 1.75rem;
       font-weight: 800;
       color: #f1f5f9;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       font-family: 'Inter', sans-serif;
-      line-height: 1.2;
-      margin-bottom: 8px;
+      line-height: 1.15;
+      margin-bottom: 3px;
     }
     .ch-mode-hint {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       color: #475569;
       letter-spacing: 1px;
       font-weight: 600;
       text-transform: uppercase;
+      margin-top: 3px;
     }
     .ch-diff-badge {
       display: inline-block;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 700;
-      padding: 2px 10px;
+      padding: 1px 8px;
       border-radius: 999px;
-      margin-top: 8px;
+      margin-top: 2px;
       background: rgba(245,158,11,0.15);
       color: #f59e0b;
       letter-spacing: 0.5px;
@@ -1494,12 +1496,13 @@
       100% { opacity:0; }
     }
     @keyframes killVideoIn {
-      0%   { opacity:0; transform:translateX(60px); }
-      100% { opacity:1; transform:translateX(0); }
+      0%   { opacity: 0; transform: translateX(-50%) scale(0.85) translateY(8px); }
+      60%  { opacity: 1; transform: translateX(-50%) scale(1.04) translateY(-2px); }
+      100% { opacity: 1; transform: translateX(-50%) scale(1) translateY(0); }
     }
     @keyframes killVideoOut {
-      0%   { opacity:1; }
-      100% { opacity:0; }
+      0%   { opacity: 1; transform: translateX(-50%) scale(1); }
+      100% { opacity: 0; transform: translateX(-50%) scale(0.9) translateY(4px); }
     }
   </style>
 </head>
@@ -2287,7 +2290,7 @@
     // ===== 音效：每次 new Audio() 保证零延迟 =====
     function _play(src) { try { new Audio(src).play(); } catch(e) {} }
 
-    // ===== 答对特效：骷髅头 + CS击杀条 + 音效 =====
+    // ===== 答对特效：骷髅头 + CS扑克牌击杀 + 音效 =====
     function playCorrectEffect(combo) {
       _play('assets/correct.mp3');
       // 骷髅头弹出
@@ -2296,19 +2299,39 @@
         skull.style.display = 'block';
         skull.style.animation = 'none';
         void skull.offsetWidth;
-        skull.style.animation = 'skullPop 1s ease forwards';
-        setTimeout(() => { skull.style.display = 'none'; }, 1000);
+        skull.style.animation = 'skullPop 0.8s ease forwards';
+        setTimeout(() => { skull.style.display = 'none'; }, 800);
       }
-      // CS击杀视频——按连击截段播放，底部条状窗口
+      // CS击杀视频——精确截取扑克牌跳起击杀帧，正中间选项下方弹跳显示
       const kv  = document.getElementById('killVideo');
       const kvW = document.getElementById('killVideoWrap');
       if (kv && kvW) {
         if (kv._kvTimer) clearTimeout(kv._kvTimer);
-        const segs = [[0,3.2],[3.5,3],[7,3.5],[10.5,3.5],[0,17]];
+        // 精确击杀点: 1杀(2.1s), 2杀(4.4s), 3杀(6.9s), 4杀(9.2s), 5杀/ACE光柱(11.6s)
+        const segs = [
+          [2.1, 1.3],
+          [4.4, 1.3],
+          [6.9, 1.3],
+          [9.2, 1.3],
+          [11.6, 2.5]
+        ];
         const seg = segs[Math.min(combo - 1, 4)];
+
+        // 动态定位在正中间选项容器下方
+        const optsEl = document.getElementById('chOpts');
+        if (optsEl) {
+          const rect = optsEl.getBoundingClientRect();
+          const targetTop = Math.min(rect.bottom + 4, window.innerHeight - 120);
+          kvW.style.top = targetTop + 'px';
+          kvW.style.bottom = 'auto';
+        } else {
+          kvW.style.bottom = '20px';
+          kvW.style.top = 'auto';
+        }
+
         kvW.style.display = 'block';
         kvW.style.animation = 'none'; void kvW.offsetWidth;
-        kvW.style.animation = 'killVideoIn 0.25s ease forwards';
+        kvW.style.animation = 'killVideoIn 0.25s cubic-bezier(0.34,1.56,0.64,1) forwards';
         kv.currentTime = seg[0];
         kv.play().catch(() => {});
         kv._kvTimer = setTimeout(() => {
@@ -2851,14 +2874,14 @@
     background:radial-gradient(ellipse at center, transparent 35%, rgba(200,20,20,0.82) 100%);"></div>
   <!-- 答对骷髅头爆出 -->
   <img id="skullOverlay" src="assets/skull.png"
-    style="position:fixed;left:50%;top:42%;transform:translate(-50%,-50%);
-    width:200px;mix-blend-mode:multiply;pointer-events:none;z-index:9998;display:none;" />
-  <!-- CS击杀视频——底部条状窗口，仅露顶部一条击杀线，水印被裁掉 -->
-  <div id="killVideoWrap" style="position:fixed;right:0;bottom:0;width:300px;height:52px;
-    overflow:hidden;z-index:9997;display:none;border-radius:6px 0 0 0;
-    box-shadow:-4px -4px 20px rgba(0,0,0,0.6);">
+    style="position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);
+    width:150px;mix-blend-mode:multiply;pointer-events:none;z-index:9998;display:none;" />
+  <!-- CS击杀视频——正中间选项下方，扑克牌击杀特效窗口，完美遮裁水印与纯黑背景 -->
+  <div id="killVideoWrap" style="position:fixed;left:50%;transform:translateX(-50%);width:340px;height:115px;
+    overflow:hidden;z-index:9997;display:none;pointer-events:none;border-radius:12px;
+    mix-blend-mode:screen;filter:drop-shadow(0 0 14px rgba(168,85,247,0.4));">
     <video id="killVideo" src="assets/kill.mp4" muted playsinline preload="auto"
-      style="position:absolute;top:0;left:0;width:300px;"></video>
+      style="position:absolute;left:50%;transform:translateX(-50%);top:-185px;width:760px;height:342px;pointer-events:none;"></video>
   </div>
 </body>
 
