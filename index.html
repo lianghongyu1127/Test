@@ -2894,7 +2894,9 @@
     function updateCriticalHealthVignette() {
       const co = document.getElementById('criticalOverlay');
       if (!co) return;
-      if (chActive && chLives === 1) {
+      const isResultScreen = !document.getElementById('chResultScreen')?.classList.contains('hidden');
+      const isGameOver = !document.getElementById('chGameover')?.classList.contains('hidden');
+      if (chActive && chLives === 1 && !isResultScreen && !isGameOver) {
         co.style.display = 'block';
       } else {
         co.style.display = 'none';
@@ -3210,6 +3212,11 @@
         _play('assets/levelup.mp3'); // 🎵 通关音乐
       }
       clearInterval(chTimerInterval);
+      // 关卡通过：生命值全满恢复，立即解除濒危红光暗角
+      chLives = MAX_LIVES;
+      const co = document.getElementById('criticalOverlay');
+      if (co) co.style.display = 'none';
+
       const accuracy = Math.round(chLevelCorrect / LEVEL_SIZE * 100);
       let grade, gradeClass, title, sub;
       if (accuracy === 100) { grade = 'S'; gradeClass = 'grade-s'; title = '完美闯关！'; sub = '无一失误，超越99%的对手 🏆'; }
@@ -3359,6 +3366,8 @@
     // ===== 游戏结束 =====
     function showGameover() {
       clearInterval(chTimerInterval);
+      const co = document.getElementById('criticalOverlay');
+      if (co) co.style.display = 'none';
       const screen = document.getElementById('chGameover');
       screen.className = 'ch-gameover';
       const rank = getRankMeta(chLevel);
