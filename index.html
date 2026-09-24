@@ -1248,12 +1248,21 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 32px 24px;
+      justify-content: flex-start;
+      padding: 36px 20px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       animation: fadeIn 0.4s ease;
       text-align: center;
     }
     .ch-result-screen.hidden { display: none; }
+    .ch-result-content-wrap {
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
     .ch-grade {
       font-size: 7rem;
       font-weight: 900;
@@ -1326,6 +1335,30 @@
       box-shadow: 0 8px 24px rgba(239,68,68,0.35);
     }
     .ch-btn-next-level:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(239,68,68,0.5); }
+    .ch-btn-review {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(14, 165, 233, 0.4);
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(99, 102, 241, 0.2));
+      color: #38bdf8;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(14, 165, 233, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .ch-btn-review:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.28), rgba(99, 102, 241, 0.35));
+      border-color: rgba(56, 189, 248, 0.7);
+      color: #bae6fd;
+      box-shadow: 0 8px 24px rgba(14, 165, 233, 0.35);
+    }
     .ch-btn-retry {
       padding: 14px;
       border-radius: 14px;
@@ -1339,6 +1372,104 @@
       transition: all 0.2s;
     }
     .ch-btn-retry:hover { border-color: rgba(100,116,139,0.7); color: #f1f5f9; }
+
+    /* ===== 关卡单词复盘面板 ===== */
+    .ch-review-container {
+      width: 100%;
+      max-width: 540px;
+      text-align: left;
+      animation: fadeIn 0.3s ease;
+      padding: 10px 0 30px;
+      margin: 0 auto;
+    }
+    .ch-review-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .ch-review-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .ch-review-subtitle {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 6px;
+    }
+    .ch-review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .ch-review-card {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(71, 85, 105, 0.4);
+      border-radius: 14px;
+      padding: 14px 16px;
+      transition: all 0.2s;
+    }
+    .ch-review-card.is-correct {
+      border-left: 4px solid #10b981;
+    }
+    .ch-review-card.is-wrong {
+      border-left: 4px solid #f43f5e;
+      background: rgba(244, 63, 94, 0.08);
+    }
+    .ch-review-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .ch-review-word {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #f8fafc;
+      font-family: 'Inter', sans-serif;
+    }
+    .ch-review-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+    }
+    .ch-review-badge.correct {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .ch-review-badge.wrong {
+      background: rgba(244, 63, 94, 0.15);
+      color: #fb7185;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+    .ch-review-meaning {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .ch-review-extra {
+      font-size: 0.8rem;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+    .ch-review-extra.phrase { color: #38bdf8; }
+    .ch-review-extra.technique { color: #f472b6; }
+    .ch-review-extra.family { color: #6ee7b7; }
+    .ch-review-user-ans {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
 
     /* ===== 游戏结束屏 ===== */
     .ch-gameover {
@@ -2727,7 +2858,9 @@
       for (let i = 0; i < LEVEL_SIZE; i++) {
         let cls = 'ch-pdot';
         if (i < chLevelRecord.length) {
-          cls += chLevelRecord[i] === 'c' ? ' pdot-correct' : ' pdot-wrong';
+          const rec = chLevelRecord[i];
+          const isC = rec === 'c' || rec?.correct;
+          cls += isC ? ' pdot-correct' : ' pdot-wrong';
         } else if (i === chQIdx) { cls += ' pdot-current'; }
         pdotsHTML += `<div class="${cls}"></div>`;
       }
@@ -2778,11 +2911,22 @@
       if (picked) picked.classList.add(correct ? 'correct' : 'wrong-ans');
       if (!correct && rightBtn) rightBtn.classList.add('correct');
 
+      // 记录本题复盘详情
+      const keyNumberMap = { 'A': '1', 'B': '2', 'C': '3', 'D': '4' };
+      chLevelRecord.push({
+        q,
+        gi,
+        chosen: k,
+        chosenNum: keyNumberMap[k] || k,
+        correct,
+        opts,
+        answerNum: keyNumberMap[opts.answer] || opts.answer
+      });
+
       // SRS
       if (gi >= 0) updateSRS(gi, correct);
 
       if (correct) {
-        chLevelRecord.push('c');
         chCombo++;
         chMaxCombo = Math.max(chMaxCombo, chCombo);
         chLevelCorrect++;
@@ -2791,7 +2935,6 @@
         spawnParticles(true);
         if (chCombo >= COMBO_FIRE) showComboPopup(chCombo);
       } else {
-        chLevelRecord.push('w');
         chCombo = 0;
         chLevelWrong++;
         chTotalWrong++;
@@ -2806,7 +2949,20 @@
         }
       }
       updateComboUI();
-      showFeedback(q, gi, correct, opts);
+
+      const isLastQ = (chQIdx === LEVEL_SIZE - 1);
+      if (isLastQ) {
+        // 最后一题：卡片闪光与打击特效触发，无需点击等待，500ms后自动进入通关结算并播放胜利音乐！
+        const card = document.getElementById('chQCard');
+        if (card) {
+          card.classList.add(correct ? 'card-flash-correct' : 'card-flash-wrong');
+        }
+        setTimeout(() => {
+          chNext();
+        }, 500);
+      } else {
+        showFeedback(q, gi, correct, opts);
+      }
     }
 
     // 闯关模式：用答题后显示所有选项的中文意思
@@ -2869,7 +3025,11 @@
       }
     }
 
+    let chNextLock = false;
     function chNext() {
+      if (chNextLock) return;
+      chNextLock = true;
+      setTimeout(() => { chNextLock = false; }, 400);
       chQIdx++;
       if (chQIdx >= LEVEL_SIZE) {
         // 关卡结算
@@ -2932,8 +3092,10 @@
     }
 
     // ===== 关卡结算 =====
-    function showLevelResult() {
-      _play('assets/levelup.mp3'); // 🎵 通关音乐
+    function showLevelResult(isBack = false) {
+      if (!isBack) {
+        _play('assets/levelup.mp3'); // 🎵 通关音乐
+      }
       clearInterval(chTimerInterval);
       const accuracy = Math.round(chLevelCorrect / LEVEL_SIZE * 100);
       let grade, gradeClass, title, sub;
@@ -2943,15 +3105,17 @@
       else { grade = 'C'; gradeClass = 'grade-c'; title = '差点翻车...'; sub = `正确率 ${accuracy}%，错题需要复习！`; }
 
       // 持久化最高关卡记录
-      const savedMaxLevel = parseInt(localStorage.getItem('ch_max_level') || '1', 10);
-      const nextLvl = chLevel + 1;
-      if (nextLvl > savedMaxLevel) {
-        localStorage.setItem('ch_max_level', nextLvl);
+      if (!isBack) {
+        const savedMaxLevel = parseInt(localStorage.getItem('ch_max_level') || '1', 10);
+        const nextLvl = chLevel + 1;
+        if (nextLvl > savedMaxLevel) {
+          localStorage.setItem('ch_max_level', nextLvl);
+        }
       }
 
       // 检查段位晋升
       const curRank = getRankMeta(chLevel);
-      const nextRank = getRankMeta(nextLvl);
+      const nextRank = getRankMeta(chLevel + 1);
       let rankUpHTML = '';
       if (nextRank.name !== curRank.name) {
         rankUpHTML = `<div style="margin: 8px 0 12px; padding: 6px 16px; background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.4); border-radius: 999px; color:#fbbf24; font-weight:800; font-size:0.86rem; display:inline-block">🎖️ 段位晋级！晋升为【${nextRank.icon} ${nextRank.name}】！</div>`;
@@ -2960,24 +3124,104 @@
       const screen = document.getElementById('chResultScreen');
       screen.className = 'ch-result-screen';
       screen.innerHTML = `
-        <div class="ch-grade ${gradeClass}">${grade}</div>
-        <div class="ch-result-title">${title}</div>
-        <div class="ch-result-sub">第 ${chLevel} 关 · ${sub}</div>
-        ${rankUpHTML}
-        <div class="ch-result-stats">
-          <div class="ch-rstat"><div class="ch-rstat-val green">${chLevelCorrect}</div><div class="ch-rstat-label">正确</div></div>
-          <div class="ch-rstat"><div class="ch-rstat-val red">${chLevelWrong}</div><div class="ch-rstat-label">错误</div></div>
-          <div class="ch-rstat"><div class="ch-rstat-val amber">${chMaxCombo}</div><div class="ch-rstat-label">最高连击</div></div>
-        </div>
-        <div style="margin: 10px 0 14px; color:#34d399; font-weight:700; font-size:0.88rem; text-shadow:0 0 10px rgba(52,211,153,0.3)">
-          💖 关卡通过，生命值已全满恢复 (3/3)！
-        </div>
-        <div class="ch-result-btns">
-          <button class="ch-btn-next-level" onclick="chNextLevel()">🚀 继续第 ${chLevel + 1} 关</button>
-          <button class="ch-btn-retry" onclick="chRetryLevel()">↻ 重打本关</button>
-          <button class="ch-quit-link" onclick="exitChallenge()">退出闯关</button>
+        <div class="ch-result-content-wrap">
+          <div class="ch-grade ${gradeClass}">${grade}</div>
+          <div class="ch-result-title">${title}</div>
+          <div class="ch-result-sub">第 ${chLevel} 关 · ${sub}</div>
+          ${rankUpHTML}
+          <div class="ch-result-stats">
+            <div class="ch-rstat"><div class="ch-rstat-val green">${chLevelCorrect}</div><div class="ch-rstat-label">正确</div></div>
+            <div class="ch-rstat"><div class="ch-rstat-val red">${chLevelWrong}</div><div class="ch-rstat-label">错误</div></div>
+            <div class="ch-rstat"><div class="ch-rstat-val amber">${chMaxCombo}</div><div class="ch-rstat-label">最高连击</div></div>
+          </div>
+          <div style="margin: 10px 0 14px; color:#34d399; font-weight:700; font-size:0.88rem; text-shadow:0 0 10px rgba(52,211,153,0.3)">
+            💖 关卡通过，生命值已全满恢复 (3/3)！
+          </div>
+          <div class="ch-result-btns">
+            <button class="ch-btn-next-level" onclick="chNextLevel()">🚀 继续第 ${chLevel + 1} 关</button>
+            <button class="ch-btn-review" onclick="showLevelReview()">📖 本关单词复盘 (${chLevelRecord.length} 词)</button>
+            <button class="ch-btn-retry" onclick="chRetryLevel()">↻ 重打本关</button>
+            <button class="ch-quit-link" onclick="exitChallenge()">退出闯关</button>
+          </div>
         </div>`;
-      if (grade === 'S') setTimeout(() => fireConfetti(), 200);
+      if (grade === 'S' && !isBack) setTimeout(() => fireConfetti(), 200);
+      screen.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ===== 本关单词复盘战报 =====
+    function showLevelReview() {
+      const screen = document.getElementById('chResultScreen');
+      if (!screen) return;
+      const rank = getRankMeta(chLevel);
+
+      let listHTML = '';
+      chLevelRecord.forEach((rec, idx) => {
+        const q = rec.q || {};
+        const opts = rec.opts || {};
+        const isCorr = rec.correct;
+        const w = opts.correctWord || q.word || '';
+        const m = opts.correctMeaning || q.meaning || '';
+        const userChoiceText = (opts.options || {})[rec.chosen] || '';
+        const rightChoiceText = (opts.options || {})[opts.answer] || '';
+
+        let badgeHTML = isCorr
+          ? `<span class="ch-review-badge correct">✓ 答对</span>`
+          : `<span class="ch-review-badge wrong">✗ 选了 [${rec.chosenNum}]</span>`;
+
+        let extraHTML = '';
+        if (q.phrase) {
+          extraHTML += `<div class="ch-review-extra phrase">📌 <b>考点搭配:</b> ${esc(q.phrase)}</div>`;
+        }
+        if (q.technique_tip) {
+          extraHTML += `<div class="ch-review-extra technique">💡 <b>解题技巧:</b> ${esc(q.technique_tip)}</div>`;
+        }
+        if (q.family_note) {
+          extraHTML += `<div class="ch-review-extra family">🌱 <b>家族串记:</b> ${esc(q.family_note)}</div>`;
+        }
+
+        let userAnsRow = '';
+        if (!isCorr) {
+          userAnsRow = `<div class="ch-review-user-ans">
+            <span style="color:#fb7185">你的选择: ${rec.chosenNum}. ${esc(userChoiceText)}</span><br>
+            <span style="color:#34d399;font-weight:600">正确答案: ${rec.answerNum}. ${esc(rightChoiceText)}</span>
+          </div>`;
+        }
+
+        listHTML += `
+          <div class="ch-review-card ${isCorr ? 'is-correct' : 'is-wrong'}">
+            <div class="ch-review-card-top">
+              <div class="ch-review-word"><span style="color:#64748b;font-size:0.9rem;margin-right:6px">#${idx + 1}</span>${esc(w)}</div>
+              ${badgeHTML}
+            </div>
+            <div class="ch-review-meaning">${esc(m)}</div>
+            ${extraHTML}
+            ${userAnsRow}
+          </div>
+        `;
+      });
+
+      screen.innerHTML = `
+        <div class="ch-review-container">
+          <div class="ch-review-header">
+            <div class="ch-review-title">📖 第 ${chLevel} 关 · 单词战报复盘</div>
+            <div class="ch-review-subtitle">
+              ${rank.icon} ${rank.name} · 本关共 ${chLevelRecord.length} 词 · 正确 <span style="color:#10b981;font-weight:700">${chLevelCorrect}</span> / 错误 <span style="color:#f43f5e;font-weight:700">${chLevelWrong}</span>
+            </div>
+          </div>
+
+          <div class="ch-review-list">
+            ${listHTML}
+          </div>
+
+          <div class="ch-result-btns" style="margin: 0 auto;">
+            <button class="ch-btn-next-level" onclick="chNextLevel()">🚀 继续第 ${chLevel + 1} 关</button>
+            <button class="ch-btn-retry" onclick="showLevelResult(true)" style="border-color:rgba(14,165,233,0.4);color:#38bdf8">← 返回成绩评级</button>
+            <button class="ch-btn-retry" onclick="chRetryLevel()">↻ 重打本关</button>
+            <button class="ch-quit-link" onclick="exitChallenge()">退出闯关</button>
+          </div>
+        </div>
+      `;
+      screen.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function chNextLevel() {
