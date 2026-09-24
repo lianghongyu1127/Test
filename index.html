@@ -2213,9 +2213,11 @@
       if (correct) {
         nCorrect++;
         correctCounts[gi] = (correctCounts[gi] || 0) + 1;
+        _play('assets/correct.mp3');
       } else {
         nWrong++; wrongs.add(gi);
         wrongCounts[gi] = (wrongCounts[gi] || 0) + 1;
+        _play('assets/error.mp3');
       }
       stats();
       saveProgress();
@@ -2468,11 +2470,12 @@
     let chLevelRecord = []; // 'c'=correct 'w'=wrong per question
     let chGenOptions = {};   // gIdx -> {displayWord, options, answer, correctMeaning}
 
-    // ===== 极速零延迟音频系统 (Web Audio API + 预加载 Buffer) =====
+    // ===== 极速零延迟音频系统 (Web Audio API + 预加载 Buffer + 移动端自动解锁) =====
     const AudioSys = {
       ctx: null,
       buffers: {},
       fallbackAudios: {},
+      unlocked: false,
       init() {
         if (!this.ctx) {
           const AC = window.AudioContext || window.webkitAudioContext;
@@ -2481,6 +2484,28 @@
         if (this.ctx && this.ctx.state === 'suspended') {
           this.ctx.resume().catch(() => {});
         }
+      },
+      unlock() {
+        this.init();
+        if (!this.ctx) return;
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume().catch(() => {});
+        }
+        // 播放 1 采样点无声 Buffer 彻底唤醒 iOS WebKit / 移动端 AudioContext
+        try {
+          const buf = this.ctx.createBuffer(1, 1, 22050);
+          const src = this.ctx.createBufferSource();
+          src.buffer = buf;
+          src.connect(this.ctx.destination);
+          src.start(0);
+          this.unlocked = true;
+        } catch(e) {}
+        // 同时预先唤醒 HTML5 Audio
+        try {
+          Object.values(this.fallbackAudios).forEach(a => {
+            if (a) a.load();
+          });
+        } catch(e) {}
       },
       preload(key, url) {
         fetch(url)
@@ -2501,25 +2526,35 @@
       },
       play(key, url) {
         this.init();
-        if (this.ctx && this.buffers[key]) {
-          try {
-            const src = this.ctx.createBufferSource();
-            src.buffer = this.buffers[key];
-            src.connect(this.ctx.destination);
-            src.start(0);
-            return;
-          } catch(e) {}
+        if (this.ctx) {
+          if (this.ctx.state === 'suspended') {
+            this.ctx.resume().catch(() => {});
+          }
+          if (this.buffers[key]) {
+            try {
+              const src = this.ctx.createBufferSource();
+              src.buffer = this.buffers[key];
+              src.connect(this.ctx.destination);
+              src.start(0);
+              return;
+            } catch(e) {}
+          }
         }
         const fa = this.fallbackAudios[key];
         if (fa) {
           try {
             fa.currentTime = 0;
-            fa.play().catch(() => {});
+            const p = fa.play();
+            if (p && p.catch) p.catch(() => {});
             return;
           } catch(e) {}
         }
         if (url) {
-          try { new Audio(url).play(); } catch(e) {}
+          try {
+            const a = new Audio(url);
+            const p = a.play();
+            if (p && p.catch) p.catch(() => {});
+          } catch(e) {}
         }
       }
     };
@@ -2528,8 +2563,11 @@
     AudioSys.preload('correct', 'assets/correct.mp3');
     AudioSys.preload('error', 'assets/error.mp3');
     AudioSys.preload('levelup', 'assets/levelup.mp3');
-    window.addEventListener('click', () => AudioSys.init(), { once: true });
-    window.addEventListener('keydown', () => AudioSys.init(), { once: true });
+
+    // 移动端全手势监听：只要用户产生首次任何触摸或点击，立即静默解锁音频通道
+    ['touchstart', 'touchend', 'pointerdown', 'click', 'keydown'].forEach(evt => {
+      window.addEventListener(evt, () => AudioSys.unlock(), { once: true, passive: true });
+    });
 
     function _play(src) {
       if (src.includes('error')) AudioSys.play('error', src);
