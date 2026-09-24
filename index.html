@@ -2317,15 +2317,23 @@
         ];
         const seg = segs[Math.min(combo - 1, 4)];
 
-        // 动态定位在正中间选项容器下方
-        const optsEl = document.getElementById('chOpts');
-        if (optsEl) {
-          const rect = optsEl.getBoundingClientRect();
-          const targetTop = Math.min(rect.bottom + 4, window.innerHeight - 120);
-          kvW.style.top = targetTop + 'px';
-          kvW.style.bottom = 'auto';
+        // 动态定位在正中间卡片下方的开阔空白区，绝不遮挡选项与反馈内容
+        const cardEl = document.getElementById('chQCard');
+        if (cardEl) {
+          const cardRect = cardEl.getBoundingClientRect();
+          const spaceBelow = window.innerHeight - cardRect.bottom;
+          if (spaceBelow >= 120) {
+            // 居中在卡片底边和屏幕底部之间的开阔区域
+            const targetTop = cardRect.bottom + Math.max(8, (spaceBelow - 115) / 2);
+            kvW.style.top = targetTop + 'px';
+            kvW.style.bottom = 'auto';
+          } else {
+            // 若屏幕较矮则贴靠底部
+            kvW.style.bottom = '12px';
+            kvW.style.top = 'auto';
+          }
         } else {
-          kvW.style.bottom = '20px';
+          kvW.style.bottom = '16px';
           kvW.style.top = 'auto';
         }
 
@@ -2354,27 +2362,41 @@
       }
     }
 
+    // ===== 释义清洗：移除题库中残留的方括号音标与杂质 =====
+    function cleanMeaning(s) {
+      if (!s) return '';
+      return String(s)
+        .replace(/\[[^\]]+\]/g, '')                      // 移除所有 [音标]
+        .replace(/\s*\/\s*(?=\s*[a-zA-Z]\.|\s*$)/g, ' ') // 移除词性前面的孤立斜杠
+        .replace(/\s{2,}/g, ' ')                         // 合并多余空格
+        .trim();
+    }
+
     // ===== 动态生成英→中 / 中→英 选项 =====
     function _getDiffMode() { return chLevel <= 5 ? 'en2zh' : 'zh2en'; }
 
     function _genOpts(q, gIdx) {
       const mode = _getDiffMode();
       const isEn2Zh = mode === 'en2zh';
-      const displayWord = isEn2Zh ? (q.word || q.phrase || '???') : (q.meaning || '???');
-      const correct    = isEn2Zh ? (q.meaning || '') : (q.word || '');
+      const rawDisplay = isEn2Zh ? (q.word || q.phrase || '???') : (q.meaning || '???');
+      const rawCorrect = isEn2Zh ? (q.meaning || '') : (q.word || '');
+
+      const displayWord = isEn2Zh ? rawDisplay : cleanMeaning(rawDisplay);
+      const correct     = isEn2Zh ? cleanMeaning(rawCorrect) : rawCorrect;
+
       // 从 chPool 随机取3个干扰项
       const wrongs = chPool
-        .filter(p => p !== q && (isEn2Zh ? (p.meaning && p.meaning !== correct) : (p.word && p.word !== correct)))
+        .filter(p => p !== q && (isEn2Zh ? (cleanMeaning(p.meaning) && cleanMeaning(p.meaning) !== correct) : (p.word && p.word !== correct)))
         .sort(() => Math.random() - 0.5)
         .slice(0, 3)
-        .map(p => isEn2Zh ? p.meaning : p.word);
+        .map(p => isEn2Zh ? cleanMeaning(p.meaning) : p.word);
       const allOpts = [correct, ...wrongs].sort(() => Math.random() - 0.5);
       const answerKey = 'ABCD'[allOpts.indexOf(correct)];
       chGenOptions[gIdx] = {
         displayWord,
         options: { A: allOpts[0], B: allOpts[1], C: allOpts[2], D: allOpts[3] },
         answer: answerKey,
-        correctMeaning: q.meaning || '',
+        correctMeaning: cleanMeaning(q.meaning || ''),
         correctWord: q.word || ''
       };
       return chGenOptions[gIdx];
@@ -2385,10 +2407,28 @@
     }
 
 
+    function _getElitePool() {
+      // 严格筛选：纯英文标准单词 + 规范中文释义
+      const valid = ALL.filter(q => {
+        if (!q.word || !q.meaning) return false;
+        const w = q.word.trim();
+        const m = q.meaning.trim();
+        return /^[a-zA-Z\s-]+$/.test(w) && /[\u4e00-\u9fa5]/.test(m);
+      });
+      // 精英梯队分层：
+      // Tier 1: 完形50黄金词 + 阅读态度词 + 带真题短语技巧的进阶高频词 (精英中的精英)
+      const tier1 = valid.filter(q => q.type === 'cloze50' || q.type === 'attitude' || (q.type === 'advanced' && (q.phrase || q.technique_tip)));
+      // Tier 2: 进阶高频词 + 带短语的重点词族
+      const tier2 = valid.filter(q => !tier1.includes(q) && (q.phrase || q.technique_tip || q.type === 'advanced'));
+      // Tier 3: 其余合规核心词
+      const tier3 = valid.filter(q => !tier1.includes(q) && !tier2.includes(q));
+
+      const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
+      return [...shuffle(tier1), ...shuffle(tier2), ...shuffle(tier3)];
+    }
+
     function startChallenge() {
-      // 只从有 word + meaning 的题中出题（英→中 / 中→英 双向）
-      const eligible = ALL.filter(q => q.word && q.meaning);
-      chPool = [...eligible].sort(() => Math.random() - 0.5);
+      chPool = _getElitePool();
       chGenOptions = {};
       chLevel = 1;
       chLevelStart = 0;
@@ -2420,7 +2460,7 @@
       if (wrap) { wrap.onclick = null; wrap.style.cursor = ''; }
       const gIdx = chLevelStart + chQIdx;
       if (gIdx >= chPool.length) {
-        chPool = [...chPool, ...ALL.filter(q => q.word && q.meaning).sort(() => Math.random() - 0.5)];
+        chPool = [...chPool, ..._getElitePool()];
       }
       const q = chPool[gIdx % chPool.length];
       renderChCard(q);
@@ -2509,10 +2549,8 @@
       document.getElementById('chCardWrap').innerHTML = `
         <div class="ch-q-card" id="chQCard">
           <div class="ch-pdots">${pdotsHTML}</div>
-          <div style="display:flex;align-items:center;margin-bottom:8px">
-            <span class="ch-q-tag ${tagCls}">${tagText}</span>
-            ${diffBadge}
-            <span class="mastery-chip ${mm.cls}" style="font-size:0.62rem;margin-left:auto">${mm.label}</span>
+          <div style="display:flex;justify-content:flex-end;margin-bottom:4px">
+            <span class="mastery-chip ${mm.cls}" style="font-size:0.62rem">${mm.label}</span>
           </div>
           <div class="ch-word-card">
             <div class="ch-word-main">${esc(opts.displayWord)}</div>
