@@ -1485,11 +1485,18 @@
     }
     /* ===== 击杀特效 ===== */
     @keyframes skullPop {
-      0%   { opacity:0; transform:translate(-50%,-50%) scale(0.3) rotate(-15deg); }
-      35%  { opacity:1; transform:translate(-50%,-50%) scale(1.15) rotate(5deg); }
+      0%   { opacity:0; transform:translate(-50%,-50%) scale(0.2) rotate(-15deg); }
+      35%  { opacity:1; transform:translate(-50%,-50%) scale(1.25) rotate(4deg); }
       65%  { opacity:1; transform:translate(-50%,-50%) scale(1) rotate(0deg); }
       100% { opacity:0; transform:translate(-50%,-50%) scale(0.9) rotate(0deg); }
     }
+    @keyframes headshotShake {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1) translateY(-2px); color: #fbbf24; text-shadow: 0 0 16px rgba(251,191,36,0.8); }
+      50% { transform: scale(0.96) translateY(1px); }
+      75% { transform: scale(1.03); }
+    }
+    .headshot-shake { animation: headshotShake 0.45s ease; display: inline-block; }
     @keyframes damageVignette {
       0%   { opacity:0; }
       15%  { opacity:1; }
@@ -2359,22 +2366,28 @@
       }
     }
 
-    // ===== 答对特效：爆头骷髅移至单词位置 + CS扑克牌击杀 + 极速音效 =====
+    // ===== 答对特效：爆头骷髅正中单词爆出 + CS扑克牌击杀 + 极速音效 =====
     function playCorrectEffect(combo) {
       _play('assets/correct.mp3');
-      // 骷髅头爆头：精准出现在单词右侧，犹如击中单词头部爆头
+      const wordEl = document.querySelector('.ch-word-main');
+      if (wordEl) {
+        wordEl.classList.remove('headshot-shake');
+        void wordEl.offsetWidth;
+        wordEl.classList.add('headshot-shake');
+        setTimeout(() => wordEl.classList.remove('headshot-shake'), 450);
+      }
+      // 骷髅头爆头：直接在单词的位置正中爆出，像游戏爆头一样！
       const skull = document.getElementById('skullOverlay');
       if (skull) {
-        const wordEl = document.querySelector('.ch-word-main');
         if (wordEl) {
           const r = wordEl.getBoundingClientRect();
-          skull.style.left = (r.right + 28) + 'px';
+          skull.style.left = (r.left + r.width / 2) + 'px';
           skull.style.top = (r.top + r.height / 2) + 'px';
-          skull.style.width = '72px';
+          skull.style.width = '115px';
         } else {
           skull.style.left = '50%';
-          skull.style.top = '30%';
-          skull.style.width = '80px';
+          skull.style.top = '28%';
+          skull.style.width = '100px';
         }
         skull.style.display = 'block';
         skull.style.animation = 'none';
