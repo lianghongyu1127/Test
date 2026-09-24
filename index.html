@@ -1171,12 +1171,12 @@
     /* ===== Combo 爆字特效 ===== */
     .combo-popup {
       position: fixed;
-      top: 50%;
+      top: 24%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.5);
       z-index: 9000;
       pointer-events: none;
-      font-size: 3.5rem;
+      font-size: 2.2rem;
       font-weight: 900;
       font-family: 'Inter', sans-serif;
       text-align: center;
@@ -2263,7 +2263,7 @@
     // ============================================================
     // ===== 闯关模式 CHALLENGE MODE =====
     // ============================================================
-    const LEVEL_SIZE = 10;         // 每关题数
+    const LEVEL_SIZE = 5;          // 每关题数：5个单词短平快爽感高
     const MAX_LIVES = 3;           // 生命值上限
     const COMBO_FIRE = 3;          // 连击达到几次触发火焰
     const QUESTION_TIME = 9999;   // 不限时
@@ -2287,20 +2287,100 @@
     let chLevelRecord = []; // 'c'=correct 'w'=wrong per question
     let chGenOptions = {};   // gIdx -> {displayWord, options, answer, correctMeaning}
 
-    // ===== 音效：每次 new Audio() 保证零延迟 =====
-    function _play(src) { try { new Audio(src).play(); } catch(e) {} }
+    // ===== 极速零延迟音频系统 (Web Audio API + 预加载 Buffer) =====
+    const AudioSys = {
+      ctx: null,
+      buffers: {},
+      fallbackAudios: {},
+      init() {
+        if (!this.ctx) {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (AC) this.ctx = new AC();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume().catch(() => {});
+        }
+      },
+      preload(key, url) {
+        fetch(url)
+          .then(res => res.arrayBuffer())
+          .then(buf => {
+            this.init();
+            if (this.ctx) return this.ctx.decodeAudioData(buf);
+          })
+          .then(decoded => {
+            if (decoded) this.buffers[key] = decoded;
+          })
+          .catch(() => {});
+        try {
+          const a = new Audio(url);
+          a.preload = 'auto';
+          this.fallbackAudios[key] = a;
+        } catch(e) {}
+      },
+      play(key, url) {
+        this.init();
+        if (this.ctx && this.buffers[key]) {
+          try {
+            const src = this.ctx.createBufferSource();
+            src.buffer = this.buffers[key];
+            src.connect(this.ctx.destination);
+            src.start(0);
+            return;
+          } catch(e) {}
+        }
+        const fa = this.fallbackAudios[key];
+        if (fa) {
+          try {
+            fa.currentTime = 0;
+            fa.play().catch(() => {});
+            return;
+          } catch(e) {}
+        }
+        if (url) {
+          try { new Audio(url).play(); } catch(e) {}
+        }
+      }
+    };
 
-    // ===== 答对特效：骷髅头 + CS扑克牌击杀 + 音效 =====
+    // 提前在后台预解码音频，实现真正的 0ms 瞬间反馈
+    AudioSys.preload('correct', 'assets/correct.mp3');
+    AudioSys.preload('error', 'assets/error.mp3');
+    AudioSys.preload('levelup', 'assets/levelup.mp3');
+    window.addEventListener('click', () => AudioSys.init(), { once: true });
+    window.addEventListener('keydown', () => AudioSys.init(), { once: true });
+
+    function _play(src) {
+      if (src.includes('error')) AudioSys.play('error', src);
+      else if (src.includes('correct')) AudioSys.play('correct', src);
+      else if (src.includes('levelup')) AudioSys.play('levelup', src);
+      else {
+        try { new Audio(src).play(); } catch(e) {}
+      }
+    }
+
+    // ===== 答对特效：爆头骷髅移至单词位置 + CS扑克牌击杀 + 极速音效 =====
     function playCorrectEffect(combo) {
       _play('assets/correct.mp3');
-      // 骷髅头弹出
+      // 骷髅头爆头：精准出现在单词右侧，犹如击中单词头部爆头
       const skull = document.getElementById('skullOverlay');
       if (skull) {
+        const wordEl = document.querySelector('.ch-word-main');
+        if (wordEl) {
+          const r = wordEl.getBoundingClientRect();
+          skull.style.left = (r.right + 28) + 'px';
+          skull.style.top = (r.top + r.height / 2) + 'px';
+          skull.style.width = '72px';
+        } else {
+          skull.style.left = '50%';
+          skull.style.top = '30%';
+          skull.style.width = '80px';
+        }
         skull.style.display = 'block';
         skull.style.animation = 'none';
         void skull.offsetWidth;
-        skull.style.animation = 'skullPop 0.8s ease forwards';
-        setTimeout(() => { skull.style.display = 'none'; }, 800);
+        skull.style.animation = 'skullPop 0.75s cubic-bezier(0.34,1.56,0.64,1) forwards';
+        setTimeout(() => { skull.style.display = 'none'; }, 750);
       }
       // CS击杀视频——精确截取扑克牌跳起击杀帧，正中间选项下方弹跳显示
       const kv  = document.getElementById('killVideo');
@@ -2373,7 +2453,7 @@
     }
 
     // ===== 动态生成英→中 / 中→英 选项 =====
-    function _getDiffMode() { return chLevel <= 5 ? 'en2zh' : 'zh2en'; }
+    function _getDiffMode() { return chLevel <= 8 ? 'en2zh' : 'zh2en'; }
 
     function _genOpts(q, gIdx) {
       const mode = _getDiffMode();
@@ -2753,6 +2833,9 @@
           <div class="ch-rstat"><div class="ch-rstat-val red">${chLevelWrong}</div><div class="ch-rstat-label">错误</div></div>
           <div class="ch-rstat"><div class="ch-rstat-val amber">${chMaxCombo}</div><div class="ch-rstat-label">最高连击</div></div>
         </div>
+        <div style="margin: 12px 0 16px; color:#34d399; font-weight:700; font-size:0.9rem; text-shadow:0 0 10px rgba(52,211,153,0.3)">
+          💖 关卡通过，生命值已全满恢复 (3/3)！
+        </div>
         <div class="ch-result-btns">
           <button class="ch-btn-next-level" onclick="chNextLevel()">🚀 继续第 ${chLevel + 1} 关</button>
           <button class="ch-btn-retry" onclick="chRetryLevel()">↻ 重打本关</button>
@@ -2764,6 +2847,7 @@
     function chNextLevel() {
       chLevel++;
       chLevelStart += LEVEL_SIZE;
+      chLives = MAX_LIVES; // 💖 新的一关血回复满！
       chMaxCombo = 0;
       document.getElementById('chResultScreen').classList.add('hidden');
       chStartLevel();
@@ -2825,9 +2909,15 @@
       const colors = correct
         ? ['#10b981','#14b8a6','#5eead4','#fbbf24','#a7f3d0']
         : ['#f43f5e','#fb923c','#fbbf24'];
-      const cx = window.innerWidth / 2;
-      const cy = window.innerHeight * 0.45;
-      const count = correct ? 40 : 15;
+      let cx = window.innerWidth / 2;
+      let cy = window.innerHeight * 0.28;
+      const wordEl = document.querySelector('.ch-word-main');
+      if (wordEl) {
+        const r = wordEl.getBoundingClientRect();
+        cx = r.left + r.width / 2;
+        cy = r.top + r.height / 2;
+      }
+      const count = correct ? 35 : 15;
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
         const speed = correct ? (3 + Math.random() * 5) : (1.5 + Math.random() * 3);
@@ -2910,10 +3000,10 @@
   <!-- 受击红色四周渐变 -->
   <div id="damageOverlay" style="position:fixed;inset:0;pointer-events:none;z-index:9999;display:none;
     background:radial-gradient(ellipse at center, transparent 35%, rgba(200,20,20,0.82) 100%);"></div>
-  <!-- 答对骷髅头爆出 -->
+  <!-- 答对骷髅头爆出：紧贴单词右侧 -->
   <img id="skullOverlay" src="assets/skull.png"
-    style="position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);
-    width:150px;mix-blend-mode:multiply;pointer-events:none;z-index:9998;display:none;" />
+    style="position:fixed;left:50%;top:28%;transform:translate(-50%,-50%);
+    width:72px;mix-blend-mode:multiply;pointer-events:none;z-index:9998;display:none;" />
   <!-- CS击杀视频——正中间选项下方，扑克牌击杀特效窗口，完美遮裁水印与纯黑背景 -->
   <div id="killVideoWrap" style="position:fixed;left:50%;transform:translateX(-50%);width:340px;height:115px;
     overflow:hidden;z-index:9997;display:none;pointer-events:none;border-radius:12px;
