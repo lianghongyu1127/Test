@@ -2284,15 +2284,12 @@
     let chLevelRecord = []; // 'c'=correct 'w'=wrong per question
     let chGenOptions = {};   // gIdx -> {displayWord, options, answer, correctMeaning}
 
-    // ===== 音效 =====
-    const _sndCorrect = new Audio('assets/correct.mp3');
-    const _sndError   = new Audio('assets/error.mp3');
-    const _sndLevelup = new Audio('assets/levelup.mp3');
-    function _play(snd) { try { snd.currentTime = 0; snd.play(); } catch(e) {} }
+    // ===== 音效：每次 new Audio() 保证零延迟 =====
+    function _play(src) { try { new Audio(src).play(); } catch(e) {} }
 
-    // ===== 答对特效：骷髅头 + CS视频 + 音效 =====
+    // ===== 答对特效：骷髅头 + CS击杀条 + 音效 =====
     function playCorrectEffect(combo) {
-      _play(_sndCorrect);
+      _play('assets/correct.mp3');
       // 骷髅头弹出
       const skull = document.getElementById('skullOverlay');
       if (skull) {
@@ -2300,29 +2297,30 @@
         skull.style.animation = 'none';
         void skull.offsetWidth;
         skull.style.animation = 'skullPop 1s ease forwards';
-        setTimeout(() => skull.style.display = 'none', 1000);
+        setTimeout(() => { skull.style.display = 'none'; }, 1000);
       }
-      // CS击杀视频——按连击截段播放
-      const kv = document.getElementById('killVideo');
-      if (kv) {
-        // [startSec, durationSec] for combo 1-5+
+      // CS击杀视频——按连击截段播放，底部条状窗口
+      const kv  = document.getElementById('killVideo');
+      const kvW = document.getElementById('killVideoWrap');
+      if (kv && kvW) {
+        if (kv._kvTimer) clearTimeout(kv._kvTimer);
         const segs = [[0,3.2],[3.5,3],[7,3.5],[10.5,3.5],[0,17]];
         const seg = segs[Math.min(combo - 1, 4)];
-        kv.style.display = 'block';
-        kv.style.animation = 'killVideoIn 0.25s ease forwards';
+        kvW.style.display = 'block';
+        kvW.style.animation = 'none'; void kvW.offsetWidth;
+        kvW.style.animation = 'killVideoIn 0.25s ease forwards';
         kv.currentTime = seg[0];
         kv.play().catch(() => {});
-        const timer = setTimeout(() => {
-          kv.style.animation = 'killVideoOut 0.3s ease forwards';
-          setTimeout(() => { kv.pause(); kv.style.display = 'none'; }, 300);
+        kv._kvTimer = setTimeout(() => {
+          kvW.style.animation = 'killVideoOut 0.3s ease forwards';
+          setTimeout(() => { kv.pause(); kvW.style.display = 'none'; }, 300);
         }, seg[1] * 1000);
-        kv._clearTimer = timer;
       }
     }
 
     // ===== 答错特效：红色受击 + 音效 =====
     function playWrongEffect() {
-      _play(_sndError);
+      _play('assets/error.mp3');
       const ov = document.getElementById('damageOverlay');
       if (ov) {
         ov.style.display = 'block';
@@ -2394,10 +2392,12 @@
 
     function chShowQuestion() {
       chAnswered = false;
+      // 清除上一题残留的点击回调，防止空格/点击误触跳题
+      const wrap = document.getElementById('chCardWrap');
+      if (wrap) { wrap.onclick = null; wrap.style.cursor = ''; }
       const gIdx = chLevelStart + chQIdx;
       if (gIdx >= chPool.length) {
-        // 题库耗尽，循环
-        chPool = [...chPool, ...ALL.sort(() => Math.random() - 0.5)];
+        chPool = [...chPool, ...ALL.filter(q => q.word && q.meaning).sort(() => Math.random() - 0.5)];
       }
       const q = chPool[gIdx % chPool.length];
       renderChCard(q);
@@ -2672,7 +2672,7 @@
 
     // ===== 关卡结算 =====
     function showLevelResult() {
-      _play(_sndLevelup); // 🎵 通关音乐
+      _play('assets/levelup.mp3'); // 🎵 通关音乐
       clearInterval(chTimerInterval);
       const accuracy = Math.round(chLevelCorrect / LEVEL_SIZE * 100);
       let grade, gradeClass, title, sub;
@@ -2853,10 +2853,13 @@
   <img id="skullOverlay" src="assets/skull.png"
     style="position:fixed;left:50%;top:42%;transform:translate(-50%,-50%);
     width:200px;mix-blend-mode:multiply;pointer-events:none;z-index:9998;display:none;" />
-  <!-- CS击杀视频（右上角） -->
-  <video id="killVideo" src="assets/kill.mp4" muted playsinline preload="auto"
-    style="position:fixed;top:14px;right:14px;width:260px;border-radius:10px;
-    box-shadow:0 8px 32px rgba(0,0,0,0.7);z-index:9997;display:none;"></video>
+  <!-- CS击杀视频——底部条状窗口，仅露顶部一条击杀线，水印被裁掉 -->
+  <div id="killVideoWrap" style="position:fixed;right:0;bottom:0;width:300px;height:52px;
+    overflow:hidden;z-index:9997;display:none;border-radius:6px 0 0 0;
+    box-shadow:-4px -4px 20px rgba(0,0,0,0.6);">
+    <video id="killVideo" src="assets/kill.mp4" muted playsinline preload="auto"
+      style="position:absolute;top:0;left:0;width:300px;"></video>
+  </div>
 </body>
 
 </html>
