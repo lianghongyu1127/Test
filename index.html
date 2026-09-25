@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>考研英语词汇</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap"
@@ -112,7 +112,7 @@
       max-width: 640px;
       margin: 0 auto;
       padding: 0 20px;
-      padding-bottom: 60px;
+      padding-bottom: calc(60px + env(safe-area-inset-bottom, 24px));
     }
 
     /* ===== 头部 ===== */
@@ -626,6 +626,14 @@
       background: var(--bg-elevated);
     }
 
+    .nav-btn.btn-highlight {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.28), rgba(14, 165, 233, 0.28));
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(20, 184, 166, 0.3);
+      font-weight: 600;
+    }
+
     .nav-btn:disabled {
       opacity: 0.3;
       cursor: not-allowed;
@@ -813,7 +821,11 @@
     @media (max-width: 480px) {
       .app {
         padding: 0 16px;
-        padding-bottom: 40px;
+        padding-bottom: calc(72px + env(safe-area-inset-bottom, 24px));
+      }
+
+      .nav {
+        margin-top: 18px;
       }
 
       .header {
@@ -2252,6 +2264,18 @@
       save(gi, k, k === ALL[gi].answer);
     }
 
+    function ensureNavVisible() {
+      const nav = document.querySelector('.nav');
+      if (!nav) return;
+      const rect = nav.getBoundingClientRect();
+      const safeBottomMargin = 28;
+      const overflow = rect.bottom - (window.innerHeight - safeBottomMargin);
+      if (overflow > 2) {
+        const targetY = window.scrollY + overflow;
+        window.scrollTo({ top: Math.ceil(targetY), left: 0, behavior: 'smooth' });
+      }
+    }
+
     function save(gi, chosen, correct) {
       if (record[gi]) return;
       record[gi] = { chosen, correct };
@@ -2266,13 +2290,11 @@
       saveProgress();
       render();
 
-      // 答题后，顺滑微调滚动位置确保下一题露出
-      setTimeout(() => {
-        const nav = document.querySelector('.nav');
-        if (nav) {
-          window.scrollBy({ top: 150, left: 0, behavior: 'smooth' });
-        }
-      }, 100);
+      // 答题后，自动精准滚动，确保无论篇幅长短，“下一题”那一行完整清晰地展现在手机屏幕视野中
+      requestAnimationFrame(() => {
+        setTimeout(ensureNavVisible, 60);
+        setTimeout(ensureNavVisible, 220);
+      });
     }
 
     // ===== 错题优先算法 =====
@@ -2445,8 +2467,17 @@
 
     function updateNav() {
       const n = filtered.length;
+      const isDone = Boolean(filtered[idx] && record[ALL.indexOf(filtered[idx])]);
+      const btnNext = document.getElementById('btnNext');
+      if (btnNext) {
+        btnNext.disabled = idx >= n - 1;
+        if (isDone && idx < n - 1) {
+          btnNext.classList.add('btn-highlight');
+        } else {
+          btnNext.classList.remove('btn-highlight');
+        }
+      }
       document.getElementById('btnPrev').disabled = idx <= 0;
-      document.getElementById('btnNext').disabled = idx >= n - 1;
       document.getElementById('navPos').textContent = n ? `${idx + 1} / ${n}` : '0 / 0';
       document.getElementById('pBar').style.width = n ? `${(idx + 1) / n * 100}%` : '0%';
     }
@@ -2500,8 +2531,12 @@
       if (e.target.tagName === 'INPUT') return;
       const numKeyMap = { '1': 'A', '2': 'B', '3': 'C', '4': 'D' };
       if (!chActive) {
+        const isDone = Boolean(filtered[idx] && record[ALL.indexOf(filtered[idx])]);
         if (e.key === 'ArrowLeft') go(-1);
-        else if (e.key === 'ArrowRight') go(1);
+        else if (e.key === 'ArrowRight' || ((e.key === ' ' || e.key === 'Enter') && isDone)) {
+          if (e.key === ' ') e.preventDefault();
+          go(1);
+        }
         else if (('1234'.includes(e.key) || 'abcdABCD'.includes(e.key)) && filtered[idx]?.options) {
           const gi = ALL.indexOf(filtered[idx]);
           const chosenKey = numKeyMap[e.key] || e.key.toUpperCase();
@@ -2550,6 +2585,7 @@
       ctx: null,
       buffers: {},
       fallbackAudios: {},
+      activeSources: {},
       unlocked: false,
       init() {
         if (!this.ctx) {
@@ -2601,6 +2637,7 @@
       },
       play(key, url) {
         this.init();
+        this.stop(key); // 先停止同类正在播放的声音
         if (this.ctx) {
           if (this.ctx.state === 'suspended') {
             this.ctx.resume().catch(() => {});
@@ -2610,6 +2647,12 @@
               const src = this.ctx.createBufferSource();
               src.buffer = this.buffers[key];
               src.connect(this.ctx.destination);
+              this.activeSources[key] = src;
+              src.onended = () => {
+                if (this.activeSources[key] === src) {
+                  delete this.activeSources[key];
+                }
+              };
               src.start(0);
               return;
             } catch(e) {}
@@ -2619,6 +2662,7 @@
         if (fa) {
           try {
             fa.currentTime = 0;
+            this.activeSources[key] = fa;
             const p = fa.play();
             if (p && p.catch) p.catch(() => {});
             return;
@@ -2627,10 +2671,37 @@
         if (url) {
           try {
             const a = new Audio(url);
+            this.activeSources[key] = a;
             const p = a.play();
             if (p && p.catch) p.catch(() => {});
           } catch(e) {}
         }
+      },
+      stop(key) {
+        const src = this.activeSources[key];
+        if (src) {
+          try {
+            if (src.stop) src.stop(0);
+            if (src.pause) {
+              src.pause();
+              src.currentTime = 0;
+            }
+          } catch(e) {}
+          delete this.activeSources[key];
+        }
+        const fa = this.fallbackAudios[key];
+        if (fa) {
+          try {
+            fa.pause();
+            fa.currentTime = 0;
+          } catch(e) {}
+        }
+      },
+      stopAll() {
+        Object.keys(this.activeSources).forEach(k => this.stop(k));
+        Object.values(this.fallbackAudios).forEach(fa => {
+          try { fa.pause(); fa.currentTime = 0; } catch(e) {}
+        });
       }
     };
 
@@ -2651,6 +2722,13 @@
       else {
         try { new Audio(src).play(); } catch(e) {}
       }
+    }
+
+    function _stop(src) {
+      if (src.includes('error')) AudioSys.stop('error');
+      else if (src.includes('correct')) AudioSys.stop('correct');
+      else if (src.includes('levelup')) AudioSys.stop('levelup');
+      else AudioSys.stop(src);
     }
 
     // ===== 答对特效：爆头骷髅正中单词爆出 + CS扑克牌击杀 + 极速音效 =====
@@ -2851,6 +2929,7 @@
     }
 
     function _startChallengeDirect(lvl = 1) {
+      _stop('assets/levelup.mp3');
       chPool = _getElitePool();
       chGenOptions = {};
       chLevel = lvl;
@@ -3270,6 +3349,7 @@
 
     // ===== 本关单词复盘战报 =====
     function showLevelReview() {
+      _stop('assets/levelup.mp3');
       const screen = document.getElementById('chResultScreen');
       if (!screen) return;
       const rank = getRankMeta(chLevel);
@@ -3345,6 +3425,7 @@
     }
 
     function chNextLevel() {
+      _stop('assets/levelup.mp3');
       chLevel++;
       chLevelStart += LEVEL_SIZE;
       chLives = MAX_LIVES; // 💖 新的一关血回复满！
@@ -3354,6 +3435,7 @@
     }
 
     function chRetryLevel() {
+      _stop('assets/levelup.mp3');
       // 重新打乱本关题目
       const levelSlice = chPool.splice(chLevelStart, LEVEL_SIZE).sort(() => Math.random() - 0.5);
       chPool.splice(chLevelStart, 0, ...levelSlice);
@@ -3365,6 +3447,7 @@
 
     // ===== 游戏结束 =====
     function showGameover() {
+      _stop('assets/levelup.mp3');
       clearInterval(chTimerInterval);
       const co = document.getElementById('criticalOverlay');
       if (co) co.style.display = 'none';
@@ -3380,6 +3463,7 @@
     }
 
     function reviveFromWrong() {
+      _stop('assets/levelup.mp3');
       // 复活：重置生命，重新从当前关开始
       chLives = MAX_LIVES;
       chCombo = 0;
@@ -3390,6 +3474,8 @@
     }
 
     function exitChallenge() {
+      _stop('assets/levelup.mp3');
+      AudioSys.stopAll();
       clearInterval(chTimerInterval);
       chActive = false;
       const co = document.getElementById('criticalOverlay');
