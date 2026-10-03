@@ -864,28 +864,314 @@
       }
     }
 
+    /* ===== 首页入口按钮组 ===== */
+    .header-btns {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 16px;
     }
-
     /* ===== 闯关模式按钮 ===== */
     .challenge-entry-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-top: 16px;
-      padding: 12px 28px;
+      padding: 11px 24px;
       border-radius: 999px;
       border: none;
       background: linear-gradient(135deg, #f59e0b, #ef4444);
       color: #fff;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
       letter-spacing: 0.5px;
+      transition: opacity 0.2s;
     }
-    .challenge-entry-btn:hover {
-      opacity: 0.9;
+    .challenge-entry-btn:hover { opacity: 0.9; }
+
+    /* ===== 每日一练入口按钮 ===== */
+    .daily-entry-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 24px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #6366f1, #0ea5e9);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 0.5px;
+      position: relative;
+      transition: opacity 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 18px rgba(99,102,241,0.3);
     }
+    .daily-entry-btn:hover { opacity: 0.9; box-shadow: 0 6px 24px rgba(99,102,241,0.5); }
+    .daily-entry-btn .daily-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: #f43f5e;
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 999px;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    /* ===== 每日一练 全屏 Overlay ===== */
+    .daily-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 600;
+      background: #080f1e;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+    .daily-overlay.hidden { display: none; }
+
+    /* HUD bar */
+    .daily-hud {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: rgba(8,15,30,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(99,102,241,0.2);
+      gap: 10px;
+    }
+    .daily-exit-btn {
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.35);
+      color: #a5b4fc;
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .daily-exit-btn:hover { background: rgba(99,102,241,0.2); }
+    .daily-progress-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+    .daily-progress-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      font-weight: 500;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+    }
+    .daily-progress-bar-wrap {
+      height: 5px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .daily-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #0ea5e9);
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+    .daily-score-badge {
+      display: flex;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .daily-score-badge span {
+      font-size: 0.78rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .daily-score-badge .ds-correct { background: rgba(16,185,129,0.15); color: #34d399; }
+    .daily-score-badge .ds-wrong { background: rgba(244,63,94,0.15); color: #fb7185; }
+
+    /* Main card area */
+    .daily-main {
+      flex: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 24px 20px calc(80px + env(safe-area-inset-bottom, 20px));
+    }
+
+    /* Nav area (sticky at bottom) */
+    .daily-nav {
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      background: rgba(8,15,30,0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(99,102,241,0.15);
+      padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 8px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+    }
+    .daily-nav-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .daily-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(99,102,241,0.3);
+      background: rgba(99,102,241,0.08);
+      color: #a5b4fc;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .daily-nav-btn:hover:not(:disabled) { background: rgba(99,102,241,0.18); border-color: rgba(99,102,241,0.5); }
+    .daily-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .daily-nav-btn.dn-highlight {
+      background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(14,165,233,0.3));
+      border-color: #6366f1;
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(99,102,241,0.35);
+    }
+    .daily-nav-pos {
+      font-size: 0.82rem;
+      color: #64748b;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+    }
+
+    /* ===== 完成报告屏 ===== */
+    .daily-finish-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 700;
+      background: #080f1e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-y: auto;
+      padding: 40px 20px 60px;
+      animation: fadeIn 0.4s ease;
+    }
+    .daily-finish-screen.hidden { display: none; }
+    .daily-finish-wrap { max-width: 520px; width: 100%; text-align: center; }
+    .daily-finish-icon { font-size: 4rem; margin-bottom: 10px; }
+    .daily-finish-title {
+      font-size: 1.7rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6366f1, #0ea5e9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+    .daily-finish-date {
+      font-size: 0.82rem;
+      color: #64748b;
+      margin-bottom: 28px;
+      font-family: 'Inter', sans-serif;
+    }
+    .daily-finish-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .daily-finish-stat {
+      background: rgba(30,41,59,0.7);
+      border: 1px solid rgba(71,85,105,0.4);
+      border-radius: 14px;
+      padding: 18px 12px;
+      text-align: center;
+    }
+    .daily-finish-stat .dfs-val {
+      font-size: 1.9rem;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.1;
+    }
+    .daily-finish-stat .dfs-label {
+      font-size: 0.72rem;
+      color: #64748b;
+      margin-top: 5px;
+      font-weight: 600;
+    }
+    .dfs-val.c-total { color: #f8fafc; }
+    .dfs-val.c-correct { color: #10b981; }
+    .dfs-val.c-wrong { color: #f43f5e; }
+    .daily-finish-grade {
+      display: inline-block;
+      padding: 8px 24px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .dfg-s { background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.4); color: #fbbf24; }
+    .dfg-a { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); color: #10b981; }
+    .dfg-b { background: rgba(14,165,233,0.12); border: 1px solid rgba(14,165,233,0.35); color: #0ea5e9; }
+    .dfg-c { background: rgba(244,63,94,0.1); border: 1px solid rgba(244,63,94,0.3); color: #f43f5e; }
+    .daily-finish-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .daily-finish-btns button {
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .dfb-primary {
+      background: linear-gradient(135deg, #6366f1, #0ea5e9);
+      border: none;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(99,102,241,0.35);
+    }
+    .dfb-primary:hover { opacity: 0.9; }
+    .dfb-secondary {
+      background: transparent;
+      border: 1px solid rgba(99,102,241,0.35);
+      color: #a5b4fc;
+    }
+    .dfb-secondary:hover { background: rgba(99,102,241,0.1); }
 
     /* ===== 闯关模式覆盖层 ===== */
     .challenge-overlay {
@@ -1746,9 +2032,15 @@
       <div class="header-icon">📖</div>
       <h1>考研英语词汇</h1>
       <div class="subtitle">共 <span id="total">0</span> 题 · 专注刷题</div>
-      <button class="challenge-entry-btn" onclick="startChallenge()">
-        <span class="btn-flame">🔥</span> 闯关模式
-      </button>
+      <div class="header-btns">
+        <button class="challenge-entry-btn" onclick="startChallenge()">
+          <span class="btn-flame">🔥</span> 闯关模式
+        </button>
+        <button class="daily-entry-btn" id="dailyEntryBtn" onclick="openDailyPractice()">
+          <span id="dailyBadge" class="daily-badge" style="display:none"></span>
+          📅 每日一练
+        </button>
+      </div>
     </div>
 
     <div class="stats-row">
@@ -1810,6 +2102,40 @@
   </div>
 
   <div id="dialogRoot"></div>
+
+  <!-- 每日一练 全屏界面 -->
+  <div class="daily-overlay hidden" id="dailyOverlay">
+    <!-- HUD -->
+    <div class="daily-hud">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="daily-exit-btn" onclick="exitDaily()">✕ 退出</button>
+        <button class="daily-exit-btn" id="dailyReportBtn" onclick="showDailyFinish()" style="display:none;background:rgba(16,185,129,0.18);border-color:rgba(16,185,129,0.45);color:#6ee7b7">🏆 今日战报</button>
+      </div>
+      <div class="daily-progress-wrap">
+        <div class="daily-progress-label" id="dailyProgressLabel">今日进度 0 / 100</div>
+        <div class="daily-progress-bar-wrap">
+          <div class="daily-progress-bar" id="dailyProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="daily-score-badge">
+        <span class="ds-correct" id="dailyScoreCorrect">✓ 0</span>
+        <span class="ds-wrong" id="dailyScoreWrong">✗ 0</span>
+      </div>
+    </div>
+    <!-- 题目区 -->
+    <div class="daily-main" id="dailyCardArea"></div>
+    <!-- 底部导航 -->
+    <div class="daily-nav">
+      <div class="daily-nav-inner">
+        <button class="daily-nav-btn" id="dailyBtnPrev" onclick="dailyGo(-1)">◀ 上一题</button>
+        <span class="daily-nav-pos" id="dailyNavPos">1 / 100</span>
+        <button class="daily-nav-btn" id="dailyBtnNext" onclick="dailyGo(1)">下一题 ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 每日一练完成报告屏 -->
+  <div class="daily-finish-screen hidden" id="dailyFinishScreen"></div>
 
   <!-- 粒子画布 -->
   <canvas id="particleCanvas"></canvas>
@@ -1884,6 +2210,7 @@
       document.getElementById('total').textContent = d.length;
       loadProgress();
       apply(curFilter);
+      initDailyBadge();  // 更新每日一练角标
     }).catch(e => {
       document.getElementById('cardArea').innerHTML = '<div class="empty"><div class="empty-text">题库加载失败</div></div>';
     });
@@ -2530,26 +2857,50 @@
     document.addEventListener('keydown', e => {
       if (e.target.tagName === 'INPUT') return;
       const numKeyMap = { '1': 'A', '2': 'B', '3': 'C', '4': 'D' };
-      if (!chActive) {
-        const isDone = Boolean(filtered[idx] && record[ALL.indexOf(filtered[idx])]);
-        if (e.key === 'ArrowLeft') go(-1);
-        else if (e.key === 'ArrowRight' || ((e.key === ' ' || e.key === 'Enter') && isDone)) {
+
+      // 1. 每日一练模式
+      if (dpActive) {
+        if (e.key === 'Escape') {
+          exitDaily();
+          return;
+        }
+        const gi = dpList[dpIdx];
+        const isDone = Boolean(dpRecord[gi]);
+        if (e.key === 'ArrowLeft') {
+          dailyGo(-1);
+        } else if (e.key === 'ArrowRight' || ((e.key === ' ' || e.key === 'Enter') && isDone)) {
           if (e.key === ' ') e.preventDefault();
-          go(1);
-        }
-        else if (('1234'.includes(e.key) || 'abcdABCD'.includes(e.key)) && filtered[idx]?.options) {
-          const gi = ALL.indexOf(filtered[idx]);
+          dailyGo(1);
+        } else if (('1234'.includes(e.key) || 'abcdABCD'.includes(e.key)) && ALL[gi]?.options) {
           const chosenKey = numKeyMap[e.key] || e.key.toUpperCase();
-          if (!record[gi]) pickChoice(chosenKey, gi);
+          if (!dpRecord[gi]) dpPickChoice(chosenKey, gi);
         }
-      } else {
-        if (('1234'.includes(e.key) || 'abcdABCD'.includes(e.key)) && chActive && !chAnswered) {
+        return;
+      }
+
+      // 2. 闯关模式
+      if (chActive) {
+        if (('1234'.includes(e.key) || 'abcdABCD'.includes(e.key)) && !chAnswered) {
           const chosenKey = numKeyMap[e.key] || e.key.toUpperCase();
           chPick(chosenKey);
-        } else if ((e.key === ' ' || e.key === 'Enter') && chActive && chAnswered) {
+        } else if ((e.key === ' ' || e.key === 'Enter') && chAnswered) {
           e.preventDefault();
           chNext();
         }
+        return;
+      }
+
+      // 3. 普通刷题模式
+      const isDone = Boolean(filtered[idx] && record[ALL.indexOf(filtered[idx])]);
+      if (e.key === 'ArrowLeft') go(-1);
+      else if (e.key === 'ArrowRight' || ((e.key === ' ' || e.key === 'Enter') && isDone)) {
+        if (e.key === ' ') e.preventDefault();
+        go(1);
+      }
+      else if (('1234'.includes(e.key) || 'abcdABCD'.includes(e.key)) && filtered[idx]?.options) {
+        const gi = ALL.indexOf(filtered[idx]);
+        const chosenKey = numKeyMap[e.key] || e.key.toUpperCase();
+        if (!record[gi]) pickChoice(chosenKey, gi);
       }
     });
 
@@ -3589,6 +3940,436 @@
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 900);
     }
+
+    // ============================================================
+    // ===== 每日一练 DAILY PRACTICE MODE =====
+    // ============================================================
+    const DAILY_TOTAL = 100;          // 每天题数
+    const DAILY_STORAGE_KEY = 'quiz_daily_v1';
+
+    let dpActive = false;
+    let dpList = [];           // 今日 100 题（全局索引数组）
+    let dpIdx = 0;             // 当前题目位置
+    let dpRecord = {};         // gi -> { chosen, correct }
+    let dpCorrect = 0;
+    let dpWrong = 0;
+    let dpDateKey = '';        // 今日日期 YYYY-MM-DD
+
+    /* 简单线性同余伪随机（种子确定性）*/
+    function dpRand(seed) {
+      let s = seed;
+      return function() {
+        s = (s * 1664525 + 1013904223) & 0xffffffff;
+        return (s >>> 0) / 0xffffffff;
+      };
+    }
+
+    /* 获取今日日期字符串 YYYY-MM-DD（本地时间） */
+    function getTodayKey() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    }
+
+    /* 日期字符串转数字种子 */
+    function dateToSeed(key) {
+      return key.split('-').reduce((acc, v) => acc * 10000 + parseInt(v, 10), 0);
+    }
+
+    /* 从 basic + advanced 题中按遗忘曲线 + 种子随机 组出今日 100 题 */
+    function buildDailyList(dateKey) {
+      const pool = ALL.map((q, gi) => ({ q, gi })).filter(x => x.q.type === 'basic' || x.q.type === 'advanced');
+      if (!pool.length) return [];
+
+      const now = Date.now();
+      const rand = dpRand(dateToSeed(dateKey));
+
+      // 1. 错题与艾宾浩斯复习题（最高优先级）：
+      // 包含：wrongs 集合中的错题、有净错误频次的题 (wrongCounts > correctCounts)、以及 SRS 已到期的题
+      const needReview = [];
+      const fresh = [];
+      const reviewed = [];
+
+      pool.forEach(x => {
+        const gi = x.gi;
+        const st = srsData[gi];
+        const isSrsDue = Boolean(st && st.stage > 0 && st.dueDate && st.dueDate <= now);
+        const isWrong = wrongs.has(gi) || ((wrongCounts[gi] || 0) > (correctCounts[gi] || 0));
+
+        if (isWrong || isSrsDue) {
+          // 紧迫度评分：错得越多、SRS 阶段越低或逾期，权重越高
+          let urgency = 1;
+          if (wrongCounts[gi]) urgency += wrongCounts[gi] * 2;
+          if (isSrsDue) urgency += 3;
+          needReview.push({ ...x, urgency });
+        } else if (!record[gi] && (!st || st.stage === 0)) {
+          fresh.push(x);
+        } else {
+          reviewed.push(x);
+        }
+      });
+
+      // 错题按遗忘紧迫度降序排序
+      needReview.sort((a, b) => b.urgency - a.urgency);
+
+      // 种子伪随机打乱
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(rand() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      const sReview = needReview.map(x => x.gi);
+      const sFresh = shuffle(fresh).map(x => x.gi);
+      const sReviewed = shuffle(reviewed).map(x => x.gi);
+
+      // 按优先级填满 100 题（去重）
+      const seen = new Set();
+      const selected = [];
+      for (const arr of [sReview, sFresh, sReviewed]) {
+        for (const gi of arr) {
+          if (!seen.has(gi)) {
+            seen.add(gi);
+            selected.push(gi);
+          }
+          if (selected.length >= DAILY_TOTAL) break;
+        }
+        if (selected.length >= DAILY_TOTAL) break;
+      }
+
+      // 题目不足 100 道时循环补充（将 pool 整体再次随机抽取）
+      if (selected.length < DAILY_TOTAL) {
+        for (const x of shuffle(pool)) {
+          if (!seen.has(x.gi)) {
+            seen.add(x.gi);
+            selected.push(x.gi);
+          }
+          if (selected.length >= DAILY_TOTAL) break;
+        }
+      }
+
+      // 最终将选出的 100 题用种子随机洗牌（错题与新题自然穿插分布，符合“顺序不重要”的要求）
+      return shuffle(selected.slice(0, DAILY_TOTAL));
+    }
+
+    /* 保存每日进度 */
+    function saveDailyProgress() {
+      try {
+        const data = {
+          dateKey: dpDateKey,
+          list: dpList,
+          dpRecord,
+          dpIdx,
+          dpCorrect,
+          dpWrong
+        };
+        localStorage.setItem(DAILY_STORAGE_KEY, JSON.stringify(data));
+      } catch(e) {}
+    }
+
+    /* 加载每日进度（若日期不匹配则丢弃） */
+    function loadDailyProgress(todayKey) {
+      try {
+        const raw = localStorage.getItem(DAILY_STORAGE_KEY);
+        if (!raw) return false;
+        const data = JSON.parse(raw);
+        if (data.dateKey !== todayKey) return false;  // 已是新的一天
+        dpList = data.list || [];
+        dpRecord = data.dpRecord || {};
+        dpIdx = data.dpIdx || 0;
+        dpCorrect = data.dpCorrect || 0;
+        dpWrong = data.dpWrong || 0;
+        return dpList.length > 0;
+      } catch(e) { return false; }
+    }
+
+    /* 计算今日答题进度并更新入口按钮角标 */
+    function updateDailyBadge() {
+      const todayKey = getTodayKey();
+      try {
+        const raw = localStorage.getItem(DAILY_STORAGE_KEY);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        if (data.dateKey !== todayKey) return;
+        const done = Object.keys(data.dpRecord || {}).length;
+        const total = (data.list || []).length;
+        const badge = document.getElementById('dailyBadge');
+        if (!badge) return;
+        if (done >= total && total > 0) {
+          badge.textContent = '✓ 已完成';
+          badge.style.display = 'inline';
+          badge.style.background = '#10b981';
+        } else if (done > 0) {
+          badge.textContent = `${done}/${total}`;
+          badge.style.display = 'inline';
+          badge.style.background = '#f59e0b';
+        } else {
+          badge.style.display = 'none';
+        }
+      } catch(e) {}
+    }
+
+    /* 打开每日一练 */
+    function openDailyPractice() {
+      dpActive = true;
+      dpDateKey = getTodayKey();
+
+      if (!loadDailyProgress(dpDateKey)) {
+        // 今天首次打开，生成新题单
+        dpList = buildDailyList(dpDateKey);
+        dpRecord = {};
+        dpIdx = 0;
+        dpCorrect = 0;
+        dpWrong = 0;
+        saveDailyProgress();
+      }
+
+      // 定位到第一道未答题
+      const firstUnanswered = dpList.findIndex(gi => !dpRecord[gi]);
+      dpIdx = firstUnanswered !== -1 ? firstUnanswered : 0;
+
+      document.getElementById('dailyOverlay').classList.remove('hidden');
+      dpRender();
+    }
+
+    /* 退出每日一练 */
+    function exitDaily() {
+      dpActive = false;
+      document.getElementById('dailyOverlay').classList.add('hidden');
+      document.getElementById('dailyFinishScreen').classList.add('hidden');
+      updateDailyBadge();
+      stats();
+      if (typeof updateFilterCounts === 'function') updateFilterCounts();
+    }
+
+    /* 渲染当前题目 */
+    function dpRender() {
+      const area = document.getElementById('dailyCardArea');
+      if (!area || !dpList.length) return;
+
+      const gi = dpList[dpIdx];
+      const q = ALL[gi];
+      if (!q) { dpUpdateHUD(); return; }
+
+      const done = dpRecord[gi];
+
+      let tagCls = 'tag-basic', tagText = '基础题';
+      if (q.type === 'advanced') { tagCls = 'tag-advanced'; tagText = '进阶题'; }
+
+      let h = `<div class="q-card">
+    <div class="q-meta">
+      <span class="q-tag ${tagCls}">${tagText}</span>
+      <span class="q-counter">${dpIdx + 1} / ${dpList.length}</span>
+    </div>
+    <div class="q-text">${esc(q.question)}</div>`;
+
+      if (q.options) {
+        h += `<div class="options-list">`;
+        for (const [k, v] of Object.entries(q.options)) {
+          let c = done ? 'locked' : '';
+          if (done && k === q.answer) c += ' is-correct';
+          if (done && done.chosen === k && !done.correct) c += ' is-wrong';
+          let optLabel;
+          if (done) {
+            const m = wordMeaningMap[(v || '').trim().toLowerCase()];
+            if (k === q.answer) {
+              optLabel = `${esc(v)}`;
+            } else {
+              optLabel = `<b>${esc(v)}</b>${m ? `<span style="color:#e2e8f0;font-weight:600;margin-left:8px">${esc(m)}</span>` : ''}`;
+            }
+          } else {
+            optLabel = esc(v);
+          }
+          h += `<button class="opt ${c}" onclick="dpPickChoice('${k}',${gi})">
+        <span class="opt-key">${k}</span><span class="opt-label">${optLabel}</span>
+      </button>`;
+        }
+        h += `</div>`;
+      }
+
+      // 答案反馈
+      if (done) {
+        let extraInfo = '';
+        if (q.word && q.meaning) {
+          const safeWord = (q.word || '').replace(/'/g, "\\'" );
+          extraInfo += `<div class="answer-word">
+            <span>📖 <b>${esc(q.word)}</b> ${esc(q.meaning)}</span>
+            <button class="speak-btn" onclick="event.stopPropagation();speakWord('${safeWord}', this)" title="点击朗读">🔊</button>
+          </div>`;
+        }
+        if (q.technique_tip) extraInfo += `<div class="answer-detail-row answer-tip">${esc(q.technique_tip)}</div>`;
+        if (q.phrase) extraInfo += `<div class="answer-detail-row answer-phrase">📌 <b>考点搭配:</b> ${esc(q.phrase)}</div>`;
+        if (q.mnemonic) extraInfo += `<div class="answer-detail-row answer-mnemonic">${esc(q.mnemonic)}</div>`;
+        if (q.family_note) extraInfo += `<div class="answer-detail-row answer-family">🌱 <b>家族串记:</b> ${esc(q.family_note)}</div>`;
+
+        if (done.correct) {
+          h += `<div class="result r-correct"><span class="result-icon">✓</span><div class="result-body">回答正确${extraInfo}</div></div>`;
+        } else {
+          const at = q.answer + '. ' + (q.options ? q.options[q.answer] : '');
+          h += `<div class="result r-wrong"><span class="result-icon">✗</span><div class="result-body">回答错误<span class="answer-text">${esc(at)}</span>${extraInfo}</div></div>`;
+        }
+      }
+
+      h += `</div>`;
+      area.innerHTML = h;
+      dpUpdateHUD();
+      dpUpdateNav();
+    }
+
+    /* 更新顶部 HUD */
+    function dpUpdateHUD() {
+      const total = dpList.length;
+      const done = Object.keys(dpRecord).length;
+      document.getElementById('dailyProgressLabel').textContent = `今日进度 ${done} / ${total}`;
+      document.getElementById('dailyProgressBar').style.width = total ? `${done / total * 100}%` : '0%';
+      document.getElementById('dailyScoreCorrect').textContent = `✓ ${dpCorrect}`;
+      document.getElementById('dailyScoreWrong').textContent = `✗ ${dpWrong}`;
+      document.getElementById('dailyNavPos').textContent = `${dpIdx + 1} / ${total}`;
+
+      // 若今日 100 题已作答完毕，HUD 显示“🏆 今日战报”入口，方便随时重新打开查看或复盘
+      const reportBtn = document.getElementById('dailyReportBtn');
+      if (reportBtn) {
+        reportBtn.style.display = (done >= total && total > 0) ? 'inline-flex' : 'none';
+      }
+    }
+
+    /* 更新底部导航按钮 */
+    function dpUpdateNav() {
+      const gi = dpList[dpIdx];
+      const isDone = Boolean(dpRecord[gi]);
+      const btnPrev = document.getElementById('dailyBtnPrev');
+      const btnNext = document.getElementById('dailyBtnNext');
+      if (btnPrev) btnPrev.disabled = dpIdx <= 0;
+      if (btnNext) {
+        btnNext.disabled = dpIdx >= dpList.length - 1;
+        if (isDone && dpIdx < dpList.length - 1) {
+          btnNext.classList.add('dn-highlight');
+        } else {
+          btnNext.classList.remove('dn-highlight');
+        }
+      }
+    }
+
+    /* 答题 */
+    function dpPickChoice(k, gi) {
+      if (dpRecord[gi]) return;
+      const q = ALL[gi];
+      const correct = k === q.answer;
+      dpRecord[gi] = { chosen: k, correct };
+      if (correct) dpCorrect++;
+      else dpWrong++;
+
+      // 更新全局 SRS
+      updateSRS(gi, correct);
+      // 更新全局错误计数（供遗忘曲线使用）
+      if (correct) {
+        correctCounts[gi] = (correctCounts[gi] || 0) + 1;
+      } else {
+        wrongCounts[gi] = (wrongCounts[gi] || 0) + 1;
+        wrongs.add(gi);
+      }
+      saveProgress();      // 同步保存全局进度（包含错题记录与SRS）
+      saveDailyProgress(); // 保存今日每日一练进度
+      dpRender();
+
+      // 答完 100 题自动弹出完成报告
+      const answeredCount = Object.keys(dpRecord).length;
+      if (answeredCount >= dpList.length) {
+        setTimeout(showDailyFinish, 500);
+      } else {
+        // 自动滚动显示下一题按钮
+        requestAnimationFrame(() => {
+          setTimeout(dpEnsureNavVisible, 60);
+          setTimeout(dpEnsureNavVisible, 200);
+        });
+      }
+    }
+
+    /* 确保导航按钮可见（针对全屏 overlay 进行容器滚动）*/
+    function dpEnsureNavVisible() {
+      const nav = document.querySelector('.daily-nav');
+      const overlay = document.getElementById('dailyOverlay');
+      if (!nav || !overlay) return;
+      const rect = nav.getBoundingClientRect();
+      const safeMargin = 24;
+      const overflow = rect.bottom - (window.innerHeight - safeMargin);
+      if (overflow > 2) {
+        overlay.scrollTo({ top: Math.ceil(overlay.scrollTop + overflow), behavior: 'smooth' });
+      }
+    }
+
+    /* 导航上/下一题 */
+    function dailyGo(d) {
+      dpIdx = Math.max(0, Math.min(dpIdx + d, dpList.length - 1));
+      saveDailyProgress();
+      // 翻题时回到顶部
+      const overlay = document.getElementById('dailyOverlay');
+      if (overlay) overlay.scrollTo({ top: 0, behavior: 'smooth' });
+      dpRender();
+    }
+
+    /* 显示完成报告 */
+    function showDailyFinish() {
+      const screen = document.getElementById('dailyFinishScreen');
+      if (!screen) return;
+
+      const total = dpList.length;
+      const acc = Math.round(dpCorrect / total * 100);
+      let grade, gradeCls, msg;
+      if (acc >= 95) { grade = 'S · 超神！'; gradeCls = 'dfg-s'; msg = '今天的词汇全部掌握，考研词汇无难题 🏆'; }
+      else if (acc >= 80) { grade = 'A · 优秀'; gradeCls = 'dfg-a'; msg = `正确率 ${acc}%，继续保持！明天见 💪`; }
+      else if (acc >= 60) { grade = 'B · 良好'; gradeCls = 'dfg-b'; msg = `正确率 ${acc}%，错题已加入复习计划 📚`; }
+      else { grade = 'C · 需努力'; gradeCls = 'dfg-c'; msg = `正确率 ${acc}%，今天的错题明天会重点复习 🔄`; }
+
+      const today = dpDateKey.replace(/-/g, ' 年 ').replace(' 年 ', ' 年 ').replace(' 年 ', ' 月 ') + ' 日';
+
+      screen.innerHTML = `
+        <div class="daily-finish-wrap">
+          <div class="daily-finish-icon">${acc >= 80 ? '🎉' : acc >= 60 ? '📖' : '💪'}</div>
+          <div class="daily-finish-title">每日一练完成！</div>
+          <div class="daily-finish-date">${dpDateKey} · 今日 ${total} 题全部作答</div>
+          <div class="daily-finish-stats">
+            <div class="daily-finish-stat">
+              <div class="dfs-val c-total">${total}</div>
+              <div class="dfs-label">总题数</div>
+            </div>
+            <div class="daily-finish-stat">
+              <div class="dfs-val c-correct">${dpCorrect}</div>
+              <div class="dfs-label">答对</div>
+            </div>
+            <div class="daily-finish-stat">
+              <div class="dfs-val c-wrong">${dpWrong}</div>
+              <div class="dfs-label">答错</div>
+            </div>
+          </div>
+          <div class="daily-finish-grade ${gradeCls}">${grade}</div>
+          <div style="color:#94a3b8;font-size:0.85rem;margin-bottom:24px;line-height:1.6">${msg}<br><span style="color:#6366f1;font-size:0.78rem;margin-top:6px;display:inline-block">✨ 错题已自动纳入记忆曲线，明天将重点复习</span></div>
+          <div class="daily-finish-btns">
+            <button class="dfb-primary" onclick="exitDaily()">✅ 完成，回到主页</button>
+            <button class="dfb-secondary" onclick="reviewDailyWrongs()">📖 复盘今日错题</button>
+          </div>
+        </div>
+      `;
+      screen.classList.remove('hidden');
+      setTimeout(() => fireConfetti(), 300);
+    }
+
+    /* 复盘错题（回到每日一练界面，定位到第一道错题）*/
+    function reviewDailyWrongs() {
+      document.getElementById('dailyFinishScreen').classList.add('hidden');
+      // 定位到第一道错题
+      const firstWrong = dpList.findIndex(gi => dpRecord[gi] && !dpRecord[gi].correct);
+      dpIdx = firstWrong !== -1 ? firstWrong : 0;
+      dpRender();
+    }
+
+    /* 每次题库加载完后初始化角标 */
+    function initDailyBadge() {
+      updateDailyBadge();
+    }
+
   </script>
   <!-- ===== 游戏特效叠加层 ===== -->
   <!-- 受击红色四周渐变 -->
