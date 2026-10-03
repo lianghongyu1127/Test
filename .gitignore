@@ -5,3 +5,17 @@
 !index.html
 !questions_english.json
 !.gitignore
+!README.md
+
+# Except GitHub Actions
+!.github/
+!.github/**
+
+# Except Android Project Source
+!android/
+!android/**
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+
