@@ -1007,7 +1007,17 @@
       border-radius: 6px;
     }
     .daily-score-badge .ds-correct { background: rgba(16,185,129,0.15); color: #34d399; }
-    .daily-score-badge .ds-wrong { background: rgba(244,63,94,0.15); color: #fb7185; }
+    .daily-score-badge .ds-wrong {
+      background: rgba(244,63,94,0.15);
+      color: #fb7185;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .daily-score-badge .ds-wrong:hover {
+      background: rgba(244,63,94,0.3);
+      color: #fff;
+      box-shadow: 0 0 10px rgba(244,63,94,0.4);
+    }
 
     /* Main card area */
     .daily-main {
@@ -2112,6 +2122,7 @@
       <div style="display:flex;align-items:center;gap:8px;">
         <button class="daily-exit-btn" onclick="exitDaily()">✕ 退出</button>
         <button class="daily-exit-btn" id="dailyReportBtn" onclick="showDailyFinish()" style="display:none;background:rgba(16,185,129,0.18);border-color:rgba(16,185,129,0.45);color:#6ee7b7">🏆 今日战报</button>
+        <button class="daily-exit-btn" id="dailyReviewBtn" onclick="toggleDailyReviewMode()" style="display:none;background:rgba(244,63,94,0.18);border-color:rgba(244,63,94,0.45);color:#fda4af">📖 错题复盘 (<span id="dailyReviewWrongCount">0</span>)</button>
       </div>
       <div class="daily-progress-wrap">
         <div class="daily-progress-label" id="dailyProgressLabel">今日进度 0 / 100</div>
@@ -2121,7 +2132,7 @@
       </div>
       <div class="daily-score-badge">
         <span class="ds-correct" id="dailyScoreCorrect">✓ 0</span>
-        <span class="ds-wrong" id="dailyScoreWrong">✗ 0</span>
+        <span class="ds-wrong" id="dailyScoreWrong" onclick="toggleDailyReviewMode()" title="点击复盘今日错题" style="cursor:pointer">✗ 0</span>
       </div>
     </div>
     <!-- 题目区 -->
@@ -2892,10 +2903,12 @@
       // 1. 每日一练模式
       if (dpActive) {
         if (e.key === 'Escape') {
-          exitDaily();
+          if (dpReviewMode) toggleDailyReviewMode();
+          else exitDaily();
           return;
         }
-        const gi = dpList[dpIdx];
+        const wrongList = getDailyWrongList();
+        const gi = dpReviewMode ? wrongList[dpReviewIdx] : dpList[dpIdx];
         const isDone = Boolean(dpRecord[gi]);
         if (e.key === 'ArrowLeft') {
           dailyGo(-1);
@@ -3986,10 +3999,34 @@
     let dpWrong = 0;
     let dpDateKey = '';        // 今日日期 YYYY-MM-DD
     let dpScrollTimers = [];   // 滚动定时器句柄集合
+    let dpReviewMode = false;  // 是否处于今日错题复盘模式
+    let dpReviewIdx = 0;       // 今日错题复盘当前索引
 
     function clearDpScrollTimers() {
       dpScrollTimers.forEach(t => clearTimeout(t));
       dpScrollTimers = [];
+    }
+
+    /* 获取今日答错题目的全局索引列表 */
+    function getDailyWrongList() {
+      return dpList.filter(gi => dpRecord[gi] && !dpRecord[gi].correct);
+    }
+
+    /* 进入/退出今日错题复盘模式 */
+    function toggleDailyReviewMode() {
+      const wrongs = getDailyWrongList();
+      if (!dpReviewMode) {
+        if (wrongs.length === 0) {
+          alert('太棒了！今日目前还没有答错的题目 🎉');
+          return;
+        }
+        dpReviewMode = true;
+        dpReviewIdx = 0;
+      } else {
+        dpReviewMode = false;
+      }
+      forceDailyTop();
+      dpRender();
     }
 
     /* 简单线性同余伪随机（种子确定性）*/
@@ -4180,6 +4217,8 @@
     function exitDaily() {
       clearDpScrollTimers();
       dpActive = false;
+      dpReviewMode = false;
+      dpReviewIdx = 0;
       document.getElementById('dailyOverlay').classList.add('hidden');
       document.getElementById('dailyFinishScreen').classList.add('hidden');
       updateDailyBadge();
@@ -4192,7 +4231,12 @@
       const area = document.getElementById('dailyCardArea');
       if (!area || !dpList.length) return;
 
-      const gi = dpList[dpIdx];
+      const wrongList = getDailyWrongList();
+      if (dpReviewMode && wrongList.length === 0) {
+        dpReviewMode = false;
+      }
+
+      const gi = dpReviewMode ? wrongList[dpReviewIdx] : dpList[dpIdx];
       const q = ALL[gi];
       if (!q) { dpUpdateHUD(); return; }
 
@@ -4201,10 +4245,23 @@
       let tagCls = 'tag-basic', tagText = '基础题';
       if (q.type === 'advanced') { tagCls = 'tag-advanced'; tagText = '进阶题'; }
 
-      let h = `<div class="q-card">
+      let counterText = `${dpIdx + 1} / ${dpList.length}`;
+      let reviewBanner = '';
+      if (dpReviewMode) {
+        tagCls = 'tag-cloze50';
+        tagText = '🔴 错题专练';
+        counterText = `错题 ${dpReviewIdx + 1} / ${wrongList.length}`;
+        reviewBanner = `
+          <div style="background:rgba(244,63,94,0.12);border:1px solid rgba(244,63,94,0.3);border-radius:10px;padding:9px 14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;font-size:0.82rem;color:#fda4af;backdrop-filter:blur(8px);">
+            <span>📝 正在复盘今日错题 (${dpReviewIdx + 1}/${wrongList.length})</span>
+            <button onclick="toggleDailyReviewMode()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:6px;color:#fff;cursor:pointer;font-weight:600;font-size:0.75rem;padding:3px 10px;">✕ 退出复盘</button>
+          </div>`;
+      }
+
+      let h = `${reviewBanner}<div class="q-card">
     <div class="q-meta">
       <span class="q-tag ${tagCls}">${tagText}</span>
-      <span class="q-counter">${dpIdx + 1} / ${dpList.length}</span>
+      <span class="q-counter">${counterText}</span>
     </div>
     <div class="q-text">${esc(q.question)}</div>`;
 
@@ -4263,34 +4320,77 @@
 
     /* 更新顶部 HUD */
     function dpUpdateHUD() {
+      const wrongList = getDailyWrongList();
+      const wrongCount = wrongList.length;
+
       const total = dpList.length;
       const done = Object.keys(dpRecord).length;
-      document.getElementById('dailyProgressLabel').textContent = `今日进度 ${done} / ${total}`;
-      document.getElementById('dailyProgressBar').style.width = total ? `${done / total * 100}%` : '0%';
+
+      const reviewBtn = document.getElementById('dailyReviewBtn');
+      if (reviewBtn) {
+        if (dpReviewMode) {
+          reviewBtn.style.display = 'inline-flex';
+          reviewBtn.innerHTML = `↩ 退出复盘`;
+          reviewBtn.style.background = 'rgba(99,102,241,0.2)';
+          reviewBtn.style.borderColor = 'rgba(99,102,241,0.5)';
+          reviewBtn.style.color = '#c7d2fe';
+        } else if (wrongCount > 0) {
+          reviewBtn.style.display = 'inline-flex';
+          reviewBtn.innerHTML = `📖 错题复盘 (<span id="dailyReviewWrongCount">${wrongCount}</span>)`;
+          reviewBtn.style.background = 'rgba(244,63,94,0.18)';
+          reviewBtn.style.borderColor = 'rgba(244,63,94,0.45)';
+          reviewBtn.style.color = '#fda4af';
+        } else {
+          reviewBtn.style.display = 'none';
+        }
+      }
+
+      if (dpReviewMode) {
+        document.getElementById('dailyProgressLabel').innerHTML = `<span style="color:#fb7185;font-weight:700">🔴 今日错题复盘</span> ${dpReviewIdx + 1} / ${wrongCount}`;
+        document.getElementById('dailyProgressBar').style.width = wrongCount ? `${(dpReviewIdx + 1) / wrongCount * 100}%` : '0%';
+        document.getElementById('dailyProgressBar').style.background = 'linear-gradient(90deg, #f43f5e, #fb7185)';
+        document.getElementById('dailyNavPos').textContent = `错题 ${dpReviewIdx + 1} / ${wrongCount}`;
+      } else {
+        document.getElementById('dailyProgressLabel').textContent = `今日进度 ${done} / ${total}`;
+        document.getElementById('dailyProgressBar').style.width = total ? `${done / total * 100}%` : '0%';
+        document.getElementById('dailyProgressBar').style.background = 'linear-gradient(90deg, #6366f1, #0ea5e9)';
+        document.getElementById('dailyNavPos').textContent = `${dpIdx + 1} / ${total}`;
+      }
+
       document.getElementById('dailyScoreCorrect').textContent = `✓ ${dpCorrect}`;
       document.getElementById('dailyScoreWrong').textContent = `✗ ${dpWrong}`;
-      document.getElementById('dailyNavPos').textContent = `${dpIdx + 1} / ${total}`;
 
       // 若今日 100 题已作答完毕，HUD 显示“🏆 今日战报”入口，方便随时重新打开查看或复盘
       const reportBtn = document.getElementById('dailyReportBtn');
       if (reportBtn) {
-        reportBtn.style.display = (done >= total && total > 0) ? 'inline-flex' : 'none';
+        reportBtn.style.display = (done >= total && total > 0 && !dpReviewMode) ? 'inline-flex' : 'none';
       }
     }
 
     /* 更新底部导航按钮 */
     function dpUpdateNav() {
-      const gi = dpList[dpIdx];
-      const isDone = Boolean(dpRecord[gi]);
       const btnPrev = document.getElementById('dailyBtnPrev');
       const btnNext = document.getElementById('dailyBtnNext');
-      if (btnPrev) btnPrev.disabled = dpIdx <= 0;
-      if (btnNext) {
-        btnNext.disabled = dpIdx >= dpList.length - 1;
-        if (isDone && dpIdx < dpList.length - 1) {
-          btnNext.classList.add('dn-highlight');
-        } else {
+
+      if (dpReviewMode) {
+        const wrongList = getDailyWrongList();
+        const total = wrongList.length;
+        if (btnPrev) btnPrev.disabled = dpReviewIdx <= 0;
+        if (btnNext) {
+          btnNext.disabled = dpReviewIdx >= total - 1;
           btnNext.classList.remove('dn-highlight');
+        }
+      } else {
+        const gi = dpList[dpIdx];
+        const isDone = Boolean(dpRecord[gi]);
+        if (btnPrev) btnPrev.disabled = dpIdx <= 0;
+        if (btnNext) {
+          btnNext.disabled = dpIdx >= dpList.length - 1;
+          if (isDone && dpIdx < dpList.length - 1) {
+            btnNext.classList.add('dn-highlight');
+          } else {
+            btnNext.classList.remove('dn-highlight');
+          }
         }
       }
     }
@@ -4376,8 +4476,15 @@
         document.activeElement.blur();
       }
 
-      dpIdx = Math.max(0, Math.min(dpIdx + d, dpList.length - 1));
-      saveDailyProgress();
+      if (dpReviewMode) {
+        const wrongList = getDailyWrongList();
+        if (wrongList.length > 0) {
+          dpReviewIdx = Math.max(0, Math.min(dpReviewIdx + d, wrongList.length - 1));
+        }
+      } else {
+        dpIdx = Math.max(0, Math.min(dpIdx + d, dpList.length - 1));
+        saveDailyProgress();
+      }
 
       // 3. 渲染前强制置顶
       forceDailyTop();
@@ -4438,13 +4545,12 @@
       setTimeout(() => fireConfetti(), 300);
     }
 
-    /* 复盘错题（回到每日一练界面，定位到第一道错题）*/
+    /* 复盘错题（直接进入今日错题复盘模式）*/
     function reviewDailyWrongs() {
       clearDpScrollTimers();
       document.getElementById('dailyFinishScreen').classList.add('hidden');
-      // 定位到第一道错题
-      const firstWrong = dpList.findIndex(gi => dpRecord[gi] && !dpRecord[gi].correct);
-      dpIdx = firstWrong !== -1 ? firstWrong : 0;
+      dpReviewMode = true;
+      dpReviewIdx = 0;
       forceDailyTop();
       dpRender();
       forceDailyTop();
