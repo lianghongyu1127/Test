@@ -32,6 +32,8 @@ jobs:
         run: |
           mkdir -p android/app/src/main/assets
           cp index.html android/app/src/main/assets/index.html
+          cp questions_english.json android/app/src/main/assets/questions_english.json
+          if [ -d "assets" ]; then cp -r assets android/app/src/main/assets/; fi
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
