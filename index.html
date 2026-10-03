@@ -252,7 +252,6 @@
       animation: slideUp 0.4s ease-out;
       position: relative;
       overflow: hidden;
-      scroll-margin-top: 16px;
       overflow-anchor: none;
     }
 
@@ -2798,9 +2797,6 @@
       if (card) {
         const topPos = card.getBoundingClientRect().top + window.scrollY - 16;
         window.scrollTo({ top: Math.max(0, Math.ceil(topPos)), behavior: 'instant' });
-        if (card.scrollIntoView) {
-          card.scrollIntoView({ block: 'start', behavior: 'instant' });
-        }
       }
     }
 
@@ -4356,7 +4352,7 @@
       }
     }
 
-    /* 强制全环境（移动端/PC/WebView）瞬间重置置顶到题目卡片顶部 */
+    /* 强制全环境（移动端/PC/WebView）瞬间重置每日一练滚动至最顶端（保持卡片与HUD的正常间距） */
     function forceDailyTop() {
       if (document.activeElement && document.activeElement.blur) {
         document.activeElement.blur();
@@ -4368,11 +4364,6 @@
       if (window.scrollY !== 0) window.scrollTo(0, 0);
       if (document.documentElement && document.documentElement.scrollTop !== 0) document.documentElement.scrollTop = 0;
       if (document.body && document.body.scrollTop !== 0) document.body.scrollTop = 0;
-
-      const card = document.querySelector('#dailyCardArea .q-card');
-      if (card && card.scrollIntoView) {
-        card.scrollIntoView({ block: 'start', behavior: 'instant' });
-      }
     }
 
     /* 导航上/下一题 */
