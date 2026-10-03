@@ -934,6 +934,7 @@
       display: flex;
       flex-direction: column;
       overflow-y: auto;
+      overflow-anchor: none;
       animation: fadeIn 0.3s ease;
     }
     .daily-overlay.hidden { display: none; }
@@ -3954,6 +3955,12 @@
     let dpCorrect = 0;
     let dpWrong = 0;
     let dpDateKey = '';        // 今日日期 YYYY-MM-DD
+    let dpScrollTimers = [];   // 滚动定时器句柄集合
+
+    function clearDpScrollTimers() {
+      dpScrollTimers.forEach(t => clearTimeout(t));
+      dpScrollTimers = [];
+    }
 
     /* 简单线性同余伪随机（种子确定性）*/
     function dpRand(seed) {
@@ -4113,6 +4120,7 @@
 
     /* 打开每日一练 */
     function openDailyPractice() {
+      clearDpScrollTimers();
       dpActive = true;
       dpDateKey = getTodayKey();
 
@@ -4130,12 +4138,19 @@
       const firstUnanswered = dpList.findIndex(gi => !dpRecord[gi]);
       dpIdx = firstUnanswered !== -1 ? firstUnanswered : 0;
 
+      const overlay = document.getElementById('dailyOverlay');
+      if (overlay) overlay.scrollTop = 0;
       document.getElementById('dailyOverlay').classList.remove('hidden');
       dpRender();
+      if (overlay) {
+        overlay.scrollTop = 0;
+        requestAnimationFrame(() => { overlay.scrollTop = 0; });
+      }
     }
 
     /* 退出每日一练 */
     function exitDaily() {
+      clearDpScrollTimers();
       dpActive = false;
       document.getElementById('dailyOverlay').classList.add('hidden');
       document.getElementById('dailyFinishScreen').classList.add('hidden');
@@ -4277,12 +4292,15 @@
       // 答完 100 题自动弹出完成报告
       const answeredCount = Object.keys(dpRecord).length;
       if (answeredCount >= dpList.length) {
+        clearDpScrollTimers();
         setTimeout(showDailyFinish, 500);
       } else {
+        // 先清理可能正在等待的上一次滚动定时器，防止快速操作产生竞态
+        clearDpScrollTimers();
         // 自动平滑滚动，确保作答后答案与知识点解析完整展现在眼前，无需手动滑动
         requestAnimationFrame(() => {
-          setTimeout(dpEnsureFeedbackVisible, 60);
-          setTimeout(dpEnsureFeedbackVisible, 220);
+          dpScrollTimers.push(setTimeout(dpEnsureFeedbackVisible, 60));
+          dpScrollTimers.push(setTimeout(dpEnsureFeedbackVisible, 220));
         });
       }
     }
@@ -4308,12 +4326,25 @@
 
     /* 导航上/下一题 */
     function dailyGo(d) {
+      // 1. 彻底清除上一题未执行完毕的向下滑动定时器，防止干扰新题目
+      clearDpScrollTimers();
+
       dpIdx = Math.max(0, Math.min(dpIdx + d, dpList.length - 1));
       saveDailyProgress();
-      // 翻题时回到顶部
+
       const overlay = document.getElementById('dailyOverlay');
-      if (overlay) overlay.scrollTo({ top: 0, behavior: 'smooth' });
+      // 2. 渲染前强制瞬间置顶（不用 smooth，避免中断卡在半途）
+      if (overlay) overlay.scrollTop = 0;
+
       dpRender();
+
+      // 3. 渲染完成后再次强制置顶，并借由下个渲染帧双重确保绝不卡在半截
+      if (overlay) {
+        overlay.scrollTop = 0;
+        requestAnimationFrame(() => {
+          overlay.scrollTop = 0;
+        });
+      }
     }
 
     /* 显示完成报告 */
@@ -4364,11 +4395,20 @@
 
     /* 复盘错题（回到每日一练界面，定位到第一道错题）*/
     function reviewDailyWrongs() {
+      clearDpScrollTimers();
       document.getElementById('dailyFinishScreen').classList.add('hidden');
       // 定位到第一道错题
       const firstWrong = dpList.findIndex(gi => dpRecord[gi] && !dpRecord[gi].correct);
       dpIdx = firstWrong !== -1 ? firstWrong : 0;
+      const overlay = document.getElementById('dailyOverlay');
+      if (overlay) overlay.scrollTop = 0;
       dpRender();
+      if (overlay) {
+        overlay.scrollTop = 0;
+        requestAnimationFrame(() => {
+          overlay.scrollTop = 0;
+        });
+      }
     }
 
     /* 每次题库加载完后初始化角标 */
