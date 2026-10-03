@@ -4279,24 +4279,30 @@
       if (answeredCount >= dpList.length) {
         setTimeout(showDailyFinish, 500);
       } else {
-        // 自动滚动显示下一题按钮
+        // 自动平滑滚动，确保作答后答案与知识点解析完整展现在眼前，无需手动滑动
         requestAnimationFrame(() => {
-          setTimeout(dpEnsureNavVisible, 60);
-          setTimeout(dpEnsureNavVisible, 200);
+          setTimeout(dpEnsureFeedbackVisible, 60);
+          setTimeout(dpEnsureFeedbackVisible, 220);
         });
       }
     }
 
-    /* 确保导航按钮可见（针对全屏 overlay 进行容器滚动）*/
-    function dpEnsureNavVisible() {
-      const nav = document.querySelector('.daily-nav');
+    /* 确保作答后答案解析与考点信息完整展现（自动平滑滚动进视口）*/
+    function dpEnsureFeedbackVisible() {
       const overlay = document.getElementById('dailyOverlay');
-      if (!nav || !overlay) return;
-      const rect = nav.getBoundingClientRect();
-      const safeMargin = 24;
-      const overflow = rect.bottom - (window.innerHeight - safeMargin);
-      if (overflow > 2) {
-        overlay.scrollTo({ top: Math.ceil(overlay.scrollTop + overflow), behavior: 'smooth' });
+      const resultEl = document.querySelector('#dailyCardArea .result');
+      if (!overlay || !resultEl) return;
+
+      const nav = document.querySelector('.daily-nav');
+      const navHeight = nav ? nav.offsetHeight : 64;
+      // 可视区底部留出导航栏高度 + 18px 呼吸间隙，确保内容绝不被底部吸底栏覆盖
+      const safeBottom = window.innerHeight - navHeight - 18;
+      const resultRect = resultEl.getBoundingClientRect();
+
+      // 如果答案反馈区的底部超出了安全下边界（被遮挡或在屏幕下方）
+      if (resultRect.bottom > safeBottom) {
+        const delta = Math.ceil(resultRect.bottom - safeBottom);
+        overlay.scrollBy({ top: delta, behavior: 'smooth' });
       }
     }
 
