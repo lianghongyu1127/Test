@@ -252,6 +252,8 @@
       animation: slideUp 0.4s ease-out;
       position: relative;
       overflow: hidden;
+      scroll-margin-top: 16px;
+      overflow-anchor: none;
     }
 
     .q-card::before {
@@ -2592,6 +2594,12 @@
       save(gi, k, k === ALL[gi].answer);
     }
 
+    let normalScrollTimers = [];
+    function clearNormalScrollTimers() {
+      normalScrollTimers.forEach(t => clearTimeout(t));
+      normalScrollTimers = [];
+    }
+
     function ensureNavVisible() {
       const nav = document.querySelector('.nav');
       if (!nav) return;
@@ -2618,10 +2626,11 @@
       saveProgress();
       render();
 
+      clearNormalScrollTimers();
       // 答题后，自动精准滚动，确保无论篇幅长短，“下一题”那一行完整清晰地展现在手机屏幕视野中
       requestAnimationFrame(() => {
-        setTimeout(ensureNavVisible, 60);
-        setTimeout(ensureNavVisible, 220);
+        normalScrollTimers.push(setTimeout(ensureNavVisible, 60));
+        normalScrollTimers.push(setTimeout(ensureNavVisible, 220));
       });
     }
 
@@ -2781,16 +2790,41 @@
     }
 
     // ===== 导航 =====
+    function resetNormalCardTop() {
+      if (document.activeElement && document.activeElement.blur) {
+        document.activeElement.blur();
+      }
+      const card = document.querySelector('#cardArea .q-card') || document.getElementById('cardArea');
+      if (card) {
+        const topPos = card.getBoundingClientRect().top + window.scrollY - 16;
+        window.scrollTo({ top: Math.max(0, Math.ceil(topPos)), behavior: 'instant' });
+        if (card.scrollIntoView) {
+          card.scrollIntoView({ block: 'start', behavior: 'instant' });
+        }
+      }
+    }
+
     function go(d) {
+      // 1. 彻底清除上一题未执行完毕的向下滚动定时器，防止干扰新题
+      clearNormalScrollTimers();
+      // 2. 移除当前按钮焦点，防止手机浏览器因焦点自动滚回底部
+      if (document.activeElement && document.activeElement.blur) {
+        document.activeElement.blur();
+      }
+
       idx += d;
       idx = Math.max(0, Math.min(idx, filtered.length - 1));
       saveProgress();
+
+      // 3. 渲染前即刻置顶
+      resetNormalCardTop();
       render();
-      const cardArea = document.getElementById('cardArea');
-      if (cardArea) {
-        const topPos = cardArea.getBoundingClientRect().top + window.scrollY - 20;
-        window.scrollTo({ top: topPos, behavior: 'smooth' });
-      }
+
+      // 4. 渲染后多帧确保置顶，防止手机端重绘及惯性导致滑到下面
+      resetNormalCardTop();
+      requestAnimationFrame(resetNormalCardTop);
+      setTimeout(resetNormalCardTop, 40);
+      setTimeout(resetNormalCardTop, 120);
     }
 
     function updateNav() {
@@ -4138,14 +4172,12 @@
       const firstUnanswered = dpList.findIndex(gi => !dpRecord[gi]);
       dpIdx = firstUnanswered !== -1 ? firstUnanswered : 0;
 
-      const overlay = document.getElementById('dailyOverlay');
-      if (overlay) overlay.scrollTop = 0;
       document.getElementById('dailyOverlay').classList.remove('hidden');
+      forceDailyTop();
       dpRender();
-      if (overlay) {
-        overlay.scrollTop = 0;
-        requestAnimationFrame(() => { overlay.scrollTop = 0; });
-      }
+      forceDailyTop();
+      requestAnimationFrame(forceDailyTop);
+      setTimeout(forceDailyTop, 40);
     }
 
     /* 退出每日一练 */
@@ -4324,27 +4356,49 @@
       }
     }
 
+    /* 强制全环境（移动端/PC/WebView）瞬间重置置顶到题目卡片顶部 */
+    function forceDailyTop() {
+      if (document.activeElement && document.activeElement.blur) {
+        document.activeElement.blur();
+      }
+      const overlay = document.getElementById('dailyOverlay');
+      if (overlay) {
+        overlay.scrollTop = 0;
+      }
+      if (window.scrollY !== 0) window.scrollTo(0, 0);
+      if (document.documentElement && document.documentElement.scrollTop !== 0) document.documentElement.scrollTop = 0;
+      if (document.body && document.body.scrollTop !== 0) document.body.scrollTop = 0;
+
+      const card = document.querySelector('#dailyCardArea .q-card');
+      if (card && card.scrollIntoView) {
+        card.scrollIntoView({ block: 'start', behavior: 'instant' });
+      }
+    }
+
     /* 导航上/下一题 */
     function dailyGo(d) {
       // 1. 彻底清除上一题未执行完毕的向下滑动定时器，防止干扰新题目
       clearDpScrollTimers();
 
+      // 2. 移除当前按钮焦点，防止手机浏览器因焦点自动滚回底部
+      if (document.activeElement && document.activeElement.blur) {
+        document.activeElement.blur();
+      }
+
       dpIdx = Math.max(0, Math.min(dpIdx + d, dpList.length - 1));
       saveDailyProgress();
 
-      const overlay = document.getElementById('dailyOverlay');
-      // 2. 渲染前强制瞬间置顶（不用 smooth，避免中断卡在半途）
-      if (overlay) overlay.scrollTop = 0;
+      // 3. 渲染前强制置顶
+      forceDailyTop();
 
+      // 4. 渲染新题目
       dpRender();
 
-      // 3. 渲染完成后再次强制置顶，并借由下个渲染帧双重确保绝不卡在半截
-      if (overlay) {
-        overlay.scrollTop = 0;
-        requestAnimationFrame(() => {
-          overlay.scrollTop = 0;
-        });
-      }
+      // 5. 渲染后即刻置顶 + 下一帧置顶 + 40ms/120ms多重保障彻底杜绝移动端惯性回弹
+      forceDailyTop();
+      requestAnimationFrame(forceDailyTop);
+      setTimeout(forceDailyTop, 40);
+      setTimeout(forceDailyTop, 120);
     }
 
     /* 显示完成报告 */
@@ -4400,15 +4454,11 @@
       // 定位到第一道错题
       const firstWrong = dpList.findIndex(gi => dpRecord[gi] && !dpRecord[gi].correct);
       dpIdx = firstWrong !== -1 ? firstWrong : 0;
-      const overlay = document.getElementById('dailyOverlay');
-      if (overlay) overlay.scrollTop = 0;
+      forceDailyTop();
       dpRender();
-      if (overlay) {
-        overlay.scrollTop = 0;
-        requestAnimationFrame(() => {
-          overlay.scrollTop = 0;
-        });
-      }
+      forceDailyTop();
+      requestAnimationFrame(forceDailyTop);
+      setTimeout(forceDailyTop, 40);
     }
 
     /* 每次题库加载完后初始化角标 */
