@@ -2138,11 +2138,18 @@
     <!-- 题目区 -->
     <div class="daily-main" id="dailyCardArea"></div>
     <!-- 底部导航 -->
-    <div class="daily-nav">
+    <div class="daily-nav" style="flex-direction:column;">
       <div class="daily-nav-inner">
         <button class="daily-nav-btn" id="dailyBtnPrev" onclick="dailyGo(-1)">◀ 上一题</button>
+        <button class="daily-nav-btn daily-btn-skip" id="dailyBtnSkip" onclick="dailyJumpNextUnanswered()" title="快速跳到下一道未答题">⚡ 下一未答</button>
         <span class="daily-nav-pos" id="dailyNavPos">1 / 100</span>
         <button class="daily-nav-btn" id="dailyBtnNext" onclick="dailyGo(1)">下一题 ▶</button>
+      </div>
+      <div class="daily-key-hints">
+        <span><kbd>A</kbd>-<kbd>D</kbd> 选题</span>
+        <span><kbd>←</kbd> <kbd>→</kbd> 翻页</span>
+        <span><kbd>J</kbd> 下一未答</span>
+        <span><kbd>Esc</kbd> 退出</span>
       </div>
     </div>
   </div>
@@ -2909,15 +2916,17 @@
         }
         const wrongList = getDailyWrongList();
         const gi = dpReviewMode ? wrongList[dpReviewIdx] : dpList[dpIdx];
-        const isDone = Boolean(dpRecord[gi]);
+        const isAnswered = dpReviewMode ? Boolean(dpReviewRecord[gi]) : Boolean(dpRecord[gi]);
         if (e.key === 'ArrowLeft') {
           dailyGo(-1);
-        } else if (e.key === 'ArrowRight' || ((e.key === ' ' || e.key === 'Enter') && isDone)) {
+        } else if (e.key === 'ArrowRight' || ((e.key === ' ' || e.key === 'Enter') && isAnswered)) {
           if (e.key === ' ') e.preventDefault();
           dailyGo(1);
+        } else if (e.key === 'j' || e.key === 'J') {
+          dailyJumpNextUnanswered();
         } else if (('1234'.includes(e.key) || 'abcdABCD'.includes(e.key)) && ALL[gi]?.options) {
           const chosenKey = numKeyMap[e.key] || e.key.toUpperCase();
-          if (!dpRecord[gi]) dpPickChoice(chosenKey, gi);
+          if (!isAnswered) dpPickChoice(chosenKey, gi);
         }
         return;
       }
@@ -3995,8 +4004,10 @@
     let dpList = [];           // 今日 100 题（全局索引数组）
     let dpIdx = 0;             // 当前题目位置
     let dpRecord = {};         // gi -> { chosen, correct }
+    let dpReviewRecord = {};   // 复盘模式重答记录 gi -> { chosen, correct }
     let dpCorrect = 0;
     let dpWrong = 0;
+    let dpStreak = 0;          // 连续答对计数
     let dpDateKey = '';        // 今日日期 YYYY-MM-DD
     let dpScrollTimers = [];   // 滚动定时器句柄集合
     let dpReviewMode = false;  // 是否处于今日错题复盘模式
@@ -4012,16 +4023,17 @@
       return dpList.filter(gi => dpRecord[gi] && !dpRecord[gi].correct);
     }
 
-    /* 进入/退出今日错题复盘模式 */
+    /* 进入/退出今日错题复盘模式（复盘支持重新作答强化） */
     function toggleDailyReviewMode() {
       const wrongs = getDailyWrongList();
       if (!dpReviewMode) {
         if (wrongs.length === 0) {
-          alert('太棒了！今日目前还没有答错的题目 🎉');
+          dpShowTip('太棒了！今日目前还没有答错的题目 🎉');
           return;
         }
         dpReviewMode = true;
         dpReviewIdx = 0;
+        dpReviewRecord = {}; // 每次开启复盘模式，重置复盘作答状态以供重答
       } else {
         dpReviewMode = false;
       }
@@ -4057,8 +4069,6 @@
       const now = Date.now();
       const rand = dpRand(dateToSeed(dateKey));
 
-      // 1. 错题与艾宾浩斯复习题（最高优先级）：
-      // 包含：wrongs 集合中的错题、有净错误频次的题 (wrongCounts > correctCounts)、以及 SRS 已到期的题
       const needReview = [];
       const fresh = [];
       const reviewed = [];
@@ -4070,7 +4080,6 @@
         const isWrong = wrongs.has(gi) || ((wrongCounts[gi] || 0) > (correctCounts[gi] || 0));
 
         if (isWrong || isSrsDue) {
-          // 紧迫度评分：错得越多、SRS 阶段越低或逾期，权重越高
           let urgency = 1;
           if (wrongCounts[gi]) urgency += wrongCounts[gi] * 2;
           if (isSrsDue) urgency += 3;
@@ -4082,10 +4091,8 @@
         }
       });
 
-      // 错题按遗忘紧迫度降序排序
       needReview.sort((a, b) => b.urgency - a.urgency);
 
-      // 种子伪随机打乱
       function shuffle(arr) {
         const a = [...arr];
         for (let i = a.length - 1; i > 0; i--) {
@@ -4099,7 +4106,6 @@
       const sFresh = shuffle(fresh).map(x => x.gi);
       const sReviewed = shuffle(reviewed).map(x => x.gi);
 
-      // 按优先级填满 100 题（去重）
       const seen = new Set();
       const selected = [];
       for (const arr of [sReview, sFresh, sReviewed]) {
@@ -4113,7 +4119,6 @@
         if (selected.length >= DAILY_TOTAL) break;
       }
 
-      // 题目不足 100 道时循环补充（将 pool 整体再次随机抽取）
       if (selected.length < DAILY_TOTAL) {
         for (const x of shuffle(pool)) {
           if (!seen.has(x.gi)) {
@@ -4124,7 +4129,6 @@
         }
       }
 
-      // 最终将选出的 100 题用种子随机洗牌（错题与新题自然穿插分布，符合“顺序不重要”的要求）
       return shuffle(selected.slice(0, DAILY_TOTAL));
     }
 
@@ -4137,7 +4141,8 @@
           dpRecord,
           dpIdx,
           dpCorrect,
-          dpWrong
+          dpWrong,
+          dpStreak
         };
         localStorage.setItem(DAILY_STORAGE_KEY, JSON.stringify(data));
       } catch(e) {}
@@ -4149,12 +4154,13 @@
         const raw = localStorage.getItem(DAILY_STORAGE_KEY);
         if (!raw) return false;
         const data = JSON.parse(raw);
-        if (data.dateKey !== todayKey) return false;  // 已是新的一天
+        if (data.dateKey !== todayKey) return false;
         dpList = data.list || [];
         dpRecord = data.dpRecord || {};
-        dpIdx = data.dpIdx || 0;
+        dpIdx = typeof data.dpIdx === 'number' ? data.dpIdx : 0;
         dpCorrect = data.dpCorrect || 0;
         dpWrong = data.dpWrong || 0;
+        dpStreak = data.dpStreak || 0;
         return dpList.length > 0;
       } catch(e) { return false; }
     }
@@ -4198,12 +4204,20 @@
         dpIdx = 0;
         dpCorrect = 0;
         dpWrong = 0;
+        dpStreak = 0;
         saveDailyProgress();
+        if (dpList.length < DAILY_TOTAL && dpList.length > 0) {
+          setTimeout(function() {
+            dpShowTip(`💡 题库共 ${dpList.length} 题，已全部纳入今日练习！`);
+          }, 600);
+        }
+      } else {
+        // 精确恢复上次退出的题目位置（合法性边界保护，不再强制跳到未答题）
+        if (dpIdx < 0 || dpIdx >= dpList.length) {
+          const firstUnanswered = dpList.findIndex(gi => !dpRecord[gi]);
+          dpIdx = firstUnanswered !== -1 ? firstUnanswered : 0;
+        }
       }
-
-      // 定位到第一道未答题
-      const firstUnanswered = dpList.findIndex(gi => !dpRecord[gi]);
-      dpIdx = firstUnanswered !== -1 ? firstUnanswered : 0;
 
       document.getElementById('dailyOverlay').classList.remove('hidden');
       forceDailyTop();
@@ -4219,6 +4233,7 @@
       dpActive = false;
       dpReviewMode = false;
       dpReviewIdx = 0;
+      dpReviewRecord = {};
       document.getElementById('dailyOverlay').classList.add('hidden');
       document.getElementById('dailyFinishScreen').classList.add('hidden');
       updateDailyBadge();
@@ -4240,7 +4255,8 @@
       const q = ALL[gi];
       if (!q) { dpUpdateHUD(); return; }
 
-      const done = dpRecord[gi];
+      // 当前答题状态：复盘模式取 dpReviewRecord，普通模式取 dpRecord
+      const currentRecord = dpReviewMode ? dpReviewRecord[gi] : dpRecord[gi];
 
       let tagCls = 'tag-basic', tagText = '基础题';
       if (q.type === 'advanced') { tagCls = 'tag-advanced'; tagText = '进阶题'; }
@@ -4253,7 +4269,7 @@
         counterText = `错题 ${dpReviewIdx + 1} / ${wrongList.length}`;
         reviewBanner = `
           <div style="background:rgba(244,63,94,0.12);border:1px solid rgba(244,63,94,0.3);border-radius:10px;padding:9px 14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;font-size:0.82rem;color:#fda4af;backdrop-filter:blur(8px);">
-            <span>📝 正在复盘今日错题 (${dpReviewIdx + 1}/${wrongList.length})</span>
+            <span>📝 正在复盘今日错题 (${dpReviewIdx + 1}/${wrongList.length}) · 可再次作答巩固</span>
             <button onclick="toggleDailyReviewMode()" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:6px;color:#fff;cursor:pointer;font-weight:600;font-size:0.75rem;padding:3px 10px;">✕ 退出复盘</button>
           </div>`;
       }
@@ -4268,11 +4284,11 @@
       if (q.options) {
         h += `<div class="options-list">`;
         for (const [k, v] of Object.entries(q.options)) {
-          let c = done ? 'locked' : '';
-          if (done && k === q.answer) c += ' is-correct';
-          if (done && done.chosen === k && !done.correct) c += ' is-wrong';
+          let c = currentRecord ? 'locked' : '';
+          if (currentRecord && k === q.answer) c += ' is-correct';
+          if (currentRecord && currentRecord.chosen === k && !currentRecord.correct) c += ' is-wrong';
           let optLabel;
-          if (done) {
+          if (currentRecord) {
             const m = wordMeaningMap[(v || '').trim().toLowerCase()];
             if (k === q.answer) {
               optLabel = `${esc(v)}`;
@@ -4289,11 +4305,11 @@
         h += `</div>`;
       }
 
-      // 答案反馈
-      if (done) {
+      // 答案反馈与考点解析
+      if (currentRecord) {
         let extraInfo = '';
         if (q.word && q.meaning) {
-          const safeWord = (q.word || '').replace(/'/g, "\\'" );
+          const safeWord = (q.word || '').replace(/'/g, "\\'");
           extraInfo += `<div class="answer-word">
             <span>📖 <b>${esc(q.word)}</b> ${esc(q.meaning)}</span>
             <button class="speak-btn" onclick="event.stopPropagation();speakWord('${safeWord}', this)" title="点击朗读">🔊</button>
@@ -4304,11 +4320,13 @@
         if (q.mnemonic) extraInfo += `<div class="answer-detail-row answer-mnemonic">${esc(q.mnemonic)}</div>`;
         if (q.family_note) extraInfo += `<div class="answer-detail-row answer-family">🌱 <b>家族串记:</b> ${esc(q.family_note)}</div>`;
 
-        if (done.correct) {
-          h += `<div class="result r-correct"><span class="result-icon">✓</span><div class="result-body">回答正确${extraInfo}</div></div>`;
+        if (currentRecord.correct) {
+          const bannerText = dpReviewMode ? '✓ 复盘重答正确！已强化记忆' : '回答正确';
+          h += `<div class="result r-correct"><span class="result-icon">✓</span><div class="result-body">${bannerText}${extraInfo}</div></div>`;
         } else {
           const at = q.answer + '. ' + (q.options ? q.options[q.answer] : '');
-          h += `<div class="result r-wrong"><span class="result-icon">✗</span><div class="result-body">回答错误<span class="answer-text">${esc(at)}</span>${extraInfo}</div></div>`;
+          const bannerText = dpReviewMode ? '✗ 复盘仍答错，请特别关注知识点：' : '回答错误';
+          h += `<div class="result r-wrong"><span class="result-icon">✗</span><div class="result-body">${bannerText}<span class="answer-text">${esc(at)}</span>${extraInfo}</div></div>`;
         }
       }
 
@@ -4325,6 +4343,7 @@
 
       const total = dpList.length;
       const done = Object.keys(dpRecord).length;
+      const remaining = Math.max(0, total - done);
 
       const reviewBtn = document.getElementById('dailyReviewBtn');
       if (reviewBtn) {
@@ -4351,7 +4370,10 @@
         document.getElementById('dailyProgressBar').style.background = 'linear-gradient(90deg, #f43f5e, #fb7185)';
         document.getElementById('dailyNavPos').textContent = `错题 ${dpReviewIdx + 1} / ${wrongCount}`;
       } else {
-        document.getElementById('dailyProgressLabel').textContent = `今日进度 ${done} / ${total}`;
+        const poolHint = (total > 0 && total < DAILY_TOTAL) ? ` <span style="color:#64748b">(池:${total})</span>` : '';
+        const remText = remaining > 0 ? `还剩 ${remaining} 题` : '🎉 全部作答';
+        document.getElementById('dailyProgressLabel').innerHTML =
+          `今日进度 ${done} / ${total}${poolHint}<span class="daily-rem-badge">${remText}</span>`;
         document.getElementById('dailyProgressBar').style.width = total ? `${done / total * 100}%` : '0%';
         document.getElementById('dailyProgressBar').style.background = 'linear-gradient(90deg, #6366f1, #0ea5e9)';
         document.getElementById('dailyNavPos').textContent = `${dpIdx + 1} / ${total}`;
@@ -4360,10 +4382,15 @@
       document.getElementById('dailyScoreCorrect').textContent = `✓ ${dpCorrect}`;
       document.getElementById('dailyScoreWrong').textContent = `✗ ${dpWrong}`;
 
-      // 若今日 100 题已作答完毕，HUD 显示“🏆 今日战报”入口，方便随时重新打开查看或复盘
       const reportBtn = document.getElementById('dailyReportBtn');
       if (reportBtn) {
         reportBtn.style.display = (done >= total && total > 0 && !dpReviewMode) ? 'inline-flex' : 'none';
+      }
+
+      const skipBtn = document.getElementById('dailyBtnSkip');
+      if (skipBtn) {
+        const hasUnanswered = dpList.some(function(gi) { return !dpRecord[gi]; });
+        skipBtn.style.display = (!dpReviewMode && hasUnanswered) ? 'inline-flex' : 'none';
       }
     }
 
@@ -4395,42 +4422,111 @@
       }
     }
 
-    /* 答题 */
+    /* 通用小提示 Toast */
+    function dpShowTip(msg) {
+      const el = document.createElement('div');
+      el.className = 'dp-streak-toast';
+      el.style.background = 'linear-gradient(135deg,rgba(99,102,241,0.95),rgba(14,165,233,0.95))';
+      el.style.color = '#fff';
+      el.textContent = msg;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1200);
+    }
+
+    /* 连击 Toast（连对 3/5/10/20 题时弹出）*/
+    function dpShowStreakToast(n) {
+      const msgs = { 3:'🔥 连对 3 题！手感火热！', 5:'⚡ 连对 5 题！状态爆棚！', 10:'🌟 连对 10 题！所向披靡！', 20:'🚀 连对 20 题！考研词汇封神！' };
+      const msg = msgs[n];
+      if (!msg) return;
+      const el = document.createElement('div');
+      el.className = 'dp-streak-toast';
+      el.textContent = msg;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 1200);
+    }
+
+    /* 答题（普通模式作答计入进度；复盘模式支持反复作答强化）*/
     function dpPickChoice(k, gi) {
-      if (dpRecord[gi]) return;
       const q = ALL[gi];
       const correct = k === q.answer;
-      dpRecord[gi] = { chosen: k, correct };
-      if (correct) dpCorrect++;
-      else dpWrong++;
 
-      // 更新全局 SRS
+      if (dpReviewMode) {
+        if (dpReviewRecord[gi]) return; // 复盘当前题已选过
+        dpReviewRecord[gi] = { chosen: k, correct };
+        dpRender();
+        clearDpScrollTimers();
+        requestAnimationFrame(() => {
+          dpScrollTimers.push(setTimeout(dpEnsureFeedbackVisible, 60));
+          dpScrollTimers.push(setTimeout(dpEnsureFeedbackVisible, 220));
+        });
+        return;
+      }
+
+      // 普通模式：已答则阻止重答
+      if (dpRecord[gi]) return;
+
+      dpRecord[gi] = { chosen: k, correct };
+      if (correct) {
+        dpCorrect++;
+        dpStreak++;
+        dpShowStreakToast(dpStreak);
+      } else {
+        dpWrong++;
+        dpStreak = 0;
+      }
+
+      // 更新全局 SRS 和错误计数
       updateSRS(gi, correct);
-      // 更新全局错误计数（供遗忘曲线使用）
       if (correct) {
         correctCounts[gi] = (correctCounts[gi] || 0) + 1;
       } else {
         wrongCounts[gi] = (wrongCounts[gi] || 0) + 1;
         wrongs.add(gi);
       }
-      saveProgress();      // 同步保存全局进度（包含错题记录与SRS）
-      saveDailyProgress(); // 保存今日每日一练进度
+      saveProgress();
+      saveDailyProgress();
       dpRender();
 
-      // 答完 100 题自动弹出完成报告
+      // 答完所有题自动弹出完成报告
       const answeredCount = Object.keys(dpRecord).length;
       if (answeredCount >= dpList.length) {
         clearDpScrollTimers();
         setTimeout(showDailyFinish, 500);
       } else {
-        // 先清理可能正在等待的上一次滚动定时器，防止快速操作产生竞态
         clearDpScrollTimers();
-        // 自动平滑滚动，确保作答后答案与知识点解析完整展现在眼前，无需手动滑动
         requestAnimationFrame(() => {
           dpScrollTimers.push(setTimeout(dpEnsureFeedbackVisible, 60));
           dpScrollTimers.push(setTimeout(dpEnsureFeedbackVisible, 220));
         });
       }
+    }
+
+    /* 快速跳到下一道未答题（当前位置往后找，找不到则从头找）*/
+    function dailyJumpNextUnanswered() {
+      if (dpReviewMode) return;
+      let found = -1;
+      for (let i = dpIdx + 1; i < dpList.length; i++) {
+        if (!dpRecord[dpList[i]]) { found = i; break; }
+      }
+      if (found === -1) {
+        for (let j = 0; j < dpIdx; j++) {
+          if (!dpRecord[dpList[j]]) { found = j; break; }
+        }
+      }
+      if (found === -1) {
+        dpShowTip('🎉 所有题目都已作答！');
+        return;
+      }
+      clearDpScrollTimers();
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      dpIdx = found;
+      saveDailyProgress();
+      forceDailyTop();
+      dpRender();
+      forceDailyTop();
+      requestAnimationFrame(forceDailyTop);
+      setTimeout(forceDailyTop, 40);
+      setTimeout(forceDailyTop, 120);
     }
 
     /* 确保作答后答案解析与考点信息完整展现（自动平滑滚动进视口）*/
@@ -4441,18 +4537,16 @@
 
       const nav = document.querySelector('.daily-nav');
       const navHeight = nav ? nav.offsetHeight : 64;
-      // 可视区底部留出导航栏高度 + 18px 呼吸间隙，确保内容绝不被底部吸底栏覆盖
       const safeBottom = window.innerHeight - navHeight - 18;
       const resultRect = resultEl.getBoundingClientRect();
 
-      // 如果答案反馈区的底部超出了安全下边界（被遮挡或在屏幕下方）
       if (resultRect.bottom > safeBottom) {
         const delta = Math.ceil(resultRect.bottom - safeBottom);
         overlay.scrollBy({ top: delta, behavior: 'smooth' });
       }
     }
 
-    /* 强制全环境（移动端/PC/WebView）瞬间重置每日一练滚动至最顶端（保持卡片与HUD的正常间距） */
+    /* 强制全环境瞬间重置每日一练滚动至最顶端 */
     function forceDailyTop() {
       if (document.activeElement && document.activeElement.blur) {
         document.activeElement.blur();
@@ -4468,10 +4562,7 @@
 
     /* 导航上/下一题 */
     function dailyGo(d) {
-      // 1. 彻底清除上一题未执行完毕的向下滑动定时器，防止干扰新题目
       clearDpScrollTimers();
-
-      // 2. 移除当前按钮焦点，防止手机浏览器因焦点自动滚回底部
       if (document.activeElement && document.activeElement.blur) {
         document.activeElement.blur();
       }
@@ -4486,39 +4577,71 @@
         saveDailyProgress();
       }
 
-      // 3. 渲染前强制置顶
       forceDailyTop();
-
-      // 4. 渲染新题目
       dpRender();
-
-      // 5. 渲染后即刻置顶 + 下一帧置顶 + 40ms/120ms多重保障彻底杜绝移动端惯性回弹
       forceDailyTop();
       requestAnimationFrame(forceDailyTop);
       setTimeout(forceDailyTop, 40);
       setTimeout(forceDailyTop, 120);
     }
 
-    /* 显示完成报告 */
+    /* 显示完成报告（含圆形正确率仪表盘可视化） */
     function showDailyFinish() {
       const screen = document.getElementById('dailyFinishScreen');
       if (!screen) return;
 
       const total = dpList.length;
-      const acc = Math.round(dpCorrect / total * 100);
+      const acc = total ? Math.round(dpCorrect / total * 100) : 0;
       let grade, gradeCls, msg;
-      if (acc >= 95) { grade = 'S · 超神！'; gradeCls = 'dfg-s'; msg = '今天的词汇全部掌握，考研词汇无难题 🏆'; }
-      else if (acc >= 80) { grade = 'A · 优秀'; gradeCls = 'dfg-a'; msg = `正确率 ${acc}%，继续保持！明天见 💪`; }
-      else if (acc >= 60) { grade = 'B · 良好'; gradeCls = 'dfg-b'; msg = `正确率 ${acc}%，错题已加入复习计划 📚`; }
-      else { grade = 'C · 需努力'; gradeCls = 'dfg-c'; msg = `正确率 ${acc}%，今天的错题明天会重点复习 🔄`; }
+      let gradStart = '#10b981', gradEnd = '#0ea5e9';
 
-      const today = dpDateKey.replace(/-/g, ' 年 ').replace(' 年 ', ' 年 ').replace(' 年 ', ' 月 ') + ' 日';
+      if (acc >= 95) {
+        grade = 'S · 超神！'; gradeCls = 'dfg-s'; msg = '今天的词汇全部掌握，考研词汇无难题 🏆';
+        gradStart = '#fbbf24'; gradEnd = '#f59e0b';
+      } else if (acc >= 80) {
+        grade = 'A · 优秀'; gradeCls = 'dfg-a'; msg = `正确率 ${acc}%，继续保持！明天见 💪`;
+        gradStart = '#10b981'; gradEnd = '#06b6d4';
+      } else if (acc >= 60) {
+        grade = 'B · 良好'; gradeCls = 'dfg-b'; msg = `正确率 ${acc}%，错题已加入复习计划 📚`;
+        gradStart = '#6366f1'; gradEnd = '#0ea5e9';
+      } else {
+        grade = 'C · 需努力'; gradeCls = 'dfg-c'; msg = `正确率 ${acc}%，今天的错题明天会重点复习 🔄`;
+        gradStart = '#f43f5e'; gradEnd = '#fb7185';
+      }
+
+      // 圆形仪表盘周长与偏移 (半径 r=56, 周长 ≈ 351.86)
+      const r = 56;
+      const circumference = 2 * Math.PI * r;
+      const offset = circumference - (acc / 100) * circumference;
 
       screen.innerHTML = `
         <div class="daily-finish-wrap">
           <div class="daily-finish-icon">${acc >= 80 ? '🎉' : acc >= 60 ? '📖' : '💪'}</div>
           <div class="daily-finish-title">每日一练完成！</div>
           <div class="daily-finish-date">${dpDateKey} · 今日 ${total} 题全部作答</div>
+
+          <!-- 圆形正确率仪表盘可视化 -->
+          <div class="daily-gauge-wrap">
+            <svg class="daily-gauge-svg" viewBox="0 0 140 140">
+              <defs>
+                <linearGradient id="dailyGaugeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="${gradStart}" />
+                  <stop offset="100%" stop-color="${gradEnd}" />
+                </linearGradient>
+              </defs>
+              <circle class="daily-gauge-bg" cx="70" cy="70" r="${r}"></circle>
+              <circle class="daily-gauge-bar" cx="70" cy="70" r="${r}"
+                stroke="url(#dailyGaugeGrad)"
+                stroke-dasharray="${circumference}"
+                stroke-dashoffset="${circumference}"
+                id="dailyGaugeBarEl"></circle>
+            </svg>
+            <div class="daily-gauge-center">
+              <span class="daily-gauge-val">${acc}%</span>
+              <span class="daily-gauge-label">正确率</span>
+            </div>
+          </div>
+
           <div class="daily-finish-stats">
             <div class="daily-finish-stat">
               <div class="dfs-val c-total">${total}</div>
@@ -4542,6 +4665,13 @@
         </div>
       `;
       screen.classList.remove('hidden');
+
+      // 仪表盘进度平滑过渡动画
+      setTimeout(() => {
+        const barEl = document.getElementById('dailyGaugeBarEl');
+        if (barEl) barEl.style.strokeDashoffset = offset;
+      }, 80);
+
       setTimeout(() => fireConfetti(), 300);
     }
 
@@ -4551,6 +4681,7 @@
       document.getElementById('dailyFinishScreen').classList.add('hidden');
       dpReviewMode = true;
       dpReviewIdx = 0;
+      dpReviewRecord = {};
       forceDailyTop();
       dpRender();
       forceDailyTop();
