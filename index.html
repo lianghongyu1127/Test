@@ -1082,6 +1082,142 @@
       font-weight: 600;
     }
 
+    
+    /* 每日一练剩余题数胶囊 */
+    .daily-rem-badge {
+      display: inline-block;
+      margin-left: 8px;
+      font-size: 0.68rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(99,102,241,0.2);
+      border: 1px solid rgba(99,102,241,0.35);
+      color: #c7d2fe;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+
+    /* 快捷键提示条 */
+    .daily-key-hints {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      width: 100%;
+      margin-top: 8px;
+      font-size: 0.72rem;
+      color: #64748b;
+      user-select: none;
+    }
+    .daily-key-hints span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .daily-key-hints kbd {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-family: inherit;
+      color: #cbd5e1;
+      font-size: 0.68rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    @media (max-width: 640px) {
+      .daily-key-hints { display: none; }
+    }
+
+    /* 跳到下一未答按钮 */
+    .daily-btn-skip {
+      background: rgba(14,165,233,0.12);
+      border-color: rgba(14,165,233,0.35);
+      color: #38bdf8;
+    }
+    .daily-btn-skip:hover:not(:disabled) {
+      background: rgba(14,165,233,0.22);
+      border-color: #38bdf8;
+      color: #fff;
+    }
+
+    /* 连击 Toast 动画与样式 */
+    .dp-streak-toast {
+      position: fixed;
+      top: 68px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(245,158,11,0.95), rgba(239,68,68,0.95));
+      box-shadow: 0 8px 24px rgba(245,158,11,0.4);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.25);
+      z-index: 10000;
+      pointer-events: none;
+      animation: dpStreakPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes dpStreakPop {
+      0% { opacity: 0; transform: translate(-50%, -12px) scale(0.85); }
+      70% { transform: translate(-50%, 3px) scale(1.06); }
+      100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+    }
+
+    /* 完成报告环形进度仪表盘 */
+    .daily-gauge-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 12px auto 20px;
+      position: relative;
+      width: 140px;
+      height: 140px;
+    }
+    .daily-gauge-svg {
+      transform: rotate(-90deg);
+      width: 140px;
+      height: 140px;
+      display: block;
+    }
+    .daily-gauge-bg {
+      fill: none;
+      stroke: rgba(255,255,255,0.08);
+      stroke-width: 10;
+    }
+    .daily-gauge-bar {
+      fill: none;
+      stroke-width: 10;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .daily-gauge-center {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .daily-gauge-val {
+      font-size: 2.1rem;
+      font-weight: 900;
+      font-family: 'Inter', sans-serif;
+      line-height: 1;
+      color: #f8fafc;
+    }
+    .daily-gauge-label {
+      font-size: 0.68rem;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
     /* ===== 完成报告屏 ===== */
     .daily-finish-screen {
       position: fixed;
@@ -4622,15 +4758,15 @@
 
           <!-- 圆形正确率仪表盘可视化 -->
           <div class="daily-gauge-wrap">
-            <svg class="daily-gauge-svg" viewBox="0 0 140 140">
+            <svg class="daily-gauge-svg" viewBox="0 0 140 140" width="140" height="140" style="width:140px;height:140px;transform:rotate(-90deg);display:block;">
               <defs>
                 <linearGradient id="dailyGaugeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="${gradStart}" />
                   <stop offset="100%" stop-color="${gradEnd}" />
                 </linearGradient>
               </defs>
-              <circle class="daily-gauge-bg" cx="70" cy="70" r="${r}"></circle>
-              <circle class="daily-gauge-bar" cx="70" cy="70" r="${r}"
+              <circle class="daily-gauge-bg" cx="70" cy="70" r="${r}" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="10"></circle>
+              <circle class="daily-gauge-bar" cx="70" cy="70" r="${r}" fill="none" stroke-width="10" stroke-linecap="round"
                 stroke="url(#dailyGaugeGrad)"
                 stroke-dasharray="${circumference}"
                 stroke-dashoffset="${circumference}"
