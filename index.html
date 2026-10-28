@@ -2753,6 +2753,10 @@
           <span id="dailyBadge" class="daily-badge" style="display:none"></span>
           📅 每日一练
         </button>
+        <button class="daily-entry-btn" id="cloudSyncBtn" onclick="openCloudSyncModal()" style="background:rgba(30,41,59,0.85);border:1px solid rgba(56,189,248,0.4);color:#38bdf8;box-shadow:none;padding:10px 18px">
+          <span id="cloudSyncDot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981;margin-right:2px"></span>
+          <span id="cloudSyncLabel">☁️ 云同步</span>
+        </button>
       </div>
     </div>
 
@@ -2903,7 +2907,10 @@
           <span class="bz-stat-pill pool" id="bzStatPool" onclick="startBlitzPoolReview()" title="点击直接轰炸生词本">🔥 生词本 0</span>
           <span class="bz-stat-pill rem" id="bzStatRem">📦 待筛 0</span>
         </div>
-        <button class="bz-exit-btn" onclick="openBlitzPoolDrawer('pool')" style="border-color:rgba(244,63,94,0.4);color:#fda4af">📋 词本</button>
+        <div style="display:flex;gap:5px;align-items:center">
+          <button class="bz-exit-btn" id="bzSyncBtn" onclick="openCloudSyncModal()" style="padding:5px 9px;border-color:rgba(56,189,248,0.4);color:#38bdf8" title="跨端实时云同步">☁️</button>
+          <button class="bz-exit-btn" onclick="openBlitzPoolDrawer('pool')" style="padding:5px 9px;border-color:rgba(244,63,94,0.4);color:#fda4af">📋 词本</button>
+        </div>
       </div>
       <div class="bz-mode-switch" id="bzScopeBar"></div>
     </div>
@@ -2951,6 +2958,7 @@
       apply(curFilter);
       initDailyBadge();  // 更新每日一练角标
       if (typeof initBlitzBadge === 'function') initBlitzBadge();
+      if (typeof initCloudSync === 'function') initCloudSync();
     }).catch(e => {
       document.getElementById('cardArea').innerHTML = '<div class="empty"><div class="empty-text">题库加载失败</div></div>';
     });
@@ -3013,7 +3021,7 @@
     }
 
     // ===== localStorage 持久化 =====
-    function saveProgress() {
+    function saveProgress(skipCloud) {
       try {
         const data = {
           record,
@@ -3024,6 +3032,7 @@
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         saveSRS();
+        if (!skipCloud && typeof scheduleCloudPush === 'function') scheduleCloudPush();
       } catch (e) { /* quota exceeded or private mode, silently ignore */ }
     }
 
@@ -5491,7 +5500,7 @@
       }
     }
 
-    function saveBlitzState() {
+    function saveBlitzState(skipCloud) {
       try {
         const data = {
           slain: [...bzSlain],
@@ -5501,6 +5510,7 @@
         localStorage.setItem(BLITZ_STORAGE_KEY, JSON.stringify(data));
       } catch (e) {}
       updateBlitzBadge();
+      if (!skipCloud && typeof scheduleCloudPush === 'function') scheduleCloudPush();
     }
 
     function initBlitzBadge() {
@@ -5569,6 +5579,8 @@
       } else {
         startBlitzScreenBatch();
       }
+      // 打开冲刺模式时后台静默拉取一次云端最新进度并智能合并
+      if (typeof pullAndMergeCloud === 'function') pullAndMergeCloud(true);
     }
 
     function exitBlitzMode() {
@@ -6356,9 +6368,362 @@
       if (confirm('确定要清空【极速筛词冲刺】的全部已斩熟词和生词本进度，重新开始筛查吗？')) {
         bzSlain.clear();
         bzUnknownPool = {};
+        localStorage.setItem('quiz_cloud_rst_v1', String(Date.now()));
         saveBlitzState();
         renderBlitzHUD();
         startBlitzScreenBatch();
+      }
+    }
+
+    // ============================================================
+    // ===== ☁️ 跨端实时云同步系统 (电脑端 <-> 苹果手机端 自动双向同步)
+    // ============================================================
+    const CLOUD_KEY_STORAGE = 'quiz_cloud_key_v1';
+    const CLOUD_RST_STORAGE = 'quiz_cloud_rst_v1';
+    const DEFAULT_SYNC_KEY = 'lhy1127'; // 默认专属通道暗号，电脑和苹果手机开箱自动同频
+    const BASE36_CHARS = '0123456789abcdefghijklmnopqrstuvwxyz';
+
+    let cloudSyncTimer = null;
+    let cloudSyncing = false;
+
+    function getSyncKey() {
+      return (localStorage.getItem(CLOUD_KEY_STORAGE) || DEFAULT_SYNC_KEY).trim().toLowerCase();
+    }
+
+    function getCloudTopicUrl(isPoll) {
+      const cleanKey = getSyncKey().replace(/[^a-z0-9_-]/g, '') || DEFAULT_SYNC_KEY;
+      const topic = `ky27_vocab_sync_${cleanKey}`;
+      return isPoll
+        ? `https://ntfy.sh/${topic}/json?poll=1&since=all`
+        : `https://ntfy.sh/${topic}`;
+    }
+
+    function setCloudStatusUI(state, text) {
+      const dot = document.getElementById('cloudSyncDot');
+      const label = document.getElementById('cloudSyncLabel');
+      const bzBtn = document.getElementById('bzSyncBtn');
+      const colors = { ok: '#10b981', syncing: '#f59e0b', err: '#f43f5e' };
+      if (dot) dot.style.background = colors[state] || '#10b981';
+      if (label && text) label.textContent = text;
+      if (bzBtn) {
+        bzBtn.textContent = state === 'syncing' ? '☁️⏳' : (state === 'err' ? '☁️!' : '☁️✓');
+      }
+    }
+
+    /* 将全部 1157 题的【极速冲刺 + 普通刷题 + 错题本 + 闯关】压缩为 2.3KB 紧凑包 */
+    function packFullSyncPayload() {
+      const n = ALL.length || 1157;
+      let bzChars = '';
+      let nmChars = '';
+
+      for (let i = 0; i < n; i++) {
+        // 1. 极速冲刺状态: 'S'=已斩, '0'..'v'=生词本(含星级0-2与错误数0-7), '.'=未筛
+        if (bzSlain.has(i)) {
+          bzChars += 'S';
+        } else if (bzUnknownPool[i]) {
+          const st = Math.min(2, Math.max(0, bzUnknownPool[i].stars || 0));
+          const wr = Math.min(7, Math.max(0, bzUnknownPool[i].wrongs || 0));
+          bzChars += BASE36_CHARS[(st & 3) + wr * 4];
+        } else {
+          bzChars += '.';
+        }
+
+        // 2. 普通模式与错题本状态: 'A'-'D'=答对, 'a'-'d'=答错(且在错题本), '.'=未答
+        const rec = record[i];
+        if (rec && rec.chosen && 'ABCD'.includes(rec.chosen)) {
+          nmChars += rec.correct ? rec.chosen.toUpperCase() : rec.chosen.toLowerCase();
+        } else if (wrongs.has(i)) {
+          nmChars += 'x';
+        } else {
+          nmChars += '.';
+        }
+      }
+
+      return {
+        v: 1,
+        ts: Date.now(),
+        rst: parseInt(localStorage.getItem(CLOUD_RST_STORAGE) || '0', 10),
+        sc: bzScope || 'core',
+        ch: parseInt(localStorage.getItem('ch_max_level') || '1', 10),
+        bz: bzChars,
+        nm: nmChars
+      };
+    }
+
+    /* 将云端或同步码数据包合并（或强制覆盖）到本机状态 */
+    function applySyncPayload(remote, forceOverwrite = false) {
+      if (!remote || remote.v !== 1 || !remote.bz) return { changed: false, addedSlain: 0, addedPool: 0 };
+
+      const localRst = parseInt(localStorage.getItem(CLOUD_RST_STORAGE) || '0', 10);
+      const remoteRst = remote.rst || 0;
+
+      // 如果远端执行过比本机更新的“重置进度”，或者用户点击了强制覆盖，则先清空本机再完整采用远端
+      const shouldReplace = forceOverwrite || (remoteRst > localRst);
+      if (remoteRst > localRst) {
+        localStorage.setItem(CLOUD_RST_STORAGE, String(remoteRst));
+      }
+
+      if (shouldReplace) {
+        bzSlain.clear();
+        bzUnknownPool = {};
+        record = {};
+        wrongs.clear();
+      }
+
+      let changed = shouldReplace;
+      let addedSlain = 0;
+      let addedPool = 0;
+      const n = Math.min(ALL.length || 1157, remote.bz.length);
+      const now = Date.now();
+
+      for (let i = 0; i < n; i++) {
+        const c = remote.bz[i];
+        if (c === 'S') {
+          if (!bzSlain.has(i)) {
+            bzSlain.add(i);
+            delete bzUnknownPool[i];
+            changed = true;
+            addedSlain++;
+          }
+        } else if (c !== '.') {
+          const val = BASE36_CHARS.indexOf(c);
+          if (val >= 0 && !bzSlain.has(i)) {
+            const rStars = val & 3;
+            const rWrongs = val >> 2;
+            const cur = bzUnknownPool[i];
+            if (!cur) {
+              bzUnknownPool[i] = { stars: rStars, wrongs: rWrongs, updatedAt: now };
+              changed = true;
+              addedPool++;
+            } else if (rStars > (cur.stars || 0) || rWrongs > (cur.wrongs || 0)) {
+              cur.stars = Math.max(cur.stars || 0, rStars);
+              cur.wrongs = Math.max(cur.wrongs || 0, rWrongs);
+              changed = true;
+            }
+          }
+        }
+
+        // 同步普通刷题与错题本
+        if (remote.nm && i < remote.nm.length) {
+          const nc = remote.nm[i];
+          if (nc !== '.' && !record[i]) {
+            if ('ABCD'.includes(nc)) {
+              record[i] = { chosen: nc, correct: true };
+              changed = true;
+            } else if ('abcd'.includes(nc)) {
+              record[i] = { chosen: nc.toUpperCase(), correct: false };
+              wrongs.add(i);
+              changed = true;
+            } else if (nc === 'x') {
+              wrongs.add(i);
+              changed = true;
+            }
+          }
+        }
+      }
+
+      // 重新统计普通模式正确/错误数
+      let nc = 0, nw = 0;
+      Object.values(record).forEach(r => { if (r.correct) nc++; else nw++; });
+      nCorrect = nc;
+      nWrong = nw;
+
+      // 同步最高闯关数
+      const localCh = parseInt(localStorage.getItem('ch_max_level') || '1', 10);
+      if (remote.ch && (shouldReplace || remote.ch > localCh)) {
+        localStorage.setItem('ch_max_level', String(remote.ch));
+        changed = true;
+      }
+
+      if (changed) {
+        saveBlitzState(true);
+        saveProgress(true);
+        stats();
+        if (bzActive) {
+          renderBlitzHUD();
+          // 若当前正好停留在第 1 步筛词界面，且本组有词已被另一端筛过，自动刷新列表避免重复刷！
+          if (bzPhase === 'SCREEN' && bzBatchGis.some(gi => bzSlain.has(gi) || bzUnknownPool[gi])) {
+            startBlitzScreenBatch();
+          }
+        } else {
+          apply(curFilter);
+        }
+      }
+
+      return { changed, addedSlain, addedPool };
+    }
+
+    /* 防抖自动上传到云端 */
+    function scheduleCloudPush() {
+      if (cloudSyncTimer) clearTimeout(cloudSyncTimer);
+      cloudSyncTimer = setTimeout(() => {
+        pushToCloud(true);
+      }, 600);
+    }
+
+    async function pushToCloud(silent = true) {
+      try {
+        setCloudStatusUI('syncing', '☁️ 同步中...');
+        const payload = JSON.stringify(packFullSyncPayload());
+        const res = await fetch(getCloudTopicUrl(false), {
+          method: 'POST',
+          body: payload
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        setCloudStatusUI('ok', '☁️ 已同步');
+        if (!silent) dpShowTip('☁️ 已成功上传最新进度到云端！');
+        return true;
+      } catch (e) {
+        setCloudStatusUI('err', '☁️ 离线');
+        if (!silent) dpShowTip('⚠️ 云端连接稍慢，可使用下方【同步码】秒同步');
+        return false;
+      }
+    }
+
+    async function pullAndMergeCloud(silent = true, forceOverwrite = false) {
+      if (cloudSyncing) return;
+      cloudSyncing = true;
+      try {
+        setCloudStatusUI('syncing', '☁️ 同步中...');
+        const res = await fetch(getCloudTopicUrl(true));
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const text = await res.text();
+        const lines = text.trim().split('\n').filter(Boolean);
+        let latestPayload = null;
+        for (let i = lines.length - 1; i >= 0; i--) {
+          try {
+            const obj = JSON.parse(lines[i]);
+            if (obj && obj.event === 'message' && obj.message) {
+              const parsed = JSON.parse(obj.message);
+              if (parsed && parsed.v === 1 && parsed.bz) {
+                latestPayload = parsed;
+                break;
+              }
+            }
+          } catch (err) {}
+        }
+
+        if (latestPayload) {
+          const resMerge = applySyncPayload(latestPayload, forceOverwrite);
+          setCloudStatusUI('ok', '☁️ 已同步');
+          if (resMerge.changed) {
+            dpShowTip(`☁️ 已自动同步两端进度（已斩 ${bzSlain.size} · 生词 ${Object.keys(bzUnknownPool).length}）`);
+            // 合并后如果本机也有新增数据，顺手回写一份完整并集到云端
+            if (!forceOverwrite) pushToCloud(true);
+          } else if (!silent) {
+            dpShowTip('☁️ 两端进度已完全一致，无需重复刷新！');
+          }
+        } else {
+          // 云端尚无记录，把本机当前进度推上去初始化
+          await pushToCloud(true);
+          if (!silent) dpShowTip('☁️ 已将本机进度初始化到云端！');
+        }
+      } catch (e) {
+        setCloudStatusUI('err', '☁️ 离线');
+        if (!silent) dpShowTip('⚠️ 拉取失败，请检查网络或使用同步码');
+      } finally {
+        cloudSyncing = false;
+      }
+    }
+
+    function initCloudSync() {
+      loadBlitzState();
+      pullAndMergeCloud(true, false);
+      // 当手机切回 Safari 或电脑切回浏览器标签页时，自动拉取另一端刚刷的进度！
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          pullAndMergeCloud(true, false);
+        }
+      });
+    }
+
+    /* 云同步控制面板弹窗 */
+    function openCloudSyncModal() {
+      const curKey = getSyncKey();
+      const poolCount = Object.keys(bzUnknownPool).length;
+      document.getElementById('dialogRoot').innerHTML = `
+        <div class="dialog-overlay" onclick="if(event.target===this)closeDialog()">
+          <div class="dialog-box" style="max-width:420px;padding:24px 20px">
+            <div class="dialog-title" style="display:flex;align-items:center;justify-content:space-between">
+              <span>☁️ 电脑 ↔ 苹果手机 实时云同步</span>
+              <button onclick="closeDialog()" style="background:none;border:none;color:#94a3b8;font-size:1.1rem;cursor:pointer">✕</button>
+            </div>
+            <div class="dialog-desc" style="margin-bottom:14px;font-size:0.82rem">
+              已内置专属同步暗号，<b>电脑和苹果手机打开网页会自动合并进度</b>（已斩熟词、生词本、错题全部互通，绝不刷重复题）。
+            </div>
+
+            <div style="background:rgba(15,23,42,0.7);border:1px solid rgba(71,85,105,0.45);border-radius:10px;padding:10px 12px;margin-bottom:14px;font-size:0.8rem;color:#cbd5e1">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+                <span>本机进度：<b style="color:#34d399">已斩 ${bzSlain.size}</b> · <b style="color:#fb7185">生词本 ${poolCount}</b></span>
+                <span>普通已答：<b>${nCorrect + nWrong}</b></span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+                <span style="white-space:nowrap;color:#94a3b8">同步暗号：</span>
+                <input id="syncKeyInput" type="text" value="${esc(curKey)}" style="flex:1;background:rgba(30,41,59,0.9);border:1px solid rgba(56,189,248,0.4);border-radius:6px;padding:5px 9px;color:#f8fafc;font-size:0.82rem;font-family:'Inter',sans-serif" />
+                <button onclick="saveCustomSyncKey()" style="padding:5px 10px;border-radius:6px;border:none;background:#0284c7;color:#fff;font-size:0.76rem;font-weight:700;cursor:pointer">保存</button>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+              <button class="bz-primary-btn" style="padding:11px;font-size:0.86rem" onclick="closeDialog();pullAndMergeCloud(false, false)">
+                🔄 立即双向同步（智能合并两端进度）
+              </button>
+              <div style="display:flex;gap:8px">
+                <button class="bz-exit-btn" style="flex:1;padding:9px;text-align:center;border-color:rgba(16,185,129,0.4);color:#6ee7b7" onclick="closeDialog();pushToCloud(false)">
+                  ⬆️ 强制上传本机到云
+                </button>
+                <button class="bz-exit-btn" style="flex:1;padding:9px;text-align:center;border-color:rgba(245,158,11,0.4);color:#fde047" onclick="closeDialog();pullAndMergeCloud(false, true)">
+                  ⬇️ 强制用云端覆盖本机
+                </button>
+              </div>
+            </div>
+
+            <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:12px">
+              <div style="font-size:0.75rem;color:#94a3b8;margin-bottom:8px">💡 备用方案（无网/微信秒传）：复制同步码发给手机或电脑粘贴即可</div>
+              <div style="display:flex;gap:8px">
+                <button class="bz-exit-btn" style="flex:1;padding:8px;text-align:center" onclick="copyOfflineSyncCode()">📋 复制本机同步码</button>
+                <button class="bz-exit-btn" style="flex:1;padding:8px;text-align:center" onclick="pasteOfflineSyncCode()">📥 粘贴同步码导入</button>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function saveCustomSyncKey() {
+      const inp = document.getElementById('syncKeyInput');
+      if (!inp) return;
+      const val = inp.value.trim().toLowerCase() || DEFAULT_SYNC_KEY;
+      localStorage.setItem(CLOUD_KEY_STORAGE, val);
+      closeDialog();
+      dpShowTip(`🔑 同步暗号已切换为：${val}`);
+      pullAndMergeCloud(false, false);
+    }
+
+    function copyOfflineSyncCode() {
+      const code = btoa(unescape(encodeURIComponent(JSON.stringify(packFullSyncPayload()))));
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(() => {
+          dpShowTip('📋 同步码已复制！发到微信另一端粘贴即可');
+        }).catch(() => {
+          prompt('请全选复制以下同步码：', code);
+        });
+      } else {
+        prompt('请全选复制以下同步码：', code);
+      }
+    }
+
+    function pasteOfflineSyncCode() {
+      const raw = prompt('请粘贴从另一台设备复制的【同步码】：');
+      if (!raw || !raw.trim()) return;
+      try {
+        const jsonStr = decodeURIComponent(escape(atob(raw.trim())));
+        const data = JSON.parse(jsonStr);
+        applySyncPayload(data, false);
+        closeDialog();
+        dpShowTip('🎉 同步码导入合并成功！');
+        pushToCloud(true);
+      } catch (e) {
+        alert('同步码格式不正确，请重新复制完整的同步码！');
       }
     }
 
