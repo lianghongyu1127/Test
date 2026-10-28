@@ -2169,6 +2169,567 @@
       0%   { opacity: 1; transform: translateX(-50%) scale(1); }
       100% { opacity: 0; transform: translateX(-50%) scale(0.9) translateY(4px); }
     }
+
+    /* ============================================================
+       ===== ⚡ 极速筛词冲刺模式 (BLITZ SPRINT MODE) =====
+       ============================================================ */
+    .blitz-entry-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      background: linear-gradient(135deg, #10b981, #0d9488, #0284c7);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 0.5px;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.38);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .blitz-entry-btn:active { transform: scale(0.97); }
+    .blitz-entry-btn .blitz-badge {
+      position: absolute;
+      top: -7px;
+      right: -6px;
+      background: #f43f5e;
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 999px;
+      line-height: 1.4;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(244, 63, 94, 0.5);
+    }
+
+    .blitz-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 650;
+      background: #080f1e;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overflow-anchor: none;
+      animation: fadeIn 0.25s ease;
+    }
+    .blitz-overlay.hidden { display: none; }
+
+    .bz-hud {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(8, 15, 30, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(20, 184, 166, 0.22);
+      padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .bz-hud-top {
+      max-width: 640px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .bz-exit-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      padding: 6px 13px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .bz-stats-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .bz-stat-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .bz-stat-pill.slain {
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .bz-stat-pill.pool {
+      background: rgba(244, 63, 94, 0.15);
+      color: #fb7185;
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .bz-stat-pill.rem {
+      background: rgba(14, 165, 233, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(14, 165, 233, 0.28);
+    }
+    .bz-mode-switch {
+      display: flex;
+      gap: 6px;
+      max-width: 640px;
+      margin: 0 auto;
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+    .bz-mode-switch::-webkit-scrollbar { display: none; }
+    .bz-scope-btn {
+      flex-shrink: 0;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(71, 85, 105, 0.45);
+      background: rgba(30, 41, 59, 0.6);
+      color: #94a3b8;
+      font-size: 0.74rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.18s;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .bz-scope-btn.active {
+      background: rgba(20, 184, 166, 0.22);
+      color: #5eead4;
+      border-color: #14b8a6;
+      font-weight: 700;
+    }
+    .bz-scope-btn.pool-btn {
+      border-color: rgba(244, 63, 94, 0.45);
+      color: #fda4af;
+      background: rgba(244, 63, 94, 0.12);
+    }
+    .bz-scope-btn.pool-btn.active {
+      background: linear-gradient(135deg, #f43f5e, #e11d48);
+      color: #fff;
+      border-color: #f43f5e;
+      box-shadow: 0 2px 10px rgba(244, 63, 94, 0.4);
+    }
+
+    .bz-main {
+      flex: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 14px 16px calc(96px + env(safe-area-inset-bottom, 20px));
+    }
+
+    .bz-step-banner {
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.14), rgba(14, 165, 233, 0.12));
+      border: 1px solid rgba(20, 184, 166, 0.32);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+    .bz-step-banner.warn {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(244, 63, 94, 0.12));
+      border-color: rgba(245, 158, 11, 0.4);
+      color: #fde68a;
+    }
+    .bz-step-banner.quiz {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.16), rgba(139, 92, 246, 0.16));
+      border-color: rgba(244, 63, 94, 0.4);
+      color: #fecdd3;
+    }
+
+    /* Step 1: 10词极速筛查列表 */
+    .bz-screen-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .bz-screen-item {
+      background: rgba(30, 41, 59, 0.82);
+      border: 1px solid rgba(71, 85, 105, 0.48);
+      border-left: 4px solid #f43f5e;
+      border-radius: 12px;
+      padding: 11px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .bz-screen-item:active { transform: scale(0.99); }
+    .bz-screen-item.is-known {
+      background: rgba(16, 185, 129, 0.09);
+      border-color: rgba(16, 185, 129, 0.35);
+      border-left: 4px solid #10b981;
+      opacity: 0.82;
+    }
+    .bz-screen-row1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .bz-screen-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .bz-idx {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .bz-screen-item.is-known .bz-idx {
+      background: #10b981;
+      color: #fff;
+    }
+    .bz-word {
+      font-size: 1.15rem;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+      color: #f8fafc;
+      letter-spacing: 0.3px;
+      word-break: break-word;
+    }
+    .bz-screen-item.is-known .bz-word {
+      text-decoration: line-through;
+      color: #6ee7b7;
+    }
+    .bz-mini-tag {
+      font-size: 0.65rem;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .bz-screen-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .bz-status-tag {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(244, 63, 94, 0.14);
+      color: #fda4af;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+    .bz-screen-item.is-known .bz-status-tag {
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+    /* 划掉后瞬间显示的防自欺欺人核对行 */
+    .bz-verify-line {
+      font-size: 0.8rem;
+      color: #a7f3d0;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 5px 10px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 2px;
+      animation: fadeIn 0.18s ease;
+    }
+    .bz-verify-undo {
+      font-size: 0.7rem;
+      color: #fbbf24;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* Step 2: 高密度极简速记卡 */
+    .bz-study-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .bz-study-card {
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(71, 85, 105, 0.5);
+      border-left: 4px solid #f59e0b;
+      border-radius: 14px;
+      padding: 14px 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+    }
+    .bz-study-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .bz-study-word-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .bz-study-word {
+      font-size: 1.35rem;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+      color: #f8fafc;
+    }
+    .bz-study-meaning {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 6px 11px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+    .bz-hook-row {
+      font-size: 0.83rem;
+      line-height: 1.5;
+      padding: 6px 10px;
+      border-radius: 7px;
+      background: rgba(0, 0, 0, 0.26);
+      margin-top: 5px;
+    }
+    .bz-hook-mnemonic { color: #fde047; border-left: 3px solid #eab308; }
+    .bz-hook-phrase   { color: #7dd3fc; border-left: 3px solid #0284c7; }
+    .bz-hook-tip      { color: #f472b6; border-left: 3px solid #e11d48; }
+    .bz-hook-family   { color: #a7f3d0; border-left: 3px solid #059669; }
+    .bz-hook-sent     { color: #cbd5e1; border-left: 3px solid #64748b; }
+
+    /* Step 3: 双重防伪回马枪测试 */
+    .bz-quiz-card {
+      background: rgba(30, 41, 59, 0.92);
+      border: 1px solid rgba(71, 85, 105, 0.55);
+      border-radius: 18px;
+      padding: 18px 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+    .bz-quiz-timer-track {
+      height: 5px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .bz-quiz-timer-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #10b981, #0ea5e9);
+      transition: width 0.1s linear;
+    }
+    .bz-quiz-timer-fill.urgent {
+      background: linear-gradient(90deg, #f59e0b, #f43f5e);
+    }
+    .bz-quiz-prompt-box {
+      text-align: center;
+      padding: 14px 10px 16px;
+    }
+    .bz-quiz-round-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+    .bz-quiz-round-badge.r1 {
+      background: rgba(14, 165, 233, 0.16);
+      color: #38bdf8;
+      border: 1px solid rgba(14, 165, 233, 0.35);
+    }
+    .bz-quiz-round-badge.r2 {
+      background: rgba(168, 85, 247, 0.18);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+    .bz-quiz-main-text {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #f8fafc;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+    .bz-quiz-opts {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      position: relative;
+    }
+    /* 0.75秒防排除法盲想遮罩 */
+    .bz-recall-shield {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      border: 1px dashed rgba(56, 189, 248, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #38bdf8;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .bz-quiz-opt {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 13px 15px;
+      background: rgba(51, 65, 85, 0.48);
+      border: 1px solid rgba(71, 85, 105, 0.45);
+      border-radius: 12px;
+      color: #f1f5f9;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .bz-quiz-opt:active:not(.locked) { transform: scale(0.98); }
+    .bz-quiz-opt.is-correct {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: #10b981;
+      color: #6ee7b7;
+    }
+    .bz-quiz-opt.is-wrong {
+      background: rgba(244, 63, 94, 0.18);
+      border-color: #f43f5e;
+      color: #fda4af;
+      animation: wrongShake 0.35s ease;
+    }
+    .bz-quiz-opt.locked { pointer-events: none; }
+    .bz-unsure-btn {
+      margin-top: 10px;
+      width: 100%;
+      padding: 11px;
+      border-radius: 10px;
+      border: 1px dashed rgba(245, 158, 11, 0.45);
+      background: rgba(245, 158, 11, 0.08);
+      color: #fbbf24;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .bz-penalty-box {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(244, 63, 94, 0.1);
+      border: 1px solid rgba(244, 63, 94, 0.35);
+      animation: slideUp 0.22s ease;
+    }
+
+    /* 底部固定大按钮栏 (iPhone 拇指热区) */
+    .bz-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 25;
+      background: rgba(8, 15, 30, 0.96);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid rgba(20, 184, 166, 0.25);
+      padding: 10px 16px calc(12px + env(safe-area-inset-bottom, 10px));
+    }
+    .bz-bottom-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .bz-bottom-summary {
+      font-size: 0.76rem;
+      color: #94a3b8;
+      text-align: center;
+      font-weight: 600;
+    }
+    .bz-primary-btn {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, #10b981, #0ea5e9);
+      color: #fff;
+      font-size: 0.96rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 0.5px;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .bz-primary-btn:active { transform: scale(0.98); }
+    .bz-primary-btn.fire {
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35);
+    }
   </style>
 </head>
 
@@ -2181,6 +2742,10 @@
       <h1>考研英语词汇</h1>
       <div class="subtitle">共 <span id="total">0</span> 题 · 专注刷题</div>
       <div class="header-btns">
+        <button class="blitz-entry-btn" id="blitzEntryBtn" onclick="openBlitzMode()">
+          <span>⚡</span> 极速筛词冲刺
+          <span id="blitzBadge" class="blitz-badge" style="display:none"></span>
+        </button>
         <button class="challenge-entry-btn" onclick="startChallenge()">
           <span class="btn-flame">🔥</span> 闯关模式
         </button>
@@ -2328,6 +2893,24 @@
   <!-- 游戏结束屏 -->
   <div class="ch-gameover hidden" id="chGameover"></div>
 
+  <!-- ⚡ 极速筛词冲刺 全屏界面 -->
+  <div class="blitz-overlay hidden" id="blitzOverlay">
+    <div class="bz-hud">
+      <div class="bz-hud-top">
+        <button class="bz-exit-btn" onclick="exitBlitzMode()">✕ 退出</button>
+        <div class="bz-stats-pills">
+          <span class="bz-stat-pill slain" id="bzStatSlain" onclick="openBlitzPoolDrawer('slain')" style="cursor:pointer" title="点击查看已斩熟词">🗡️ 已斩 0</span>
+          <span class="bz-stat-pill pool" id="bzStatPool" onclick="startBlitzPoolReview()" title="点击直接轰炸生词本">🔥 生词本 0</span>
+          <span class="bz-stat-pill rem" id="bzStatRem">📦 待筛 0</span>
+        </div>
+        <button class="bz-exit-btn" onclick="openBlitzPoolDrawer('pool')" style="border-color:rgba(244,63,94,0.4);color:#fda4af">📋 词本</button>
+      </div>
+      <div class="bz-mode-switch" id="bzScopeBar"></div>
+    </div>
+    <div class="bz-main" id="bzMainArea"></div>
+    <div class="bz-bottom-bar" id="bzBottomBar"></div>
+  </div>
+
   <script>
     // ===== 状态管理 =====
     // ===== 状态管理 =====
@@ -2367,6 +2950,7 @@
       loadProgress();
       apply(curFilter);
       initDailyBadge();  // 更新每日一练角标
+      if (typeof initBlitzBadge === 'function') initBlitzBadge();
     }).catch(e => {
       document.getElementById('cardArea').innerHTML = '<div class="empty"><div class="empty-text">题库加载失败</div></div>';
     });
@@ -3042,6 +3626,37 @@
     document.addEventListener('keydown', e => {
       if (e.target.tagName === 'INPUT') return;
       const numKeyMap = { '1': 'A', '2': 'B', '3': 'C', '4': 'D' };
+
+      // 0. 极速筛词冲刺模式
+      if (typeof bzActive !== 'undefined' && bzActive) {
+        if (e.key === 'Escape') {
+          exitBlitzMode();
+          return;
+        }
+        if (bzPhase === 'QUIZ') {
+          if (bzQuizLocked) {
+            if (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowRight') {
+              e.preventDefault();
+              bzQuizNextAfterPenalty();
+            }
+          } else {
+            if ('1234'.includes(e.key) || 'abcdABCD'.includes(e.key)) {
+              const chosenKey = numKeyMap[e.key] || e.key.toUpperCase();
+              bzQuizPick(chosenKey);
+            } else if (e.key === ' ' || e.key === '5') {
+              e.preventDefault();
+              bzQuizUnsure();
+            }
+          }
+        } else if (bzPhase === 'SCREEN' && (e.key === 'Enter')) {
+          e.preventDefault();
+          bzFinishScreen();
+        } else if (bzPhase === 'STUDY' && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault();
+          bzStartQuizFromStudy();
+        }
+        return;
+      }
 
       // 1. 每日一练模式
       if (dpActive) {
@@ -4828,6 +5443,923 @@
     /* 每次题库加载完后初始化角标 */
     function initDailyBadge() {
       updateDailyBadge();
+    }
+
+    // ============================================================
+    // ===== ⚡ 极速筛词冲刺模式 (BLITZ SPRINT MODE) =====
+    // ============================================================
+    const BLITZ_STORAGE_KEY = 'quiz_blitz_v1';
+    const BLITZ_BATCH_SIZE = 10;
+    const BLITZ_SHIELD_MS = 600;     // 0.6秒防排除法脑中先想遮罩
+    const BLITZ_QUIZ_TIME_MS = 5000; // 5.0秒直觉反应限时（超时视为未背熟）
+
+    let bzActive = false;
+    let bzScope = 'core';            // 'core' (必背680) | 'tier1' (完形+态度101) | 'basic' (1442+词族) | 'all' (全库1157)
+    let bzMode = 'screen';           // 'screen' (筛新词) | 'pool' (轰炸生词本) | 'drawer' (查看词本)
+    let bzPhase = 'SCREEN';          // 'SCREEN' | 'STUDY' | 'QUIZ' | 'DONE' | 'DRAWER'
+    let bzSlain = new Set();         // gi 集合：已彻底斩掉的熟词
+    let bzUnknownPool = {};          // gi -> { stars: 0|1|2, wrongs: number, updatedAt: number }
+
+    let bzBatchGis = [];             // 当前组 10 个词的 gi 数组
+    let bzKnownInBatch = new Set();  // 在 Step 1 中被用户点一下划掉（认为认识）的 gi
+    let bzTargetUnknowns = [];       // 本轮需要强记+回马枪死磕的生词 gi 数组
+
+    // Step 3 回马枪测试状态
+    let bzQuizQueue = [];            // [{ gi, round: 1|2 }]  round 1: 英->中, round 2: 中->英
+    let bzQuizTotalSteps = 0;
+    let bzQuizCompletedSteps = 0;
+    let bzCurrentQuizObj = null;     // { gi, round, promptText, options: {A,B,C,D}, answerKey }
+    let bzQuizLocked = false;
+    let bzShieldActive = false;
+    let bzShieldTimer = null;
+    let bzCountdownTimer = null;
+    let bzTimeRemainingMs = BLITZ_QUIZ_TIME_MS;
+    let bzBatchMistakes = new Set(); // 本轮回马枪中出错/超时/卡壳过的 gi
+    let bzGraduatedInBatch = [];     // 本轮生词本轰炸中满 3 星彻底斩掉的 gi
+
+    function loadBlitzState() {
+      try {
+        const raw = localStorage.getItem(BLITZ_STORAGE_KEY);
+        if (!raw) return;
+        const data = JSON.parse(raw);
+        bzSlain = new Set(data.slain || []);
+        bzUnknownPool = data.unknownPool || {};
+        if (data.scope) bzScope = data.scope;
+      } catch (e) {
+        bzSlain = new Set();
+        bzUnknownPool = {};
+      }
+    }
+
+    function saveBlitzState() {
+      try {
+        const data = {
+          slain: [...bzSlain],
+          unknownPool: bzUnknownPool,
+          scope: bzScope
+        };
+        localStorage.setItem(BLITZ_STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {}
+      updateBlitzBadge();
+    }
+
+    function initBlitzBadge() {
+      loadBlitzState();
+      updateBlitzBadge();
+    }
+
+    function updateBlitzBadge() {
+      const badge = document.getElementById('blitzBadge');
+      if (!badge) return;
+      const poolCount = Object.keys(bzUnknownPool).length;
+      const slainCount = bzSlain.size;
+      if (poolCount > 0) {
+        badge.textContent = `待灭 ${poolCount} 词`;
+        badge.style.display = 'inline-block';
+        badge.style.background = '#f43f5e';
+      } else if (slainCount > 0) {
+        badge.textContent = `已斩 ${slainCount}`;
+        badge.style.display = 'inline-block';
+        badge.style.background = '#10b981';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    /* 按考研最后1个月提分性价比排序获取指定范围的全部题目 gi */
+    function getBlitzScopeGis(scopeKey) {
+      const sc = scopeKey || bzScope;
+      const tierOrder = { cloze50: 1, attitude: 2, basic: 3, family: 4, advanced: 5 };
+      const list = [];
+      ALL.forEach((q, gi) => {
+        if (!q || !q.word || !q.meaning) return;
+        if (sc === 'tier1' && q.type !== 'cloze50' && q.type !== 'attitude') return;
+        if (sc === 'basic' && q.type !== 'basic' && q.type !== 'family') return;
+        if (sc === 'core' && q.type === 'advanced') return;
+        list.push({ gi, rank: tierOrder[q.type] || 9 });
+      });
+      list.sort((a, b) => a.rank - b.rank || a.gi - b.gi);
+      return list.map(x => x.gi);
+    }
+
+    /* 获取当前范围尚未筛查的词（既不在已斩库，也不在生词本） */
+    function getUnscreenedGis(scopeKey) {
+      return getBlitzScopeGis(scopeKey).filter(gi => !bzSlain.has(gi) && !bzUnknownPool[gi]);
+    }
+
+    function blitzForceTop() {
+      const ov = document.getElementById('blitzOverlay');
+      if (ov) ov.scrollTop = 0;
+      if (window.scrollY !== 0) window.scrollTo(0, 0);
+    }
+
+    function clearBlitzTimers() {
+      if (bzShieldTimer) { clearTimeout(bzShieldTimer); bzShieldTimer = null; }
+      if (bzCountdownTimer) { clearInterval(bzCountdownTimer); bzCountdownTimer = null; }
+    }
+
+    function openBlitzMode() {
+      loadBlitzState();
+      bzActive = true;
+      document.getElementById('blitzOverlay').classList.remove('hidden');
+      const unscreened = getUnscreenedGis(bzScope);
+      const poolKeys = Object.keys(bzUnknownPool);
+      if (unscreened.length === 0 && poolKeys.length > 0) {
+        startBlitzPoolReview();
+      } else {
+        startBlitzScreenBatch();
+      }
+    }
+
+    function exitBlitzMode() {
+      clearBlitzTimers();
+      bzActive = false;
+      document.getElementById('blitzOverlay').classList.add('hidden');
+      updateBlitzBadge();
+      stats();
+    }
+
+    function switchBlitzScope(newScope) {
+      clearBlitzTimers();
+      bzScope = newScope;
+      bzMode = 'screen';
+      saveBlitzState();
+      startBlitzScreenBatch();
+    }
+
+    function renderBlitzHUD() {
+      const scopeGis = getBlitzScopeGis(bzScope);
+      const unscreened = scopeGis.filter(gi => !bzSlain.has(gi) && !bzUnknownPool[gi]);
+      const poolCount = Object.keys(bzUnknownPool).length;
+      const slainCount = bzSlain.size;
+
+      const elSlain = document.getElementById('bzStatSlain');
+      const elPool = document.getElementById('bzStatPool');
+      const elRem = document.getElementById('bzStatRem');
+      if (elSlain) elSlain.textContent = `🗡️ 已斩 ${slainCount}`;
+      if (elPool) elPool.textContent = `🔥 生词本 ${poolCount}`;
+      if (elRem) elRem.textContent = `📦 待筛 ${unscreened.length}`;
+
+      const scopes = [
+        { key: 'core', label: `🔥 必背核心 (${getBlitzScopeGis('core').length})` },
+        { key: 'tier1', label: `🎯 完形+态度 (${getBlitzScopeGis('tier1').length})` },
+        { key: 'basic', label: `📘 1442+词族 (${getBlitzScopeGis('basic').length})` },
+        { key: 'all', label: `🚀 全库 (${getBlitzScopeGis('all').length})` }
+      ];
+      let sh = '';
+      scopes.forEach(s => {
+        const activeCls = (bzMode === 'screen' && bzScope === s.key) ? 'active' : '';
+        sh += `<button class="bz-scope-btn ${activeCls}" onclick="switchBlitzScope('${s.key}')">${s.label}</button>`;
+      });
+      sh += `<button class="bz-scope-btn pool-btn ${bzMode === 'pool' ? 'active' : ''}" onclick="startBlitzPoolReview()">🔥 轰炸生词本 (${poolCount})</button>`;
+      const bar = document.getElementById('bzScopeBar');
+      if (bar) bar.innerHTML = sh;
+    }
+
+    function getMiniTagHTML(q) {
+      if (!q) return '';
+      if (q.type === 'cloze50') return `<span class="bz-mini-tag tag-cloze50">完形50</span>`;
+      if (q.type === 'attitude') return `<span class="bz-mini-tag tag-attitude">态度词</span>`;
+      if (q.type === 'basic') return `<span class="bz-mini-tag tag-basic">1442核心</span>`;
+      if (q.type === 'family') return `<span class="bz-mini-tag tag-family">${esc(q.family || '词族')}</span>`;
+      return `<span class="bz-mini-tag tag-advanced">进阶词</span>`;
+    }
+
+    function getStarsHTML(gi) {
+      const item = bzUnknownPool[gi];
+      const st = item ? (item.stars || 0) : 0;
+      const full = '★'.repeat(Math.min(3, st));
+      const empty = '☆'.repeat(Math.max(0, 3 - st));
+      return `<span style="color:#fbbf24;font-size:0.75rem;letter-spacing:1px;font-weight:700" title="需累计通过3轮回马枪测试方可彻底斩掉">${full}${empty}</span>`;
+    }
+
+    // ============================================================
+    // ===== STEP 1: 10词一屏·极速筛词 (默认全不认识，点一下划掉熟词)
+    // ============================================================
+    function startBlitzScreenBatch() {
+      clearBlitzTimers();
+      bzMode = 'screen';
+      bzPhase = 'SCREEN';
+      const unscreened = getUnscreenedGis(bzScope);
+      bzBatchGis = unscreened.slice(0, BLITZ_BATCH_SIZE);
+      bzKnownInBatch = new Set(); // 默认全不认识！
+      blitzForceTop();
+      renderBlitzHUD();
+      renderBlitzScreenPhase();
+    }
+
+    function renderBlitzScreenPhase() {
+      const main = document.getElementById('bzMainArea');
+      const bottom = document.getElementById('bzBottomBar');
+      if (!main || !bottom) return;
+
+      if (bzBatchGis.length === 0) {
+        const poolCount = Object.keys(bzUnknownPool).length;
+        main.innerHTML = `
+          <div class="empty" style="margin-top:20px">
+            <span class="empty-icon">🎉</span>
+            <div style="font-size:1.15rem;font-weight:800;color:#f8fafc;margin-bottom:8px">当前范围所有单词已全部筛查完毕！</div>
+            <div class="empty-text" style="margin-bottom:20px">
+              已彻底斩掉 <b style="color:#34d399">${bzSlain.size}</b> 个熟词 · 生词本还有 <b style="color:#fb7185">${poolCount}</b> 个生词待攻克
+            </div>
+            ${poolCount > 0
+              ? `<button class="bz-primary-btn fire" style="max-width:300px;margin:0 auto" onclick="startBlitzPoolReview()">🔥 立即轰炸生词本 (${poolCount}词)</button>`
+              : `<button class="bz-primary-btn" style="max-width:300px;margin:0 auto" onclick="switchBlitzScope('all')">🚀 切换到全库 1157 词继续筛查</button>`}
+          </div>`;
+        bottom.innerHTML = '';
+        bottom.style.display = 'none';
+        return;
+      }
+
+      bottom.style.display = 'block';
+      let listHTML = '';
+      bzBatchGis.forEach((gi, i) => {
+        const q = ALL[gi];
+        const isKnown = bzKnownInBatch.has(gi);
+        const safeWord = (q.word || '').replace(/'/g, "\\'");
+        const cm = cleanMeaning(q.meaning || '');
+
+        // 防自欺欺人设计：未划掉时绝不漏中文；点一下划掉后，立刻浮现中文意思供1秒核验，认错随时再点一下撤回！
+        const verifyHTML = isKnown ? `
+          <div class="bz-verify-line">
+            <span>👁️ 核对释义：<b>${esc(cm)}</b></span>
+            <span class="bz-verify-undo">认错了？再点撤回 ↩</span>
+          </div>` : '';
+
+        listHTML += `
+          <div class="bz-screen-item ${isKnown ? 'is-known' : ''}" onclick="bzToggleKnown(${gi})">
+            <div class="bz-screen-row1">
+              <div class="bz-screen-left">
+                <span class="bz-idx">${isKnown ? '✓' : (i + 1)}</span>
+                <span class="bz-word">${esc(q.word)}</span>
+                ${getMiniTagHTML(q)}
+              </div>
+              <div class="bz-screen-right">
+                <button class="speak-btn" onclick="event.stopPropagation();speakWord('${safeWord}', this)" title="发音">🔊</button>
+                <span class="bz-status-tag">${isKnown ? '🗡️ 已划掉(熟词)' : '🔥 生词'}</span>
+              </div>
+            </div>
+            ${verifyHTML}
+          </div>`;
+      });
+
+      main.innerHTML = `
+        <div class="bz-step-banner">
+          <div>
+            <b style="color:#5eead4">第 1 步：极速筛词（默认全为生词）</b><br>
+            <span>👆 点一下把你【1秒认识】的词划掉；划掉后会弹出释义防你自欺欺人，认错再点一下即可撤回！</span>
+          </div>
+        </div>
+        <div class="bz-screen-list">${listHTML}</div>
+      `;
+
+      const knownCnt = bzKnownInBatch.size;
+      const unknownCnt = bzBatchGis.length - knownCnt;
+      const btnText = unknownCnt > 0
+        ? `⚡ 筛完了！立刻强记这 ${unknownCnt} 个生词 →`
+        : `🗡️ 本组 ${knownCnt} 词全认识！全部斩掉换下一组 →`;
+
+      bottom.innerHTML = `
+        <div class="bz-bottom-inner">
+          <div class="bz-bottom-summary">已划掉 <b style="color:#34d399">${knownCnt}</b> 个熟词 · 筛出 <b style="color:#fb7185">${unknownCnt}</b> 个生词待轰炸</div>
+          <button class="bz-primary-btn ${unknownCnt > 0 ? 'fire' : ''}" onclick="bzFinishScreen()">${btnText}</button>
+        </div>
+      `;
+    }
+
+    function bzToggleKnown(gi) {
+      if (bzKnownInBatch.has(gi)) {
+        bzKnownInBatch.delete(gi);
+      } else {
+        bzKnownInBatch.add(gi);
+        const q = ALL[gi];
+        if (q && q.word) speakWord(q.word);
+      }
+      renderBlitzScreenPhase();
+    }
+
+    function bzFinishScreen() {
+      // 1. 凡是被划掉且核对无误的熟词，直接加入已斩库
+      bzKnownInBatch.forEach(gi => {
+        bzSlain.add(gi);
+        delete bzUnknownPool[gi];
+      });
+
+      // 2. 剩下的全作为本组待轰炸生词，加入生词本
+      const unknowns = bzBatchGis.filter(gi => !bzKnownInBatch.has(gi));
+      const now = Date.now();
+      unknowns.forEach(gi => {
+        if (!bzUnknownPool[gi]) {
+          bzUnknownPool[gi] = { stars: 0, wrongs: 0, updatedAt: now };
+        }
+      });
+      saveBlitzState();
+      renderBlitzHUD();
+
+      if (unknowns.length === 0) {
+        dpShowTip(`🗡️ 已连斩 ${bzKnownInBatch.size} 个熟词！进入下一组`);
+        startBlitzScreenBatch();
+        return;
+      }
+
+      bzTargetUnknowns = unknowns;
+      bzPhase = 'STUDY';
+      blitzForceTop();
+      renderBlitzStudyPhase();
+    }
+
+    // ============================================================
+    // ===== STEP 2: 生词高密度极简速记卡 (STUDY PHASE)
+    // ============================================================
+    function buildWordHooksHTML(q) {
+      let h = '';
+      if (q.mnemonic) {
+        h += `<div class="bz-hook-row bz-hook-mnemonic">${esc(q.mnemonic)}</div>`;
+      }
+      if (q.phrase) {
+        h += `<div class="bz-hook-row bz-hook-phrase">📌 <b>真题搭配：</b>${esc(q.phrase.replace(/^📌\s*/, ''))}</div>`;
+      }
+      if (q.technique_tip) {
+        h += `<div class="bz-hook-row bz-hook-tip">${esc(q.technique_tip)}</div>`;
+      }
+      if (q.family_note) {
+        h += `<div class="bz-hook-row bz-hook-family">🌱 <b>词族串记：</b>${esc(q.family_note)}</div>`;
+      }
+      if (!h && q.question) {
+        const filled = q.question.replace(/____+/g, `【${q.word}】`);
+        h += `<div class="bz-hook-row bz-hook-sent">📝 ${esc(filled)}</div>`;
+      }
+      return h;
+    }
+
+    function renderBlitzStudyPhase() {
+      const main = document.getElementById('bzMainArea');
+      const bottom = document.getElementById('bzBottomBar');
+      if (!main || !bottom) return;
+      bottom.style.display = 'block';
+
+      let cardsHTML = '';
+      bzTargetUnknowns.forEach((gi, i) => {
+        const q = ALL[gi];
+        const safeWord = (q.word || '').replace(/'/g, "\\'");
+        const cm = cleanMeaning(q.meaning || '');
+        cardsHTML += `
+          <div class="bz-study-card">
+            <div class="bz-study-top">
+              <div class="bz-study-word-wrap" onclick="speakWord('${safeWord}')">
+                <span class="bz-idx" style="background:rgba(245,158,11,0.2);color:#fbbf24">${i + 1}</span>
+                <span class="bz-study-word">${esc(q.word)}</span>
+                <button class="speak-btn" onclick="event.stopPropagation();speakWord('${safeWord}', this)">🔊</button>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px">
+                ${getStarsHTML(gi)}
+                ${getMiniTagHTML(q)}
+              </div>
+            </div>
+            <div class="bz-study-meaning">🎯 ${esc(cm)}</div>
+            ${buildWordHooksHTML(q)}
+          </div>`;
+      });
+
+      main.innerHTML = `
+        <div class="bz-step-banner warn">
+          <div>
+            <b>🧠 第 2 步：高密度强记（共 ${bzTargetUnknowns.length} 个生词）</b><br>
+            <span>只记【绿框核心意思 + 助记口诀】，花 20 秒扫完，马上进行双向限时防伪抽查！</span>
+          </div>
+        </div>
+        <div class="bz-study-list">${cardsHTML}</div>
+      `;
+
+      bottom.innerHTML = `
+        <div class="bz-bottom-inner">
+          <div class="bz-bottom-summary">看完这 ${bzTargetUnknowns.length} 个词后，需连续通过【英→中】与【中→英】双重防伪测试</div>
+          <button class="bz-primary-btn fire" onclick="bzStartQuizFromStudy()">⚔️ 记住了！开始防伪回马枪测试 (${bzTargetUnknowns.length}词) →</button>
+        </div>
+      `;
+    }
+
+    // ============================================================
+    // ===== STEP 3: 双重防伪「回马枪」死磕循环 (QUIZ PHASE)
+    // ============================================================
+    function bzShuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function bzStartQuizFromStudy() {
+      clearBlitzTimers();
+      bzPhase = 'QUIZ';
+      bzBatchMistakes = new Set();
+      bzGraduatedInBatch = [];
+
+      // 构建双重防伪队列：先测全部生词的第1轮(英->中)，答对1个自动在队列后半段解锁它的第2轮(中->英)！
+      const r1 = bzShuffle(bzTargetUnknowns).map(gi => ({ gi, round: 1 }));
+      bzQuizQueue = [...r1];
+      bzQuizTotalSteps = bzTargetUnknowns.length * 2;
+      bzQuizCompletedSteps = 0;
+
+      blitzForceTop();
+      bzNextQuizQuestion();
+    }
+
+    /* 专门针对防自欺欺人的高迷惑选项生成器：优先拿本组刚背的其他生词当干扰项！ */
+    function buildBlitzQuizItem(item) {
+      const gi = item.gi;
+      const round = item.round; // 1 = 英选汉, 2 = 汉选英(回马枪)
+      const q = ALL[gi];
+      const isEn2Zh = (round === 1);
+
+      const promptText = isEn2Zh ? q.word : cleanMeaning(q.meaning);
+      const correctVal = isEn2Zh ? cleanMeaning(q.meaning) : q.word;
+
+      // 优先从本组生词 (bzTargetUnknowns) 及生词本中抽取干扰项，彻底杜绝“哪个眼熟选哪个”！
+      const sameBatchCandidates = bzTargetUnknowns.filter(x => x !== gi);
+      const poolCandidates = Object.keys(bzUnknownPool).map(Number).filter(x => x !== gi && !sameBatchCandidates.includes(x));
+      const fallbackCandidates = ALL.map((_, idx) => idx).filter(x => x !== gi);
+
+      const distractors = [];
+      const usedVals = new Set([correctVal.trim().toLowerCase()]);
+
+      function tryPickFrom(sourceArr) {
+        const shuffled = bzShuffle(sourceArr);
+        for (const candGi of shuffled) {
+          if (distractors.length >= 3) break;
+          const cq = ALL[candGi];
+          if (!cq || !cq.word || !cq.meaning) continue;
+          const val = isEn2Zh ? cleanMeaning(cq.meaning) : cq.word;
+          const norm = val.trim().toLowerCase();
+          if (val && !usedVals.has(norm)) {
+            usedVals.add(norm);
+            distractors.push(val);
+          }
+        }
+      }
+
+      tryPickFrom(sameBatchCandidates);
+      if (distractors.length < 3) tryPickFrom(poolCandidates);
+      if (distractors.length < 3) tryPickFrom(fallbackCandidates);
+
+      const allOpts = bzShuffle([correctVal, ...distractors.slice(0, 3)]);
+      const keys = ['A', 'B', 'C', 'D'];
+      const options = {};
+      let answerKey = 'A';
+      allOpts.forEach((v, idx) => {
+        const k = keys[idx];
+        options[k] = v;
+        if (v === correctVal) answerKey = k;
+      });
+
+      return {
+        gi,
+        round,
+        promptText,
+        options,
+        answerKey,
+        correctVal
+      };
+    }
+
+    function bzNextQuizQuestion() {
+      clearBlitzTimers();
+      if (bzQuizQueue.length === 0) {
+        bzFinishQuizBatch();
+        return;
+      }
+
+      bzQuizLocked = false;
+      const nextItem = bzQuizQueue[0];
+      bzCurrentQuizObj = buildBlitzQuizItem(nextItem);
+
+      // 第 1 轮（英->中）自动朗读单词发音，刺激听觉记忆
+      if (bzCurrentQuizObj.round === 1 && ALL[bzCurrentQuizObj.gi]?.word) {
+        speakWord(ALL[bzCurrentQuizObj.gi].word);
+      }
+
+      // 启动 0.6s 脑中盲想遮罩，强制先动脑再看选项
+      bzShieldActive = true;
+      bzTimeRemainingMs = BLITZ_QUIZ_TIME_MS;
+      renderBlitzQuizCard();
+
+      bzShieldTimer = setTimeout(() => {
+        bzUnlockShieldAndStartTimer();
+      }, BLITZ_SHIELD_MS);
+    }
+
+    function bzUnlockShieldAndStartTimer() {
+      if (!bzShieldActive) return;
+      bzShieldActive = false;
+      if (bzShieldTimer) { clearTimeout(bzShieldTimer); bzShieldTimer = null; }
+      const shieldEl = document.getElementById('bzRecallShield');
+      if (shieldEl) shieldEl.style.display = 'none';
+
+      // 启动 5.0 秒限时直觉倒计时
+      const startTs = Date.now();
+      bzCountdownTimer = setInterval(() => {
+        const elapsed = Date.now() - startTs;
+        bzTimeRemainingMs = Math.max(0, BLITZ_QUIZ_TIME_MS - elapsed);
+        const fill = document.getElementById('bzQuizTimerFill');
+        if (fill) {
+          const pct = (bzTimeRemainingMs / BLITZ_QUIZ_TIME_MS) * 100;
+          fill.style.width = `${pct}%`;
+          if (bzTimeRemainingMs <= 2000) fill.classList.add('urgent');
+        }
+        if (bzTimeRemainingMs <= 0) {
+          clearInterval(bzCountdownTimer);
+          bzCountdownTimer = null;
+          if (!bzQuizLocked) {
+            bzHandleQuizFail('⏱️ 超过 5 秒犹豫！考场上超过 5 秒 = 没记牢，重看口诀：');
+          }
+        }
+      }, 60);
+    }
+
+    function renderBlitzQuizCard() {
+      const main = document.getElementById('bzMainArea');
+      const bottom = document.getElementById('bzBottomBar');
+      if (!main || !bottom || !bzCurrentQuizObj) return;
+      bottom.style.display = 'none';
+
+      const { gi, round, promptText, options } = bzCurrentQuizObj;
+      const q = ALL[gi];
+      const safeWord = (q.word || '').replace(/'/g, "\\'");
+      const isR1 = (round === 1);
+
+      const roundBadgeHTML = isR1
+        ? `<span class="bz-quiz-round-badge r1">第 1 关：看英文 → 秒选中文 (限时5秒)</span>`
+        : `<span class="bz-quiz-round-badge r2">🔄 第 2 关回马枪：看中文 → 反选英文 (防视觉残留)</span>`;
+
+      const numMap = { A: '1', B: '2', C: '3', D: '4' };
+      let optsHTML = '';
+      for (const [k, v] of Object.entries(options)) {
+        optsHTML += `
+          <button class="bz-quiz-opt" id="bzOpt_${k}" onclick="bzQuizPick('${k}')">
+            <span class="opt-key">${numMap[k]}</span>
+            <span style="flex:1">${esc(v)}</span>
+          </button>`;
+      }
+
+      const pctDone = bzQuizTotalSteps ? Math.min(100, Math.round((bzQuizCompletedSteps / bzQuizTotalSteps) * 100)) : 0;
+
+      main.innerHTML = `
+        <div class="bz-step-banner quiz">
+          <div style="width:100%">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <b>⚔️ 第 3 步：防自欺欺人·回马枪死磕</b>
+              <span style="font-family:'Inter',sans-serif;font-weight:800;color:#fff">${bzQuizCompletedSteps} / ${bzQuizTotalSteps} 关</span>
+            </div>
+            <div style="height:5px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden">
+              <div style="height:100%;width:${pctDone}%;background:linear-gradient(90deg,#10b981,#0ea5e9);transition:width 0.3s"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bz-quiz-card">
+          <div class="bz-quiz-timer-track">
+            <div class="bz-quiz-timer-fill" id="bzQuizTimerFill"></div>
+          </div>
+          <div class="bz-quiz-prompt-box">
+            ${roundBadgeHTML}
+            <div class="bz-quiz-main-text">
+              ${esc(promptText)}
+              ${isR1 ? `<button class="speak-btn" onclick="event.stopPropagation();speakWord('${safeWord}', this)" style="vertical-align:middle;margin-left:6px">🔊</button>` : ''}
+            </div>
+          </div>
+
+          <div class="bz-quiz-opts">
+            <div class="bz-recall-shield" id="bzRecallShield" onclick="bzUnlockShieldAndStartTimer()" style="${bzShieldActive ? '' : 'display:none'}">
+              <span style="font-size:1.3rem">🧠</span>
+              <span>先在脑中闪现意思 (0.6秒防排除法)...</span>
+              <span style="font-size:0.72rem;color:#94a3b8">想到了可直接点此抢答</span>
+            </div>
+            ${optsHTML}
+          </div>
+
+          <button class="bz-unsure-btn" id="bzUnsureBtn" onclick="bzQuizUnsure()">
+            🤔 没想稳 / 别蒙了（诚实点此重看口诀，本轮稍后重考）
+          </button>
+
+          <div id="bzPenaltyArea"></div>
+        </div>
+      `;
+    }
+
+    function bzQuizPick(chosenKey) {
+      if (bzQuizLocked || !bzCurrentQuizObj) return;
+      if (bzShieldActive) bzUnlockShieldAndStartTimer();
+      clearBlitzTimers();
+
+      const { gi, round, answerKey } = bzCurrentQuizObj;
+      const isCorrect = (chosenKey === answerKey);
+
+      if (isCorrect) {
+        bzQuizLocked = true;
+        _play('assets/correct.mp3');
+        const btn = document.getElementById('bzOpt_' + chosenKey);
+        if (btn) btn.classList.add('is-correct');
+        document.querySelectorAll('.bz-quiz-opt').forEach(b => b.classList.add('locked'));
+
+        // 从队首移除当前通过项
+        bzQuizQueue.shift();
+        bzQuizCompletedSteps++;
+
+        // 如果刚通过的是第 1 关 (英->中)，立刻把它的第 2 关回马枪 (中->英) 插入队列后段！
+        if (round === 1) {
+          const insertPos = Math.max(1, Math.min(bzQuizQueue.length, 2 + Math.floor(Math.random() * 3)));
+          bzQuizQueue.splice(insertPos, 0, { gi, round: 2 });
+        }
+
+        // 更新全局 SRS
+        updateSRS(gi, true);
+        correctCounts[gi] = (correctCounts[gi] || 0) + 1;
+        saveProgress();
+
+        setTimeout(() => {
+          bzNextQuizQuestion();
+        }, 340);
+      } else {
+        const pickedBtn = document.getElementById('bzOpt_' + chosenKey);
+        if (pickedBtn) pickedBtn.classList.add('is-wrong');
+        bzHandleQuizFail('✗ 选错了！拒绝模糊印象，立刻把这个口诀刻进脑子里：');
+      }
+    }
+
+    function bzQuizUnsure() {
+      if (bzQuizLocked || !bzCurrentQuizObj) return;
+      clearBlitzTimers();
+      bzHandleQuizFail('💡 诚实面对卡壳！不靠蒙，再看一遍核心口诀：');
+    }
+
+    function bzHandleQuizFail(reasonTitle) {
+      bzQuizLocked = true;
+      _play('assets/error.mp3');
+
+      const { gi, round, answerKey } = bzCurrentQuizObj;
+      const q = ALL[gi];
+      bzBatchMistakes.add(gi);
+
+      // 高亮正确项并锁定
+      const rightBtn = document.getElementById('bzOpt_' + answerKey);
+      if (rightBtn) rightBtn.classList.add('is-correct');
+      document.querySelectorAll('.bz-quiz-opt').forEach(b => b.classList.add('locked'));
+      const unsureBtn = document.getElementById('bzUnsureBtn');
+      if (unsureBtn) unsureBtn.style.display = 'none';
+
+      // 记录错误次数并降星（防伪惩罚）
+      if (bzUnknownPool[gi]) {
+        bzUnknownPool[gi].wrongs = (bzUnknownPool[gi].wrongs || 0) + 1;
+        bzUnknownPool[gi].stars = Math.max(0, (bzUnknownPool[gi].stars || 0) - 1);
+        bzUnknownPool[gi].updatedAt = Date.now();
+      }
+      wrongCounts[gi] = (wrongCounts[gi] || 0) + 1;
+      wrongs.add(gi);
+      updateSRS(gi, false);
+      saveProgress();
+      saveBlitzState();
+
+      // 把当前题重新排回队列后方（至少隔2题，不记住绝不放行！）
+      const failedItem = bzQuizQueue.shift();
+      const reInsertIdx = Math.min(bzQuizQueue.length, Math.max(1, 2));
+      bzQuizQueue.splice(reInsertIdx, 0, failedItem);
+
+      const safeWord = (q.word || '').replace(/'/g, "\\'");
+      const cm = cleanMeaning(q.meaning || '');
+      const penaltyArea = document.getElementById('bzPenaltyArea');
+      if (penaltyArea) {
+        penaltyArea.innerHTML = `
+          <div class="bz-penalty-box">
+            <div style="font-size:0.84rem;font-weight:700;color:#fda4af;margin-bottom:8px">${reasonTitle}</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span style="font-size:1.3rem;font-weight:800;color:#f8fafc;font-family:'Inter',sans-serif">${esc(q.word)}</span>
+              <button class="speak-btn" onclick="event.stopPropagation();speakWord('${safeWord}', this)">🔊</button>
+              <span style="color:#34d399;font-weight:700;font-size:0.95rem">${esc(cm)}</span>
+            </div>
+            ${buildWordHooksHTML(q)}
+          </div>
+        `;
+      }
+
+      const bottom = document.getElementById('bzBottomBar');
+      if (bottom) {
+        bottom.style.display = 'block';
+        bottom.innerHTML = `
+          <div class="bz-bottom-inner">
+            <button class="bz-primary-btn fire" onclick="bzQuizNextAfterPenalty()">⚡ 重新记住了！继续死磕下一题 →</button>
+          </div>
+        `;
+      }
+    }
+
+    function bzQuizNextAfterPenalty() {
+      if (!bzQuizLocked) return;
+      bzNextQuizQuestion();
+    }
+
+    // ============================================================
+    // ===== STEP 4: 本组通关结算与三星防伪升级 (DONE PHASE)
+    // ============================================================
+    function bzFinishQuizBatch() {
+      clearBlitzTimers();
+      bzPhase = 'DONE';
+      _play('assets/levelup.mp3');
+      if (typeof fireConfetti === 'function') fireConfetti();
+
+      const now = Date.now();
+      bzGraduatedInBatch = [];
+
+      bzTargetUnknowns.forEach(gi => {
+        if (!bzUnknownPool[gi]) {
+          bzUnknownPool[gi] = { stars: 0, wrongs: 0, updatedAt: now };
+        }
+        const hadMistake = bzBatchMistakes.has(gi);
+        if (!hadMistake) {
+          // 本轮英->中、中->英全部一把秒过，星级 +1
+          bzUnknownPool[gi].stars = (bzUnknownPool[gi].stars || 0) + 1;
+        } else {
+          // 本轮卡壳或出错过，保持在 1 星待下次继续轰炸
+          bzUnknownPool[gi].stars = Math.max(1, bzUnknownPool[gi].stars || 1);
+        }
+        bzUnknownPool[gi].updatedAt = now;
+
+        // 满 3 星（跨轮次连续3次0失误秒过双重回马枪），彻底斩掉毕业！
+        if (bzUnknownPool[gi].stars >= 3) {
+          bzSlain.add(gi);
+          delete bzUnknownPool[gi];
+          bzGraduatedInBatch.push(gi);
+        }
+      });
+
+      saveBlitzState();
+      renderBlitzHUD();
+      blitzForceTop();
+
+      const main = document.getElementById('bzMainArea');
+      const bottom = document.getElementById('bzBottomBar');
+      if (!main || !bottom) return;
+      bottom.style.display = 'none';
+
+      const poolCount = Object.keys(bzUnknownPool).length;
+      const unscreenedCount = getUnscreenedGis(bzScope).length;
+
+      let wordSummaryHTML = '';
+      bzTargetUnknowns.forEach(gi => {
+        const q = ALL[gi];
+        const isGrad = bzSlain.has(gi);
+        const hadErr = bzBatchMistakes.has(gi);
+        wordSummaryHTML += `
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:rgba(30,41,59,0.75);border-radius:10px;border-left:3px solid ${isGrad ? '#10b981' : (hadErr ? '#f43f5e' : '#fbbf24')}">
+            <div>
+              <b style="color:#f8fafc;font-family:'Inter',sans-serif;margin-right:8px">${esc(q.word)}</b>
+              <span style="color:#94a3b8;font-size:0.82rem">${esc(cleanMeaning(q.meaning))}</span>
+            </div>
+            <div>
+              ${isGrad ? '<span style="color:#34d399;font-size:0.75rem;font-weight:800">🗡️ 满3星已斩！</span>' : getStarsHTML(gi)}
+            </div>
+          </div>`;
+      });
+
+      main.innerHTML = `
+        <div style="text-align:center;padding:18px 10px 10px">
+          <div style="font-size:3.2rem;margin-bottom:6px">🏆</div>
+          <div style="font-size:1.4rem;font-weight:800;color:#f8fafc">本组双重回马枪 100% 通关！</div>
+          <div style="font-size:0.84rem;color:#94a3b8;margin-top:6px">
+            ${bzMode === 'screen' ? `本组秒斩熟词 <b style="color:#34d399">${bzKnownInBatch.size}</b> 个 · ` : ''}
+            死磕生词 <b style="color:#fbbf24">${bzTargetUnknowns.length}</b> 个
+            ${bzGraduatedInBatch.length > 0 ? ` · <b style="color:#34d399">🗡️ 满3星彻底斩掉 ${bzGraduatedInBatch.length} 词！</b>` : ''}
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;margin:14px 0 22px">
+          ${wordSummaryHTML}
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          ${unscreenedCount > 0 ? `
+            <button class="bz-primary-btn" onclick="startBlitzScreenBatch()">
+              🚀 继续筛下一组新词 (还剩 ${unscreenedCount} 词) →
+            </button>` : ''}
+          ${poolCount > 0 ? `
+            <button class="bz-primary-btn fire" onclick="startBlitzPoolReview()">
+              🔥 滚动轰炸生词本 (当前 ${poolCount} 词 · 满★★★彻底斩掉) →
+            </button>` : ''}
+        </div>
+      `;
+    }
+
+    // ============================================================
+    // ===== 🔥 轰炸生词本模式 (直接拉取生词本10词进入回马枪死磕)
+    // ============================================================
+    function startBlitzPoolReview() {
+      clearBlitzTimers();
+      const keys = Object.keys(bzUnknownPool).map(Number);
+      if (keys.length === 0) {
+        dpShowTip('🎉 生词本目前是空的！先去筛新词吧');
+        startBlitzScreenBatch();
+        return;
+      }
+
+      bzMode = 'pool';
+      // 优先抽取：错误次数多、星级低、距离上次复习时间久的生词
+      keys.sort((a, b) => {
+        const pa = bzUnknownPool[a], pb = bzUnknownPool[b];
+        if ((pb.wrongs || 0) !== (pa.wrongs || 0)) return (pb.wrongs || 0) - (pa.wrongs || 0);
+        if ((pa.stars || 0) !== (pb.stars || 0)) return (pa.stars || 0) - (pb.stars || 0);
+        return (pa.updatedAt || 0) - (pb.updatedAt || 0);
+      });
+
+      bzTargetUnknowns = keys.slice(0, BLITZ_BATCH_SIZE);
+      bzKnownInBatch = new Set();
+      renderBlitzHUD();
+      blitzForceTop();
+
+      // 生词本轰炸：先给 15 秒极速浏览卡片，或直接点击进入回马枪抽查
+      bzPhase = 'STUDY';
+      renderBlitzStudyPhase();
+    }
+
+    // ============================================================
+    // ===== 📋 生词急救本 / 已斩熟词库 查看与管理面板
+    // ============================================================
+    function openBlitzPoolDrawer(tab = 'pool') {
+      clearBlitzTimers();
+      bzPhase = 'DRAWER';
+      blitzForceTop();
+      const main = document.getElementById('bzMainArea');
+      const bottom = document.getElementById('bzBottomBar');
+      if (!main || !bottom) return;
+      bottom.style.display = 'none';
+
+      const poolGis = Object.keys(bzUnknownPool).map(Number);
+      const slainGis = [...bzSlain];
+      const list = tab === 'pool' ? poolGis : slainGis;
+
+      let rowsHTML = '';
+      if (list.length === 0) {
+        rowsHTML = `<div class="empty" style="padding:40px 20px"><div class="empty-text">${tab === 'pool' ? '生词本暂无单词，快去极速筛词吧！' : '暂无已斩熟词'}</div></div>`;
+      } else {
+        list.forEach((gi, idx) => {
+          const q = ALL[gi];
+          if (!q) return;
+          const safeWord = (q.word || '').replace(/'/g, "\\'");
+          const cm = cleanMeaning(q.meaning || '');
+          rowsHTML += `
+            <div style="background:rgba(30,41,59,0.85);border:1px solid rgba(71,85,105,0.4);border-radius:12px;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px">
+              <div style="min-width:0;flex:1" onclick="speakWord('${safeWord}')">
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <span style="color:#64748b;font-size:0.75rem">#${idx + 1}</span>
+                  <b style="color:#f8fafc;font-size:1.05rem;font-family:'Inter',sans-serif">${esc(q.word)}</b>
+                  ${tab === 'pool' ? getStarsHTML(gi) : '<span style="color:#34d399;font-size:0.72rem;font-weight:700">🗡️ 已斩</span>'}
+                </div>
+                <div style="color:#cbd5e1;font-size:0.84rem;margin-top:3px">${esc(cm)}</div>
+              </div>
+              <button class="bz-exit-btn" style="font-size:0.72rem;padding:5px 10px" onclick="${tab === 'pool' ? `bzManualSlay(${gi})` : `bzRestoreToPool(${gi})`}">
+                ${tab === 'pool' ? '🗡️ 直接斩掉' : '↩ 移回生词'}
+              </button>
+            </div>`;
+        });
+      }
+
+      main.innerHTML = `
+        <div style="display:flex;gap:8px;margin-bottom:12px">
+          <button class="bz-scope-btn ${tab === 'pool' ? 'active' : ''}" style="flex:1;padding:9px" onclick="openBlitzPoolDrawer('pool')">🔥 生词急救本 (${poolGis.length})</button>
+          <button class="bz-scope-btn ${tab === 'slain' ? 'active' : ''}" style="flex:1;padding:9px" onclick="openBlitzPoolDrawer('slain')">🗡️ 已斩熟词库 (${slainGis.length})</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <button class="bz-exit-btn" onclick="startBlitzScreenBatch()">← 返回筛词冲刺</button>
+          <button class="bz-exit-btn" style="color:#f43f5e;border-color:rgba(244,63,94,0.35)" onclick="bzResetAllConfirm()">🗑️ 重置冲刺进度</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">${rowsHTML}</div>
+      `;
+    }
+
+    function bzManualSlay(gi) {
+      delete bzUnknownPool[gi];
+      bzSlain.add(gi);
+      saveBlitzState();
+      renderBlitzHUD();
+      openBlitzPoolDrawer('pool');
+    }
+
+    function bzRestoreToPool(gi) {
+      bzSlain.delete(gi);
+      bzUnknownPool[gi] = { stars: 0, wrongs: 1, updatedAt: Date.now() };
+      saveBlitzState();
+      renderBlitzHUD();
+      openBlitzPoolDrawer('slain');
+    }
+
+    function bzResetAllConfirm() {
+      if (confirm('确定要清空【极速筛词冲刺】的全部已斩熟词和生词本进度，重新开始筛查吗？')) {
+        bzSlain.clear();
+        bzUnknownPool = {};
+        saveBlitzState();
+        renderBlitzHUD();
+        startBlitzScreenBatch();
+      }
     }
 
   </script>
