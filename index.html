@@ -3352,9 +3352,6 @@
             <span>📖 <b>${esc(q.word)}</b> ${esc(q.meaning)}</span>
             <button class="speak-btn" onclick="event.stopPropagation();speakWord('${safeWord}', this)" title="点击朗读单词发音">🔊</button>
           </div>`;
-          if (q.plain_meaning) {
-            extraInfo += `<div class="answer-detail-row answer-plain">💬 <b>考场大白话：</b>${esc(q.plain_meaning)}</div>`;
-          }
         }
         if (q.technique_tip) {
           extraInfo += `<div class="answer-detail-row answer-tip">${esc(q.technique_tip)}</div>`;
@@ -4404,7 +4401,6 @@
       const w = opts.correctWord || q.word || '';
       const m = opts.correctMeaning || q.meaning || '';
       if (w && m) extra += `<div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.85rem">📖 <b style="color:#5eead4;font-style:italic">${esc(w)}</b>&nbsp;${esc(m)}</div>`;
-      if (q.plain_meaning) extra += `<div style="margin-top:6px;font-size:0.85rem;color:#38bdf8;font-weight:600">💬 <b>考场大白话：</b>${esc(q.plain_meaning)}</div>`;
       if (q.technique_tip) extra += `<div style="margin-top:6px;font-size:0.8rem;color:#f472b6">💡 ${esc(q.technique_tip)}</div>`;
       if (q.phrase) extra += `<div style="margin-top:4px;font-size:0.8rem;color:#7dd3fc">📌 ${esc(q.phrase)}</div>`;
       if (q.family_note) extra += `<div style="margin-top:4px;font-size:0.8rem;color:#a7f3d0">🌱 ${esc(q.family_note)}</div>`;
@@ -4606,7 +4602,6 @@
               ${badgeHTML}
             </div>
             <div class="ch-review-meaning">${esc(m)}</div>
-            ${q && q.plain_meaning ? `<div class="ch-review-extra plain">💬 <b>考场大白话：</b>${esc(q.plain_meaning)}</div>` : ''}
             ${extraHTML}
             ${userAnsRow}
           </div>
@@ -5123,9 +5118,6 @@
             <span>📖 <b>${esc(q.word)}</b> ${esc(q.meaning)}</span>
             <button class="speak-btn" onclick="event.stopPropagation();speakWord('${safeWord}', this)" title="点击朗读">🔊</button>
           </div>`;
-          if (q.plain_meaning) {
-            extraInfo += `<div class="answer-detail-row answer-plain">💬 <b>考场大白话：</b>${esc(q.plain_meaning)}</div>`;
-          }
         }
         if (q.technique_tip) extraInfo += `<div class="answer-detail-row answer-tip">${esc(q.technique_tip)}</div>`;
         if (q.phrase) extraInfo += `<div class="answer-detail-row answer-phrase">📌 <b>考点搭配:</b> ${esc(q.phrase)}</div>`;
@@ -5747,7 +5739,6 @@
         const verifyHTML = isKnown ? `
           <div class="bz-verify-line">
             <span>👁️ 核心义：<b>${esc(cm)}</b></span>
-            ${q.plain_meaning ? `<span class="bz-verify-plain">💬 <b>大白话：</b>${esc(q.plain_meaning)}</span>` : ''}
             <span class="bz-verify-undo">认错了？再点撤回 ↩</span>
           </div>` : '';
 
@@ -5882,7 +5873,6 @@
               </div>
             </div>
             <div class="bz-study-meaning">🎯 ${esc(cm)}</div>
-            ${q.plain_meaning ? `<div class="bz-study-plain">💬 <b>大白话秒记：</b>${esc(q.plain_meaning)}</div>` : ''}
             ${buildWordHooksHTML(q)}
           </div>`;
       });
@@ -6094,7 +6084,6 @@
               ${esc(promptText)}
               ${isR1 ? `<button class="speak-btn" onclick="event.stopPropagation();speakWord('${safeWord}', this)" style="vertical-align:middle;margin-left:6px">🔊</button>` : ''}
             </div>
-            ${!isR1 && q.plain_meaning ? `<div style="font-size:0.88rem;color:#38bdf8;font-weight:600;margin-top:6px">💬 大白话秒记：${esc(q.plain_meaning)}</div>` : ''}
           </div>
 
           <div class="bz-quiz-opts">
@@ -6205,7 +6194,6 @@
               <button class="speak-btn" onclick="event.stopPropagation();speakWord('${safeWord}', this)">🔊</button>
               <span style="color:#34d399;font-weight:700;font-size:0.95rem">${esc(cm)}</span>
             </div>
-            ${q.plain_meaning ? `<div class="bz-study-plain" style="margin-bottom:8px">💬 <b>大白话秒记：</b>${esc(q.plain_meaning)}</div>` : ''}
             ${buildWordHooksHTML(q)}
           </div>
         `;
@@ -6283,7 +6271,6 @@
             <div>
               <b style="color:#f8fafc;font-family:'Inter',sans-serif;margin-right:8px">${esc(q.word)}</b>
               <span style="color:#94a3b8;font-size:0.82rem">${esc(cleanMeaning(q.meaning))}</span>
-              ${q.plain_meaning ? `<span class="bz-plain-tag">💬 ${esc(q.plain_meaning)}</span>` : ''}
             </div>
             <div>
               ${isGrad ? '<span style="color:#34d399;font-size:0.75rem;font-weight:800">🗡️ 满3星已斩！</span>' : getStarsHTML(gi)}
@@ -6385,7 +6372,6 @@
                 </div>
                 <div style="color:#cbd5e1;font-size:0.84rem;margin-top:3px">
                   ${esc(cm)}
-                  ${q.plain_meaning ? `<span class="bz-plain-tag">💬 ${esc(q.plain_meaning)}</span>` : ''}
                 </div>
               </div>
               <button class="bz-exit-btn" style="font-size:0.72rem;padding:5px 10px" onclick="${tab === 'pool' ? `bzManualSlay(${gi})` : `bzRestoreToPool(${gi})`}">
