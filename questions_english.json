@@ -643,7 +643,7 @@
     "type": "cloze50",
     "category": "二级绿叶词 (干扰项)",
     "word": "ignore",
-    "meaning": "当成空气视而不见、完全无视",
+    "meaning": "当成空气甩一边、完全装没看见",
     "question": "Public policymakers cannot afford to ____ the alarming decline in urban groundwater reserves.\n💡 公共政策制定者决不能对城市地下水储量的惊人下降视而不见。",
     "options": {
       "A": "consider",
@@ -653,7 +653,7 @@
     },
     "answer": "C",
     "technique_tip": "💡 完形秒杀：【绿叶词警惕】ignore多作为负向态度干扰选项，真题文章作者更强调重视而非忽视。",
-    "plain_meaning": "当成空气视而不见、完全无视"
+    "plain_meaning": "当成空气甩一边、完全装没看见"
   },
   {
     "type": "cloze50",
@@ -1925,7 +1925,7 @@
     "type": "family",
     "family": "spect",
     "word": "inspect",
-    "meaning": "拿着放大镜仔细审查检视",
+    "meaning": "仔细审查检视、严加盘查",
     "phrase": "inspect quality standards 检查质量标准",
     "family_note": "in(进入/向内) + spect(看) → 往里仔细看→检查",
     "question": "Government health officials arrived unexpectedly to ____ the refrigeration units and hygiene conditions of the meat plant.\n💡 政府卫生官员意外到访，检查肉类加工厂的制冷设备和卫生状况。",
@@ -1936,7 +1936,7 @@
       "D": "retrospect"
     },
     "answer": "C",
-    "plain_meaning": "拿着放大镜仔细审查检视"
+    "plain_meaning": "仔细审查检视、严加盘查"
   },
   {
     "type": "family",
@@ -2027,7 +2027,7 @@
     "type": "family",
     "family": "spect",
     "word": "circumspect",
-    "meaning": "处处留神小心、极其审慎",
+    "meaning": "处处留神小心、特别谨慎",
     "phrase": "a circumspect policy 审慎的政策",
     "family_note": "circum(周围环绕) + spect(看) → 四周到处看清楚再行动→谨慎的",
     "question": "In volatile financial markets, fund managers must remain extremely ____ before making leveraged investments.\n💡 在动荡的金融市场中，基金经理在进行杠杆投资前必须保持极度的审慎。",
@@ -2038,7 +2038,7 @@
       "D": "spectacular"
     },
     "answer": "B",
-    "plain_meaning": "处处留神小心、极其审慎"
+    "plain_meaning": "处处留神小心、特别谨慎"
   },
   {
     "type": "family",
@@ -2163,7 +2163,7 @@
     "type": "family",
     "family": "port",
     "word": "import",
-    "meaning": "进口货；举足轻重的重大意义",
+    "meaning": "进口货；非同小可的重大分量",
     "phrase": "matters of great import 意义重大的事情",
     "family_note": "考研熟词生义考点！import作名词常考【重要性、意义】",
     "question": "The judge emphasized that the constitutional issue under deliberation was a question of tremendous national ____.\n💡 法官强调，正在审议的宪法议题是一个具有极其重大国家意义的问题。",
@@ -2174,13 +2174,13 @@
       "D": "deport"
     },
     "answer": "C",
-    "plain_meaning": "进口货；举足轻重的重大意义"
+    "plain_meaning": "进口货；非同小可的重大分量"
   },
   {
     "type": "family",
     "family": "port",
     "word": "purport",
-    "meaning": "自吹自擂声称、号称自诩",
+    "meaning": "自吹自擂声称、硬说自己是",
     "phrase": "purport to show/be... 声称表明...",
     "family_note": "pur/pro(向前) + port(携带/传达) → 表面带出来的意思→声称",
     "question": "The leaked emails ____ to demonstrate collusion between oil lobbyists and government regulators.\n💡 泄露的电子邮件声称证实了石油说客与政府监管官员之间的串通。",
@@ -2191,7 +2191,7 @@
       "D": "deport"
     },
     "answer": "B",
-    "plain_meaning": "自吹自擂声称、号称自诩"
+    "plain_meaning": "自吹自擂声称、硬说自己是"
   },
   {
     "type": "family",
@@ -2214,7 +2214,7 @@
     "type": "family",
     "family": "dict",
     "word": "predict",
-    "meaning": "神机妙算提前预测",
+    "meaning": "提前料中预测、预言预料",
     "phrase": "predict future outcomes 预测未来走向",
     "family_note": "pre(在前) + dict(说) → 提前说出来→预测",
     "question": "Meteorologists use supercomputers and satellite feeds to ____ hurricane paths with growing accuracy.\n💡 气象学家利用超级计算机和卫星数据，以越来越高的准确度预测飓风路径。",
@@ -2225,7 +2225,7 @@
       "D": "indicate"
     },
     "answer": "C",
-    "plain_meaning": "神机妙算提前预测"
+    "plain_meaning": "提前料中预测、预言预料"
   },
   {
     "type": "family",
@@ -2663,7 +2663,7 @@
   {
     "type": "family",
     "word": "moderate",
-    "meaning": "拿捏有度不偏激适度的；从中斡旋缓和",
+    "meaning": "拿捏有度不走极端；从中调解缓和",
     "question": "Such bodily reaction like laughter might help ____  the effects of psychological stress. 💡 像笑这样的身体反应也许能够帮助缓和心理压力带来的影响。",
     "options": {
       "A": "civilized",
@@ -2674,7 +2674,7 @@
     "answer": "C",
     "family": "mod",
     "mnemonic": "🧠 mod（方式）+er（名词后缀）+ate（形容词后缀）→想要方式适当，需要把握好度→适度的",
-    "plain_meaning": "拿捏有度不偏激适度的；从中斡旋缓和"
+    "plain_meaning": "拿捏有度不走极端；从中调解缓和"
   },
   {
     "type": "advanced",
@@ -2909,7 +2909,7 @@
   {
     "type": "family",
     "word": "evade",
-    "meaning": "脚底抹油溜走逃避；把人绕晕",
+    "meaning": "偷偷溜走逃避；把人绕晕",
     "question": "What is being called artificial general intelligence, machines that would imitate the way humans think, continues to ____ scientists. 💡 所谓的通用人工智能，即能模仿人类思维方式的机器，一直使科学家们困惑。",
     "options": {
       "A": "overshadow",
@@ -2921,7 +2921,7 @@
     "family": "ex",
     "mnemonic": "🧠 e（外，出来）+vad（走）+e→从责任中往外走→逃避",
     "exam_cite": "所谓的通用人工智能，即能模仿人类思维方式的机器，一直使科学家们困惑。（2019 英一 Text 3）",
-    "plain_meaning": "脚底抹油溜走逃避；把人绕晕"
+    "plain_meaning": "偷偷溜走逃避；把人绕晕"
   },
   {
     "type": "family",
@@ -3093,7 +3093,7 @@
   {
     "type": "family",
     "word": "establish",
-    "meaning": "平地起高楼打牢地基建立",
+    "meaning": "从零搭建打牢基础、建立创办",
     "question": "Compared with their predecessors, today’s CEOs are required to ____ closer ties with tech companies. 💡 与他们的前辈相比，今天的首席执行官（CEO）们需要与科技公司建立更密切的关系。",
     "options": {
       "A": "rethink",
@@ -3105,7 +3105,7 @@
     "family": "ex",
     "mnemonic": "🧠 e（外，出来）+st（站）+abl（=able，形容词后缀）+ish（动词后缀）→使新组织站出来→建立",
     "exam_cite": "与他们的前辈相比，今天的首席执行官（CEO）们需要与科技公司建立更密切的关系。（2020 英二 Text 2）",
-    "plain_meaning": "平地起高楼打牢地基建立"
+    "plain_meaning": "从零搭建打牢基础、建立创办"
   },
   {
     "type": "advanced",
@@ -3719,7 +3719,7 @@
   {
     "type": "advanced",
     "word": "casual",
-    "meaning": "随心所欲漫不经心、随意的",
+    "meaning": "漫不经心随性子来、大大咧咧",
     "question": "When we shy away from ____ interactions with strangers, it is often due to a misplaced anxiety that they might not want to talk to us. 💡 我们回避与陌生人随意交谈，往往是出于一种并不恰当的焦虑，认为他们或许不想与我们聊天。反 serious [ˈsɪriəs] a. 严肃的",
     "options": {
       "A": "uplifting",
@@ -3730,7 +3730,7 @@
     "answer": "B",
     "mnemonic": "🧠 cas（落下）+ual（形容词后缀）→天上掉（落）馅饼是随意的→随意的",
     "exam_cite": "我们回避与陌生人随意交谈，往往是出于一种并不恰当的焦虑，认为他们或许不想与我们聊天。（2021 英二翻译）反 serious [ˈsɪriəs] a. 严肃的",
-    "plain_meaning": "随心所欲漫不经心、随意的"
+    "plain_meaning": "漫不经心随性子来、大大咧咧"
   },
   {
     "type": "advanced",
@@ -3864,7 +3864,7 @@
   {
     "type": "advanced",
     "word": "obscure",
-    "meaning": "晦涩难懂摸不透的、无名之辈、遮挡",
+    "meaning": "让人看不懂摸不透、无名小辈、遮挡掩盖",
     "question": "Factors such as our gender, age and social class will encourage us towards certain interpretations but at the same time ____ or even close off others. 💡 诸如我们的性别、年龄及社会阶层等因素会促使我们倾向特定的解读，但同时也遮掩甚至隔绝了其他解读方式。",
     "options": {
       "A": "private",
@@ -3876,7 +3876,7 @@
     "phrase": "📌 an obscure point 一个费解的观点 an obscure magazine 一份无名的杂志",
     "mnemonic": "🧠 obs（联想英文语气词 Oops，哎呦）+cure（治疗）→哎呦，这个治疗方案让人看不懂→费解的",
     "exam_cite": "诸如我们的性别、年龄及社会阶层等因素会促使我们倾向特定的解读，但同时也遮掩甚至隔绝了其他解读方式。（2015 英一新题型）",
-    "plain_meaning": "晦涩难懂摸不透的、无名之辈、遮挡"
+    "plain_meaning": "让人看不懂摸不透、无名小辈、遮挡掩盖"
   },
   {
     "type": "family",
@@ -4304,7 +4304,7 @@
   {
     "type": "advanced",
     "word": "apparent",
-    "meaning": "秃子头上虱子明摆着的显而易见",
+    "meaning": "一眼就能看穿、显而易见",
     "question": "It is this ____ transcendence of politics that explains monarchs’ continuing popularity as heads of state. 💡 正是这种明显超越政治的存在解释了君主作为国家元首为什么持续受到欢迎。",
     "options": {
       "A": "surely",
@@ -4315,7 +4315,7 @@
     "answer": "B",
     "mnemonic": "🧠 ap（向）+par（看见）+ent（形容词后缀）→很容易就看见的→明显的",
     "exam_cite": "正是这种明显超越政治的存在解释了君主作为国家元首为什么持续受到欢迎。（2015 英一 Text 1）",
-    "plain_meaning": "秃子头上虱子明摆着的显而易见"
+    "plain_meaning": "一眼就能看穿、显而易见"
   },
   {
     "type": "advanced",
@@ -4996,7 +4996,7 @@
   {
     "type": "family",
     "word": "preserve",
-    "meaning": "自家的一亩三分地；精心保护",
+    "meaning": "保护区专属领地；精心保护",
     "question": "A set of healthy and clean, regular “pearly whites” was a rare sight in Victorian society, the ____ of the super-rich. 💡 在维多利亚时代，一口健康、干净而又整齐的“珍珠般洁白的牙齿”是非常罕见的，这是超级富豪的专属。",
     "options": {
       "A": "rethink",
@@ -5008,7 +5008,7 @@
     "family": "pre",
     "mnemonic": "🧠 pre（在前）+serv（保持）+e→使古建筑一直保持之前的样子→保护",
     "exam_cite": "在维多利亚时代，一口健康、干净而又整齐的“珍珠般洁白的牙齿”是非常罕见的，这是超级富豪的专属。（2021 英一 Text 3）",
-    "plain_meaning": "自家的一亩三分地；精心保护"
+    "plain_meaning": "保护区专属领地；精心保护"
   },
   {
     "type": "advanced",
@@ -5214,7 +5214,7 @@
   {
     "type": "advanced",
     "word": "string",
-    "meaning": "一连串紧密事物；附加的严苛条件",
+    "meaning": "一连串紧密事物；附加的苛刻条件",
     "question": "A ____ of lucrative awards for researchers have joined the Nobel Prizes in recent years. 💡 近年来为科研人员准备的一系列利润丰厚的奖项都已加入诺贝尔奖的行列。",
     "options": {
       "A": "college",
@@ -5225,7 +5225,7 @@
     "answer": "B",
     "phrase": "📌 a string of… 一系列……",
     "exam_cite": "近年来为科研人员准备的一系列利润丰厚的奖项都已加入诺贝尔奖的行列。（2014 英一 Text 3）",
-    "plain_meaning": "一连串紧密事物；附加的严苛条件"
+    "plain_meaning": "一连串紧密事物；附加的苛刻条件"
   },
   {
     "type": "advanced",
@@ -5738,7 +5738,7 @@
   {
     "type": "advanced",
     "word": "assert",
-    "meaning": "拍胸脯笃定主张、硬气宣称",
+    "meaning": "拍胸脯坚信主张、硬气宣称",
     "question": "The Obama Administration was in essence ____ that it didn’t want to carry out Congress’s immigration wishes. 💡 奥巴马政府本质上是在宣称，它不想执行国会在移民事务上的意愿。",
     "options": {
       "A": "automate",
@@ -5748,7 +5748,7 @@
     },
     "answer": "B",
     "mnemonic": "🧠 as（向）+sert（连接）→把手放在奴隶头上（连接），宣称所有权→宣称，断言",
-    "plain_meaning": "拍胸脯笃定主张、硬气宣称"
+    "plain_meaning": "拍胸脯坚信主张、硬气宣称"
   },
   {
     "type": "family",
@@ -5958,7 +5958,7 @@
   {
     "type": "advanced",
     "word": "found",
-    "meaning": "平地起高楼打牢地基建立基石",
+    "meaning": "从零搭建打牢基础、建立基石",
     "question": "It was with these great revelations that a new kind of philosophy ____ in reason was born. 💡 正是有了这些伟大的发现，一种建立在理性之上的新哲学应运而生。",
     "options": {
       "A": "save",
@@ -5969,7 +5969,7 @@
     "answer": "C",
     "mnemonic": "🧠 根词，词根 found 表示“基础”，引申为动词作为基础，即把„„基于",
     "exam_cite": "正是有了这些伟大的发现，一种建立在理性之上的新哲学应运而生。（2020 英一翻译）",
-    "plain_meaning": "平地起高楼打牢地基建立基石"
+    "plain_meaning": "从零搭建打牢基础、建立基石"
   },
   {
     "type": "family",
@@ -6158,7 +6158,7 @@
   {
     "type": "family",
     "word": "revolve",
-    "meaning": "围绕核心转圈、始终围绕着",
+    "meaning": "围绕核心团团转、始终绕着打转",
     "question": "All of the planets that we knew of ____ not around the Earth, but the Sun. 💡 我们已知的所有行星都围绕太阳运转，而不是地球。",
     "options": {
       "A": "revolve",
@@ -6170,7 +6170,7 @@
     "family": "re",
     "mnemonic": "🧠 re（再，又）+volv（转）+e→一再绕着轨道转→围绕",
     "exam_cite": "我们已知的所有行星都围绕太阳运转，而不是地球。（2020 英一翻译）",
-    "plain_meaning": "围绕核心转圈、始终围绕着"
+    "plain_meaning": "围绕核心团团转、始终绕着打转"
   },
   {
     "type": "advanced",
@@ -6242,7 +6242,7 @@
   {
     "type": "advanced",
     "word": "neglect",
-    "meaning": "当耳旁风置之不理、随手忽视",
+    "meaning": "当耳旁风晾在一边、撒手不管忽视",
     "question": "If you’re failing to expose your child to 30,000 words you are ____ your child. 💡 如果你和孩子的交流未达到 3 万词汇，那么你就是在忽视你的孩子。",
     "options": {
       "A": "neglect",
@@ -6253,7 +6253,7 @@
     "answer": "A",
     "mnemonic": "🧠 neg（否定）+lect（选择）→选择不重视头疼的现象→忽视",
     "exam_cite": "如果你和孩子的交流未达到 3 万词汇，那么你就是在忽视你的孩子。（2017 英二 Text 2）",
-    "plain_meaning": "当耳旁风置之不理、随手忽视"
+    "plain_meaning": "当耳旁风晾在一边、撒手不管忽视"
   },
   {
     "type": "family",
@@ -6832,7 +6832,7 @@
   {
     "type": "advanced",
     "word": "escape",
-    "meaning": "脚底抹油成功逃走脱身",
+    "meaning": "成功逃走脱身、躲过一劫",
     "question": "During the experiment, the social robot rat opened cage doors to let trapped rats ____. 💡 在实验过程中，社交机器鼠打开笼门让被困的老鼠逃走。",
     "options": {
       "A": "disregard",
@@ -6843,7 +6843,7 @@
     "answer": "C",
     "phrase": "📌 escape from the boredom of everyday life 摆脱每天无聊的生活",
     "exam_cite": "在实验过程中，社交机器鼠打开笼门让被困的老鼠逃走。（2020 英二 Text 1）",
-    "plain_meaning": "脚底抹油成功逃走脱身"
+    "plain_meaning": "成功逃走脱身、躲过一劫"
   },
   {
     "type": "advanced",
@@ -7154,7 +7154,7 @@
   {
     "type": "family",
     "word": "incentive",
-    "meaning": "看得见摸得着的激励胡萝卜诱因",
+    "meaning": "看得见摸得着的奖励刺激、诱因",
     "question": "Within companies, the right compensation design can provide ____ for executives to think beyond their own time at the company and on behalf of all stakeholders. 💡 在公司内部，合理的薪酬设计可以激励高管，使其考虑自己任期之后的事情，并代表所有股东的利益。",
     "options": {
       "A": "handful",
@@ -7166,7 +7166,7 @@
     "family": "in",
     "mnemonic": "🧠 in（里）+cent（感觉）+ive（名词后缀）→使人心里产生上进感的东西→激励",
     "exam_cite": "在公司内部，合理的薪酬设计可以激励高管，使其考虑自己任期之后的事情，并代表所有股东的利益。（2019 英一 Text 1）",
-    "plain_meaning": "看得见摸得着的激励胡萝卜诱因"
+    "plain_meaning": "看得见摸得着的奖励刺激、诱因"
   },
   {
     "type": "advanced",
@@ -8013,7 +8013,7 @@
   {
     "type": "family",
     "word": "principal",
-    "meaning": "举足轻重挑大梁的主要主角；校长",
+    "meaning": "挑大梁当主角的首要主力；校长",
     "question": "In many parts of the world renewable energy is already a ____ energy source. 💡 在世界许多地区，可再生能源已经成为了主要的能源来源。",
     "options": {
       "A": "principal",
@@ -8025,7 +8025,7 @@
     "family": "cept/ceive",
     "mnemonic": "🧠 prin（第一）+cip（拿）+al（形容词后缀）→拿到第一位考虑的→主要的",
     "exam_cite": "在世界许多地区，可再生能源已经成为了主要的能源来源。（2018 英二 Text 2）",
-    "plain_meaning": "举足轻重挑大梁的主要主角；校长"
+    "plain_meaning": "挑大梁当主角的首要主力；校长"
   },
   {
     "type": "family",
@@ -8179,7 +8179,7 @@
   {
     "type": "advanced",
     "word": "belong",
-    "meaning": "名正言顺归属于、属于自己",
+    "meaning": "名正言顺归到名下、归属于",
     "question": "It’s clearer than ever that the future ____ to renewable sources such as wind and solar. 💡 未来属于风能和太阳能等可再生能源这一点比以往任何时候都要清楚明了。",
     "options": {
       "A": "belong",
@@ -8191,12 +8191,12 @@
     "phrase": "📌 belong to 属于",
     "mnemonic": "🧠 be（使）+long（长的）→使某人长久拥有某物→属于",
     "exam_cite": "未来属于风能和太阳能等可再生能源这一点比以往任何时候都要清楚明了。（2018 英二 Text 2）",
-    "plain_meaning": "名正言顺归属于、属于自己"
+    "plain_meaning": "名正言顺归到名下、归属于"
   },
   {
     "type": "advanced",
     "word": "brief",
-    "meaning": "言简意赅一两句话讲清的短暂",
+    "meaning": "一两句话讲清楚、简短扼要",
     "question": "Eye fixations are ____. 💡 眼睛注视的时间非常短暂。",
     "options": {
       "A": "tolerant",
@@ -8208,7 +8208,7 @@
     "phrase": "📌 to be brief 简言之 in brief 简单来说",
     "mnemonic": "🧠 他用 brief（简洁的）话描述了他的 belief（信念）",
     "exam_cite": "眼睛注视的时间非常短暂。（2020 英一新题型）",
-    "plain_meaning": "言简意赅一两句话讲清的短暂"
+    "plain_meaning": "一两句话讲清楚、简短扼要"
   },
   {
     "type": "advanced",
@@ -8653,7 +8653,7 @@
   {
     "type": "family",
     "word": "incline",
-    "meaning": "屁股偏向于动不动就想倾斜",
+    "meaning": "偏向于动不动就想、倾向于",
     "question": "We ____ to the view that we should take no action at this stage. 💡 我们倾向于认为在这个阶段不应采取行动。",
     "options": {
       "A": "innovate",
@@ -8664,7 +8664,7 @@
     "answer": "C",
     "family": "in",
     "mnemonic": "🧠 in（里）+clin（倾斜）+e→胳膊肘往里拐（倾斜）→倾向于",
-    "plain_meaning": "屁股偏向于动不动就想倾斜"
+    "plain_meaning": "偏向于动不动就想、倾向于"
   },
   {
     "type": "advanced",
@@ -8701,7 +8701,7 @@
   {
     "type": "advanced",
     "word": "rigid",
-    "meaning": "死板僵化不知变通的严苛僵硬",
+    "meaning": "死板不知变通、死硬僵化",
     "question": "The financial problem with the USPS is caused partly by its ____ management. 💡 美国邮政管理局（USPS）的财务问题部分是由其僵化的管理造成的。",
     "options": {
       "A": "unworthy",
@@ -8712,7 +8712,7 @@
     "answer": "C",
     "mnemonic": "🧠 rig（直的）+id（=ic，形容词后缀）→身体绷直的→僵硬的",
     "exam_cite": "美国邮政管理局（USPS）的财务问题部分是由其僵化的管理造成的。（2018 英一 Text 4）",
-    "plain_meaning": "死板僵化不知变通的严苛僵硬"
+    "plain_meaning": "死板不知变通、死硬僵化"
   },
   {
     "type": "advanced",
@@ -8828,7 +8828,7 @@
   {
     "type": "advanced",
     "word": "regular",
-    "meaning": "按部就班有规律的定期日常",
+    "meaning": "按规矩走有规律的、定期日常",
     "question": "The robot was the same size as a ____ rat but resembled a simple plastic box on wheels. “ 💡 机器鼠”与普通老鼠一样大，但看起来像一个带车轮的简易塑料盒。",
     "options": {
       "A": "regular",
@@ -8839,7 +8839,7 @@
     "answer": "A",
     "mnemonic": "🧠 reg（统治）+ ul +ar（形容词后缀）→数字排布受规则统治的→有规律的",
     "exam_cite": "机器鼠”与普通老鼠一样大，但看起来像一个带车轮的简易塑料盒。（2020 英二 Text 1）",
-    "plain_meaning": "按部就班有规律的定期日常"
+    "plain_meaning": "按规矩走有规律的、定期日常"
   },
   {
     "type": "advanced",
@@ -9861,7 +9861,7 @@
   {
     "type": "advanced",
     "word": "illusion",
-    "meaning": "镜中花水中月的黄粱美梦幻觉幻象",
+    "meaning": "不切实际的幻觉、虚假假象",
     "question": "Advertising creates an ____ of happiness rather than happiness itself. 💡 广告创造了一种幸福的幻觉，而不是幸福本身。",
     "options": {
       "A": "payout",
@@ -9872,7 +9872,7 @@
     "answer": "B",
     "mnemonic": "🧠 ill（生病的）+us（我们）+ion（名词后缀）→我们吃了毒蘑菇，生病了，都产生了幻觉→幻觉",
     "exam_cite": "广告创造了一种幸福的幻觉，而不是幸福本身。（2006 英一 Text 4）",
-    "plain_meaning": "镜中花水中月的黄粱美梦幻觉幻象"
+    "plain_meaning": "不切实际的幻觉、虚假假象"
   },
   {
     "type": "advanced",
@@ -11248,7 +11248,7 @@
   {
     "type": "advanced",
     "word": "grave",
-    "meaning": "后果严重万分的严峻；长眠地下坟墓",
+    "meaning": "后果极严重的；长眠地下的坟墓",
     "question": "He said that the situation of flood is very ____. 💡 他说洪灾的情况很严重。",
     "options": {
       "A": "dynamism",
@@ -11258,7 +11258,7 @@
     },
     "answer": "B",
     "mnemonic": "🧠 谐音“鬼屋”→鬼屋和坟墓一样可怕→坟墓；坟墓需要雕刻墓碑→雕刻",
-    "plain_meaning": "后果严重万分的严峻；长眠地下坟墓"
+    "plain_meaning": "后果极严重的；长眠地下的坟墓"
   },
   {
     "type": "advanced",
@@ -11296,7 +11296,7 @@
   {
     "type": "advanced",
     "word": "embarrass",
-    "meaning": "当众出丑尴尬抠出三室一厅难堪",
+    "meaning": "当众出丑尴尬、难为情难堪",
     "question": "Your questions ____ me. 💡 你的问题使我尴尬。",
     "options": {
       "A": "diffuse",
@@ -11306,7 +11306,7 @@
     },
     "answer": "D",
     "mnemonic": "🧠 em（使）+barr（=bar，栏杆）+ass→使身体卡在栏杆处，十分尴尬→使尴尬",
-    "plain_meaning": "当众出丑尴尬抠出三室一厅难堪"
+    "plain_meaning": "当众出丑尴尬、难为情难堪"
   },
   {
     "type": "family",
@@ -11456,7 +11456,7 @@
   {
     "type": "advanced",
     "word": "prudent",
-    "meaning": "行事稳妥绝不冒失的审慎精明",
+    "meaning": "行事稳妥绝不冒失、精明谨慎",
     "question": "Public-sector unions are ____ in taking actions. 💡 公共部门的工会在采取行动时会很谨慎。",
     "options": {
       "A": "acceptable",
@@ -11467,7 +11467,7 @@
     "answer": "C",
     "mnemonic": "🧠 pr（=pro，前）+ud（=vid，看）+ent（形容词后缀）→提前看好路再出发→谨慎的",
     "exam_cite": "公共部门的工会在采取行动时会很谨慎。（2012 英一 Text 4）",
-    "plain_meaning": "行事稳妥绝不冒失的审慎精明"
+    "plain_meaning": "行事稳妥绝不冒失、精明谨慎"
   },
   {
     "type": "advanced",
@@ -11808,7 +11808,7 @@
   {
     "type": "advanced",
     "word": "dilemma",
-    "meaning": "进退两难猪八戒照镜子的困境死局",
+    "meaning": "左右为难、进退两难的死局困境",
     "question": "The Supreme Court decision Thursday will put most online businesses in a ____. 💡 最高法院周四的裁决将会使大多数在线企业进退两难。",
     "options": {
       "A": "discourse",
@@ -11820,7 +11820,7 @@
     "phrase": "📌 in a dilemma 进退两难",
     "mnemonic": "🧠 谐音“地雷吗”→陷入雷区，进退两难→困境",
     "exam_cite": "最高法院周四的裁决将会使大多数在线企业进退两难。（2019 英一 Text 4）",
-    "plain_meaning": "进退两难猪八戒照镜子的困境死局"
+    "plain_meaning": "左右为难、进退两难的死局困境"
   },
   {
     "type": "advanced",
@@ -12316,7 +12316,7 @@
   {
     "type": "advanced",
     "word": "mere",
-    "meaning": "仅仅只有微不足道的不过是",
+    "meaning": "仅仅只是、不过芝麻大点",
     "question": "We are amazed today at the ____ number of plays produced. 💡 今天令我们惊讶的是创作出来的戏剧数量如此之少。",
     "options": {
       "A": "certain",
@@ -12327,7 +12327,7 @@
     "answer": "C",
     "mnemonic": "🧠 谐音“米儿”→城镇后边有个仅仅米儿粒大小的池塘→仅仅的",
     "exam_cite": "今天令我们惊讶的是创作出来的戏剧数量如此之少。（2018 英一翻译）",
-    "plain_meaning": "仅仅只有微不足道的不过是"
+    "plain_meaning": "仅仅只是、不过芝麻大点"
   },
   {
     "type": "advanced",
@@ -14316,7 +14316,7 @@
   {
     "type": "basic",
     "word": "moment",
-    "meaning": "电光石火般的关键瞬间时刻片刻",
+    "meaning": "千钧一发的关键瞬间、时刻片刻",
     "question": "The most challenging ____ in life are getting married, starting a family and ultimately retiring. 💡 人生最具挑战性的时刻是结婚、组建家庭和最终退休。",
     "options": {
       "A": "moment",
@@ -14328,7 +14328,7 @@
     "phrase": "📌 at the moment 此刻，现在",
     "mnemonic": "🧠 WeChat Moment（微信朋友圈）可以记录生活中的重要 moment（时刻）",
     "exam_cite": "人生最具挑战性的时刻是结婚、组建家庭和最终退休。（2022 英二 Text 2）",
-    "plain_meaning": "电光石火般的关键瞬间时刻片刻"
+    "plain_meaning": "千钧一发的关键瞬间、时刻片刻"
   },
   {
     "type": "family",
@@ -14350,7 +14350,7 @@
   {
     "type": "family",
     "word": "emotion",
-    "meaning": "七情六欲涌上心头的情感绪情绪冲动",
+    "meaning": "涌上心头的强烈情绪、情感冲动",
     "question": "Unlike so-called basic ____ such as sadness, fear, and anger, guilt emerges a little later. 💡 不像所谓的基本情感，如悲伤、恐惧和愤怒，内疚感出现得稍晚一些。",
     "options": {
       "A": "catchword",
@@ -14362,7 +14362,7 @@
     "family": "mot/mov",
     "mnemonic": "🧠 e（外，出来）+mot（移动）+ion（名词后缀）→从心里流露（移动）出来的东西→情感",
     "exam_cite": "不像所谓的基本情感，如悲伤、恐惧和愤怒，内疚感出现得稍晚一些。（2019 英二 Text 1）",
-    "plain_meaning": "七情六欲涌上心头的情感绪情绪冲动"
+    "plain_meaning": "涌上心头的强烈情绪、情感冲动"
   },
   {
     "type": "family",
@@ -14503,7 +14503,7 @@
   {
     "type": "family",
     "word": "relate",
-    "meaning": "打断骨头连着筋息息相关；娓娓道来讲述",
+    "meaning": "息息相关紧密相连；娓娓道来讲述",
     "question": "In an essay entitled “Making It in America,” the author Adam Davidson ____ a joke from cotton country about just how much a modern textile mill has been automated. 💡 在《在美国制造》一文中，作者亚当·戴维森讲述了一个来自棉产区的笑话，内容和现代纺织厂自动化程度有关。",
     "options": {
       "A": "relate",
@@ -14516,7 +14516,7 @@
     "phrase": "📌 relate to… 与……有联系",
     "mnemonic": "🧠 re（回）+lat（带来）+e→带回书信→联系",
     "exam_cite": "在《在美国制造》一文中，作者亚当·戴维森讲述了一个来自棉产区的笑话，内容和现代纺织厂自动化程度有关。（2013 英二 Text 1）",
-    "plain_meaning": "打断骨头连着筋息息相关；娓娓道来讲述"
+    "plain_meaning": "息息相关紧密相连；娓娓道来讲述"
   },
   {
     "type": "basic",
@@ -14537,7 +14537,7 @@
   {
     "type": "family",
     "word": "contribute",
-    "meaning": "添砖加瓦促成好事捐款；撰文投稿贡献",
+    "meaning": "出力促成好事捐款；撰文投稿贡献",
     "question": "Some people argue that food self-sufficiency in the UK would ____ to the nation’s well-being. 💡 有些人认为，英国的粮食自给自足将有助于国家的福祉。",
     "options": {
       "A": "liberalize",
@@ -14550,7 +14550,7 @@
     "phrase": "📌 contribute to… 为……做贡献；有助于……；导致……",
     "mnemonic": "🧠 con（一起，共同）+tribut（给予）+e→把个人的物资、力量等一起献给社会→贡献",
     "exam_cite": "有些人认为，英国的粮食自给自足将有助于国家的福祉。（2021 英二 Text 2）",
-    "plain_meaning": "添砖加瓦促成好事捐款；撰文投稿贡献"
+    "plain_meaning": "出力促成好事捐款；撰文投稿贡献"
   },
   {
     "type": "basic",
@@ -14571,7 +14571,7 @@
   {
     "type": "family",
     "word": "protect",
-    "meaning": "像金钟罩一样用心呵护遮风挡雨保护",
+    "meaning": "遮风挡雨用心呵护、保护",
     "question": "Hugging ____ people who are under stress from the increased risk for colds. 💡 拥抱保护压力之下的人们免受更多的感冒风险。",
     "options": {
       "A": "protect",
@@ -14584,7 +14584,7 @@
     "phrase": "📌 protect ... from… 保护……免受……",
     "mnemonic": "🧠 pro（向前）+tect（覆盖）→在口鼻前覆盖口罩→保护",
     "exam_cite": "拥抱保护压力之下的人们免受更多的感冒风险。（2017 英一完形）",
-    "plain_meaning": "像金钟罩一样用心呵护遮风挡雨保护"
+    "plain_meaning": "遮风挡雨用心呵护、保护"
   },
   {
     "type": "family",
@@ -14939,7 +14939,7 @@
   {
     "type": "basic",
     "word": "appear",
-    "meaning": "大变活人冒出水面露脸出现；似乎看上去",
+    "meaning": "露脸现身出现；似乎看上去",
     "question": "The comic novel, The Posthumous Papers of the Pickwick Club, ____ serially in 1836 and 1837. 💡 喜剧小说《匹克威克外传》在 1836 至 1837 年间连载出版。",
     "options": {
       "A": "appear",
@@ -14951,7 +14951,7 @@
     "phrase": "📌 appear to do/be... 似乎……",
     "mnemonic": "🧠 ap（向）+pear（看见）→太阳向上升起到能被看见→出现",
     "exam_cite": "喜剧小说《匹克威克外传》在 1836 至 1837 年间连载出版。（2017 英一新题型）",
-    "plain_meaning": "大变活人冒出水面露脸出现；似乎看上去"
+    "plain_meaning": "露脸现身出现；似乎看上去"
   },
   {
     "type": "basic",
@@ -15056,7 +15056,7 @@
   {
     "type": "family",
     "word": "evident",
-    "meaning": "秃子头上虱子显而易见明摆着的事实",
+    "meaning": "摆在眼前的事实、显而易见",
     "question": "The need of training is ____ and the pressure to accomplish a change in young people’ attitude and habits is urgent. 💡 培训的必要性非常明显，对年轻人态度和习惯加以改变的要求也非常迫切。",
     "options": {
       "A": "airborne",
@@ -15068,7 +15068,7 @@
     "family": "vis/vid",
     "mnemonic": "🧠 e（外，出来）+vid（看）+ent（形容词后缀）→一眼就看出来的→明显的",
     "exam_cite": "培训的必要性非常明显，对年轻人态度和习惯加以改变的要求也非常迫切。（2009 英一翻译）",
-    "plain_meaning": "秃子头上虱子显而易见明摆着的事实"
+    "plain_meaning": "摆在眼前的事实、显而易见"
   },
   {
     "type": "basic",
@@ -15122,7 +15122,7 @@
   {
     "type": "family",
     "word": "reveal",
-    "meaning": "掀开盖头彻底揭开底牌大白于天下泄露",
+    "meaning": "揭开底牌大白于天下、泄露",
     "question": "Bill Gates ____ that he reads at least 50 nonfiction books a year. 💡 比尔·盖茨透露他每年至少读 50 本非小说类书籍。",
     "options": {
       "A": "fantasize",
@@ -15134,7 +15134,7 @@
     "family": "re",
     "mnemonic": "🧠 re（再，又）+veal（联想 veil，面纱）→一次又一次揭开面纱→揭示",
     "exam_cite": "比尔·盖茨透露他每年至少读 50 本非小说类书籍。（2018 英二翻译）",
-    "plain_meaning": "掀开盖头彻底揭开底牌大白于天下泄露"
+    "plain_meaning": "揭开底牌大白于天下、泄露"
   },
   {
     "type": "family",
@@ -15526,7 +15526,7 @@
   {
     "type": "basic",
     "word": "firm",
-    "meaning": "打牢地基稳固坚定的；赚钱做买卖的公司",
+    "meaning": "地基稳固坚定的；做买卖的公司",
     "question": "Huge profits are made by a few big ____ who run the market places. 💡 引导市场的几家大公司获得了巨额利润。",
     "options": {
       "A": "firm",
@@ -15536,7 +15536,7 @@
     },
     "answer": "A",
     "exam_cite": "引导市场的几家大公司获得了巨额利润。（2020 英一 Text 2）",
-    "plain_meaning": "打牢地基稳固坚定的；赚钱做买卖的公司"
+    "plain_meaning": "地基稳固坚定的；做买卖的公司"
   },
   {
     "type": "basic",
@@ -15605,7 +15605,7 @@
   {
     "type": "basic",
     "word": "add",
-    "meaning": "添砖加瓦补上一笔；随口进一步补充说道",
+    "meaning": "补上一笔增添；进一步补充说道",
     "question": "Having said all of the above, it’s important to ____ that we shouldn’t try too hard to be happy. 💡 说了这么多，必须要进一步说的是我们不必太刻意地去追求幸福。",
     "options": {
       "A": "fold",
@@ -15616,7 +15616,7 @@
     "answer": "B",
     "phrase": "📌 add ... to... 将……增加到……",
     "exam_cite": "说了这么多，必须要进一步说的是我们不必太刻意地去追求幸福。（2016 英二新题型）",
-    "plain_meaning": "添砖加瓦补上一笔；随口进一步补充说道"
+    "plain_meaning": "补上一笔增添；进一步补充说道"
   },
   {
     "type": "basic",
@@ -15899,7 +15899,7 @@
   {
     "type": "basic",
     "word": "focus",
-    "meaning": "把放大镜焦点死死对准聚焦锁定",
+    "meaning": "焦点集中锁定、死死对准聚焦",
     "question": "People made more personally satisfying decisions when asked to ____ on their feelings rather than on details. 💡 当人们被要求关注感觉而非细节时，做出的决定更令自己满意。",
     "options": {
       "A": "distinguish",
@@ -15909,7 +15909,7 @@
     },
     "answer": "C",
     "phrase": "📌 focus on… 集中于……；关注……",
-    "plain_meaning": "把放大镜焦点死死对准聚焦锁定"
+    "plain_meaning": "焦点集中锁定、死死对准聚焦"
   },
   {
     "type": "basic",
@@ -15980,7 +15980,7 @@
   {
     "type": "basic",
     "word": "avoid",
-    "meaning": "脚底抹油巧妙避开躲闪惹不起躲得起",
+    "meaning": "巧妙避开躲闪、避而远之",
     "question": "Believe it or not, a warm embrace might even help you ____ getting sick this winter. 💡 不管你信不信，一个温暖的拥抱甚至可以帮助你在今年冬天免于生病。",
     "options": {
       "A": "crowd",
@@ -15991,7 +15991,7 @@
     "answer": "C",
     "phrase": "📌 avoid doing sth. 避免做某事",
     "exam_cite": "不管你信不信，一个温暖的拥抱甚至可以帮助你在今年冬天免于生病。（2017 英一完形）",
-    "plain_meaning": "脚底抹油巧妙避开躲闪惹不起躲得起"
+    "plain_meaning": "巧妙避开躲闪、避而远之"
   },
   {
     "type": "basic",
@@ -16458,7 +16458,7 @@
   {
     "type": "basic",
     "word": "overwhelm",
-    "meaning": "压得喘不过气、蒙圈不知所措",
+    "meaning": "压得喘不过气、彻底招架不住",
     "question": "When did it become accepted wisdom that students should be able to name the 13th president of the United States but be utterly ____ by a broken bike chain? 💡 什么时候人们形成了这样一种共识：学生应该能够说出美国第 13 任总统的名字，但面对断裂的自行车链条却不知所措呢？",
     "options": {
       "A": "smoke",
@@ -16469,7 +16469,7 @@
     "answer": "B",
     "mnemonic": "🧠 over（在……上面）+whelm（联想 wheel，轮胎）→轮胎上面变了形，司机不知所措→使不知所措",
     "exam_cite": "什么时候人们形成了这样一种共识：学生应该能够说出美国第 13 任总统的名字，但面对断裂的自行车链条却不知所措呢？（2018 英二 Text 1）",
-    "plain_meaning": "压得喘不过气、蒙圈不知所措"
+    "plain_meaning": "压得喘不过气、彻底招架不住"
   },
   {
     "type": "family",
@@ -16691,7 +16691,7 @@
   {
     "type": "basic",
     "word": "analyze",
-    "meaning": "庖丁解牛逐层拆解分析透视",
+    "meaning": "逐层拆解分析、深入剖析透视",
     "question": "Ben-Shahar ____ the weak lecture, learning lessons for the future about what works and what doesn’t. 💡 本·沙哈尔分析效果不佳的演讲，找出哪些地方可取，哪些地方不可取，为未来汲取经验。",
     "options": {
       "A": "reduce",
@@ -16702,7 +16702,7 @@
     "answer": "B",
     "mnemonic": "🧠 ana（分开）+lyz（分解）+e→把问题分解成几个小部分，分开思考→分析",
     "exam_cite": "本·沙哈尔分析效果不佳的演讲，找出哪些地方可取，哪些地方不可取，为未来汲取经验。（2014 英二翻译）",
-    "plain_meaning": "庖丁解牛逐层拆解分析透视"
+    "plain_meaning": "逐层拆解分析、深入剖析透视"
   },
   {
     "type": "basic",
@@ -16925,7 +16925,7 @@
   {
     "type": "basic",
     "word": "observe",
-    "meaning": "瞪大眼睛细致观察；恪守遵守规矩",
+    "meaning": "瞪大眼睛细致观察；老实守规矩",
     "question": "Weighing every other week allows me to ____ and account for any significant weight changes. 💡 每隔一周称重可以让我观察到并解释任何显著的体重变化。",
     "options": {
       "A": "arouse",
@@ -16936,7 +16936,7 @@
     "answer": "B",
     "mnemonic": "🧠 ob（反）+serv（保持）+e→目光保持在反方身上→观察",
     "exam_cite": "每隔一周称重可以让我观察到并解释任何显著的体重变化。（2019 英二完形）",
-    "plain_meaning": "瞪大眼睛细致观察；恪守遵守规矩"
+    "plain_meaning": "瞪大眼睛细致观察；老实守规矩"
   },
   {
     "type": "family",
@@ -17025,7 +17025,7 @@
   {
     "type": "basic",
     "word": "dominate",
-    "meaning": "霸占全场独占鳌头掌控全局绝对统治支配",
+    "meaning": "独占鳌头霸占全场、掌控统治",
     "question": "Microsoft’s own Office ____ the market for “productivity” software. 💡 微软自己的 Office 办公软件在“生产力”软件市场中占支配地位。",
     "options": {
       "A": "afford",
@@ -17036,7 +17036,7 @@
     "answer": "C",
     "mnemonic": "🧠 domin（统治）+ate（动词后缀）→统治",
     "exam_cite": "微软自己的 Office 办公软件在“生产力”软件市场中占支配地位。（2021 英二 Text 3）",
-    "plain_meaning": "霸占全场独占鳌头掌控全局绝对统治支配"
+    "plain_meaning": "独占鳌头霸占全场、掌控统治"
   },
   {
     "type": "basic",
@@ -17088,7 +17088,7 @@
   {
     "type": "basic",
     "word": "norm",
-    "meaning": "大伙心照不宣遵守的社会常态潜规则常轨",
+    "meaning": "大伙心照不宣的常态、潜规则规范",
     "question": "When the new staff are predominantly young men and women fresh from postgraduate study, they largely define the ____ of academic life in that faculty. 💡 当新职工绝大多数为刚毕业的研究生时，他们在很大程度上会定义该学院的学术生活规范。",
     "options": {
       "A": "root",
@@ -17099,7 +17099,7 @@
     "answer": "D",
     "mnemonic": "🧠 一件事变成 normal（正常的）现象就成了 norm（常态）",
     "exam_cite": "当新职工绝大多数为刚毕业的研究生时，他们在很大程度上会定义该学院的学术生活规范。（2021 英一翻译）",
-    "plain_meaning": "大伙心照不宣遵守的社会常态潜规则常轨"
+    "plain_meaning": "大伙心照不宣的常态、潜规则规范"
   },
   {
     "type": "basic",
@@ -17380,7 +17380,7 @@
   {
     "type": "basic",
     "word": "usual",
-    "meaning": "司空见惯平平常常的照例往常",
+    "meaning": "习以为常平平常常的、照例往常",
     "question": "What makes the problem more difficult is that the ____ time-management techniques don’t seem sufficient. 💡 使这一问题更难的是，通常的时间管理技巧似乎还不够。",
     "options": {
       "A": "religious",
@@ -17391,7 +17391,7 @@
     "answer": "C",
     "phrase": "📌 as usual 像往常一样",
     "mnemonic": "🧠 us（=use，使用）+ual（形容词后缀）→使用习惯了的→通常的",
-    "plain_meaning": "司空见惯平平常常的照例往常"
+    "plain_meaning": "习以为常平平常常的、照例往常"
   },
   {
     "type": "family",
@@ -17536,7 +17536,7 @@
   {
     "type": "basic",
     "word": "obvious",
-    "meaning": "秃子头上虱子明摆着一眼看穿的明白显眼",
+    "meaning": "明摆着的、一眼看清显而易见",
     "question": "In the medical field, to take an ____ example, the pandemic meant that there were still clear shortages of doctors, nurses and other medical personnel. 💡 举一个明显的例子，在医疗领域，大流行病意味着医生、护士和其他医务人员仍然明显短缺。",
     "options": {
       "A": "unstoppably",
@@ -17547,12 +17547,12 @@
     "answer": "B",
     "mnemonic": "🧠 ob（反）+vi（=way，道路）+ous（形容词后缀）→在路上反向行驶的人非常明显→明显的",
     "exam_cite": "举一个明显的例子，在医疗领域，大流行病意味着医生、护士和其他医务人员仍然明显短缺。（2021 英二 Text 1）",
-    "plain_meaning": "秃子头上虱子明摆着一眼看穿的明白显眼"
+    "plain_meaning": "明摆着的、一眼看清显而易见"
   },
   {
     "type": "family",
     "word": "previous",
-    "meaning": "在此之前的上一回、先前的过往",
+    "meaning": "在此之前的前一回、早先的",
     "question": "Justice Anthony Kennedy wrote that the ____ decisions were flawed. 💡 大法官安东尼·肯尼迪表示，先前的那些裁决漏洞百出。",
     "options": {
       "A": "rare",
@@ -17564,7 +17564,7 @@
     "family": "pre",
     "mnemonic": "🧠 pre（在前）+vi（道路）+ous（形容词后缀）→前面走过的路→先前的",
     "exam_cite": "大法官安东尼·肯尼迪表示，先前的那些裁决漏洞百出。（2019 英一 Text 4）",
-    "plain_meaning": "在此之前的上一回、先前的过往"
+    "plain_meaning": "在此之前的前一回、早先的"
   },
   {
     "type": "family",
@@ -17602,7 +17602,7 @@
   {
     "type": "basic",
     "word": "opportunity",
-    "meaning": "千载难逢打着灯笼难找的良机时机契机",
+    "meaning": "不可多得的绝佳良机、时机契机",
     "question": "These are mostly students who had no ____ as children to travel to wilderness areas, wildlife refuges or national parks. 💡 这些人大部分是学生，他们小时候没有机会去荒野地区、野生动物保护区或国家公园旅行。",
     "options": {
       "A": "imbalance",
@@ -17613,7 +17613,7 @@
     "answer": "D",
     "mnemonic": "🧠 op（向）+port（港口）+ un +ity（名词后缀）→风吹向港口，为船只进港提供机会→机会",
     "exam_cite": "这些人大部分是学生，他们小时候没有机会去荒野地区、野生动物保护区或国家公园旅行。（2022 英一新题型）",
-    "plain_meaning": "千载难逢打着灯笼难找的良机时机契机"
+    "plain_meaning": "不可多得的绝佳良机、时机契机"
   },
   {
     "type": "basic",
@@ -17764,7 +17764,7 @@
   {
     "type": "basic",
     "word": "satisfy",
-    "meaning": "把对方伺候得服服帖帖心满意足使满足",
+    "meaning": "让人心满意足、完全满足",
     "question": "Zoos are serving to ____ our need for contact with some living creatures. 💡 动物园能满足我们与一些生物交流的需求。",
     "options": {
       "A": "rally",
@@ -17774,7 +17774,7 @@
     },
     "answer": "C",
     "mnemonic": "🧠 satis（足够，饱足）+fy（=ify，动词后缀）→吃饱喝足→使满意",
-    "plain_meaning": "把对方伺候得服服帖帖心满意足使满足"
+    "plain_meaning": "让人心满意足、完全满足"
   },
   {
     "type": "basic",
@@ -17860,7 +17860,7 @@
   {
     "type": "basic",
     "word": "adult",
-    "meaning": "自立门户成熟懂事的成年人成人的",
+    "meaning": "成熟懂事的成年人、成年的",
     "question": "Most ____ understand that a baby is not a haircut. 💡 多数成年人都明白：养孩子可不像剪头发那样简单。",
     "options": {
       "A": "skipper",
@@ -17870,7 +17870,7 @@
     },
     "answer": "B",
     "exam_cite": "多数成年人都明白：养孩子可不像剪头发那样简单。（2011 英一 Text 4）",
-    "plain_meaning": "自立门户成熟懂事的成年人成人的"
+    "plain_meaning": "成熟懂事的成年人、成年的"
   },
   {
     "type": "basic",
@@ -18144,7 +18144,7 @@
   {
     "type": "basic",
     "word": "follow",
-    "meaning": "屁股后紧跟追随、老实听从遵循",
+    "meaning": "步步紧跟追随、老实听从遵循",
     "question": "The salesmen usually ____ up their phone call with an email. 💡 推销员通常会在打电话后接着发一封电子邮件。",
     "options": {
       "A": "wonder",
@@ -18155,12 +18155,12 @@
     "answer": "B",
     "phrase": "📌 follow up sth. with… 在某事后接着……",
     "mnemonic": "🧠 yellow（黄）灯亮起就不能再 follow（跟随）前车继续行驶了",
-    "plain_meaning": "屁股后紧跟追随、老实听从遵循"
+    "plain_meaning": "步步紧跟追随、老实听从遵循"
   },
   {
     "type": "basic",
     "word": "strategy",
-    "meaning": "排兵布阵下大棋的宏观战略谋略策略",
+    "meaning": "运筹帷幄的宏观战略、谋略策略",
     "question": "India released its AI ethics ____ this spring. 💡 今年春天，印度发布了人工智能（AI）伦理战略。",
     "options": {
       "A": "match",
@@ -18171,12 +18171,12 @@
     "answer": "B",
     "mnemonic": "🧠 strate（联想 state，国家）+ g +y（名词后缀）→国家的发展需要采取策略→策略",
     "exam_cite": "今年春天，印度发布了人工智能（AI）伦理战略。（2019 英一 Text 3）",
-    "plain_meaning": "排兵布阵下大棋的宏观战略谋略策略"
+    "plain_meaning": "运筹帷幄的宏观战略、谋略策略"
   },
   {
     "type": "basic",
     "word": "busy",
-    "meaning": "脚不沾地忙得不可开交的忙碌",
+    "meaning": "脚不沾地忙得团团转、脱不开身",
     "question": "France and Germany are ____ handling their own crises. 💡 法国和德国正忙于解决自己的危机。",
     "options": {
       "A": "agreeable",
@@ -18186,12 +18186,12 @@
     },
     "answer": "B",
     "phrase": "📌 be busy doing sth. 忙于做某事",
-    "plain_meaning": "脚不沾地忙得不可开交的忙碌"
+    "plain_meaning": "脚不沾地忙得团团转、脱不开身"
   },
   {
     "type": "basic",
     "word": "retire",
-    "meaning": "解甲归田告老还乡领养老金退休退出",
+    "meaning": "到点领养老金退休、退出退隐",
     "question": "Carol Berning is a consumer psychologist who recently ____ from Procter & Gamble. 💡 卡罗尔•伯宁是一名消费者心理学家，最近刚从宝洁公司退休。",
     "options": {
       "A": "retire",
@@ -18202,7 +18202,7 @@
     "answer": "A",
     "phrase": "📌 retire from… 从……退休",
     "mnemonic": "🧠 太 tired（累）了，总算要 retire（退休）了",
-    "plain_meaning": "解甲归田告老还乡领养老金退休退出"
+    "plain_meaning": "到点领养老金退休、退出退隐"
   },
   {
     "type": "basic",
@@ -18590,7 +18590,7 @@
   {
     "type": "basic",
     "word": "desire",
-    "meaning": "心里猫抓一样极度渴望渴求梦寐以求",
+    "meaning": "打心底极度渴望、渴求想要",
     "question": "“Short-termism,” or the ____ for quick profits, has worsened in publicly traded companies. “ 💡 短期主义”，或者对快速获利的渴望，在上市公司中已经恶化。",
     "options": {
       "A": "desire",
@@ -18601,7 +18601,7 @@
     "answer": "A",
     "phrase": "📌 (a/the) desire for… 对……的渴望",
     "exam_cite": "短期主义”，或者对快速获利的渴望，在上市公司中已经恶化。（2019 英一 Text 1）",
-    "plain_meaning": "心里猫抓一样极度渴望渴求梦寐以求"
+    "plain_meaning": "打心底极度渴望、渴求想要"
   },
   {
     "type": "basic",
@@ -18810,7 +18810,7 @@
   {
     "type": "basic",
     "word": "last",
-    "meaning": "咬紧牙关撑到最后、最后的保底",
+    "meaning": "咬紧牙关撑到最后、终极底线",
     "question": "Formerly the wedding ____ three days, but by the 1980s it more commonly lasted a day and a half. 💡 以前婚礼会持续三天，但是到了 20 世纪 80 年代，更常见地是持续一天半。",
     "options": {
       "A": "colonial",
@@ -18820,7 +18820,7 @@
     },
     "answer": "C",
     "phrase": "📌 at last 终于",
-    "plain_meaning": "咬紧牙关撑到最后、最后的保底"
+    "plain_meaning": "咬紧牙关撑到最后、终极底线"
   },
   {
     "type": "basic",
