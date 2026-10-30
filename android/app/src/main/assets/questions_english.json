@@ -1653,7 +1653,7 @@
     "type": "family",
     "family": "act",
     "word": "interact",
-    "meaning": "互相影响",
+    "meaning": "互动；相互影响",
     "phrase": "interact with peers 与同龄人互动",
     "family_note": "inter(在...之间) + act(行动) → 两者之间相互作用",
     "question": "Remote learning has forced educators to rethink how students and teachers ____ in virtual classrooms.\n💡 远程学习迫使教育工作者重新审视学生和教师在虚拟课堂中如何相互互动。",
@@ -1664,7 +1664,7 @@
       "D": "transact"
     },
     "answer": "C",
-    "plain_meaning": "互相影响"
+    "plain_meaning": "互动；相互影响"
   },
   {
     "type": "family",
@@ -1772,7 +1772,7 @@
     "type": "family",
     "family": "act",
     "word": "exact",
-    "meaning": "强求；勒索",
+    "meaning": "迫使付出；精确的",
     "phrase": "exact a heavy toll 付出沉重代价",
     "family_note": "考研熟词生义重难点！ex(出) + act(做) → 逼迫别人交出来/苛求",
     "question": "The grueling training schedule and relentless travel began to ____ a heavy physical toll on the young gymnast.\n💡 艰苦的训练日程和不间断的奔波开始让这位年轻的体操运动员付出沉重的身体代价。",
@@ -1783,7 +1783,7 @@
       "D": "transact"
     },
     "answer": "A",
-    "plain_meaning": "强求；勒索"
+    "plain_meaning": "迫使付出；精确的"
   },
   {
     "type": "family",
@@ -1908,7 +1908,7 @@
     "type": "family",
     "family": "tract",
     "word": "intractable",
-    "meaning": "棘手难缠、难啃硬骨头",
+    "meaning": "棘手的；难对付的",
     "phrase": "an intractable problem 棘手难解的问题",
     "family_note": "in(不) + tract(拉) + able → 拉不动的→倔强的/难以驾驭的",
     "question": "Poverty in inner cities has proven to be an ____ social issue that defied simple legislative fixes.\n💡 市中心的贫困问题已被证明是一个极为棘手的社会难题，绝非简单的立法所能根治。",
@@ -1919,7 +1919,7 @@
       "D": "retractable"
     },
     "answer": "B",
-    "plain_meaning": "棘手难缠、难啃硬骨头"
+    "plain_meaning": "棘手的；难对付的"
   },
   {
     "type": "family",
@@ -2044,7 +2044,7 @@
     "type": "family",
     "family": "form",
     "word": "conform",
-    "meaning": "遵守；顺从",
+    "meaning": "符合；遵守；顺从",
     "phrase": "conform to safety standards 符合安全规范",
     "family_note": "con(共同) + form(形状) → 塑造成相同的形状→遵守/符合",
     "question": "All imported medical equipment must strictly ____ to European Union health and safety directives.\n💡 所有进口医疗设备都必须严格符合欧盟的健康与安全指令。",
@@ -2055,7 +2055,7 @@
       "D": "reform"
     },
     "answer": "B",
-    "plain_meaning": "遵守；顺从"
+    "plain_meaning": "符合；遵守；顺从"
   },
   {
     "type": "family",
@@ -2163,7 +2163,7 @@
     "type": "family",
     "family": "port",
     "word": "import",
-    "meaning": "重要性",
+    "meaning": "重大意义；进口",
     "phrase": "matters of great import 意义重大的事情",
     "family_note": "考研熟词生义考点！import作名词常考【重要性、意义】",
     "question": "The judge emphasized that the constitutional issue under deliberation was a question of tremendous national ____.\n💡 法官强调，正在审议的宪法议题是一个具有极其重大国家意义的问题。",
@@ -2174,7 +2174,7 @@
       "D": "deport"
     },
     "answer": "C",
-    "plain_meaning": "重要性"
+    "plain_meaning": "重大意义；进口"
   },
   {
     "type": "family",
@@ -2214,7 +2214,7 @@
     "type": "family",
     "family": "dict",
     "word": "predict",
-    "meaning": "预言；预报",
+    "meaning": "预测；预报；预言",
     "phrase": "predict future outcomes 预测未来走向",
     "family_note": "pre(在前) + dict(说) → 提前说出来→预测",
     "question": "Meteorologists use supercomputers and satellite feeds to ____ hurricane paths with growing accuracy.\n💡 气象学家利用超级计算机和卫星数据，以越来越高的准确度预测飓风路径。",
@@ -2225,7 +2225,7 @@
       "D": "indicate"
     },
     "answer": "C",
-    "plain_meaning": "预言；预报"
+    "plain_meaning": "预测；预报；预言"
   },
   {
     "type": "family",
@@ -2299,7 +2299,7 @@
     "type": "family",
     "family": "dict",
     "word": "dedicate",
-    "meaning": "致力于；题献",
+    "meaning": "奉献；致力于",
     "phrase": "dedicate oneself to research 献身于科研",
     "family_note": "de(加强) + dic(宣称/说) + ate → 公开宣称奉献给",
     "question": "The young biologist chose to ____ her entire career to studying endangered coral reef ecosystems.\n💡 这位年轻的生物学家选择将自己的整个职业生涯奉献给濒危珊瑚礁生态系统的研究。",
@@ -2310,7 +2310,7 @@
       "D": "predict"
     },
     "answer": "A",
-    "plain_meaning": "致力于；题献"
+    "plain_meaning": "奉献；致力于"
   },
   {
     "type": "family",
@@ -2527,7 +2527,7 @@
   {
     "type": "family",
     "word": "perfect",
-    "meaning": "完美的；使完美",
+    "meaning": "完善；完美的",
     "question": "It took Beaumont decades to ____ her craft. 💡 博蒙特花了几十年来完善自己的手艺。",
     "options": {
       "A": "untrue",
@@ -2539,7 +2539,7 @@
     "family": "fac/fect",
     "mnemonic": "🧠 per（完全）+fect（做）→将事情完全做好→完美的",
     "exam_cite": "博蒙特花了几十年来完善自己的手艺。（2013 英一 Text 1）",
-    "plain_meaning": "完美的；使完美"
+    "plain_meaning": "完善；完美的"
   },
   {
     "type": "family",
@@ -2561,7 +2561,7 @@
   {
     "type": "family",
     "word": "craft",
-    "meaning": "手艺；技巧",
+    "meaning": "精心制作；手艺",
     "question": "Another approach to getting more done in less time is to rethink how you prioritise your day—in particular how we ____ our to-do lists. 💡 另外一种能实现在更短时间内完成更多工作的方法，就是重新考虑如何优先安排你一天的工作——尤其是如何精心制作任务清单。",
     "options": {
       "A": "craft",
@@ -2574,7 +2574,7 @@
     "phrase": "📌 the craft of writing 写作技巧",
     "mnemonic": "🧠 Minecraft（《我的世界》）是一款用自己的手艺进行生存冒险的游戏",
     "exam_cite": "另外一种能实现在更短时间内完成更多工作的方法，就是重新考虑如何优先安排你一天的工作——尤其是如何精心制作任务清单。（2018 英二 Text 4）",
-    "plain_meaning": "手艺；技巧"
+    "plain_meaning": "精心制作；手艺"
   },
   {
     "type": "advanced",
@@ -2695,7 +2695,7 @@
   {
     "type": "advanced",
     "word": "perpetuate",
-    "meaning": "使持续、让恶性循环长存",
+    "meaning": "使长存；使持续",
     "question": "Current policy serves to ____ the old class divisions. 💡 当前的政策使旧有的阶级分化持续下去。",
     "options": {
       "A": "import",
@@ -2705,7 +2705,7 @@
     },
     "answer": "B",
     "mnemonic": "🧠 per（完全）+pet（追求）+ u +ate（动词后缀）→使一直（完全）追求下去→使持续，使永久化",
-    "plain_meaning": "使持续、让恶性循环长存"
+    "plain_meaning": "使长存；使持续"
   },
   {
     "type": "advanced",
@@ -2845,7 +2845,7 @@
   {
     "type": "advanced",
     "word": "ambition",
-    "meaning": "野心；雄心",
+    "meaning": "抱负；雄心；野心",
     "question": "University men with literary ____ were quick to turn to these theaters as offering a means of livelihood. 💡 有文学抱负的大学生迅速投身于这些剧院，将此作为一种谋生手段。",
     "options": {
       "A": "apartment",
@@ -2856,12 +2856,12 @@
     "answer": "C",
     "mnemonic": "🧠 谐音“俺必胜”→野心；雄心",
     "exam_cite": "有文学抱负的大学生迅速投身于这些剧院，将此作为一种谋生手段。（2018 英一翻译）",
-    "plain_meaning": "野心；雄心"
+    "plain_meaning": "抱负；雄心；野心"
   },
   {
     "type": "family",
     "word": "initiate",
-    "meaning": "使加入；接纳",
+    "meaning": "发起；开始；接纳",
     "question": "The company ____ a training programme for the managers. 💡 该公司发起了一项针对管理人员的培训计划。",
     "options": {
       "A": "trigger",
@@ -2872,7 +2872,7 @@
     "answer": "B",
     "family": "in",
     "mnemonic": "🧠 in（里）+it（走）+ i +ate（动词后缀）→使某个人走到团队里→使加入，接纳",
-    "plain_meaning": "使加入；接纳"
+    "plain_meaning": "发起；开始；接纳"
   },
   {
     "type": "advanced",
@@ -3589,7 +3589,7 @@
   {
     "type": "advanced",
     "word": "obsess",
-    "meaning": "使着迷；迷恋",
+    "meaning": "使痴迷；着迷",
     "question": "Adult women do not remember being so ____ with pink, yet it is pervasive in our young girls’ lives. 💡 成年女性都不记得自己曾经如此痴迷于粉色，但是它却在年轻女孩的生活中极为普遍。",
     "options": {
       "A": "overlook",
@@ -3601,7 +3601,7 @@
     "phrase": "📌 be obsessed with… 痴迷于……",
     "mnemonic": "🧠 ob（反）+sess（坐）→坐在对面的女朋友让他目不转睛→痴迷",
     "exam_cite": "成年女性都不记得自己曾经如此痴迷于粉色，但是它却在年轻女孩的生活中极为普遍。（2012 英二 Text 2）",
-    "plain_meaning": "使着迷；迷恋"
+    "plain_meaning": "使痴迷；着迷"
   },
   {
     "type": "advanced",
@@ -3769,7 +3769,7 @@
   {
     "type": "advanced",
     "word": "sound",
-    "meaning": "声音；听起来",
+    "meaning": "合理的；声音",
     "question": "The court’s ruling is legally ____ in defining a kind of favoritism that is not criminal. 💡 法院的裁决界定了一种不构成犯罪的徇私行为，这从法律层面上来讲是合理的。",
     "options": {
       "A": "seat",
@@ -3779,7 +3779,7 @@
     },
     "answer": "D",
     "exam_cite": "法院的裁决界定了一种不构成犯罪的徇私行为，这从法律层面上来讲是合理的。（2017 英一 Text 4）",
-    "plain_meaning": "声音；听起来"
+    "plain_meaning": "合理的；声音"
   },
   {
     "type": "advanced",
@@ -3864,7 +3864,7 @@
   {
     "type": "advanced",
     "word": "obscure",
-    "meaning": "费解的；无名的",
+    "meaning": "遮掩；费解的",
     "question": "Factors such as our gender, age and social class will encourage us towards certain interpretations but at the same time ____ or even close off others. 💡 诸如我们的性别、年龄及社会阶层等因素会促使我们倾向特定的解读，但同时也遮掩甚至隔绝了其他解读方式。",
     "options": {
       "A": "private",
@@ -3876,7 +3876,7 @@
     "phrase": "📌 an obscure point 一个费解的观点 an obscure magazine 一份无名的杂志",
     "mnemonic": "🧠 obs（联想英文语气词 Oops，哎呦）+cure（治疗）→哎呦，这个治疗方案让人看不懂→费解的",
     "exam_cite": "诸如我们的性别、年龄及社会阶层等因素会促使我们倾向特定的解读，但同时也遮掩甚至隔绝了其他解读方式。（2015 英一新题型）",
-    "plain_meaning": "费解的；无名的"
+    "plain_meaning": "遮掩；费解的"
   },
   {
     "type": "family",
@@ -4256,7 +4256,7 @@
   {
     "type": "advanced",
     "word": "guide",
-    "meaning": "指南；指导",
+    "meaning": "指引；指导；指南",
     "question": "The biography of James Watt was held up as beacons to ____ the working man through his difficult life. 💡 詹姆士·瓦特的传记被视为指引劳动者渡过困难的灯塔。",
     "options": {
       "A": "purchaser",
@@ -4265,7 +4265,7 @@
       "D": "sensitivity"
     },
     "answer": "B",
-    "plain_meaning": "指南；指导"
+    "plain_meaning": "指引；指导；指南"
   },
   {
     "type": "family",
@@ -4513,7 +4513,7 @@
   {
     "type": "advanced",
     "word": "capture",
-    "meaning": "俘获；引起",
+    "meaning": "描绘；俘获；引起",
     "question": "Dickens crafted complex plots and striking characters that ____ the panorama of English society. 💡 狄更斯精心创作出复杂的故事情节和突出的人物角色，以此描绘英国社会的全貌。",
     "options": {
       "A": "vary",
@@ -4525,7 +4525,7 @@
     "phrase": "📌 capture one’s attention 引起某人注意",
     "mnemonic": "🧠 cap（抓取）+ t +ure（动词后缀）→抓住敌人→俘获",
     "exam_cite": "狄更斯精心创作出复杂的故事情节和突出的人物角色，以此描绘英国社会的全貌。（2017 英一新题型）",
-    "plain_meaning": "俘获；引起"
+    "plain_meaning": "描绘；俘获；引起"
   },
   {
     "type": "advanced",
@@ -4614,7 +4614,7 @@
   {
     "type": "family",
     "word": "discipline",
-    "meaning": "纪律；行为准则",
+    "meaning": "学科；纪律；训练",
     "question": "These are ____ that are going out of style: 22% of American college graduates now major in business compared with only 2% in history and 4% in English. 💡 这些学科正渐渐变得过时：如今 22%的美国大学毕业生主修商学，与之相比，只有 2%主修历史，4%主修英语。",
     "options": {
       "A": "sensitiveness",
@@ -4626,7 +4626,7 @@
     "family": "cept/ceive",
     "mnemonic": "🧠 dis（不）+cip（拿）+line（线）→不拿群众的一针一线→纪律",
     "exam_cite": "这些学科正渐渐变得过时：如今 22%的美国大学毕业生主修商学，与之相比，只有 2%主修历史，4%主修英语。（2011 英一新题型）",
-    "plain_meaning": "纪律；行为准则"
+    "plain_meaning": "学科；纪律；训练"
   },
   {
     "type": "advanced",
@@ -5263,7 +5263,7 @@
   {
     "type": "advanced",
     "word": "track",
-    "meaning": "车辙；踪迹",
+    "meaning": "追踪；轨道；踪迹",
     "question": "Families can use paternity and kinship testing to ____ down kids put up for adoption. 💡 家人可以用亲子关系和亲属关系测试来追踪到被收养的孩子。",
     "options": {
       "A": "tester",
@@ -5273,7 +5273,7 @@
     },
     "answer": "B",
     "phrase": "📌 keep track of… 了解……的踪迹，记录 track down… 追踪到……",
-    "plain_meaning": "车辙；踪迹"
+    "plain_meaning": "追踪；轨道；踪迹"
   },
   {
     "type": "advanced",
@@ -5374,7 +5374,7 @@
   {
     "type": "family",
     "word": "exploit",
-    "meaning": "开采；剥削",
+    "meaning": "利用；剥削；开采",
     "question": "While traditional “paid” media—such as television commercials—still play a major role, companies today can ____ many alternative forms of media. 💡 虽然传统的付费媒介，比如电视广告，仍然扮演着主要角色，但企业如今还可以利用许多其他形式的媒介。",
     "options": {
       "A": "exploit",
@@ -5387,7 +5387,7 @@
     "phrase": "📌 exploit a mine 开采矿产 exploit workers 剥削员工",
     "mnemonic": "🧠 ex（外，出来）+plo（折叠）+it（=ite，动词后缀）→将地下层层叠叠的矿藏挖出来→开采",
     "exam_cite": "虽然传统的付费媒介，比如电视广告，仍然扮演着主要角色，但企业如今还可以利用许多其他形式的媒介。（2011 英一 Text 3）",
-    "plain_meaning": "开采；剥削"
+    "plain_meaning": "利用；剥削；开采"
   },
   {
     "type": "advanced",
@@ -5789,7 +5789,7 @@
   {
     "type": "family",
     "word": "post",
-    "meaning": "邮递；帖子",
+    "meaning": "发布；岗位；邮寄",
     "question": "Since I started ____ the photographs that show our Victorian ancestors smiling on Twitter, they have been causing quite a stir. 💡 自从我开始在推特上发布那些展示我们维多利亚时代祖先们面带微笑的照片以来，它们已经引起了巨大的轰动。",
     "options": {
       "A": "freshener",
@@ -5801,7 +5801,7 @@
     "family": "pos",
     "phrase": "📌 a research post 科研岗位",
     "mnemonic": "🧠 pos（放置）+t（名词后缀）→将信放在邮筒里→邮递",
-    "plain_meaning": "邮递；帖子"
+    "plain_meaning": "发布；岗位；邮寄"
   },
   {
     "type": "family",
@@ -5858,7 +5858,7 @@
   {
     "type": "family",
     "word": "impose",
-    "meaning": "强加于",
+    "meaning": "强制实行；强加于",
     "question": "Financial regulators in Britain have ____ a rather unusual rule on the bosses of big banks. 💡 英国金融监管机构对大型银行的高管强制实行了一项相当不寻常的规定。",
     "options": {
       "A": "claim",
@@ -5871,7 +5871,7 @@
     "phrase": "📌 impose sth. on… 把某事强加于……，对……强制实行某事",
     "mnemonic": "🧠 im（里）+pos（放置）+e→将衣服放到已经塞满的行李箱里→强加于",
     "exam_cite": "英国金融监管机构对大型银行的高管强制实行了一项相当不寻常的规定。（2019 英一 Text 1）",
-    "plain_meaning": "强加于"
+    "plain_meaning": "强制实行；强加于"
   },
   {
     "type": "family",
@@ -6607,7 +6607,7 @@
   {
     "type": "advanced",
     "word": "fine",
-    "meaning": "美好的；精细的",
+    "meaning": "罚款；美好的",
     "question": "Under the law, using a fashion model that does not meet a government-defined index of body mass could result in a $85,000 ____ and six months in prison. 💡 根据该项法律，雇用一个不符合政府规定的身体质量指数的时尚模特可导致 85000 美元的罚款和六个月的监禁。",
     "options": {
       "A": "wonderful",
@@ -6618,7 +6618,7 @@
     "answer": "B",
     "phrase": "📌 a fine structure 精细的结构",
     "exam_cite": "根据该项法律，雇用一个不符合政府规定的身体质量指数的时尚模特可导致 85000 美元的罚款和六个月的监禁。（2016 英一 Text 1）",
-    "plain_meaning": "美好的；精细的"
+    "plain_meaning": "罚款；美好的"
   },
   {
     "type": "family",
@@ -6942,7 +6942,7 @@
   {
     "type": "family",
     "word": "recognize",
-    "meaning": "意识到；承认",
+    "meaning": "识别；承认；意识",
     "question": "The body system can ____ a threat and can feel pain. 💡 身体系统可以识别威胁并感觉到疼痛。",
     "options": {
       "A": "recognize",
@@ -6954,12 +6954,12 @@
     "family": "re",
     "phrase": "📌 recognize ... as... 把……看成……",
     "mnemonic": "🧠 re（再，又）+cogn（知道）+ize（动词后缀）→再次思考后终于知道→意识到",
-    "plain_meaning": "意识到；承认"
+    "plain_meaning": "识别；承认；意识"
   },
   {
     "type": "advanced",
     "word": "notice",
-    "meaning": "注意到；注意",
+    "meaning": "通知；注意到",
     "question": "Long gone are the days when a boss could simply give an employee contractual ____. 💡 老板只需给员工一份合同通知的日子早已一去不复返了。",
     "options": {
       "A": "combat",
@@ -6970,7 +6970,7 @@
     "answer": "B",
     "mnemonic": "🧠 not（知道）+ice（名词后缀）→感知到事情、危险等→注意到",
     "exam_cite": "老板只需给员工一份合同通知的日子早已一去不复返了。（2022 英一 Text 4）",
-    "plain_meaning": "注意到；注意"
+    "plain_meaning": "通知；注意到"
   },
   {
     "type": "advanced",
@@ -7513,7 +7513,7 @@
   {
     "type": "advanced",
     "word": "fire",
-    "meaning": "火；火灾",
+    "meaning": "解雇；火灾；发射",
     "question": "Employment protection laws make it costlier to ____ an employee. 💡 就业保护法使得解雇员工的成本更高。",
     "options": {
       "A": "dilemma",
@@ -7524,7 +7524,7 @@
     "answer": "C",
     "phrase": "📌 be under fire for sth. 因某事而受到攻击（或批评、责难等） fire a rocket 发射火箭",
     "exam_cite": "就业保护法使得解雇员工的成本更高。（2022 英一 Text 4）",
-    "plain_meaning": "火；火灾"
+    "plain_meaning": "解雇；火灾；发射"
   },
   {
     "type": "advanced",
@@ -7849,7 +7849,7 @@
   {
     "type": "family",
     "word": "contest",
-    "meaning": "比赛；竞争",
+    "meaning": "提出异议；竞争",
     "question": "His sister is ____ the will. 💡 他的姐姐对遗嘱提出异议。",
     "options": {
       "A": "senator",
@@ -7861,7 +7861,7 @@
     "family": "con",
     "phrase": "📌 English speech contest 英语演讲比赛",
     "mnemonic": "🧠 con（一起，共同）+test（测试）→一起进行测试→比赛",
-    "plain_meaning": "比赛；竞争"
+    "plain_meaning": "提出异议；竞争"
   },
   {
     "type": "advanced",
@@ -7947,7 +7947,7 @@
   {
     "type": "advanced",
     "word": "union",
-    "meaning": "联盟；工会",
+    "meaning": "结合；工会；联盟",
     "question": "The wedding ceremony involves passing a candle around a circle of happily married and respected couples to bless the ____. 💡 结婚典礼包括在一圈幸福成婚且受人尊敬的夫妇中传递蜡烛来祝福他们的结合。",
     "options": {
       "A": "outlet",
@@ -7958,7 +7958,7 @@
     "answer": "C",
     "phrase": "📌 the European Union (EU) 欧盟",
     "mnemonic": "🧠 un（一）+ion（名词后缀）→成为一个整体→联盟",
-    "plain_meaning": "联盟；工会"
+    "plain_meaning": "结合；工会；联盟"
   },
   {
     "type": "advanced",
@@ -8228,7 +8228,7 @@
   {
     "type": "advanced",
     "word": "key",
-    "meaning": "钥匙；键",
+    "meaning": "关键；钥匙；按键",
     "question": "Consistency is the ____ to getting stronger and building endurance. 💡 坚持是变得坚强、建立耐力的关键。",
     "options": {
       "A": "key",
@@ -8239,7 +8239,7 @@
     "answer": "A",
     "phrase": "📌 the key to (doing)… （做）……的关键",
     "exam_cite": "坚持是变得坚强、建立耐力的关键。 （2022 英二新题型）",
-    "plain_meaning": "钥匙；键"
+    "plain_meaning": "关键；钥匙；按键"
   },
   {
     "type": "advanced",
@@ -9040,7 +9040,7 @@
   {
     "type": "family",
     "word": "deliberate",
-    "meaning": "故意的；刻意的",
+    "meaning": "深思熟虑；故意的",
     "question": "The jury ____ for three days before finding him guilty. 💡 陪审团深思熟虑了三天后才认定他有罪。",
     "options": {
       "A": "deliberate",
@@ -9051,7 +9051,7 @@
     "answer": "A",
     "family": "auto",
     "mnemonic": "🧠 de（不）+liberate（解放）→不解放自己的天性，刻意为之的→故意的，刻意的",
-    "plain_meaning": "故意的；刻意的"
+    "plain_meaning": "深思熟虑；故意的"
   },
   {
     "type": "advanced",
@@ -9518,7 +9518,7 @@
   {
     "type": "advanced",
     "word": "taste",
-    "meaning": "品尝；品味",
+    "meaning": "喜好；品味；品尝",
     "question": "Charles has both an expensive ____ of lifestyle and a pretty hierarchical view of the world. 💡 查尔斯喜好奢华的生活方式并拥有很强的等级世界观。",
     "options": {
       "A": "influence",
@@ -9528,7 +9528,7 @@
     },
     "answer": "D",
     "mnemonic": "🧠 这门课的 task（任务）之一就是学会 taste（品尝）茶的味道",
-    "plain_meaning": "品尝；品味"
+    "plain_meaning": "喜好；品味；品尝"
   },
   {
     "type": "advanced",
@@ -9905,7 +9905,7 @@
   {
     "type": "advanced",
     "word": "board",
-    "meaning": "木板；董事会",
+    "meaning": "委员会；董事会",
     "question": "More than half the state-government ____ are less than 40 percent female. 💡 半数以上的州政府委员会中女性成员占比不到 40%。",
     "options": {
       "A": "daytime",
@@ -9915,7 +9915,7 @@
     },
     "answer": "D",
     "exam_cite": "半数以上的州政府委员会中女性成员占比不到 40%。（2020 年英一 Text 3）",
-    "plain_meaning": "木板；董事会"
+    "plain_meaning": "委员会；董事会"
   },
   {
     "type": "advanced",
@@ -9985,7 +9985,7 @@
   {
     "type": "advanced",
     "word": "ritual",
-    "meaning": "仪式的；仪式",
+    "meaning": "惯例；仪式",
     "question": "There are a number of approaches to mastering the art of deep work, like developing a daily ____. 💡 掌握深度工作的艺术有多种途径，比如形成一种日常惯例。",
     "options": {
       "A": "ritual",
@@ -9995,7 +9995,7 @@
     },
     "answer": "A",
     "mnemonic": "🧠 rit（联想 right，正确的）+ual（形容词后缀）→在某些场合前反复排练，确保流程正确→仪式的",
-    "plain_meaning": "仪式的；仪式"
+    "plain_meaning": "惯例；仪式"
   },
   {
     "type": "advanced",
@@ -10113,7 +10113,7 @@
   {
     "type": "advanced",
     "word": "arm",
-    "meaning": "手臂；武器",
+    "meaning": "武装；武器；手臂",
     "question": "Some Wall Street investment firms ____ themselves with patents for financial products. 💡 一些华尔街投资公司用金融产品专利来武装自己。",
     "options": {
       "A": "comprehension",
@@ -10124,7 +10124,7 @@
     "answer": "C",
     "phrase": "📌 be up in arms over… 极力反对……",
     "exam_cite": "一些华尔街投资公司用金融产品专利来武装自己。（2010 英一 Text 2）",
-    "plain_meaning": "手臂；武器"
+    "plain_meaning": "武装；武器；手臂"
   },
   {
     "type": "advanced",
@@ -10320,7 +10320,7 @@
   {
     "type": "family",
     "word": "innocent",
-    "meaning": "无罪的；无害的",
+    "meaning": "单纯的；无辜的",
     "question": "We fear rejection, or that our ____ social advances will be misinterpreted as “weird.” 💡 我们害怕被拒绝，或者害怕我们单纯的主动社交将被曲解成“怪异行为”。",
     "options": {
       "A": "innocent",
@@ -10332,7 +10332,7 @@
     "family": "in",
     "mnemonic": "🧠 in（里）+no（没有）+cent（硬币）→嫌犯被抓住，口袋里一个硬币都没有，说明其无罪→无罪的",
     "exam_cite": "我们害怕被拒绝，或者害怕我们单纯的主动社交将被曲解成“怪异行为”。（2015 英二完形）",
-    "plain_meaning": "无罪的；无害的"
+    "plain_meaning": "单纯的；无辜的"
   },
   {
     "type": "family",
@@ -10451,7 +10451,7 @@
   {
     "type": "advanced",
     "word": "team",
-    "meaning": "小组；团队",
+    "meaning": "合作；团队；小组",
     "question": "Those with one degree should ____ up with high-paid postgraduates. 💡 拥有一个学位的人应该与高收入的研究生合作。",
     "options": {
       "A": "opportunity",
@@ -10462,7 +10462,7 @@
     "answer": "C",
     "phrase": "📌 team up with sb. 与某人合作",
     "exam_cite": "拥有一个学位的人应该与高收入的研究生合作。（2022 英一 Text 2）",
-    "plain_meaning": "小组；团队"
+    "plain_meaning": "合作；团队；小组"
   },
   {
     "type": "advanced",
@@ -10609,7 +10609,7 @@
   {
     "type": "advanced",
     "word": "match",
-    "meaning": "比赛；匹配",
+    "meaning": "比得上；匹配",
     "question": "On a cold winter’s day, few culinary pleasures can ____ the Sunday roast. 💡 在寒冷的冬日，几乎没有什么美食能比得上一顿周日烤肉大餐所带来的愉悦感。",
     "options": {
       "A": "wasteland",
@@ -10620,12 +10620,12 @@
     "answer": "C",
     "mnemonic": "🧠 match（比赛）中需要 watch（手表）看时间",
     "exam_cite": "在寒冷的冬日，几乎没有什么美食能比得上一顿周日烤肉大餐所带来的愉悦感。（2020 英一完形）",
-    "plain_meaning": "比赛；匹配"
+    "plain_meaning": "比得上；匹配"
   },
   {
     "type": "advanced",
     "word": "score",
-    "meaning": "分数；乐谱",
+    "meaning": "得分；分数；乐谱",
     "question": "Middle-aged people ____ worse on measures of fluid intelligence as the years went by. 💡 随着时间的推移，中年人在流体智力上得分较低。",
     "options": {
       "A": "sunscreen",
@@ -10635,7 +10635,7 @@
     },
     "answer": "D",
     "exam_cite": "随着时间的推移，中年人在流体智力上得分较低。（2021 英一完形）",
-    "plain_meaning": "分数；乐谱"
+    "plain_meaning": "得分；分数；乐谱"
   },
   {
     "type": "advanced",
@@ -11279,7 +11279,7 @@
   {
     "type": "family",
     "word": "exhaust",
-    "meaning": "使筋疲力尽",
+    "meaning": "耗尽；使精疲力竭",
     "question": "More frequent wildfires ____ unprecedented management efforts. 💡 频繁发生的野火耗尽了前所未有的管理努力。",
     "options": {
       "A": "precede",
@@ -11291,7 +11291,7 @@
     "family": "ex",
     "mnemonic": "🧠 ex（外，出来）+haust（谐音“耗死他”）→跑步快耗死他的精力了→使筋疲力尽",
     "exam_cite": "频繁发生的野火耗尽了前所未有的管理努力。（2017 英二 Text 4）",
-    "plain_meaning": "使筋疲力尽"
+    "plain_meaning": "耗尽；使精疲力竭"
   },
   {
     "type": "advanced",
@@ -11503,7 +11503,7 @@
   {
     "type": "advanced",
     "word": "honor",
-    "meaning": "荣誉；给荣誉",
+    "meaning": "尊重；荣誉",
     "question": "A “town of culture” could be not just about the arts but about ____ a town’s peculiarities. “ 💡 文化之镇”不仅与艺术有关，而且尊重一个城镇的特色。",
     "options": {
       "A": "essay",
@@ -11512,7 +11512,7 @@
       "D": "rarity"
     },
     "answer": "B",
-    "plain_meaning": "荣誉；给荣誉"
+    "plain_meaning": "尊重；荣誉"
   },
   {
     "type": "advanced",
@@ -11533,7 +11533,7 @@
   {
     "type": "advanced",
     "word": "moral",
-    "meaning": "道德的",
+    "meaning": "寓意；道德的",
     "question": "The ____ of the story is simple. 💡 这个故事的寓意很简单。",
     "options": {
       "A": "moral",
@@ -11544,7 +11544,7 @@
     "answer": "A",
     "mnemonic": "🧠 社会不稳定时就会出现 more（更多的）moral（道德）问题",
     "exam_cite": "这个故事的寓意很简单。（2021 英二完形）",
-    "plain_meaning": "道德的"
+    "plain_meaning": "寓意；道德的"
   },
   {
     "type": "advanced",
@@ -11678,7 +11678,7 @@
   {
     "type": "advanced",
     "word": "trick",
-    "meaning": "愚弄；诡计",
+    "meaning": "技巧；诡计；愚弄",
     "question": "If you get lost without a phone or a compass, a few ____ may help you navigate back to civilization. 💡 如果你迷路了，身上没带手机，也没带指南针，那么一些技巧可以帮助你导航回到有人烟的地方。",
     "options": {
       "A": "trick",
@@ -11689,7 +11689,7 @@
     "answer": "A",
     "mnemonic": "🧠 Trick or Treat. 不给糖就捣蛋。",
     "exam_cite": "如果你迷路了，身上没带手机，也没带指南针，那么一些技巧可以帮助你导航回到有人烟的地方。（2019 英一完形）",
-    "plain_meaning": "愚弄；诡计"
+    "plain_meaning": "技巧；诡计；愚弄"
   },
   {
     "type": "advanced",
@@ -11808,7 +11808,7 @@
   {
     "type": "advanced",
     "word": "dilemma",
-    "meaning": "左右为难、进退两难的困境",
+    "meaning": "进退两难；困境",
     "question": "The Supreme Court decision Thursday will put most online businesses in a ____. 💡 最高法院周四的裁决将会使大多数在线企业进退两难。",
     "options": {
       "A": "discourse",
@@ -11820,7 +11820,7 @@
     "phrase": "📌 in a dilemma 进退两难",
     "mnemonic": "🧠 谐音“地雷吗”→陷入雷区，进退两难→困境",
     "exam_cite": "最高法院周四的裁决将会使大多数在线企业进退两难。（2019 英一 Text 4）",
-    "plain_meaning": "左右为难、进退两难的困境"
+    "plain_meaning": "进退两难；困境"
   },
   {
     "type": "advanced",
@@ -11841,7 +11841,7 @@
   {
     "type": "advanced",
     "word": "paradox",
-    "meaning": "自相矛盾、看似矛盾的现实",
+    "meaning": "矛盾；悖论",
     "question": "Millennials, it seems, face the ____ of being the least formal generation yet the most conscious of style and personal branding. 💡 似乎千禧一代面临的矛盾是既要做最不正式的一代，却又最关注时尚和个人品牌。",
     "options": {
       "A": "trial",
@@ -11852,7 +11852,7 @@
     "answer": "D",
     "mnemonic": "🧠 para（联想 parallel，平行）+do（做）+x（联想“相交”）→让平行线做相交→矛盾",
     "exam_cite": "似乎千禧一代面临的矛盾是既要做最不正式的一代，却又最关注时尚和个人品牌。（2016 英一新题型）",
-    "plain_meaning": "自相矛盾、看似矛盾的现实"
+    "plain_meaning": "矛盾；悖论"
   },
   {
     "type": "advanced",
@@ -11905,7 +11905,7 @@
   {
     "type": "advanced",
     "word": "strike",
-    "meaning": "击打；达到",
+    "meaning": "罢工；击打；侵袭",
     "question": "The responsibility for the latest wave of ____ rests on the unions. 💡 最近一波罢工的责任在于工会。",
     "options": {
       "A": "reform",
@@ -11917,7 +11917,7 @@
     "phrase": "📌 strike a balance 达到平衡 strike ... into sb. / strike sb. as... 令某人感到…… asteroid stike 小行星撞击 it strikes sb. that... 某人猛地意识到…… strike up a conversation (with sb.) （与某人）交谈起来",
     "mnemonic": "🧠 Strike while the iron is hot. 趁热打铁。",
     "exam_cite": "最近一波罢工的责任在于工会。 （2021 英一 Text 1）",
-    "plain_meaning": "击打；达到"
+    "plain_meaning": "罢工；击打；侵袭"
   },
   {
     "type": "advanced",
@@ -12089,7 +12089,7 @@
   {
     "type": "advanced",
     "word": "function",
-    "meaning": "功能；起作用",
+    "meaning": "运转；功能",
     "question": "More explanations for how the universe ____ were being made at a rate that the people could no longer ignore. 💡 关于宇宙运转方式的更多解释不断出现，速度之快使人们再也无法忽视。",
     "options": {
       "A": "preoccupation",
@@ -12100,7 +12100,7 @@
     "answer": "D",
     "mnemonic": "🧠 fun（有趣的）+ction（联想 action，活动）→活动的功能就是创造有趣的氛围→功能",
     "exam_cite": "关于宇宙运转方式的更多解释不断出现，速度之快使人们再也无法忽视。（2020 英一翻译）",
-    "plain_meaning": "功能；起作用"
+    "plain_meaning": "运转；功能"
   },
   {
     "type": "advanced",
@@ -12201,7 +12201,7 @@
   {
     "type": "advanced",
     "word": "absorb",
-    "meaning": "吸收；吸引",
+    "meaning": "承担；吸收；吸引",
     "question": "During the same period, families have been asked to ____ much more risk in their retirement income. 💡 在同一时期，要求家庭在其退休收入中承担更多风险。",
     "options": {
       "A": "finalize",
@@ -12213,7 +12213,7 @@
     "phrase": "📌 be absorbed in/into 沉迷于",
     "mnemonic": "🧠 ab（不）+sorb（谐音“扫把”）→高级的扫把（吸尘器）可以让灰尘消失不见→吸收",
     "exam_cite": "在同一时期，要求家庭在其退休收入中承担更多风险。（2007 英一 Text 3）",
-    "plain_meaning": "吸收；吸引"
+    "plain_meaning": "承担；吸收；吸引"
   },
   {
     "type": "family",
@@ -12506,7 +12506,7 @@
   {
     "type": "advanced",
     "word": "narrow",
-    "meaning": "狭窄的；勉强的",
+    "meaning": "缩小；狭窄的",
     "question": "The push into bachelor’s degrees for all may ____ the gap in working-class jobs. 💡 推动所有人都获得学士学位可能会缩小工人阶级工作的差距。",
     "options": {
       "A": "burnable",
@@ -12518,7 +12518,7 @@
     "phrase": "📌 a narrow victory 险胜",
     "mnemonic": "🧠 仅能被一支 arrow（箭）通过的地方非常 narrow（狭窄）",
     "exam_cite": "推动所有人都获得学士学位可能会缩小工人阶级工作的差距。（2018 英二 Text 1）",
-    "plain_meaning": "狭窄的；勉强的"
+    "plain_meaning": "缩小；狭窄的"
   },
   {
     "type": "advanced",
@@ -12750,7 +12750,7 @@
   {
     "type": "advanced",
     "word": "sort",
-    "meaning": "种类；把分类",
+    "meaning": "解决；分类；种类",
     "question": "The justices must ____ out how the Fourth Amendment applies to digital information now. 💡 现在法官必须解决第四修正案如何适用于数字信息的问题。",
     "options": {
       "A": "sort",
@@ -12762,7 +12762,7 @@
     "phrase": "📌 sort out… 解决……",
     "mnemonic": "🧠 我喜欢 soft（软的）那 sort（种）沙发",
     "exam_cite": "现在法官必须解决第四修正案如何适用于数字信息的问题。（2015 英一 Text 2）",
-    "plain_meaning": "种类；把分类"
+    "plain_meaning": "解决；分类；种类"
   },
   {
     "type": "advanced",
@@ -13045,7 +13045,7 @@
   {
     "type": "advanced",
     "word": "bargain",
-    "meaning": "讨价还价",
+    "meaning": "交易；讨价还价",
     "question": "The ____ is very pure: Employee puts in hours of physical or mental labor and draws out life-sustaining moola. 💡 这交易很纯粹：员工花时间付出体力或脑力劳动，从而领取维持基本生活的薪水。",
     "options": {
       "A": "suggest",
@@ -13056,12 +13056,12 @@
     "answer": "D",
     "mnemonic": "🧠 bar（酒吧）+gain（获得）→在酒吧里买（获得）酒很贵，得讨价还价→讨价还价",
     "exam_cite": "这交易很纯粹：员工花时间付出体力或脑力劳动，从而领取维持基本生活的薪水。（2015 英二 Text 1）",
-    "plain_meaning": "讨价还价"
+    "plain_meaning": "交易；讨价还价"
   },
   {
     "type": "advanced",
     "word": "charge",
-    "meaning": "收费；使承担",
+    "meaning": "指控；收费；负责",
     "question": "Public officials are exempt from conviction on the ____ of favoritism. 💡 公务人员被指控有偏袒行为时会被免除定罪。",
     "options": {
       "A": "expect",
@@ -13073,7 +13073,7 @@
     "phrase": "📌 be charged with 承担 in charge (of) 负责，主管 on the charge of… ……的指控",
     "mnemonic": "🧠 char（=car，车）+ge（=age，后缀）→车上高速要被收费→收费",
     "exam_cite": "公务人员被指控有偏袒行为时会被免除定罪。（2017 英一 Text 4）",
-    "plain_meaning": "收费；使承担"
+    "plain_meaning": "指控；收费；负责"
   },
   {
     "type": "advanced",
@@ -13160,7 +13160,7 @@
   {
     "type": "family",
     "word": "bill",
-    "meaning": "账单；法案",
+    "meaning": "宣传；法案；账单",
     "question": "A one-hour flight is now ____ as a two-hour flight. 💡 一个小时的飞行时长如今被宣传为两个小时。",
     "options": {
       "A": "terror",
@@ -13173,7 +13173,7 @@
     "phrase": "📌 the Education Reform Bill 教育改革法案",
     "mnemonic": "🧠 有医保，ill（生病）住院时 bill（账单）可以报销",
     "exam_cite": "一个小时的飞行时长如今被宣传为两个小时。 （2021 英二完形）",
-    "plain_meaning": "账单；法案"
+    "plain_meaning": "宣传；法案；账单"
   },
   {
     "type": "advanced",
@@ -13327,7 +13327,7 @@
   {
     "type": "family",
     "word": "effect",
-    "meaning": "效果；效应",
+    "meaning": "影响；效应；效果",
     "question": "Though several fast-fashion companies have made efforts to curb their impact on the environment, Cline believes lasting change can only be ____ by the customer. 💡 尽管数家快时尚公司已经努力控制他们对环境的影响，但克莱因认为只有消费者才能使持久的改变发生。",
     "options": {
       "A": "gender",
@@ -13340,7 +13340,7 @@
     "phrase": "📌 take effect 生效，开始实施 go into effect 生效 the effect on/upon... 对……的影响 in effect 实际上 to the effect that… 大意是……",
     "mnemonic": "🧠 ef（外，出来）+fect（做）→做事情所出来的效果→效果",
     "exam_cite": "尽管数家快时尚公司已经努力控制他们对环境的影响，但克莱因认为只有消费者才能使持久的改变发生。（2013 英一 Text 1）",
-    "plain_meaning": "效果；效应"
+    "plain_meaning": "影响；效应；效果"
   },
   {
     "type": "family",
@@ -14023,7 +14023,7 @@
   {
     "type": "family",
     "word": "proceed",
-    "meaning": "继续进行；收入",
+    "meaning": "收益；继续进行",
     "question": "California plans to treat 35,000 acres of forest a year by 2020—financed from the ____ of the state’s emissions-permit auctions. 💡 加利福尼亚州计划到 2020 年每年治理 3.5 万英亩的森林——资金来自该州排放许可拍卖收益。",
     "options": {
       "A": "explore",
@@ -14035,7 +14035,7 @@
     "family": "pro",
     "mnemonic": "🧠 pro（向前）+ceed（走）→使项目向前走→继续（做……）",
     "exam_cite": "加利福尼亚州计划到 2020 年每年治理 3.5 万英亩的森林——资金来自该州排放许可拍卖收益。（2019 英二 Text 2）",
-    "plain_meaning": "继续进行；收入"
+    "plain_meaning": "收益；继续进行"
   },
   {
     "type": "family",
@@ -14058,7 +14058,7 @@
   {
     "type": "family",
     "word": "degree",
-    "meaning": "等级；程度",
+    "meaning": "学位；程度；等级",
     "question": "I struggled a lot to get the college ____. 💡 我为了获得大学学位付出很多努力。",
     "options": {
       "A": "degree",
@@ -14071,7 +14071,7 @@
     "phrase": "📌 to some degree 在某种程度上",
     "mnemonic": "🧠 de（下）+gree（=grad，走）→沿着台阶一级一级往下走→等级",
     "exam_cite": "我为了获得大学学位付出很多努力。（2008 英一 Text 1）",
-    "plain_meaning": "等级；程度"
+    "plain_meaning": "学位；程度；等级"
   },
   {
     "type": "family",
@@ -14419,7 +14419,7 @@
   {
     "type": "family",
     "word": "reduce",
-    "meaning": "减少；降低",
+    "meaning": "减少；简化；降低",
     "question": "We can ____ the problem to two key points. 💡 我们可以将这个问题简化为两个要点。",
     "options": {
       "A": "lower",
@@ -14431,7 +14431,7 @@
     "family": "duc/duct",
     "phrase": "📌 reduce ... to... 将……简化为……",
     "mnemonic": "🧠 re（回）+duc（引导）+e→将数据往回引→减少",
-    "plain_meaning": "减少；降低"
+    "plain_meaning": "减少；简化；降低"
   },
   {
     "type": "family",
@@ -14555,7 +14555,7 @@
   {
     "type": "basic",
     "word": "cover",
-    "meaning": "覆盖；涵盖；报道",
+    "meaning": "支付；覆盖；涵盖",
     "question": "Alvarez’s salary barely ____ her household expenses. 💡 阿尔瓦雷斯的工资几乎无法支付其家庭开支。",
     "options": {
       "A": "suppose",
@@ -14566,7 +14566,7 @@
     "answer": "C",
     "phrase": "📌 cover up the crime 掩饰犯罪事实",
     "exam_cite": "阿尔瓦雷斯的工资几乎无法支付其家庭开支。（2008 英一 Text 1）",
-    "plain_meaning": "覆盖；涵盖；报道"
+    "plain_meaning": "支付；覆盖；涵盖"
   },
   {
     "type": "family",
@@ -14748,7 +14748,7 @@
   {
     "type": "family",
     "word": "experience",
-    "meaning": "经验；经历",
+    "meaning": "体验；经历；经验",
     "question": "Our studies focused on the impact of zoo ____ on how people think about themselves and nature. 💡 我们的研究重点是：动物园的体验对人们如何看待自己和自然有什么影响。",
     "options": {
       "A": "virtue",
@@ -14760,7 +14760,7 @@
     "family": "ex",
     "mnemonic": "🧠 ex（外，出来）+peri（尝试）+ence（名词后缀）→不断尝试，总结出经验→经验",
     "exam_cite": "我们的研究重点是：动物园的体验对人们如何看待自己和自然有什么影响。（2022 英一新题型）",
-    "plain_meaning": "经验；经历"
+    "plain_meaning": "体验；经历；经验"
   },
   {
     "type": "basic",
@@ -14939,7 +14939,7 @@
   {
     "type": "basic",
     "word": "appear",
-    "meaning": "出现；似乎",
+    "meaning": "出版；出现；似乎",
     "question": "The comic novel, The Posthumous Papers of the Pickwick Club, ____ serially in 1836 and 1837. 💡 喜剧小说《匹克威克外传》在 1836 至 1837 年间连载出版。",
     "options": {
       "A": "appear",
@@ -14951,7 +14951,7 @@
     "phrase": "📌 appear to do/be... 似乎……",
     "mnemonic": "🧠 ap（向）+pear（看见）→太阳向上升起到能被看见→出现",
     "exam_cite": "喜剧小说《匹克威克外传》在 1836 至 1837 年间连载出版。（2017 英一新题型）",
-    "plain_meaning": "出现；似乎"
+    "plain_meaning": "出版；出现；似乎"
   },
   {
     "type": "basic",
@@ -15105,7 +15105,7 @@
   {
     "type": "family",
     "word": "condition",
-    "meaning": "状况；条件",
+    "meaning": "制约；条件；状况",
     "question": "Human height is ____ by the upright posture. 💡 直立行走姿势制约了人类的身高。",
     "options": {
       "A": "mileage",
@@ -15117,7 +15117,7 @@
     "family": "dict",
     "mnemonic": "🧠 con（一起，共同）+dit（=dict，说）+ion（名词后缀）→描述周围所有的情况→状况",
     "exam_cite": "直立行走姿势制约了人类的身高。（2008 英一 Text 3）",
-    "plain_meaning": "状况；条件"
+    "plain_meaning": "制约；条件；状况"
   },
   {
     "type": "family",
@@ -15203,7 +15203,7 @@
   {
     "type": "basic",
     "word": "issue",
-    "meaning": "问题；期",
+    "meaning": "发布；问题；期号",
     "question": "From 2011 to 2016 the number of visas ____ more than doubled. 💡 从 2011 年到 2016 年，发布签证的数量增加了一倍多。",
     "options": {
       "A": "issue",
@@ -15214,7 +15214,7 @@
     "answer": "A",
     "phrase": "📌 be at issue 是讨论的焦点 the Oct. 28 issue of Newsweek 《新闻周刊》10 月 28 日的那期",
     "exam_cite": "从 2011 年到 2016 年，发布签证的数量增加了一倍多。（2019 英二 Text 3）",
-    "plain_meaning": "问题；期"
+    "plain_meaning": "发布；问题；期号"
   },
   {
     "type": "family",
@@ -15269,7 +15269,7 @@
   {
     "type": "basic",
     "word": "note",
-    "meaning": "笔记；氛围",
+    "meaning": "指出；注意；笔记",
     "question": "Writing in The New Republic, Alice Lee ____ that the number of opportunities for board membership increased, without increasing the pool of qualified women to serve on such boards. 💡 艾丽丝·李在《新共和》杂志上撰文指出，董事会成员的机会增加了，但是能够在这样的董事会中胜任的女性人数却没增加。",
     "options": {
       "A": "note",
@@ -15279,7 +15279,7 @@
     },
     "answer": "A",
     "phrase": "📌 author of note 著名的作家",
-    "plain_meaning": "笔记；氛围"
+    "plain_meaning": "指出；注意；笔记"
   },
   {
     "type": "basic",
@@ -15350,7 +15350,7 @@
   {
     "type": "basic",
     "word": "mind",
-    "meaning": "头脑；介意",
+    "meaning": "才智；头脑；介意",
     "question": "It was the purpose and responsibility of great ____ to seek out the truth. 💡 找到真理是有才智的人的目标和责任。",
     "options": {
       "A": "similarity",
@@ -15361,7 +15361,7 @@
     "answer": "D",
     "phrase": "📌 keep in mind 记住 never mind sth. 先别管某事",
     "exam_cite": "找到真理是有才智的人的目标和责任。（2020 英一翻译）",
-    "plain_meaning": "头脑；介意"
+    "plain_meaning": "才智；头脑；介意"
   },
   {
     "type": "basic",
@@ -15464,7 +15464,7 @@
   {
     "type": "basic",
     "word": "please",
-    "meaning": "请；使高兴",
+    "meaning": "愿意；使高兴；请",
     "question": "It is the prize-givers’ money to do with as they ____. 💡 这是授奖者的钱，他们愿意怎么用就怎么用。",
     "options": {
       "A": "outweigh",
@@ -15474,7 +15474,7 @@
     },
     "answer": "D",
     "exam_cite": "这是授奖者的钱，他们愿意怎么用就怎么用。 （2014 英一 Text 3）",
-    "plain_meaning": "请；使高兴"
+    "plain_meaning": "愿意；使高兴；请"
   },
   {
     "type": "basic",
@@ -15754,7 +15754,7 @@
   {
     "type": "family",
     "word": "reflect",
-    "meaning": "反射；反映",
+    "meaning": "反思；反映；反射",
     "question": "Senior executives’ quitting may be spurred by their need to ____ on their private life. 💡 高管离职可能是因为他们需要反思自己的私人生活。",
     "options": {
       "A": "reflect",
@@ -15767,7 +15767,7 @@
     "phrase": "📌 reflect on… 反思……",
     "mnemonic": "🧠 re（回）+flect（弯曲）→光弯曲回来→反射",
     "exam_cite": "高管离职可能是因为他们需要反思自己的私人生活。（2011 英一 Text 2）",
-    "plain_meaning": "反射；反映"
+    "plain_meaning": "反思；反映；反射"
   },
   {
     "type": "basic",
@@ -15802,7 +15802,7 @@
   {
     "type": "basic",
     "word": "form",
-    "meaning": "形式；表格",
+    "meaning": "形成；形式；表格",
     "question": "Light was a something that both artists and scientists had an interest in, and therefore could ____ the basis of collaboration. 💡 光是艺术家和科学家都感兴趣的东西，因此可以形成他们合作的基础。",
     "options": {
       "A": "consciousness",
@@ -15813,7 +15813,7 @@
     "answer": "B",
     "phrase": "📌 in the form of… 以……的形式 application form 申请表",
     "exam_cite": "光是艺术家和科学家都感兴趣的东西，因此可以形成他们合作的基础。（2022 英一 Text 3）",
-    "plain_meaning": "形式；表格"
+    "plain_meaning": "形成；形式；表格"
   },
   {
     "type": "family",
@@ -15835,7 +15835,7 @@
   {
     "type": "family",
     "word": "perform",
-    "meaning": "表演；表现",
+    "meaning": "执行；表现；表演",
     "question": "Scientists ____ the specialised work of peer review for free. 💡 科学家免费执行同行评审的专业任务。",
     "options": {
       "A": "intensify",
@@ -15847,7 +15847,7 @@
     "family": "form",
     "mnemonic": "🧠 per（完全）+form（形式）→在舞台上全程展现出各种形式→表演",
     "exam_cite": "科学家免费执行同行评审的专业任务。 （2020 英一 Text 2）",
-    "plain_meaning": "表演；表现"
+    "plain_meaning": "执行；表现；表演"
   },
   {
     "type": "basic",
@@ -15899,7 +15899,7 @@
   {
     "type": "basic",
     "word": "focus",
-    "meaning": "集中于；中心点",
+    "meaning": "关注；聚焦；中心",
     "question": "People made more personally satisfying decisions when asked to ____ on their feelings rather than on details. 💡 当人们被要求关注感觉而非细节时，做出的决定更令自己满意。",
     "options": {
       "A": "distinguish",
@@ -15909,7 +15909,7 @@
     },
     "answer": "C",
     "phrase": "📌 focus on… 集中于……；关注……",
-    "plain_meaning": "集中于；中心点"
+    "plain_meaning": "关注；聚焦；中心"
   },
   {
     "type": "basic",
@@ -16029,7 +16029,7 @@
   {
     "type": "basic",
     "word": "outlet",
-    "meaning": "发泄方法",
+    "meaning": "专营店；发泄途径",
     "question": "The government should ban fast-food ____ in the neighborhood of schools. 💡 政府应该禁止学校附近开快餐专营店。",
     "options": {
       "A": "schedule",
@@ -16040,7 +16040,7 @@
     "answer": "B",
     "mnemonic": "🧠 out（向外）+let（让）→让情绪向外发出去的方法→发泄方法",
     "exam_cite": "政府应该禁止学校附近开快餐专营店。（2011 英二新题型）",
-    "plain_meaning": "发泄方法"
+    "plain_meaning": "专营店；发泄途径"
   },
   {
     "type": "basic",
@@ -16474,7 +16474,7 @@
   {
     "type": "family",
     "word": "account",
-    "meaning": "账户；叙述",
+    "meaning": "解释；账户；叙述",
     "question": "Weighing every other week allows me to observe and ____ for any significant weight changes. 💡 每隔一周称重可以让我观察到并解释任何显著的体重变化。",
     "options": {
       "A": "planet",
@@ -16487,7 +16487,7 @@
     "phrase": "📌 by all accounts 据说 on account of… 由于……",
     "mnemonic": "🧠 ac（向）+count（计算）→计算自己的财产，放向银行账户→账户",
     "exam_cite": "每隔一周称重可以让我观察到并解释任何显著的体重变化。（2019 英二完形）",
-    "plain_meaning": "账户；叙述"
+    "plain_meaning": "解释；账户；叙述"
   },
   {
     "type": "basic",
@@ -16642,7 +16642,7 @@
   {
     "type": "family",
     "word": "concern",
-    "meaning": "担心；关心",
+    "meaning": "涉及；关心；担忧",
     "question": "The story ____ a boy who was 8 years old. 💡 故事涉及一个 8 岁的男孩。",
     "options": {
       "A": "fluctuation",
@@ -16653,7 +16653,7 @@
     "answer": "D",
     "family": "con",
     "mnemonic": "🧠 con（一起，共同）+cern（分开）→在一起的两个人总是担心会分开→担心",
-    "plain_meaning": "担心；关心"
+    "plain_meaning": "涉及；关心；担忧"
   },
   {
     "type": "basic",
@@ -16892,7 +16892,7 @@
   {
     "type": "basic",
     "word": "community",
-    "meaning": "社区；社会",
+    "meaning": "群落；社区；群体",
     "question": "In Europe, the non-commercial tree species are recognized as members of the native forest ____ to   be preserved. 💡 在欧洲，没有商业价值的树种被视为是当地森林群落的成员，并加以保护。",
     "options": {
       "A": "grown-up",
@@ -16904,7 +16904,7 @@
     "phrase": "📌 the business community 商业界",
     "mnemonic": "🧠 com（一起，共同）+mun（公共的）+ity（名词后缀）→大家一起居住的公共的地方→社区",
     "exam_cite": "在欧洲，没有商业价值的树种被视为是当地森林群落的成员，并加以保护。（2010 英一翻译）",
-    "plain_meaning": "社区；社会"
+    "plain_meaning": "群落；社区；群体"
   },
   {
     "type": "basic",
@@ -17008,7 +17008,7 @@
   {
     "type": "basic",
     "word": "judge",
-    "meaning": "判断；审判",
+    "meaning": "法官；判断；审判",
     "question": "____ Patricia Millett argues that the appeals court’s decision is out of touch with reality. 💡 法官帕特里夏·米利特辩称，上诉法院的裁决与现实脱节。",
     "options": {
       "A": "risk",
@@ -17020,7 +17020,7 @@
     "phrase": "📌 judge a case 审理案件",
     "mnemonic": "🧠 jud（公正）+ge（拼音“个”）→做出一个公正的判断→判断",
     "exam_cite": "法官帕特里夏·米利特辩称，上诉法院的裁决与现实脱节。（2021 英一 Text 4）",
-    "plain_meaning": "判断；审判"
+    "plain_meaning": "法官；判断；审判"
   },
   {
     "type": "basic",
@@ -17071,7 +17071,7 @@
   {
     "type": "basic",
     "word": "rule",
-    "meaning": "规则；统治",
+    "meaning": "裁决；规则；统治",
     "question": "The court has ____ that police don’t violate the Fourth Amendment when they go through the wallet or pocketbook of an arrestee without a warrant. 💡 法院已经裁决，警察在没有搜查令的情况下搜查抓捕对象的钱包或皮夹并不违反第四修正案。",
     "options": {
       "A": "enlightenment",
@@ -17083,7 +17083,7 @@
     "phrase": "📌 rule out… 排除……",
     "mnemonic": "🧠 做任何事都要用 rule（规则）这把 ruler（尺子）量一量",
     "exam_cite": "法院已经裁决，警察在没有搜查令的情况下搜查抓捕对象的钱包或皮夹并不违反第四修正案。（2015 英一 Text 2）",
-    "plain_meaning": "规则；统治"
+    "plain_meaning": "裁决；规则；统治"
   },
   {
     "type": "basic",
@@ -17104,7 +17104,7 @@
   {
     "type": "basic",
     "word": "order",
-    "meaning": "次序；命令",
+    "meaning": "订单；命令；秩序",
     "question": "Federal health officials began taking ____ from the states for the new swine flu vaccine. 💡 联邦卫生部官员开始接受来自各州的新型猪流感疫苗订单。",
     "options": {
       "A": "paycheck",
@@ -17116,7 +17116,7 @@
     "phrase": "📌 in order to… 为了……",
     "mnemonic": "🧠 ord（秩序）+er（名词后缀）→次序",
     "exam_cite": "联邦卫生部官员开始接受来自各州的新型猪流感疫苗订单。（2010 英二完形）",
-    "plain_meaning": "次序；命令"
+    "plain_meaning": "订单；命令；秩序"
   },
   {
     "type": "basic",
@@ -17136,7 +17136,7 @@
   {
     "type": "basic",
     "word": "bank",
-    "meaning": "银行；岸",
+    "meaning": "依靠；银行",
     "question": "The study doesn’t reveal how much companies are ____ on the halo effect when they decide their do-gooding policies. 💡 研究并没有揭示当公司在做慈善方面的决策时，会有多么依靠“光环效应”。",
     "options": {
       "A": "terrorist",
@@ -17147,7 +17147,7 @@
     "answer": "C",
     "phrase": "📌 the north bank of the Ohio River 俄亥俄河的北岸",
     "mnemonic": "🧠 来源于意大利语 banca（条凳），14 世纪意大利威尼斯商人在市场摆一条凳子从事货币存储及放贷业务，也即现代银行的起源",
-    "plain_meaning": "银行；岸"
+    "plain_meaning": "依靠；银行"
   },
   {
     "type": "family",
@@ -17220,7 +17220,7 @@
   {
     "type": "basic",
     "word": "value",
-    "meaning": "价值；重视",
+    "meaning": "评估；价值；重视",
     "question": "These rules say banks must ____ some assets at the price a third party would pay. 💡 这些规则要求银行必须以第三方愿意买入的价格来评估一些资产。",
     "options": {
       "A": "sensitiveness",
@@ -17231,7 +17231,7 @@
     "answer": "B",
     "phrase": "📌 book value （公司资产的）账面价值",
     "exam_cite": "这些规则要求银行必须以第三方愿意买入的价格来评估一些资产。（2010 英一 Text 4）",
-    "plain_meaning": "价值；重视"
+    "plain_meaning": "评估；价值；重视"
   },
   {
     "type": "basic",
@@ -17316,7 +17316,7 @@
   {
     "type": "basic",
     "word": "operate",
-    "meaning": "操作；运转",
+    "meaning": "经营；运转；操作",
     "question": "Compared with their predecessors, today’s CEOs are required to ____ more globalized companies. 💡 和前辈相比，如今的首席执行官们需要经营更全球化的企业。",
     "options": {
       "A": "exclude",
@@ -17327,7 +17327,7 @@
     "answer": "B",
     "mnemonic": "🧠 oper（工作）+ate（动词后缀）→让机器工作起来→操作",
     "exam_cite": "和前辈相比，如今的首席执行官们需要经营更全球化的企业。（2020 英二 Text 2）",
-    "plain_meaning": "操作；运转"
+    "plain_meaning": "经营；运转；操作"
   },
   {
     "type": "family",
@@ -17633,7 +17633,7 @@
   {
     "type": "basic",
     "word": "carry",
-    "meaning": "携带；承担",
+    "meaning": "出售；携带；承担",
     "question": "____ 💡 根据食品营销协会的调查，普通超市会出售约 44000 种不同的商品。",
     "options": {
       "A": "overlook",
@@ -17644,12 +17644,12 @@
     "answer": "B",
     "phrase": "📌 carry sth. with sb. 随身携带某物 carry ... into... 把……带入…… carry on 继续 carry their plans through 完成他们的计划 carry a high price 付出很高的代价 carry the burden of… 承受……的负担 carry out 实施，执行",
     "exam_cite": "根据食品营销协会的调查，普通超市会出售约 44000 种不同的商品。（2016 英二翻译）",
-    "plain_meaning": "携带；承担"
+    "plain_meaning": "出售；携带；承担"
   },
   {
     "type": "basic",
     "word": "force",
-    "meaning": "力；一群人",
+    "meaning": "迫使；力量；军队",
     "question": "States will be able to ____ more people to pay sales tax when they make online purchases. 💡 各州可以迫使更多人为在线购物支付销售税。",
     "options": {
       "A": "order",
@@ -17660,7 +17660,7 @@
     "answer": "D",
     "phrase": "📌 labor force 劳动力 force sb. to do… 迫使某人做……",
     "exam_cite": "各州可以迫使更多人为在线购物支付销售税。（2019 英一 Text 4）",
-    "plain_meaning": "力；一群人"
+    "plain_meaning": "迫使；力量；军队"
   },
   {
     "type": "family",
@@ -17748,7 +17748,7 @@
   {
     "type": "basic",
     "word": "complete",
-    "meaning": "完成；完全的",
+    "meaning": "完整的；完成",
     "question": "If you’re breathing too hard to talk in ____ sentences, back off. 💡 如果你气喘吁吁，无法用完整的句子说话，请放慢语速。",
     "options": {
       "A": "strike",
@@ -17759,7 +17759,7 @@
     "answer": "B",
     "mnemonic": "🧠 com（一起，共同）+ple（满）+te→将未完成的事物一起填满→完成",
     "exam_cite": "如果你气喘吁吁，无法用完整的句子说话，请放慢语速。（2022 英二新题型）",
-    "plain_meaning": "完成；完全的"
+    "plain_meaning": "完整的；完成"
   },
   {
     "type": "basic",
@@ -17779,7 +17779,7 @@
   {
     "type": "basic",
     "word": "save",
-    "meaning": "挽救；节省",
+    "meaning": "除了；挽救；节省",
     "question": "Most colleges, ____ for many selective campuses, allow all undergraduates, and even graduate students, to get their low grades forgiven. 💡 除了许多名牌大学外，大多数大学都允许所有本科生，甚至研究生得到低分宽恕。",
     "options": {
       "A": "project",
@@ -17790,12 +17790,12 @@
     "answer": "D",
     "phrase": "📌 save life 挽救生命 save time 节省时间",
     "exam_cite": "除了许多名牌大学外，大多数大学都允许所有本科生，甚至研究生得到低分宽恕。（2019 英一 Text 2）",
-    "plain_meaning": "挽救；节省"
+    "plain_meaning": "除了；挽救；节省"
   },
   {
     "type": "basic",
     "word": "ease",
-    "meaning": "容易；安逸",
+    "meaning": "缓解；减轻；容易",
     "question": "This kind of “moral licensing” could ____ our concerns. 💡 这种“道德许可”可以缓解我们的担忧。",
     "options": {
       "A": "justification",
@@ -17806,7 +17806,7 @@
     "answer": "B",
     "phrase": "📌 with ease 容易地",
     "mnemonic": "🧠 easy（容易的）的名词形式",
-    "plain_meaning": "容易；安逸"
+    "plain_meaning": "缓解；减轻；容易"
   },
   {
     "type": "family",
@@ -17875,7 +17875,7 @@
   {
     "type": "basic",
     "word": "own",
-    "meaning": "自己的；自己",
+    "meaning": "拥有；自己的",
     "question": "The rich ____ the robots. 💡 富人们拥有机器人。",
     "options": {
       "A": "unreasonable",
@@ -17886,7 +17886,7 @@
     "answer": "C",
     "phrase": "📌 come into one’s own （因情况适宜而）开始取得成功 on one’s own 独自地",
     "exam_cite": "富人们拥有机器人。（2018 英一 Text 1）",
-    "plain_meaning": "自己的；自己"
+    "plain_meaning": "拥有；自己的"
   },
   {
     "type": "basic",
@@ -18082,7 +18082,7 @@
   {
     "type": "basic",
     "word": "train",
-    "meaning": "火车；一连串",
+    "meaning": "培训；火车；连串",
     "question": "You cannot take an unemployed waiter and ____ him to be a doctor in a few weeks. 💡 你不可能在短短几周内把一个失业的服务员培训成医生。",
     "options": {
       "A": "academia",
@@ -18092,7 +18092,7 @@
     },
     "answer": "B",
     "phrase": "📌 a train of thought 一连串的想法，思路",
-    "plain_meaning": "火车；一连串"
+    "plain_meaning": "培训；火车；连串"
   },
   {
     "type": "basic",
@@ -18207,7 +18207,7 @@
   {
     "type": "basic",
     "word": "share",
-    "meaning": "分享；份额",
+    "meaning": "股份；分享；份额",
     "question": "Non-lawyers may not own any ____ of a law firm. 💡 非律师身份的人不能拥有律师事务所的任何股份。",
     "options": {
       "A": "eliminate",
@@ -18219,7 +18219,7 @@
     "phrase": "📌 share with… 与……分享",
     "mnemonic": "🧠 双胞胎互相 share（分享）妈妈的 care（关爱）",
     "exam_cite": "非律师身份的人不能拥有律师事务所的任何股份。 （2014 英一 Text 2）",
-    "plain_meaning": "分享；份额"
+    "plain_meaning": "股份；分享；份额"
   },
   {
     "type": "basic",
@@ -18240,7 +18240,7 @@
   {
     "type": "basic",
     "word": "land",
-    "meaning": "陆地；土地",
+    "meaning": "着陆；陆地；土地",
     "question": "We expect to be ____ in Beijing in about fifty minutes. 💡 我们预计约 50 分钟后在北京着陆。",
     "options": {
       "A": "turnaround",
@@ -18249,7 +18249,7 @@
       "D": "measurement"
     },
     "answer": "B",
-    "plain_meaning": "陆地；土地"
+    "plain_meaning": "着陆；陆地；土地"
   },
   {
     "type": "basic",
@@ -18398,7 +18398,7 @@
   {
     "type": "basic",
     "word": "yet",
-    "meaning": "还；迄今为止",
+    "meaning": "然而；还；迄今",
     "question": "____ as we report now, the food police are determined that this enjoyment should be rendered yet another guilty pleasure guaranteed to damage our health. 💡 然而，正如我们现在所报道的，食品监管局确信这种乐趣又是另一种必定会损害我们健康的“罪恶的”快乐。",
     "options": {
       "A": "increasingly",
@@ -18409,12 +18409,12 @@
     "answer": "C",
     "mnemonic": "🧠 想养 pet（宠物），但是直到现在也 yet（还）没养",
     "exam_cite": "然而，正如我们现在所报道的，食品监管局确信这种乐趣又是另一种必定会损害我们健康的“罪恶的”快乐。（2020 英一完形）",
-    "plain_meaning": "还；迄今为止"
+    "plain_meaning": "然而；还；迄今"
   },
   {
     "type": "basic",
     "word": "rather",
-    "meaning": "相当；相反",
+    "meaning": "而是；相当；相反",
     "question": "This is not to say that there is no point in getting a degree, but ____ stress that a degree is not for everyone. 💡 这并不是说获得学位毫无意义，而是强调学位并不适合每个人。",
     "options": {
       "A": "rather",
@@ -18425,7 +18425,7 @@
     "answer": "A",
     "phrase": "📌 rather than 而不是 not ... but rather... 不是……而是……",
     "exam_cite": "这并不是说获得学位毫无意义，而是强调学位并不适合每个人。（2022 英一 Text 2）",
-    "plain_meaning": "相当；相反"
+    "plain_meaning": "而是；相当；相反"
   },
   {
     "type": "family",
@@ -18448,7 +18448,7 @@
   {
     "type": "basic",
     "word": "due",
-    "meaning": "因为；预期的",
+    "meaning": "应得的；由于",
     "question": "The guild-like ownership structure prevents lawyers from gaining ____ profits. 💡 类似行业协会的所有权结构阻止了律师获得应得的利润。",
     "options": {
       "A": "due",
@@ -18459,12 +18459,12 @@
     "answer": "A",
     "phrase": "📌 due to 因为，由于",
     "exam_cite": "类似行业协会的所有权结构阻止了律师获得应得的利润。（2014 英一 Text 2）",
-    "plain_meaning": "因为；预期的"
+    "plain_meaning": "应得的；由于"
   },
   {
     "type": "basic",
     "word": "will",
-    "meaning": "将要",
+    "meaning": "遗嘱；意志；将要",
     "question": "Washington gave his slaves their freedom in his ____. 💡 华盛顿在遗嘱中给予奴隶们自由。",
     "options": {
       "A": "forget",
@@ -18473,7 +18473,7 @@
       "D": "constitute"
     },
     "answer": "B",
-    "plain_meaning": "将要"
+    "plain_meaning": "遗嘱；意志；将要"
   },
   {
     "type": "basic",
@@ -18493,7 +18493,7 @@
   {
     "type": "basic",
     "word": "gain",
-    "meaning": "获得；增加",
+    "meaning": "收益；获得；增加",
     "question": "The real ____ in the state sector come in benefits and work practices. 💡 公共部门人员实际的经济收益来自福利和工作制度。",
     "options": {
       "A": "appear",
@@ -18504,7 +18504,7 @@
     "answer": "C",
     "phrase": "📌 gain weight 增重",
     "mnemonic": "🧠 No pain, no gain. 一分耕耘，一分收获。",
-    "plain_meaning": "获得；增加"
+    "plain_meaning": "收益；获得；增加"
   },
   {
     "type": "basic",
@@ -18780,7 +18780,7 @@
   {
     "type": "basic",
     "word": "lot",
-    "meaning": "许多；大量",
+    "meaning": "抽签；许多；大量",
     "question": "They drew ____ for the right to go last. 💡 他们抽签决定最后走的权利。",
     "options": {
       "A": "another",
@@ -18789,7 +18789,7 @@
       "D": "above"
     },
     "answer": "B",
-    "plain_meaning": "许多；大量"
+    "plain_meaning": "抽签；许多；大量"
   },
   {
     "type": "basic",
@@ -18810,7 +18810,7 @@
   {
     "type": "basic",
     "word": "last",
-    "meaning": "最后的",
+    "meaning": "持续；最后的",
     "question": "Formerly the wedding ____ three days, but by the 1980s it more commonly lasted a day and a half. 💡 以前婚礼会持续三天，但是到了 20 世纪 80 年代，更常见地是持续一天半。",
     "options": {
       "A": "colonial",
@@ -18820,7 +18820,7 @@
     },
     "answer": "C",
     "phrase": "📌 at last 终于",
-    "plain_meaning": "最后的"
+    "plain_meaning": "持续；最后的"
   },
   {
     "type": "basic",
