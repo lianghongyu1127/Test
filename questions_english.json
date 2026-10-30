@@ -1229,7 +1229,7 @@
     },
     "answer": "B",
     "technique_tip": "💡 态度题解法：【排他排除】subjective（主观的）在考研学术阅读中几乎绝非作者态度答案。",
-    "plain_meaning": "纯凭主观臆断、片面主观"
+    "plain_meaning": "纯凭个人臆断、主观片面"
   },
   {
     "type": "attitude",
@@ -2954,7 +2954,7 @@
     "family": "migr",
     "mnemonic": "🧠 e（外，出来）+migr（移动）+ate（动词后缀）→移居国外",
     "exam_cite": "很多研究发现，发展中国家受过良好教育的人尤其可能移居国外。（2012 英二翻译）",
-    "plain_meaning": "迁出本土移居海外海外移民"
+    "plain_meaning": "迁出本土移居国外、海外移民"
   },
   {
     "type": "family",
@@ -2971,7 +2971,7 @@
     "family": "auto",
     "mnemonic": "🧠 auto（自动的）+mat（移动）+e→使自动移动→使自动化",
     "exam_cite": "其他写法：其他写法： automated. 即使是奶牛场，机器人也只能完成一小部分挤奶工作，在实现自动化之前依旧长路漫漫。 （2019 英二 Text 3）",
-    "plain_meaning": "全自动不用人操心、自动化运行"
+    "plain_meaning": "全自动不用人操心、自动化运转"
   },
   {
     "type": "advanced",
@@ -3532,7 +3532,7 @@
     "answer": "C",
     "family": "vent",
     "mnemonic": "🧠 con（一起，共同）+ven（来）+e→大家来到一起开会→召开，开会",
-    "plain_meaning": "把大伙召集起来开大会开会"
+    "plain_meaning": "把大伙召集起来开大会、开会聚拢"
   },
   {
     "type": "family",
@@ -3747,7 +3747,7 @@
     "phrase": "📌 on certain occasions 在某些情况下",
     "mnemonic": "🧠 oc（向）+cas（落下）+ion（名词后缀）→事情落下的地点→场合",
     "exam_cite": "在某些情况下，电话窃听是可以接受的。（2015 英一 Text 4）",
-    "plain_meaning": "碰头聚会的重要大场合时机"
+    "plain_meaning": "碰头聚会的重要大场合、良机"
   },
   {
     "type": "advanced",
@@ -3764,7 +3764,7 @@
     "phrase": "📌 by accident 意外地",
     "mnemonic": "🧠 ac（向）+cid（落下）+ent（名词后缀）→从天而落的事情→意外",
     "exam_cite": "大部分考古遗址是通过仔细的搜寻找到的，而还有相当一部分是意外发现的。（2014 英一新题型）",
-    "plain_meaning": "半路杀出的飞来横祸意外事故"
+    "plain_meaning": "半路杀出的飞来横祸、意外事故"
   },
   {
     "type": "advanced",
@@ -4133,7 +4133,7 @@
     },
     "answer": "A",
     "mnemonic": "🧠 skep（=scop，看）+ t +ic（名词后缀）→始终用怀疑态度看待事物的人→怀疑论者",
-    "plain_meaning": "爱挑刺怀疑的人、怀疑论者"
+    "plain_meaning": "爱挑刺的疑心病、怀疑论者"
   },
   {
     "type": "family",
@@ -4184,7 +4184,7 @@
     "family": "vis/vid",
     "mnemonic": "🧠 vis（看）+ual（形容词后缀）→视觉的",
     "exam_cite": "越来越多的科学家正在寻找视觉艺术家来帮助他们向新的观众传达他们的作品。（2022 英一 Text 3）",
-    "plain_meaning": "大饱眼福的视觉视觉呈现"
+    "plain_meaning": "大饱眼福的视觉呈现、清晰可见的"
   },
   {
     "type": "family",
@@ -4299,7 +4299,7 @@
     "family": "in",
     "mnemonic": "🧠 in（里）+tuit（看）+ion（名词后缀）→内心看事物的第一感觉→直觉",
     "exam_cite": "直觉的特殊力量只有在某些情况下才会被释放出来。（2021 英二 Text 4）",
-    "plain_meaning": "毫无根据却奇准无比的直觉直感"
+    "plain_meaning": "毫无根据却奇准无比的第六感、直觉"
   },
   {
     "type": "advanced",
@@ -5369,7 +5369,7 @@
     },
     "answer": "D",
     "mnemonic": "🧠 multi（多）+ply（折叠）→数量多倍折叠→乘",
-    "plain_meaning": "成倍成倍翻番激增繁殖"
+    "plain_meaning": "成倍翻番、激增繁衍"
   },
   {
     "type": "family",
@@ -5483,7 +5483,7 @@
     "answer": "B",
     "mnemonic": "🧠 al（向）+ly（捆绑）→利益绑在一起的人→盟友",
     "exam_cite": "查尔斯把共和党人视为潜在盟友。（2015 英一 Text 1）",
-    "plain_meaning": "拉帮结派结为同盟战友同盟"
+    "plain_meaning": "拉帮结派结为同盟、并肩战友"
   },
   {
     "type": "advanced",
@@ -6170,7 +6170,7 @@
     "family": "re",
     "mnemonic": "🧠 re（再，又）+volv（转）+e→一再绕着轨道转→围绕",
     "exam_cite": "我们已知的所有行星都围绕太阳运转，而不是地球。（2020 英一翻译）",
-    "plain_meaning": "围绕核心转圈始终围绕着"
+    "plain_meaning": "围绕核心转圈、始终围绕着"
   },
   {
     "type": "advanced",
@@ -6335,7 +6335,7 @@
     "phrase": "📌 experiment on/upon… 用……做实验",
     "mnemonic": "🧠 ex（外，出来）+per（尝试）+ i +ment（名词后缀）→尝试",
     "exam_cite": "实验表明人工面试的结果比人工智能面试存在更多的偏见。（2021 英一新题型）",
-    "plain_meaning": "亲身拿来试错尝试；实验室做实验"
+    "plain_meaning": "亲身试错尝试；实验室做实验"
   },
   {
     "type": "family",
@@ -6889,7 +6889,7 @@
     "answer": "A",
     "mnemonic": "🧠 neur（神经）+al（形容词后缀）→神经的",
     "exam_cite": "研究人员已经开始相信梦是神经修复的随机结果。（2005 英一 Text 3）",
-    "plain_meaning": "大脑内部神经元的神经传导"
+    "plain_meaning": "大脑内部脑回路、神经传导"
   },
   {
     "type": "advanced",
@@ -7001,7 +7001,7 @@
     },
     "answer": "C",
     "mnemonic": "🧠 com（一起，共同）+put（思考）+e→将数据放一起，进行思考→计算",
-    "plain_meaning": "计算机飞速运算计算"
+    "plain_meaning": "计算机飞速运算、精准核算"
   },
   {
     "type": "family",
@@ -7118,7 +7118,7 @@
     },
     "answer": "A",
     "mnemonic": "🧠 sym（相同）+path（感情）+y（名词后缀）→有相同的感情→同情（心）；赞同",
-    "plain_meaning": "同情心软；赞同情感共鸣"
+    "plain_meaning": "同情心软；情感共鸣与支持"
   },
   {
     "type": "advanced",
@@ -7426,7 +7426,7 @@
     "answer": "D",
     "mnemonic": "🧠 bio（生命）+logy（名词后缀，表“学科”）→研究各种生命的学科→生物学",
     "exam_cite": "植物生物学是复杂而迷人的。（2022 英一完形）",
-    "plain_meaning": "揭开生命奥秘的生物学生命科学"
+    "plain_meaning": "揭开生命奥秘的生物学、生命科学"
   },
   {
     "type": "advanced",
@@ -7555,7 +7555,7 @@
     "answer": "A",
     "mnemonic": "🧠 an（没有）+onym（=name，名字）+ous（形容词后缀）→没有名字的信→匿名的",
     "exam_cite": "孩子们被分发了巧克力币，并有机会与一个匿名的孩子分享。（2019 英二 Text 1）",
-    "plain_meaning": "隐姓埋名不露真容的匿名不知名"
+    "plain_meaning": "隐姓埋名不露真容的匿名、无名氏"
   },
   {
     "type": "advanced",
@@ -7958,7 +7958,7 @@
     "answer": "C",
     "phrase": "📌 the European Union (EU) 欧盟",
     "mnemonic": "🧠 un（一）+ion（名词后缀）→成为一个整体→联盟",
-    "plain_meaning": "抱团联合的工会联盟联盟结合"
+    "plain_meaning": "抱团联合的工会、结成同盟"
   },
   {
     "type": "advanced",
@@ -8191,7 +8191,7 @@
     "phrase": "📌 belong to 属于",
     "mnemonic": "🧠 be（使）+long（长的）→使某人长久拥有某物→属于",
     "exam_cite": "未来属于风能和太阳能等可再生能源这一点比以往任何时候都要清楚明了。（2018 英二 Text 2）",
-    "plain_meaning": "名正言顺归属于属于"
+    "plain_meaning": "名正言顺归属于、属于自己"
   },
   {
     "type": "advanced",
@@ -8465,7 +8465,7 @@
     "answer": "A",
     "family": "contra",
     "mnemonic": "🧠 counter（反）+part（部分）→反方和你相应的部分→相对应的人或物",
-    "plain_meaning": "对等地位的对应另一方对应人"
+    "plain_meaning": "对等地位的另一方、对应职务的人"
   },
   {
     "type": "advanced",
@@ -8648,7 +8648,7 @@
     "answer": "A",
     "mnemonic": "🧠 clim（倾斜）+ate（名词后缀）→一个地区的气候与太阳光线的倾斜角度有关→气候",
     "exam_cite": "在今天的经济局势下，那些抱怨资金匮乏的社会科学家们不应该有更多的期望。（2013 英一新题型）",
-    "plain_meaning": "晴雨天气气候；社会政治风气大气候"
+    "plain_meaning": "晴雨天气气候；社会政治大气候"
   },
   {
     "type": "family",
@@ -8760,7 +8760,7 @@
     "answer": "B",
     "mnemonic": "🧠 priv（个人）+ i +leg（法律）+e→专为一个人的法律→特权",
     "exam_cite": "这些人正是英国、加拿大、澳大利亚等国家试图通过对大学毕业生给予特权的移民条例来吸引的员工。（2012 英二翻译）",
-    "plain_meaning": "人上人的特权红利特权优待"
+    "plain_meaning": "人上人的特权红利、特殊优待"
   },
   {
     "type": "advanced",
@@ -9001,7 +9001,7 @@
     "answer": "B",
     "mnemonic": "🧠 sen（老）+ate（名词后缀）→由元老组成的领导班子→上院，参议院",
     "exam_cite": "上周四，法国参议院通过了一项数字服务税。（2020 英一 Text 4）",
-    "plain_meaning": "手握大权的参议院上议院"
+    "plain_meaning": "手握立法国政大权的参议院"
   },
   {
     "type": "advanced",
@@ -9900,7 +9900,7 @@
       "D": "commitment"
     },
     "answer": "B",
-    "plain_meaning": "装物箱子盒子；关在盒子里画地为牢"
+    "plain_meaning": "装物的箱子纸盒；关进小盒画地为牢"
   },
   {
     "type": "advanced",
@@ -10108,7 +10108,7 @@
     "answer": "A",
     "mnemonic": "🧠 folk（人们）在大街上 talk（聊天）",
     "exam_cite": "工作的价值促使人们在退休后继续工作。（2022 英二 Text 2）",
-    "plain_meaning": "父老乡亲寻常民间老百姓民间"
+    "plain_meaning": "父老乡亲寻常百姓、民间流传的"
   },
   {
     "type": "advanced",
@@ -10604,7 +10604,7 @@
     "answer": "D",
     "mnemonic": "🧠 有些 race（种族）的人不吃 rice（米饭）",
     "exam_cite": "越来越多的老牌公司也竞相将此类专利归入自己的案卷中。（2010 英一 Text 2）",
-    "plain_meaning": "同台赛跑竞争角逐；人种族群种族"
+    "plain_meaning": "同台赛跑竞争角逐；人种族群"
   },
   {
     "type": "advanced",
@@ -10683,7 +10683,7 @@
     "answer": "D",
     "mnemonic": "🧠 philo（爱）+soph（智慧）+y（名词后缀）→爱智慧之学→哲学",
     "exam_cite": "路易斯主要关注人文学科：文学、语言、哲学等。（2011 英一新题型）",
-    "plain_meaning": "刨根问底的哲学思辨处世哲学"
+    "plain_meaning": "刨根问底的人生哲学、处世之道"
   },
   {
     "type": "family",
@@ -10700,7 +10700,7 @@
     "family": "ten/tain",
     "mnemonic": "🧠 孩子是 parent（父母）的 patent（专利）",
     "exam_cite": "此前数十年，公司一直享有分离 DNA 的专利——截至 2005 年，大约有 20%的人类基因被注册专利。（2012 英二 Text 3）",
-    "plain_meaning": "独家垄断的专利护城河专利技术"
+    "plain_meaning": "独家垄断的专利护城河、专有技术"
   },
   {
     "type": "family",
@@ -11082,7 +11082,7 @@
     "answer": "C",
     "mnemonic": "🧠 iron（铁）+y（名词后缀）→用铁来讽刺她心肠硬→讽刺",
     "exam_cite": "这一事件具现了一个具有讽刺意味的情况：美国男性虽然在公共场合往往比女性健谈，但在家里却比女性话少。（2010 英二 Text 2）",
-    "plain_meaning": "黑色幽默哭笑不得的讽刺讽刺反讽"
+    "plain_meaning": "黑色幽默哭笑不得的讽刺、反讽"
   },
   {
     "type": "advanced",
@@ -12100,7 +12100,7 @@
     "answer": "D",
     "mnemonic": "🧠 fun（有趣的）+ction（联想 action，活动）→活动的功能就是创造有趣的氛围→功能",
     "exam_cite": "关于宇宙运转方式的更多解释不断出现，速度之快使人们再也无法忽视。（2020 英一翻译）",
-    "plain_meaning": "运转良好起关键作用；功能运转"
+    "plain_meaning": "运转良好起关键作用；职能功用"
   },
   {
     "type": "advanced",
@@ -12454,7 +12454,7 @@
     },
     "answer": "B",
     "mnemonic": "🧠 temp（=time，时间）+or（名词后缀）+al（形容词后缀）→时间的",
-    "plain_meaning": "受时间约束的时间上的；世俗凡间的"
+    "plain_meaning": "受岁月约束的时间上的；世俗红尘的"
   },
   {
     "type": "advanced",
@@ -12486,7 +12486,7 @@
     "answer": "D",
     "mnemonic": "🧠 fre（联想 free，自由的）+qu（谐音“去”）+ent（形容词后缀）→自由的人可以频繁去各个国家 →频繁的",
     "exam_cite": "假设你在人类常去的地方迷了路，请寻找我们在地面景观上留下的标记。（2019 英一完形）",
-    "plain_meaning": "三天两头经常光顾跑腿频繁频繁走访"
+    "plain_meaning": "三天两头常跑腿、频繁光顾走访"
   },
   {
     "type": "advanced",
@@ -12861,7 +12861,7 @@
     "answer": "B",
     "phrase": "📌 be peculiar to... 为……所特有的",
     "exam_cite": "美洲特有地理条件的作用，引起了意义深远的变化。（2015 英一翻译）",
-    "plain_meaning": "特立独行透着古怪独特的怪异独特"
+    "plain_meaning": "特立独行透着古怪、独特的"
   },
   {
     "type": "advanced",
@@ -12893,7 +12893,7 @@
     "answer": "D",
     "mnemonic": "🧠 coun（联想 country，地区）+cil（联想 call，召唤）→召唤各地区代表一起开会的机关→地方议会",
     "exam_cite": "工党同样也想在地方议会反对开发的地方终止地方规划。（2016 英一 Text 2）",
-    "plain_meaning": "地方一帮人开会议事的地方议会理事会"
+    "plain_meaning": "地方一帮人议事的地方议会、理事会"
   },
   {
     "type": "advanced",
@@ -12925,7 +12925,7 @@
     "answer": "D",
     "mnemonic": "🧠 lobby（游说）保护妇女权益几乎成了她的 hobby（爱好）",
     "exam_cite": "制药公司喜欢分开的买家；这样他们可以更好地游说。（2005 英一新题型）",
-    "plain_meaning": "四处奔走拉票游说的说客说客团体"
+    "plain_meaning": "四处奔走拉票游说、说客利益团体"
   },
   {
     "type": "family",
@@ -13024,7 +13024,7 @@
     "phrase": "📌 can’t afford to do sth. 无法承受起做某事的后果",
     "mnemonic": "🧠 af（向）+ford（=force，力量）→向商品贡献自身的经济力量→支付得起；承受得起；提供",
     "exam_cite": "南方地区无法承受起放弃奴隶制带来的后果。（2008 英一 Text 4）",
-    "plain_meaning": "掏得起银子承担得起后果负担得起"
+    "plain_meaning": "掏得起银子、承担得起后果"
   },
   {
     "type": "advanced",
@@ -13190,7 +13190,7 @@
     "phrase": "📌 on a budget 钱不多的",
     "mnemonic": "🧠 谐音“巴结他”→巴结他才能有更多的预算→预算",
     "exam_cite": "常言道，一半的广告预算都被浪费了。（2013 英一 Text 2）",
-    "plain_meaning": "精打细算过日子的预算开支做预算"
+    "plain_meaning": "精打细算过日子的开支预算、做预算"
   },
   {
     "type": "advanced",
@@ -13206,7 +13206,7 @@
     "answer": "A",
     "mnemonic": "🧠 field（田地）yield（产生）作物",
     "exam_cite": "谷歌“养活”我们以获取我们数字生活中产生的数据。（2018 英二 Text 3）",
-    "plain_meaning": "结出丰硕成果产出；不得不低头退让低头"
+    "plain_meaning": "结出丰硕成果产出；不得不低头退让"
   },
   {
     "type": "advanced",
@@ -13255,7 +13255,7 @@
     "answer": "C",
     "mnemonic": "🧠 拟声词，发声 bong-bong→经济爆发即经济繁荣→繁荣",
     "exam_cite": "英国正在为经济繁荣做准备。（2017 英一 Text 3）",
-    "plain_meaning": "大火大爆发、行情暴涨繁荣轰鸣爆发"
+    "plain_meaning": "大火大爆发、行情暴涨繁荣轰鸣"
   },
   {
     "type": "family",
@@ -13322,7 +13322,7 @@
     "family": "fac/fect",
     "mnemonic": "🧠 af（向）+fect（做）→向同桌做小动作→影响",
     "exam_cite": "美国高校很少承认社会阶级能够影响学生的教育经历。（2015 英二 Text 2）",
-    "plain_meaning": "产生不可忽视的波及波及影响"
+    "plain_meaning": "产生不可忽视的波及影响、牵动"
   },
   {
     "type": "family",
@@ -13475,7 +13475,7 @@
     "phrase": "📌 prefer A to B 比起 B 更喜欢 A",
     "mnemonic": "🧠 pre（在前）+fer（拿）→优先拿→更喜欢",
     "exam_cite": "许多人兼职是因为，比起全职工作，他们更喜欢兼职工作。（2015 英二 Text 4）",
-    "plain_meaning": "心里更偏爱更中意中意更中意"
+    "plain_meaning": "心里更偏爱、更中意喜欢"
   },
   {
     "type": "basic",
@@ -13731,7 +13731,7 @@
     "answer": "D",
     "mnemonic": "🧠 com（一起，共同）+plex（折叠）→事情真相折叠在一起的→复杂的",
     "exam_cite": "植物生物学是复杂而迷人的。（2022 英一完形）",
-    "plain_meaning": "盘根错节错综复杂像乱麻复杂"
+    "plain_meaning": "盘根错节像乱麻般错综复杂"
   },
   {
     "type": "family",
@@ -13899,7 +13899,7 @@
     "phrase": "📌 bear a child 生孩子 bear little similarity to sth. 与某事几乎没有相似之处 bring sth. to bear on… 用某物应对……",
     "mnemonic": "🧠 施工现场，ear（耳朵）bear（忍受）巨大的噪音",
     "exam_cite": "铁路网的运营成本应由使用铁路网的人承担，而不是全体纳税人。（2021 英一 Text 1）",
-    "plain_meaning": "咬紧牙关硬扛承担承担重担；怀胎生养"
+    "plain_meaning": "咬紧牙关硬扛重担；怀胎生养"
   },
   {
     "type": "basic",
@@ -14089,7 +14089,7 @@
     "phrase": "📌 graduate from… 从……毕业",
     "mnemonic": "🧠 grad（走）+ u +ate（动词或名词后缀）→走完学习生涯→毕业；毕业生",
     "exam_cite": "施耐德从大学毕业后找到了一份理想的工作。（2016 英二 Text 4）",
-    "plain_meaning": "顺利毕业拿到文凭；大学毕业生"
+    "plain_meaning": "顺利毕业拿到文凭；高校毕业生"
   },
   {
     "type": "basic",
@@ -14155,7 +14155,7 @@
     "answer": "D",
     "mnemonic": "🧠 as（向）+sess（坐）→坐在法官旁边计算罚金或税金数量→评估",
     "exam_cite": "作者通过评估成绩宽恕的可行性来检验其实践。（2019 英一 Text 2）",
-    "plain_meaning": "心里反复掂量盘算评估掂量估价"
+    "plain_meaning": "心里反复盘算估价、全面评估"
   },
   {
     "type": "family",
@@ -14697,7 +14697,7 @@
     "answer": "B",
     "mnemonic": "🧠 prov（测试）+e→进行测试证明学习情况→证明",
     "exam_cite": "在美国使用可再生能源已被证明是不切实际的。（2018 英二 Text 2）",
-    "plain_meaning": "拿出实锤铁证证明属实铁证如山"
+    "plain_meaning": "拿出实锤证据证明属实、铁证如山"
   },
   {
     "type": "basic",
@@ -14713,7 +14713,7 @@
     "answer": "B",
     "mnemonic": "🧠 im（里）+prove（证明）→证明事物的内在一直在变好→改善",
     "exam_cite": "在未来几年内，技术将在大大小小的方面改善社会的发展。（2018 英一 Text 1）",
-    "plain_meaning": "大变样提升品质改头换面改善改善"
+    "plain_meaning": "大变样改头换面、提升品质与改善"
   },
   {
     "type": "basic",
@@ -15378,7 +15378,7 @@
     "phrase": "📌 make a mental note of... 把……记在脑子里",
     "mnemonic": "🧠 ment（思考）+al（形容词后缀）→思考要用脑→脑力的",
     "exam_cite": "当我们不理解心理健康的价值，也不知道如何获得心理健康时，心理健康就不为我们所见。（2016 英一翻译）",
-    "plain_meaning": "脑力运转的脑力的；内心深处的心理精神"
+    "plain_meaning": "费尽脑汁的脑力的；内心深处的心理精神"
   },
   {
     "type": "basic",
@@ -15443,7 +15443,7 @@
     "answer": "B",
     "mnemonic": "🧠 psycho（精神，来自“精神之神”赛姬 Psyche）+logy（名词后缀，表“学科”）→研究人精神的学科→心理学",
     "exam_cite": "多伦多大学心理学教授蒂娜·马尔蒂的研究表明，内疚感可以弥补某种情感缺失。（2019 英二 Text 1）",
-    "plain_meaning": "窥探人心深处奥秘的心理学心理机制"
+    "plain_meaning": "窥探人心奥秘的心理学、心理机制"
   },
   {
     "type": "basic",
@@ -15683,7 +15683,7 @@
     "phrase": "📌 in general 通常",
     "mnemonic": "🧠 gener（出生）+al（形容词后缀）→人出生时具有人的一般特征→一般的",
     "exam_cite": "女性在公司董事会的参与度可能并未反映出目前女性在整体人口中所占的比例。（2020 英一 Text 3）",
-    "plain_meaning": "放之四海皆准的大体普遍普遍的；领兵将军统领"
+    "plain_meaning": "放之四海皆准的大体普遍的；领兵统帅将军"
   },
   {
     "type": "basic",
@@ -15894,7 +15894,7 @@
     },
     "answer": "C",
     "phrase": "📌 at the center of… 在……的中心",
-    "plain_meaning": "万众瞩目的中心焦点舞台中心"
+    "plain_meaning": "万众瞩目的中心焦点、舞台C位"
   },
   {
     "type": "basic",
@@ -15975,7 +15975,7 @@
     "answer": "A",
     "mnemonic": "🧠 medi（中间）+um（后缀）→中间的；在民众中间传播信息的载体→媒介",
     "exam_cite": "在西方，最强大的大众传媒是教堂。 （2006 英一 Text 4）",
-    "plain_meaning": "中间穿针引线的媒介传播载体媒介载体"
+    "plain_meaning": "穿针引线的媒介、传播载体"
   },
   {
     "type": "basic",
@@ -16969,7 +16969,7 @@
     "answer": "D",
     "mnemonic": "🧠 leg（法律）+al（形容词后缀）→法律（上）的",
     "exam_cite": "我们将新来的人分为两类：合法的或不合法的，好的或坏的。（2013 英二 Text 2）",
-    "plain_meaning": "白纸黑字受法律保护合法的正当法律"
+    "plain_meaning": "白纸黑字受法律保护、合规合法的"
   },
   {
     "type": "basic",
@@ -17198,7 +17198,7 @@
     "answer": "A",
     "phrase": "📌 at all costs 不惜一切代价",
     "exam_cite": "必须不惜一切代价保护隐私。（2018 英一 Text 3）",
-    "plain_meaning": "得付出巨大代价折损代价；花费银子"
+    "plain_meaning": "得付出惨痛折损代价；花费银子"
   },
   {
     "type": "family",
@@ -17262,7 +17262,7 @@
     "answer": "A",
     "phrase": "📌 be worth doing… 值得做……",
     "exam_cite": "通常，艺术品已经过时了，所以它们不值得购买。（2010 英二 Text 1）",
-    "plain_meaning": "配得上花心思的、值得真金白银的值得"
+    "plain_meaning": "配得上花心思的、值得真金白银投资"
   },
   {
     "type": "basic",
@@ -17407,7 +17407,7 @@
     "answer": "D",
     "family": "struct",
     "mnemonic": "🧠 struct（建造）+ure（名词后缀）→建造起来的事物都有它们自己的结构→结构",
-    "plain_meaning": "精心搭起坚实框架；骨干组织结构精心构造"
+    "plain_meaning": "精心搭起坚实框架；骨干组织结构"
   },
   {
     "type": "family",
@@ -17564,7 +17564,7 @@
     "family": "pre",
     "mnemonic": "🧠 pre（在前）+vi（道路）+ous（形容词后缀）→前面走过的路→先前的",
     "exam_cite": "大法官安东尼·肯尼迪表示，先前的那些裁决漏洞百出。（2019 英一 Text 4）",
-    "plain_meaning": "在此之前的上一回先前的过往"
+    "plain_meaning": "在此之前的上一回、先前的过往"
   },
   {
     "type": "family",
@@ -17759,7 +17759,7 @@
     "answer": "B",
     "mnemonic": "🧠 com（一起，共同）+ple（满）+te→将未完成的事物一起填满→完成",
     "exam_cite": "如果你气喘吁吁，无法用完整的句子说话，请放慢语速。（2022 英二新题型）",
-    "plain_meaning": "齐齐整整彻底画上圆满句号全部的彻底"
+    "plain_meaning": "齐齐整整彻底画上圆满句号、全部的"
   },
   {
     "type": "basic",
@@ -18393,7 +18393,7 @@
     "answer": "A",
     "mnemonic": "🧠 never（从不）+ the +less（少的）→尽管你不好，然而我对你的爱从来都不少→然而",
     "exam_cite": "然而，住房的处境令人绝望。（2014 英二 Text 4）",
-    "plain_meaning": "即便如此然而峰回路转依然然而不过"
+    "plain_meaning": "即便如此峰回路转、依然然而不过"
   },
   {
     "type": "basic",
@@ -18520,7 +18520,7 @@
     "answer": "B",
     "mnemonic": "🧠 把人们都 gather（聚集）together（在一起）",
     "exam_cite": "尽你所能，收集所有热情和能量，露出大大的微笑，说声“你好”。（2018 英二新题型）",
-    "plain_meaning": "呼朋引伴聚在一块儿收集聚集聚合"
+    "plain_meaning": "呼朋引伴聚在一块儿、收集汇总"
   },
   {
     "type": "basic",
@@ -18585,7 +18585,7 @@
     },
     "answer": "D",
     "exam_cite": "我们可能会开始解决移民方面面临的挑战。 （2013 英二 Text 2）",
-    "plain_meaning": "一把钥匙开一把锁彻底搞定难题化解"
+    "plain_meaning": "一把钥匙开一把锁、彻底搞定难题"
   },
   {
     "type": "basic",
@@ -18699,7 +18699,7 @@
     "phrase": "📌 complain of/about sth. 抱怨某物/某事",
     "mnemonic": "🧠 com（一起，共同）+plain（击打）→被强制辞退的员工们一起击打自己的胸口（捶胸顿足）→抱怨",
     "exam_cite": "近些年美国农场主一直在抱怨劳动力不足的问题。（2019 英二 Text 3）",
-    "plain_meaning": "满肚子牢骚委屈抱怨吐苦水倒苦水"
+    "plain_meaning": "满肚子牢骚委屈、倒苦水抱怨"
   },
   {
     "type": "basic",
@@ -18805,7 +18805,7 @@
     "answer": "C",
     "phrase": "📌 on average 平均来看 the average Joe 普通人",
     "mnemonic": "🧠 aver（联想 ever，曾经）+age（年龄）→曾经问女士的年龄，她们平均都是 18 岁→平均的",
-    "plain_meaning": "大家普遍都这水平的普通平常平均水平"
+    "plain_meaning": "大家普遍都这水平的普通平常、平均水平"
   },
   {
     "type": "basic",
@@ -18820,7 +18820,7 @@
     },
     "answer": "C",
     "phrase": "📌 at last 终于",
-    "plain_meaning": "咬紧牙关撑到最后持续；最后的保底上一届"
+    "plain_meaning": "咬紧牙关撑到最后持续；最后的保底项"
   },
   {
     "type": "basic",
@@ -18836,7 +18836,7 @@
     "answer": "C",
     "phrase": "📌 a range of… 一系列……",
     "exam_cite": "跑步者从四岁的孩子到祖父母辈都有。（2017 英二 Text 1）",
-    "plain_meaning": "跨度极大的宽广范围幅面；处在...范围内"
+    "plain_meaning": "跨度极大的宽广范围、处于...幅度之间"
   },
   {
     "type": "basic",
@@ -18852,6 +18852,6 @@
     "answer": "B",
     "mnemonic": "🧠 谐音“我 true”，真即是美，美即是真——《希腊古瓮颂》，美即美德，优点→美德；优点",
     "exam_cite": "如今，工作的优点可能有点夸张。（2017 英二完形）",
-    "plain_meaning": "让人竖大拇指的高尚美德长处优点长处"
+    "plain_meaning": "让人竖大拇指的高尚美德、过人长处"
   }
 ]
