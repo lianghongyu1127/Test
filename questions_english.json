@@ -1235,7 +1235,7 @@
     "type": "attitude",
     "category": "不可选干扰项 (偏见讽刺)",
     "word": "Sarcastic",
-    "meaning": "阴阳怪气、冷嘲热讽",
+    "meaning": "讽刺挖苦的",
     "question": "The author’s commentary became bitingly ____ when exposing the hypocrisy of political fundraising galas.\n💡 当揭露政治筹款晚会的虚伪时，作者的评论变得尖酸刻薄、极尽讽刺。",
     "options": {
       "A": "Respectful",
@@ -1245,7 +1245,7 @@
     },
     "answer": "B",
     "technique_tip": "💡 态度题解法：【排他排除】sarcastic（挖苦讽刺的）态度过于极端，学术考试极少设为正选。",
-    "plain_meaning": "阴阳怪气、冷嘲热讽"
+    "plain_meaning": "讽刺挖苦的"
   },
   {
     "type": "attitude",
@@ -1267,7 +1267,7 @@
     "type": "attitude",
     "category": "不可选干扰项 (偏见讽刺)",
     "word": "Cynical",
-    "meaning": "总把人往坏处想、冷眼嘲讽",
+    "meaning": "愤世嫉俗的",
     "question": "Taking a ____ view of philanthropy, some commentators claim charity is merely a tax-evasion gimmick for the wealthy.\n💡 对慈善事业抱有愤世嫉俗的看法，一些评论人士声称慈善不过是富人的避税把戏。",
     "options": {
       "A": "Optimistic",
@@ -1277,13 +1277,13 @@
     },
     "answer": "B",
     "technique_tip": "💡 态度题解法：【排他排除】cynical（犬儒的/愤世嫉俗的）属极端负面词，不可选。",
-    "plain_meaning": "总把人往坏处想、冷眼嘲讽"
+    "plain_meaning": "愤世嫉俗的"
   },
   {
     "type": "attitude",
     "category": "不可选干扰项 (偏见讽刺)",
     "word": "Mocking",
-    "meaning": "嘲弄戏谑、看人笑话",
+    "meaning": "嘲弄的",
     "question": "Scholarly peer review should offer constructive criticism rather than adopting a ____ tone toward unorthodox ideas.\n💡 学术同行评审应当提供建设性的批评，而不是对非正统思想采取嘲弄的语气。",
     "options": {
       "A": "Respectful",
@@ -1293,7 +1293,7 @@
     },
     "answer": "B",
     "technique_tip": "💡 态度题解法：【排他排除】mocking（嘲笑嘲弄的）违反学术道德，直接秒杀排除。",
-    "plain_meaning": "嘲弄戏谑、看人笑话"
+    "plain_meaning": "嘲弄的"
   },
   {
     "type": "attitude",
@@ -1347,7 +1347,7 @@
     "type": "attitude",
     "category": "不可选干扰项 (冷漠不感兴趣)",
     "word": "Apathetic",
-    "meaning": "冷漠麻木、心如止水",
+    "meaning": "冷漠麻木的",
     "question": "Voter turnout plunged to historic lows as citizens grew increasingly ____ toward repetitive political slogans.\n💡 随着选民对千篇一律的政治口号越来越感到麻木冷漠，投票率跌至历史低点。",
     "options": {
       "A": "Empathetic",
@@ -1357,13 +1357,13 @@
     },
     "answer": "B",
     "technique_tip": "💡 态度题解法：【排他排除】apathetic（无动于衷/冷漠），考研阅读绝对排除词。",
-    "plain_meaning": "冷漠麻木、心如止水"
+    "plain_meaning": "冷漠麻木的"
   },
   {
     "type": "attitude",
     "category": "不可选干扰项 (冷漠不感兴趣)",
     "word": "Aloof",
-    "meaning": "冷淡超然、高冷置身事外",
+    "meaning": "冷淡超然的",
     "question": "The intellectual elite was accused of staying ____ from the practical day-to-day struggles of ordinary families.\n💡 知识精英被指责对普通家庭日常面临的实际困境作壁上观、漠然处之。",
     "options": {
       "A": "Engaged",
@@ -1373,7 +1373,7 @@
     },
     "answer": "B",
     "technique_tip": "💡 态度题解法：【排他排除】aloof（远离大众/冷漠自傲），干扰项经典代表。",
-    "plain_meaning": "冷淡超然、高冷置身事外"
+    "plain_meaning": "冷淡超然的"
   },
   {
     "type": "attitude",
@@ -1443,7 +1443,7 @@
     "type": "attitude",
     "category": "不可选干扰项 (不知所措)",
     "word": "Ambiguous",
-    "meaning": "模棱两可、含糊不清",
+    "meaning": "模棱两可的",
     "question": "The diplomat's statement was intentionally ____, allowing both nations to interpret the outcome as a triumph.\n💡 外交官的声明刻意模棱两可，允许双方都将结果解读为自己的胜利。",
     "options": {
       "A": "Explicit",
@@ -1453,7 +1453,7 @@
     },
     "answer": "B",
     "technique_tip": "💡 态度题解法：【排他排除】ambiguous（含糊其辞），作者态度通常鲜明，极少含糊。",
-    "plain_meaning": "模棱两可、含糊不清"
+    "plain_meaning": "模棱两可的"
   },
   {
     "type": "attitude",
@@ -1475,7 +1475,7 @@
     "type": "attitude",
     "category": "不可选干扰项 (不知所措)",
     "word": "Bewildered",
-    "meaning": "发懵犯晕、不知怎么办",
+    "meaning": "不知所措的",
     "question": "Consumers stood ____ before the massive wall of competing cereal brands, unable to determine value.\n💡 消费者面对眼前摆满五花八门麦片品牌的货架感到不知所措，无法判断性价比。",
     "options": {
       "A": "Composed",
@@ -1485,13 +1485,13 @@
     },
     "answer": "B",
     "technique_tip": "💡 态度题解法：【排他排除】bewildered（茫然失措），极端情绪干扰项。",
-    "plain_meaning": "发懵犯晕、不知怎么办"
+    "plain_meaning": "不知所措的"
   },
   {
     "type": "attitude",
     "category": "不可选干扰项 (过于极端)",
     "word": "Arbitrary",
-    "meaning": "拍脑袋瞎定、任性一刀切",
+    "meaning": "武断专横的",
     "question": "Critics attacked the strict curfew mandate as an ____ exercise of municipal executive authority.\n💡 批评人士抨击严格的宵禁命令是对市政行政权力的武断行使。",
     "options": {
       "A": "Reasonable",
@@ -1501,7 +1501,7 @@
     },
     "answer": "B",
     "technique_tip": "💡 态度题解法：【排他排除】arbitrary（专横武断的），作者态度绝不提倡武断。",
-    "plain_meaning": "拍脑袋瞎定、任性一刀切"
+    "plain_meaning": "武断专横的"
   },
   {
     "type": "attitude",
@@ -1523,7 +1523,7 @@
     "type": "attitude",
     "category": "不可选干扰项 (过于极端)",
     "word": "Dogmatic",
-    "meaning": "武断教条、死板认死理",
+    "meaning": "教条的；武断的",
     "question": "A genuine scientist must remain open to revision rather than clinging to ____ theoretical assumptions.\n💡 一个真正的科学家必须对修正理论保持开放态度，而不是死守教条的理论假设。",
     "options": {
       "A": "Flexible",
@@ -1533,7 +1533,7 @@
     },
     "answer": "B",
     "technique_tip": "💡 态度题解法：【排他排除】dogmatic（教条死板），学术大忌，直接排除。",
-    "plain_meaning": "武断教条、死板认死理"
+    "plain_meaning": "教条的；武断的"
   },
   {
     "type": "attitude",
